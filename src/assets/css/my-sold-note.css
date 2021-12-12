@@ -1,0 +1,43 @@
+.my-sold-note {
+  padding-top: 80px;
+}
+
+.my-sold-note .my-sold-note-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.my-sold-note .my-sold-note-table .stats-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-sold-note .my-sold-note-table .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 0;
+}
+
+.my-sold-note .stats-heading .search {
+  display: flex;
+}
+
+.my-sold-note .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.my-sold-note .search .search-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.my-sold-note .search input {
+  padding-left: 30px;
+}
+

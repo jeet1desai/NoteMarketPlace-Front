@@ -1,0 +1,147 @@
+.add-notes .add-note-form {
+  margin: 50px 0;
+}
+
+.add-notes .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 0;
+}
+
+.add-notes .form-group {
+  margin-bottom: 15px;
+}
+
+.add-notes .form-group label {
+  font-size: 15px;
+  color: #333333;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.add-notes .MuiFormControlLabel-label{
+  font-size: 15px;
+  color: #333333;
+  font-weight: 400;
+}
+
+.add-notes .form-control {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  padding-bottom: 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.add-notes .upload-box {
+  background-image: url("../../assets/images/upload.png");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.add-notes .upload-box input.upload {
+  opacity: 0;
+  height: 100px;
+  width: 100%;
+}
+
+.add-notes input[type="radio"] {
+  width: 25px;
+  height: 25px;
+}
+
+.add-notes input[type="radio"]:before {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 60%;
+  margin: 20% auto;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.add-notes input[type="radio"]:checked:before {
+  border-color: #6255a5;
+  background: #6255a5;
+}
+
+.add-notes input[type="radio"]:checked:after {
+  border-color: #6255a5;
+  background: #6255a5;
+}
+
+.add-notes .selling-info .form-group {
+  margin-bottom: 2px;
+}
+
+.add-notes .selling-info span {
+  vertical-align: super;
+}
+
+.add-notes .basic-note-detail textarea {
+  height: 200px;
+}
+
+.add-notes .add-note-button,
+.add-notes .selling-info .page-title,
+.add-notes .course-detail .page-title,
+.add-notes .institute-info .page-title,
+.add-notes .basic-note-detail .page-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.add-notes .add-note-button .save-btn {
+  width: 150px;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+.add-notes .add-note-button .publish-btn {
+  width: 150px;
+  text-transform: uppercase;
+}
+
+.add-notes .selling-info .form-group label {
+  margin-right: 20px;
+}
+
+.MuiFormGroup-root label.MuiFormControlLabel-root {
+  margin-bottom: 0;
+  height: 40px;
+}
+
+.MuiFormGroup-root label span.MuiRadio-root {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.selling-info .form-group:first-child label {
+  margin-bottom: 0;
+}
+
+.MuiFormGroup-root .MuiRadio-root span{
+ color: #6255a5;
+}
+
+.page-top .page-top-title p{
+  margin-bottom: 0;
+}

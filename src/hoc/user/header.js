@@ -1,0 +1,146 @@
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import { Dropdown, Menu } from "antd";
+import { Avatar } from "@mui/material";
+
+import "../../assets/css/header.css";
+import BlueLogo from "../../assets/images/top-logo-purple.png";
+import AvatarImage from "../../assets/images/avatar.png";
+
+export default function UserHeader() {
+  const [toggle, setToggle] = useState(false);
+
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <NavLink
+          exact="true"
+          to="/sell-note/my-profile"
+          activeClassName="active"
+        >
+          My Profile
+        </NavLink>
+      </Menu.Item>
+      <Menu.Item>
+        <NavLink
+          exact="true"
+          to="/sell-note/my-download"
+          activeClassName="active"
+        >
+          My Downloads
+        </NavLink>
+      </Menu.Item>
+      <Menu.Item>
+        <NavLink
+          exact="true"
+          to="/sell-note/my-sold-note"
+          activeClassName="active"
+        >
+          My Sold Notes
+        </NavLink>
+      </Menu.Item>
+      <Menu.Item>
+        <NavLink
+          exact="true"
+          to="/sell-note/my-rejected-note"
+          activeClassName="active"
+        >
+          My Rejected Notes
+        </NavLink>
+      </Menu.Item>
+      <Menu.Item>
+        <NavLink exact="true" to="/change-password" activeClassName="active">
+          Change Password
+        </NavLink>
+      </Menu.Item>
+      <Menu.Item className="drop-logout">
+        <NavLink exact="true" to="/logout" activeClassName="active">
+          Logout
+        </NavLink>
+      </Menu.Item>
+    </Menu>
+  );
+
+  return (
+    <header className="fixed-top">
+      <div className="container">
+        <div className="navigation">
+          <Link to="/" className="nav-link">
+            <img alt="logo" className="logo" src={BlueLogo} />
+          </Link>
+          <div
+            onClick={() => setToggle(!toggle)}
+            className={`menu-toggle ${toggle ? "open" : ""}`}
+            id="mobile-menu"
+          >
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </div>
+          <div className={`header-link ${toggle ? "open" : ""}`}>
+            <ul>
+              <li className="nav-link">
+                <NavLink
+                  exact="true"
+                  to="/search-notes"
+                  activeClassName="active"
+                >
+                  Search Notes
+                </NavLink>
+                <div className="underline"></div>
+              </li>
+              <li className="nav-link">
+                <NavLink
+                  exact="true"
+                  to="/sell-note/dashboard"
+                  activeClassName="active"
+                >
+                  Sell Your Notes
+                </NavLink>
+                <div className="underline"></div>
+              </li>
+              <li className="nav-link">
+                <NavLink
+                  exact="true"
+                  to="/sell-note/buyer-request"
+                  activeClassName="active"
+                >
+                  Buyer Requests
+                </NavLink>
+                <div className="underline"></div>
+              </li>
+              <li className="nav-link">
+                <NavLink exact="true" to="/faq" activeClassName="active">
+                  FAQ
+                </NavLink>
+                <div className="underline"></div>
+              </li>
+              <li className="nav-link">
+                <NavLink exact="true" to="/contact-us" activeClassName="active">
+                  Contact Us
+                </NavLink>
+                <div className="underline"></div>
+              </li>
+              <li className="nav-link">
+                <Dropdown overlay={menu}>
+                  <Avatar
+                    alt="Remy Sharp"
+                    src={AvatarImage}
+                    sx={{ width: 28, height: 28 }}
+                  />
+                </Dropdown>
+              </li>
+              <li className="nav-link">
+                <Link to="/login" className="login">
+                  <button type="button" className="btn btn-purple">
+                    Login
+                  </button>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

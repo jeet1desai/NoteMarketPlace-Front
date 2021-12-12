@@ -1,0 +1,94 @@
+.my-downloads {
+  padding-top: 80px;
+}
+
+.my-downloads .dropdown-menu {
+  min-width: 13rem;
+}
+
+.my-downloads .my-download-table .stats-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-downloads .my-download-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.my-downloads .my-download-table .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 0;
+}
+
+.my-downloads .stats-heading .search {
+  display: flex;
+}
+
+.my-downloads .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.my-downloads .search .search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.my-downloads .search input {
+  padding-left: 30px;
+}
+
+.modal .modal-header .close {
+  background-color: transparent;
+  border: none;
+}
+
+.modal .modal-header .close span {
+  font-size: 20px;
+}
+
+.modal .modal-header {
+  border-bottom: none;
+}
+
+.modal .modal-header .modal-title {
+  color: #6255a5;
+}
+
+.modal .MuiRating-root svg {
+  height: 2em;
+}
+
+.modal .modal-body .modal-review-btn {
+  margin-top: 30px;
+  text-transform: uppercase;
+}
+
+.modal .modal-body .form-group label {
+  font-size: 15px;
+  color: #333333;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.modal .modal-body .form-control {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  padding-bottom: 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  height: 129px;
+}

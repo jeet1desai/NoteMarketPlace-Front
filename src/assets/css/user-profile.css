@@ -1,0 +1,83 @@
+.user-profile .user-profile-form {
+  margin: 50px 0;
+}
+
+.user-profile .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 0;
+}
+
+.user-profile .form-group {
+  margin-bottom: 10px;
+}
+
+.user-profile .form-group label {
+  font-size: 15px;
+  color: #333333;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.user-profile .form-control {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  padding-bottom: 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.user-profile .upload-box {
+  background-image: url('../images/upload.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.user-profile .upload-box input.upload {
+  opacity: 0;
+  height: 100px;
+  width: 100%;
+}
+
+.user-profile .phone-number {
+  display: flex;
+}
+
+.user-profile .phone-number .phone-two {
+  width: 20%;
+  margin-right: 10px;
+}
+
+.user-profile .user-profile-button, .user-profile .collage-university-info .page-title, .user-profile .address-details .page-title, .user-profile .basic-profile-details .page-title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.user-profile .submit-btn {
+  width: 150px;
+  text-transform: uppercase;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

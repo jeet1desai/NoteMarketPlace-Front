@@ -1,0 +1,138 @@
+.page-top {
+  padding-top: 80px;
+  background-image: url('../images/banner-with-overlay.jpg');
+  width: 100%;
+  height: 330px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.page-top .page-top-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.search-filter .page-title p, .notes .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.search-filter .content-box, .notes .content-box {
+  margin: 50px 0;
+}
+
+.search-notes .input-boxes {
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.search-notes .input-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.search-notes .input-search .form-control-feedback {
+  position: absolute;
+  z-index: 0;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+.search-notes .input-search input {
+  height: 40px;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.search-notes .select-boxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.search-notes .select-boxes select {
+  color: #333333;
+  width: 16%;
+  height: 38px;
+  outline: none;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  padding: 5px;
+}
+
+.search-notes .note-list .MuiTypography-h5 {
+  color: #6255a5;
+  line-height: 25px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.search-notes .note-list .MuiTypography-p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.search-notes .MuiCardContent-root p, .search-notes .MuiCardContent-root .note-rating p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.search-notes .MuiCardContent-root p span {
+  color: #df3434;
+}
+
+.search-notes .note-rating {
+  display: flex;
+  align-items: center;
+}
+
+.search-notes .MuiCard-root {
+  margin-bottom: 10px;
+}
+
+.search-notes .MuiCardContent-root .note-rating p {
+  margin-bottom: 0;
+}
+
+.pagination {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.pagination .Mui-selected, .pagination .Mui-selected:hover {
+  background-color: #6255a5 !important;
+  color: white !important;
+}
+
+.pagination .MuiPagination-root li button{
+  min-width: 36px;
+  height: 36px;
+}

@@ -1,0 +1,61 @@
+.faq .question-answer .content-box {
+  margin: 50px 0;
+}
+
+.faq .question-answer .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.faq .MuiPaper-root::before {
+  background-color: white;
+}
+
+.faq .MuiPaper-root {
+  border-radius: 3px;
+  position: unset;
+  border: 1px solid #d1d1d1;
+  margin: 16px 0;
+}
+
+.faq .MuiAccordionSummary-root {
+  background-color: #f3f3f3;
+  color: #333333;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.faq .MuiAccordionSummary-content, .faq .MuiAccordionDetails-root {
+  margin: 20px 0;
+}
+
+.faq .MuiAccordionSummary-content p, .faq .MuiAccordionDetails-root p {
+  margin-bottom: 0;
+}
+
+.faq .Mui-expanded .MuiAccordionSummary-root {
+  background-color: white;
+}
+
+.faq .Mui-expanded .MuiAccordionSummary-content p {
+  transition: max-height 0.2s ease-out;
+  font-weight: 600;
+  -webkit-transition: max-height 0.2s ease-out;
+  -moz-transition: max-height 0.2s ease-out;
+  -ms-transition: max-height 0.2s ease-out;
+  -o-transition: max-height 0.2s ease-out;
+}
+
+.faq .u-question {
+  margin-top: 50px;
+}
+
+@media (min-width: 425px) and (max-width: 767.99px){
+  .page-top .page-top-title{
+    font-size: 30px;
+  }
+}

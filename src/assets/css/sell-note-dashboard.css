@@ -1,0 +1,164 @@
+.sell-note {
+  padding-top: 80px;
+}
+
+.sell-note .stats {
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.sell-note .stats .stats-heading,
+.sell-note .in-progress-table .stats-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sell-note .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 0;
+}
+
+.sell-note .stats .stats-box {
+  display: grid;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.sell-note .stats .earning,
+.sell-note .stats .sold-note,
+.sell-note .stats .earned,
+.sell-note .stats .download,
+.sell-note .stats .rejected-note,
+.sell-note .stats .buyer-requests {
+  border: 1px solid #c4c4c4;
+  width: 180px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.sell-note .stats .stats-box h4 {
+  font-size: 22px;
+  color: #6255a5;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.sell-note .stats .stats-box p {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333333;
+  margin-bottom: 0px;
+  line-height: 18px;
+}
+
+.sell-note .stats .stats-box img {
+  width: 24px;
+  margin-bottom: 8px;
+}
+
+.sell-note .search {
+  display: flex;
+}
+
+.sell-note .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.sell-note .search .search-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.sell-note .search input {
+  padding-left: 30px;
+}
+
+.sell-note .in-progress-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.sell-note .published-table .stats-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sell-note .published-table {
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
+
+/* Small */
+@media (min-width: 425px) and (max-width: 767.99px) {
+  .sell-note .stats .stats-box {
+    grid-template-columns: auto auto;
+  }
+  .sell-note .stats .earning,
+  .sell-note .stats .sold-note,
+  .sell-note .stats .earned,
+  .sell-note .stats .download,
+  .sell-note .stats .rejected-note,
+  .sell-note .stats .buyer-requests {
+    width: 190px;
+    margin-bottom: 10px;
+  }
+}
+/* Medium */
+@media (min-width: 768px) and (max-width: 991.99px) {
+  .sell-note .stats .stats-box {
+    grid-template-columns: auto auto auto;
+  }
+  .sell-note .stats .earning,
+  .sell-note .stats .sold-note,
+  .sell-note .stats .earned,
+  .sell-note .stats .download,
+  .sell-note .stats .rejected-note,
+  .sell-note .stats .buyer-requests {
+    width: 220px;
+    margin-bottom: 10px;
+  }
+}
+/* Large */
+@media (min-width: 992px) and (max-width: 1199.99px) {
+  .sell-note .stats .stats-box {
+    grid-template-columns: auto auto auto auto auto auto;
+  }
+  .sell-note .stats .earning,
+  .sell-note .stats .sold-note,
+  .sell-note .stats .earned,
+  .sell-note .stats .download,
+  .sell-note .stats .rejected-note,
+  .sell-note .stats .buyer-requests {
+    width: 150px;
+    height: 130px;
+  }
+}
+/* X-Large */
+@media (min-width: 1200px) and (max-width: 1399.99px) {
+  .sell-note .stats .stats-box {
+    grid-template-columns: auto auto auto auto auto auto;
+  }
+}
+/* XX-Large */
+@media (min-width: 1400px) {
+  .sell-note .stats .stats-box {
+    grid-template-columns: auto auto auto auto auto auto;
+  }
+}

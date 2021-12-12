@@ -1,0 +1,25 @@
+.fof {
+  height: 100vh;
+  background-image: url("../images/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fof .fof-content {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.fof .fof-content .fof-text {
+  color: white;
+  font-size: 100px;
+}
+
+.fof .fof-content .fof-btn {
+  background-color: #6255a5;
+  color: white;
+}
