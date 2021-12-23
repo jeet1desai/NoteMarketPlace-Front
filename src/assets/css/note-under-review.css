@@ -1,0 +1,60 @@
+.note-under-review {
+  padding-top: 80px;
+}
+
+.note-under-review .nur-header .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.note-under-review .nur-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.note-under-review .nur-header .search {
+  display: flex;
+}
+
+.note-under-review .nur-header .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.note-under-review .nur-header .search .search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.note-under-review .nur-header .search input {
+  padding-left: 30px;
+}
+
+.note-under-review .nur-header .nur-header-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-under-review .nur-header p {
+  margin-bottom: 3px;
+}
+
+.reject-note-modal .modal-review-btn {
+  text-align: right;
+}
+
+.reject-note-modal .modal-review-btn .reject-btn {
+  background-color: red;
+  color: white;
+  margin-right: 10px;
+}
+
+.reject-note-modal .modal-review-btn .close-btn {
+  background-color: grey;
+  color: white;
+}
