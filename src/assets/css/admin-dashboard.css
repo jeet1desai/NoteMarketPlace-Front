@@ -1,0 +1,98 @@
+.admin-dashboard {
+  padding-top: 80px;
+}
+
+.admin-dashboard .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 0;
+}
+
+.admin-dashboard .stats {
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.admin-dashboard .stats .stats-box {
+  margin-top: 20px;
+}
+
+.admin-dashboard .stats-box .review, .admin-dashboard .stats-box .download, .admin-dashboard .stats-box .registration {
+  border: 1px solid #c4c4c4;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.admin-dashboard .stats-box h5 {
+  color: #6255a5;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.admin-dashboard .stats-box p {
+  color: #333333;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 0px;
+  line-height: 18px;
+}
+
+.admin-dashboard .published-table .search {
+  display: flex;
+}
+
+.admin-dashboard .published-table .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.admin-dashboard .published-table .search .search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.admin-dashboard .published-table .search input {
+  padding-left: 30px;
+}
+
+.admin-dashboard .published-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.admin-dashboard .published-table .stats-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-dashboard .published-table .search button{
+  margin-right: 10px;
+}
+
+.ant-pagination li.ant-pagination-next[aria-disabled="false"] .ant-pagination-item-link,
+.ant-pagination li.ant-pagination-prev[aria-disabled="false"] .ant-pagination-item-link{
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.ant-pagination li.ant-pagination-next[aria-disabled="false"]:hover .ant-pagination-item-link,
+.ant-pagination li.ant-pagination-prev[aria-disabled="false"]:hover .ant-pagination-item-link{
+  background-color: #d1d1d1;
+}

@@ -1,0 +1,49 @@
+.published-notes {
+  padding-top: 80px;
+}
+
+.published-notes .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.published-notes .published-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.published-notes .published-header .search {
+  display: flex;
+}
+
+.published-notes .published-header .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.published-notes .published-header .search .search-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.published-notes .published-header .search input {
+  padding-left: 30px;
+}
+
+.published-notes .published-header>p {
+  margin-bottom: 3px;
+}
+
+.published-notes .published-header-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.published-notes .MuiTableBody-root .MuiTableCell-body:nth-child(2) {
+  color: #6255a5 !important;
+}

@@ -1,0 +1,54 @@
+.rejected-notes {
+  padding-top: 80px;
+}
+
+.rejected-notes .rejected-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.rejected-notes .rejected-header .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.rejected-notes .rejected-header .search {
+  display: flex;
+  align-items: flex-end;
+}
+
+.rejected-notes .rejected-header .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.rejected-notes .rejected-header .search .search-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.rejected-notes .rejected-header .search input {
+  padding-left: 30px;
+}
+
+.rejected-notes .rejected-header>p {
+  margin-bottom: 3px;
+}
+
+.rejected-notes .rejected-header .rejected-header-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rejected-notes table{
+  table-layout: auto !important;
+}
+
+.rejected-notes table td.ant-table-cell-ellipsis{
+  max-width: 200px;
+}

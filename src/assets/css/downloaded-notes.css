@@ -1,0 +1,54 @@
+.downloaded-notes {
+  padding-top: 80px;
+}
+
+.downloaded-notes .downloaded-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.downloaded-notes .downloaded-header .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.downloaded-notes .downloaded-header .search {
+  display: flex;
+  align-items: flex-end;
+}
+
+.downloaded-notes .downloaded-header .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.downloaded-notes .downloaded-header .search .search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.downloaded-notes .downloaded-header .search input {
+  padding-left: 30px;
+}
+
+.downloaded-notes .filter-search {
+  display: flex;
+  justify-content: space-between;
+}
+
+.downloaded-notes .filter-search .filter {
+  display: flex;
+}
+
+.downloaded-notes .downloaded-header .search-btn {
+  height: 38px;
+}
+
+.downloaded-notes .filter div {
+  margin-right: 20px;
+}
