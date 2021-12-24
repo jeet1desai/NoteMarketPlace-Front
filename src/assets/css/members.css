@@ -1,0 +1,42 @@
+.members {
+  padding-top: 80px;
+}
+
+.members .members-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.members .member-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.members .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.members .member-table-header .search {
+  display: flex;
+}
+
+.members .member-table-header .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.members .member-table-header .search .search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.members .member-table-header .search input {
+  padding-left: 30px;
+}

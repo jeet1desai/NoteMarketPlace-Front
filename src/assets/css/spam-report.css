@@ -1,0 +1,54 @@
+.spam-report {
+  padding-top: 80px;
+}
+
+.spam-report .spam-report-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.spam-report .report-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spam-report .report-table-header .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.spam-report .report-table-header .search {
+  display: flex;
+}
+
+.spam-report .report-table-header .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.spam-report .report-table-header .search .search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.spam-report .report-table-header .search input {
+  padding-left: 30px;
+}
+
+.spam-report table{
+  table-layout: auto !important;
+}
+
+.spam-report table td.ant-table-cell-ellipsis{
+  max-width: 200px;
+}
+
+.spam-report table td.ant-table-cell-ellipsis span{
+  color: rgba(0, 0, 0, 0.85);
+}
