@@ -28,7 +28,7 @@
 
 .rejected-notes .rejected-header .search .search-icon {
   position: absolute;
-  top: 10px;
+  top: 12px;
   left: 10px;
 }
 
@@ -51,4 +51,8 @@
 
 .rejected-notes table td.ant-table-cell-ellipsis{
   max-width: 200px;
+}
+
+.rejected-notes table td.ant-table-cell-ellipsis span{
+  color: rgba(0, 0, 0, 0.85);
 }

@@ -5,7 +5,7 @@ import '../../assets/css/footer.css';
 export default function UserFooter() {
     return (
       <div className="footer">
-        <div class="container footer-content">
+        <div className="container footer-content">
           <p>Copyright &copy; TatvaSoft All Rights Reserved By</p>
           <ul className="social-list">
             <li><a href="/"><i class="fa fa-facebook"></i></a></li>
