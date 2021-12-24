@@ -1,0 +1,86 @@
+.admin-profile {
+  padding-top: 130px;
+  margin-bottom: 50px;
+}
+
+.admin-profile .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+}
+
+.admin-profile .form-group {
+  margin-bottom: 10px;
+}
+
+.admin-profile .form-group label {
+  font-size: 15px;
+  color: #333333;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.admin-profile .form-control {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  padding-bottom: 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.admin-profile .upload-box {
+  background-image: url('../images/upload.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.admin-profile .upload-box input.upload {
+  opacity: 0;
+  height: 100px;
+  width: 100%;
+}
+
+.admin-profile .phone-number {
+  display: flex;
+}
+
+.admin-profile .phone-number .phone-two {
+  width: 20%;
+  margin-right: 10px;
+}
+
+.admin-profile .address-details {
+  margin-top: 30px;
+}
+
+.admin-profile .admin-profile-button {
+  margin-top: 20px;
+}
+
+.admin-profile .submit-btn {
+  width: 150px;
+  text-transform: uppercase;
+}
+
+.admin-profile .image-preview {
+  margin-top: 30px;
+}
+
+.admin-profile .image-preview img {
+  width: 100px;
+  height: 100px;
+}
