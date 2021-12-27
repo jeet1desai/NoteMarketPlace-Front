@@ -1,0 +1,41 @@
+.manage-countries {
+  padding-top: 80px;
+}
+
+.manage-countries .manage-country-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.manage-countries .country-header .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.manage-countries .country-header .add-and-search {
+  display: flex;
+  justify-content: space-between;
+}
+
+.manage-countries .country-header .search {
+  display: flex;
+}
+
+.manage-countries .country-header .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.manage-countries .country-header .search .search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.manage-countries .country-header .search input {
+  padding-left: 30px;
+}

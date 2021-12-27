@@ -1,0 +1,41 @@
+.manage-admin {
+  padding-top: 80px;
+}
+
+.manage-admin .manage-admin-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.manage-admin .add-and-search {
+  display: flex;
+  justify-content: space-between;
+}
+
+.manage-admin .admin-header .search {
+  display: flex;
+}
+
+.manage-admin .admin-header .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.manage-admin .admin-header .search .search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.manage-admin .admin-header .search input {
+  padding-left: 30px;
+}
+
+.manage-admin .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
