@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
-import AdminHeader from "../../../hoc/admin/header";
-import AdminFooter from "../../../hoc/admin/footer";
-
 import "../../../assets/css/published-notes.css";
 
 export default function Published() {
@@ -50,7 +47,7 @@ export default function Published() {
       render: (text, record) => (
         <Space size="middle">
           <Link to={"/search-notes"}>
-            <VisibilityOutlinedIcon color="disabled"/>
+            <VisibilityOutlinedIcon color="disabled" />
           </Link>
         </Space>
       ),
@@ -64,7 +61,7 @@ export default function Published() {
       render: (text, record) => (
         <Space size="middle">
           <Dropdown overlay={menu(record)}>
-            <MoreVertIcon color="disabled"/>
+            <MoreVertIcon color="disabled" />
           </Dropdown>
         </Space>
       ),
@@ -86,60 +83,56 @@ export default function Published() {
   ];
 
   return (
-    <>
-      <AdminHeader />
-      <div className="published-notes">
-        <div className="container">
-          <div className="published-table">
-            <div className="published-header">
-              <div className="page-title">
-                <p>Published Notes</p>
+    <div className="published-notes">
+      <div className="container">
+        <div className="published-table">
+          <div className="published-header">
+            <div className="page-title">
+              <p>Published Notes</p>
+            </div>
+            <p>Seller</p>
+            <div className="published-header-input">
+              <div className="form-group">
+                <select className="form-control">
+                  <option>Select Month</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
               </div>
-              <p>Seller</p>
-              <div className="published-header-input">
-                <div className="form-group">
-                  <select className="form-control">
-                    <option>Select Month</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+              <div className="search">
+                <div className="form-group has-search">
+                  <span className="fa fa-search search-icon"></span>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search"
+                  />
                 </div>
-                <div className="search">
-                  <div className="form-group has-search">
-                    <span className="fa fa-search search-icon"></span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Search"
-                    />
-                  </div>
-                  <button type="button" className="btn btn-purple">
-                    Search
-                  </button>
-                </div>
+                <button type="button" className="btn btn-purple">
+                  Search
+                </button>
               </div>
             </div>
+          </div>
 
-            <div className="antd-table">
-              <Table
-                columns={columns}
-                dataSource={data}
-                // scroll={{ x: true }}
-                pagination={{
-                  current: 1,
-                  pageSize: 1,
-                  total: 2,
-                  position: ["bottomCenter"],
-                }}
-                showSorterTooltip={false}
-              />
-            </div>
+          <div className="antd-table">
+            <Table
+              columns={columns}
+              dataSource={data}
+              // scroll={{ x: true }}
+              pagination={{
+                current: 1,
+                pageSize: 1,
+                total: 2,
+                position: ["bottomCenter"],
+              }}
+              showSorterTooltip={false}
+            />
           </div>
         </div>
       </div>
-      <AdminFooter />
-    </>
+    </div>
   );
 }
