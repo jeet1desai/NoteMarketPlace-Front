@@ -1,0 +1,54 @@
+.add-admin {
+  padding-top: 80px;
+}
+
+.add-admin .add-form {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.add-admin .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+}
+
+.add-admin .form-group {
+  margin-bottom: 15px;
+}
+
+.add-admin .form-group label {
+  font-size: 15px;
+  color: #333333;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.add-admin .form-control {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  padding-bottom: 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.add-admin .phone-number {
+  display: flex;
+}
+
+.add-admin .phone-number .phone-two {
+  width: 20%;
+  margin-right: 10px;
+}
+
+.add-admin .submit-btn {
+  width: 150px;
+  text-transform: uppercase;
+}

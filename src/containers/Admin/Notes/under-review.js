@@ -2,14 +2,11 @@ import React from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import { Table, Space, Dropdown, Menu } from "antd";
 import { Link } from "react-router-dom";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import Button from "@mui/material/Button";
 
-import AdminHeader from "../../../hoc/admin/header";
-import AdminFooter from "../../../hoc/admin/footer";
-
 import "../../../assets/css/note-under-review.css";
-import DotIcon from "../../../assets/images/3dot.png";
-import EyeIcon from "../../../assets/images/eye.png";
 
 export default function UnderReview() {
   const menu = (record) => {
@@ -44,7 +41,7 @@ export default function UnderReview() {
       render: (text, record) => (
         <Space size="middle">
           <Link to={"/search-notes"}>
-            <img alt="" src={EyeIcon} />
+            <VisibilityOutlinedIcon color="disabled" />
           </Link>
         </Space>
       ),
@@ -74,7 +71,7 @@ export default function UnderReview() {
       render: (text, record) => (
         <Space size="middle">
           <Dropdown overlay={menu(record)}>
-            <img alt="" src={DotIcon} />
+            <MoreVertIcon color="disabled" />
           </Dropdown>
         </Space>
       ),
@@ -94,89 +91,85 @@ export default function UnderReview() {
   ];
 
   return (
-    <>
-      <AdminHeader />
-      <div className="note-under-review">
-        <div className="container">
-          <div className="nur-table">
-            <div className="nur-header">
-              <div className="page-title">
-                <p>Note Under Review</p>
-              </div>
-              <p>Seller</p>
-              <div className="nur-header-input">
-                <div className="form-group">
-                  <select className="form-control">
-                    <option>Select Month</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </div>
-                <div className="search">
-                  <div className="form-group has-search">
-                    <span className="fa fa-search search-icon"></span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Search"
-                    />
-                  </div>
-                  <button type="button" className="btn btn-purple">
-                    Search
-                  </button>
-                </div>
-              </div>
+    <div className="note-under-review">
+      <div className="container">
+        <div className="nur-table">
+          <div className="nur-header">
+            <div className="page-title">
+              <p>Note Under Review</p>
             </div>
-
-            <div className="antd-table">
-              <Table
-                columns={columns}
-                dataSource={data}
-                // scroll={{ x: true }}
-                pagination={{
-                  current: 2,
-                  pageSize: 1,
-                  total: 2,
-                  position: ["bottomCenter"],
-                }}
-                showSorterTooltip={false}
-              />
+            <p>Seller</p>
+            <div className="nur-header-input">
+              <div className="form-group">
+                <select className="form-control">
+                  <option>Select Month</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div className="search">
+                <div className="form-group has-search">
+                  <span className="fa fa-search search-icon"></span>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search"
+                  />
+                </div>
+                <button type="button" className="btn btn-purple">
+                  Search
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <Modal
-          centered={true}
-          isOpen={false}
-          toggle={() => {}}
-          className="reject-note-modal"
-        >
-          <ModalHeader toggle={() => {}}>Human Body - Science</ModalHeader>
-          <ModalBody>
-            <div className="form-group">
-              <label for="description">Remark *</label>
-              <textarea
-                id="description"
-                name="description"
-                className="form-control"
-                placeholder="write remark..."
-                required
-              ></textarea>
-            </div>
-            <div className="modal-review-btn">
-              <button type="button" className="btn reject-btn">
-                Reject
-              </button>
-              <button type="button" className="btn close-btn">
-                Close
-              </button>
-            </div>
-          </ModalBody>
-        </Modal>
+          <div className="antd-table">
+            <Table
+              columns={columns}
+              dataSource={data}
+              // scroll={{ x: true }}
+              pagination={{
+                current: 2,
+                pageSize: 1,
+                total: 2,
+                position: ["bottomCenter"],
+              }}
+              showSorterTooltip={false}
+            />
+          </div>
+        </div>
       </div>
-      <AdminFooter />
-    </>
+
+      <Modal
+        centered={true}
+        isOpen={false}
+        toggle={() => {}}
+        className="reject-note-modal"
+      >
+        <ModalHeader toggle={() => {}}>Human Body - Science</ModalHeader>
+        <ModalBody>
+          <div className="form-group">
+            <label for="description">Remark *</label>
+            <textarea
+              id="description"
+              name="description"
+              className="form-control"
+              placeholder="write remark..."
+              required
+            ></textarea>
+          </div>
+          <div className="modal-review-btn">
+            <button type="button" className="btn reject-btn">
+              Reject
+            </button>
+            <button type="button" className="btn close-btn">
+              Close
+            </button>
+          </div>
+        </ModalBody>
+      </Modal>
+    </div>
   );
 }

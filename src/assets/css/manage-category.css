@@ -1,0 +1,53 @@
+.manage-category {
+  padding-top: 80px;
+}
+
+.manage-category .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.manage-category .manage-category-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.manage-category .category-header .add-and-search {
+  display: flex;
+  justify-content: space-between;
+}
+
+.manage-category .category-header .search {
+  display: flex;
+}
+
+.manage-category .category-header .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.manage-category .category-header .search .search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.manage-category .category-header .search input {
+  padding-left: 30px;
+}
+
+.manage-category table{
+  table-layout: auto !important;
+}
+
+.manage-category table td.ant-table-cell-ellipsis{
+  max-width: 200px;
+}
+
+.manage-category table td.ant-table-cell-ellipsis span{
+  color: rgba(0, 0, 0, 0.85);
+}

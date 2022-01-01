@@ -1,11 +1,8 @@
 import React from "react";
 import { Table, Space, Dropdown, Menu } from "antd";
-
-import AdminHeader from "../../hoc/admin/header";
-import AdminFooter from "../../hoc/admin/footer";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import "../../assets/css/admin-dashboard.css";
-import DotIcon from "../../assets/images/3dot.png";
 
 export default function Dashboard() {
   const menu = (record) => {
@@ -18,12 +15,8 @@ export default function Dashboard() {
         >
           Download Note
         </Menu.Item>
-        <Menu.Item>
-          View More Details
-        </Menu.Item>
-        <Menu.Item>
-          Unpublish
-        </Menu.Item>
+        <Menu.Item>View More Details</Menu.Item>
+        <Menu.Item>Unpublish</Menu.Item>
       </Menu>
     );
   };
@@ -55,7 +48,7 @@ export default function Dashboard() {
       render: (text, record) => (
         <Space size="middle">
           <Dropdown overlay={menu(record)}>
-            <img alt="" src={DotIcon} />
+            <MoreVertIcon color="disabled" />
           </Dropdown>
         </Space>
       ),
@@ -88,89 +81,85 @@ export default function Dashboard() {
   ];
 
   return (
-    <>
-      <AdminHeader />
-      <div className="admin-dashboard">
-        <div className="container">
-          <div className="stats">
-            <div className="stats-heading">
-              <div className="page-title">
-                <p>Dashboard</p>
-              </div>
-            </div>
-            <div className="stats-box">
-              <div className="row">
-                <div className="col">
-                  <div className="review">
-                    <h5>100</h5>
-                    <p>No of Notes in Review for Public</p>
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="download">
-                    <h5>100</h5>
-                    <p>No of new Notes Downloaded</p>
-                    <p>(Last 7 days)</p>
-                  </div>
-                </div>
-                <div className="col">
-                  <div className="registration">
-                    <h5>$10,00,000</h5>
-                    <p>Money No of new Registrations</p>
-                    <p>(Last 7 days)</p>
-                  </div>
-                </div>
-              </div>
+    <div className="admin-dashboard">
+      <div className="container">
+        <div className="stats">
+          <div className="stats-heading">
+            <div className="page-title">
+              <p>Dashboard</p>
             </div>
           </div>
-
-          <div className="published-table">
-            <div className="stats-heading">
-              <div className="page-title">
-                <p>Published Notes</p>
-              </div>
-              <div className="search">
-                <div className="form-group has-search">
-                  <span className="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                  />
-                </div>
-                <button type="button" className="btn btn-purple">
-                  Search
-                </button>
-                <div className="form-group">
-                  <select className="form-control">
-                    <option>Select Month</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+          <div className="stats-box">
+            <div className="row">
+              <div className="col">
+                <div className="review">
+                  <h5>100</h5>
+                  <p>No of Notes in Review for Public</p>
                 </div>
               </div>
-            </div>
-
-            <div className="antd-table">
-              <Table
-                columns={columns}
-                dataSource={data}
-                // scroll={{ x: true }}
-                pagination={{
-                  current: 2,
-                  pageSize: 1,
-                  total: 2,
-                  position: ["bottomCenter"],
-                }}
-                showSorterTooltip={false}
-              />
+              <div className="col">
+                <div className="download">
+                  <h5>100</h5>
+                  <p>No of new Notes Downloaded</p>
+                  <p>(Last 7 days)</p>
+                </div>
+              </div>
+              <div className="col">
+                <div className="registration">
+                  <h5>$10,00,000</h5>
+                  <p>Money No of new Registrations</p>
+                  <p>(Last 7 days)</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <div className="published-table">
+          <div className="stats-heading">
+            <div className="page-title">
+              <p>Published Notes</p>
+            </div>
+            <div className="search">
+              <div className="form-group has-search">
+                <span className="fa fa-search search-icon"></span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                />
+              </div>
+              <button type="button" className="btn btn-purple">
+                Search
+              </button>
+              <div className="form-group">
+                <select className="form-control">
+                  <option>Select Month</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div className="antd-table">
+            <Table
+              columns={columns}
+              dataSource={data}
+              // scroll={{ x: true }}
+              pagination={{
+                current: 2,
+                pageSize: 1,
+                total: 2,
+                position: ["bottomCenter"],
+              }}
+              showSorterTooltip={false}
+            />
+          </div>
+        </div>
       </div>
-      <AdminFooter />
-    </>
+    </div>
   );
 }

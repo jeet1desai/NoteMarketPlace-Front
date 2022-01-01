@@ -7,7 +7,7 @@ export default function AdminFooter() {
     <div className="footer">
       <div className="container footer-content">
         <p>Version : 1.0.0</p>
-        <p>Copyright &copy; TatvaSoft All Rights Reserved By</p>
+        <p>Copyright &copy; Jeet Desai All Rights Reserved By</p>
       </div>
     </div>
   );

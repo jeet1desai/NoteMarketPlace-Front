@@ -1,0 +1,60 @@
+.manage-system-config {
+  padding-top: 130px;
+  margin-bottom: 50px;
+}
+
+.manage-system-config .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+}
+
+.manage-system-config .form-group {
+  margin-bottom: 10px;
+}
+
+.manage-system-config .form-group label {
+  font-size: 15px;
+  color: #333333;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.manage-system-config .form-control {
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: black;
+  padding-bottom: 8px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.manage-system-config .upload-box {
+  background-image: url('../images/upload.png');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.manage-system-config .upload-box input.upload {
+  opacity: 0;
+  height: 100px;
+  width: 100%;
+}
+
+.manage-system-config .submit-btn {
+  width: 150px;
+  text-transform: uppercase;
+}

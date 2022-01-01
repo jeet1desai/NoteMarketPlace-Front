@@ -33,10 +33,22 @@
 
 .my-rejected-note .search .search-icon {
   position: absolute;
-  top: 10px;
+  top: 12px;
   left: 10px;
 }
 
 .my-rejected-note .search input {
   padding-left: 30px;
+}
+
+.my-rejected-note table {
+  table-layout: auto !important;
+}
+
+.my-rejected-note table td.ant-table-cell-ellipsis {
+  max-width: 200px;
+}
+
+.my-rejected-note table td.ant-table-cell-ellipsis span {
+  color: rgba(0, 0, 0, 0.85);
 }

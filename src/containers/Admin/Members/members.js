@@ -2,9 +2,6 @@ import React from "react";
 import { Table, Space, Dropdown, Menu } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import AdminHeader from "../../../hoc/admin/header";
-import AdminFooter from "../../../hoc/admin/footer";
-
 import "../../../assets/css/members.css";
 
 export default function Members() {
@@ -73,47 +70,43 @@ export default function Members() {
   ];
 
   return (
-    <>
-      <AdminHeader />
-      <div className="members">
-        <div className="container">
-          <div className="members-table">
-            <div className="member-table-header">
-              <div className="page-title">
-                <p>Members</p>
-              </div>
-              <div className="search">
-                <div className="form-group has-search">
-                  <span className="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                  />
-                </div>
-                <button type="button" className="btn btn-purple">
-                  Search
-                </button>
-              </div>
+    <div className="members">
+      <div className="container">
+        <div className="members-table">
+          <div className="member-table-header">
+            <div className="page-title">
+              <p>Members</p>
             </div>
+            <div className="search">
+              <div className="form-group has-search">
+                <span className="fa fa-search search-icon"></span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                />
+              </div>
+              <button type="button" className="btn btn-purple">
+                Search
+              </button>
+            </div>
+          </div>
 
-            <div className="antd-table">
-              <Table
-                columns={columns}
-                dataSource={data}
-                pagination={{
-                  current: 1,
-                  pageSize: 1,
-                  total: 2,
-                  position: ["bottomCenter"],
-                }}
-                showSorterTooltip={false}
-              />
-            </div>
+          <div className="antd-table">
+            <Table
+              columns={columns}
+              dataSource={data}
+              pagination={{
+                current: 1,
+                pageSize: 1,
+                total: 2,
+                position: ["bottomCenter"],
+              }}
+              showSorterTooltip={false}
+            />
           </div>
         </div>
       </div>
-      <AdminFooter />
-    </>
+    </div>
   );
 }

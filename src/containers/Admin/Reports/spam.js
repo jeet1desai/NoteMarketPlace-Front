@@ -3,9 +3,6 @@ import { Table, Space, Dropdown, Menu, Tooltip } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import AdminHeader from "../../../hoc/admin/header";
-import AdminFooter from "../../../hoc/admin/footer";
-
 import "../../../assets/css/spam-report.css";
 
 export default function SpamReports() {
@@ -72,47 +69,43 @@ export default function SpamReports() {
   ];
 
   return (
-    <>
-      <AdminHeader />
-      <div className="spam-report">
-        <div className="container">
-          <div className="spam-report-table">
-            <div className="report-table-header">
-              <div className="page-title">
-                <p>Span Reports</p>
-              </div>
-              <div className="search">
-                <div className="form-group has-search">
-                  <span className="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                  />
-                </div>
-                <button type="button" className="btn btn-purple">
-                  Search
-                </button>
-              </div>
+    <div className="spam-report">
+      <div className="container">
+        <div className="spam-report-table">
+          <div className="report-table-header">
+            <div className="page-title">
+              <p>Span Reports</p>
             </div>
+            <div className="search">
+              <div className="form-group has-search">
+                <span className="fa fa-search search-icon"></span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                />
+              </div>
+              <button type="button" className="btn btn-purple">
+                Search
+              </button>
+            </div>
+          </div>
 
-            <div className="antd-table">
-              <Table
-                columns={columns}
-                dataSource={data}
-                pagination={{
-                  current: 1,
-                  pageSize: 1,
-                  total: 2,
-                  position: ["bottomCenter"],
-                }}
-                showSorterTooltip={false}
-              />
-            </div>
+          <div className="antd-table">
+            <Table
+              columns={columns}
+              dataSource={data}
+              pagination={{
+                current: 1,
+                pageSize: 1,
+                total: 2,
+                position: ["bottomCenter"],
+              }}
+              showSorterTooltip={false}
+            />
           </div>
         </div>
       </div>
-      <AdminFooter />
-    </>
+    </div>
   );
 }

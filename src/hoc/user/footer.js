@@ -6,7 +6,7 @@ export default function UserFooter() {
     return (
       <div className="footer">
         <div className="container footer-content">
-          <p>Copyright &copy; TatvaSoft All Rights Reserved By</p>
+          <p>Copyright &copy; Jeet Desai All Rights Reserved By</p>
           <ul className="social-list">
             <li><a href="/"><i class="fa fa-facebook"></i></a></li>
             <li><a href="/"><i class="fa fa-twitter"></i></a></li>

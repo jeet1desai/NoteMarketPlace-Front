@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
-import AdminHeader from "../../../hoc/admin/header";
-import AdminFooter from "../../../hoc/admin/footer";
-
 import "../../../assets/css/rejected-notes.css";
 
 export default function Rejected() {
@@ -86,59 +83,55 @@ export default function Rejected() {
   ];
 
   return (
-    <>
-      <AdminHeader />
-      <div className="rejected-notes">
-        <div className="container">
-          <div className="rejected-table">
-            <div className="rejected-header">
-              <div className="page-title">
-                <p>Rejected Notes</p>
+    <div className="rejected-notes">
+      <div className="container">
+        <div className="rejected-table">
+          <div className="rejected-header">
+            <div className="page-title">
+              <p>Rejected Notes</p>
+            </div>
+            <p>Seller</p>
+            <div className="rejected-header-input">
+              <div class="form-group">
+                <select class="form-control">
+                  <option>Select Month</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
               </div>
-              <p>Seller</p>
-              <div className="rejected-header-input">
-                <div class="form-group">
-                  <select class="form-control">
-                    <option>Select Month</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
+              <div className="search">
+                <div class="form-group has-search">
+                  <span class="fa fa-search search-icon"></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search"
+                  />
                 </div>
-                <div className="search">
-                  <div class="form-group has-search">
-                    <span class="fa fa-search search-icon"></span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Search"
-                    />
-                  </div>
-                  <button type="button" class="btn btn-purple">
-                    Search
-                  </button>
-                </div>
+                <button type="button" class="btn btn-purple">
+                  Search
+                </button>
               </div>
             </div>
+          </div>
 
-            <div className="antd-table">
-              <Table
-                columns={columns}
-                dataSource={data}
-                pagination={{
-                  current: 2,
-                  pageSize: 1,
-                  total: 2,
-                  position: ["bottomCenter"],
-                }}
-                // showSorterTooltip={false}
-              />
-            </div>
+          <div className="antd-table">
+            <Table
+              columns={columns}
+              dataSource={data}
+              pagination={{
+                current: 2,
+                pageSize: 1,
+                total: 2,
+                position: ["bottomCenter"],
+              }}
+              // showSorterTooltip={false}
+            />
           </div>
         </div>
       </div>
-      <AdminFooter />
-    </>
+    </div>
   );
 }

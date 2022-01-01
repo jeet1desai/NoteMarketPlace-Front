@@ -1,0 +1,53 @@
+.manage-type {
+  padding-top: 80px;
+}
+
+.manage-type .manage-type-table {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.manage-type .page-title p {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-bottom: 15px;
+}
+
+.manage-type .add-and-search {
+  display: flex;
+  justify-content: space-between;
+}
+
+.manage-type .type-header .search {
+  display: flex;
+}
+
+.manage-type .type-header .search .has-search {
+  position: relative;
+  margin-right: 10px;
+  margin-bottom: 0px;
+}
+
+.manage-type .type-header .search .search-icon {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.manage-type .type-header .search input {
+  padding-left: 30px;
+}
+
+.manage-type table{
+  table-layout: auto !important;
+}
+
+.manage-type table td.ant-table-cell-ellipsis{
+  max-width: 200px;
+}
+
+.manage-type table td.ant-table-cell-ellipsis span{
+  color: rgba(0, 0, 0, 0.85);
+}
