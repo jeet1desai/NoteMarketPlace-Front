@@ -102,8 +102,7 @@ function Signup() {
                     onClick={() => showAndHidePassword()}
                     toggle="#password"
                     id="eye"
-                    className="fa fa-eye"
-                  ></span>
+                    className="fa fa-eye"></span>
                 </div>
 
                 <div className="form-group password">
@@ -119,8 +118,7 @@ function Signup() {
                     onClick={() => showAndHideConfirmPassword()}
                     toggle="#con_password"
                     id="con_eye"
-                    className="fa fa-eye"
-                  ></span>
+                    className="fa fa-eye"></span>
                 </div>
 
                 <button type="submit" className="btn btn-purple signup-btn">

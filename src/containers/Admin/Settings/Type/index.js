@@ -60,8 +60,7 @@ export default function Type() {
               <Link
                 to="/admin/manage-type/add-type"
                 type="button"
-                className="btn btn-purple"
-              >
+                className="btn btn-purple">
                 Add Type
               </Link>
               <div className="search">

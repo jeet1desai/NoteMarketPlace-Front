@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Formik, Form } from 'formik';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Formik, Form } from "formik";
 
-import WhiteLogo from '../../assets/images/top-logo-white.png';
-import '../../assets/font-awesome/css/font-awesome.css';
-import '../../assets/css/login.css';
+import WhiteLogo from "../../assets/images/top-logo-white.png";
+import "../../assets/font-awesome/css/font-awesome.css";
+import "../../assets/css/login.css";
 
 export default function Login() {
   const showAndHidePassword = () => {
@@ -70,8 +70,7 @@ export default function Login() {
                       onClick={() => showAndHidePassword()}
                       toggle="#password"
                       id="eye"
-                      className="fa fa-eye"
-                    ></span>
+                      className="fa fa-eye"></span>
                   </div>
                 </div>
 

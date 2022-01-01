@@ -12,8 +12,7 @@ export default function Members() {
         <Menu.Item
           onClick={() => {
             console.log(record.id);
-          }}
-        >
+          }}>
           Deactivate
         </Menu.Item>
       </Menu>

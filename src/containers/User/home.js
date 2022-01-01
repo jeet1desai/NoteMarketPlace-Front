@@ -32,8 +32,7 @@ export default function Home() {
                   className="btn btn-head"
                   href="#"
                   title="Learn More"
-                  role="button"
-                >
+                  role="button">
                   Learn More
                 </Link>
               </div>
@@ -109,8 +108,7 @@ export default function Home() {
                       to="/search-notes"
                       className="btn btn-home btn-purple"
                       title="Download"
-                      role="button"
-                    >
+                      role="button">
                       Download
                     </Link>
                   </div>
@@ -131,8 +129,7 @@ export default function Home() {
                       to="/sell-note/dashboard"
                       className="btn btn-home btn-purple"
                       title="Sell Book"
-                      role="button"
-                    >
+                      role="button">
                       Sell Book
                     </Link>
                   </div>

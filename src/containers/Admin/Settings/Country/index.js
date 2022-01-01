@@ -51,8 +51,7 @@ export default function Country() {
               <Link
                 to="/admin/manage-country/add-country"
                 type="button"
-                className="btn btn-purple"
-              >
+                className="btn btn-purple">
                 Add Country
               </Link>
               <div className="search">

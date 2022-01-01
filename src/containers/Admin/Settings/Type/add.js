@@ -32,8 +32,7 @@ export default function AddType() {
                       name="description"
                       className="form-control"
                       placeholder="Write Your Description ..."
-                      required
-                    ></textarea>
+                      required></textarea>
                   </div>
                   <button type="button" className="btn submit-btn btn-purple">
                     Submit

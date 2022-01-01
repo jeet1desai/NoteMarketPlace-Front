@@ -13,8 +13,7 @@ export default function BuyerRequest() {
         <Menu.Item
           onClick={() => {
             console.log(record.id);
-          }}
-        >
+          }}>
           Yes, I Received
         </Menu.Item>
       </Menu>

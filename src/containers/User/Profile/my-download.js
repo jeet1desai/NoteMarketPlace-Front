@@ -116,8 +116,7 @@ export default function MyDownload() {
       <Modal
         centered={true}
         isOpen={isModalOpen}
-        toggle={() => setModalOpen(false)}
-      >
+        toggle={() => setModalOpen(false)}>
         <ModalHeader toggle={() => setModalOpen(false)}>Add Review</ModalHeader>
         <ModalBody>
           <Rating
@@ -133,8 +132,7 @@ export default function MyDownload() {
               name="description"
               class="form-control"
               placeholder="Comments..."
-              required
-            ></textarea>
+              required></textarea>
           </div>
           <div className="modal-review-btn">
             <button type="button" class="btn submit-btn btn-purple">

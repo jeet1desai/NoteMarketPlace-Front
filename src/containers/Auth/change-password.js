@@ -42,8 +42,7 @@ export default function ChangePassword() {
               onClick={() => showAndHidePassword()}
               id="eye"
               toggle="#password"
-              class="fa fa-eye"
-            ></span>
+              class="fa fa-eye"></span>
           </div>
           <div class="form-group password">
             <label for="password">New Password *</label>
@@ -59,8 +58,7 @@ export default function ChangePassword() {
               onClick={() => showAndHidePassword()}
               id="eye"
               toggle="#password"
-              class="fa fa-eye"
-            ></span>
+              class="fa fa-eye"></span>
           </div>
           <div class="form-group password">
             <label for="password">Confirm Password *</label>
@@ -76,8 +74,7 @@ export default function ChangePassword() {
               onClick={() => showAndHidePassword()}
               id="eye"
               toggle="#password"
-              class="fa fa-eye"
-            ></span>
+              class="fa fa-eye"></span>
             <small className="error-text">
               The password that you've entered is incorrect
             </small>

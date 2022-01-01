@@ -16,8 +16,7 @@ export default function UnderReview() {
         <Menu.Item
           onClick={() => {
             console.log(record.id);
-          }}
-        >
+          }}>
           Download Note
         </Menu.Item>
       </Menu>
@@ -146,8 +145,7 @@ export default function UnderReview() {
         centered={true}
         isOpen={false}
         toggle={() => {}}
-        className="reject-note-modal"
-      >
+        className="reject-note-modal">
         <ModalHeader toggle={() => {}}>Human Body - Science</ModalHeader>
         <ModalBody>
           <div className="form-group">
@@ -157,8 +155,7 @@ export default function UnderReview() {
               name="description"
               className="form-control"
               placeholder="write remark..."
-              required
-            ></textarea>
+              required></textarea>
           </div>
           <div className="modal-review-btn">
             <button type="button" className="btn reject-btn">

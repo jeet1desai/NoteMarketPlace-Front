@@ -53,8 +53,7 @@ export default function Admin() {
               <Link
                 to="/admin/manage-admin/add-admin"
                 type="button"
-                className="btn btn-purple"
-              >
+                className="btn btn-purple">
                 Add Administrator
               </Link>
               <div className="search">

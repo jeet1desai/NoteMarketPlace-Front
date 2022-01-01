@@ -60,8 +60,7 @@ export default function ContactUs() {
                       name="Comments"
                       className="form-control"
                       placeholder="comments..."
-                      required
-                    ></textarea>
+                      required></textarea>
                   </div>
                 </div>
                 <div className="col-lg-12">

@@ -16,8 +16,7 @@ export default function UserHeader() {
         <NavLink
           exact="true"
           to="/sell-note/my-profile"
-          activeclassname="active"
-        >
+          activeclassname="active">
           My Profile
         </NavLink>
       </Menu.Item>
@@ -25,8 +24,7 @@ export default function UserHeader() {
         <NavLink
           exact="true"
           to="/sell-note/my-download"
-          activeclassname="active"
-        >
+          activeclassname="active">
           My Downloads
         </NavLink>
       </Menu.Item>
@@ -34,8 +32,7 @@ export default function UserHeader() {
         <NavLink
           exact="true"
           to="/sell-note/my-sold-note"
-          activeclassname="active"
-        >
+          activeclassname="active">
           My Sold Notes
         </NavLink>
       </Menu.Item>
@@ -43,8 +40,7 @@ export default function UserHeader() {
         <NavLink
           exact="true"
           to="/sell-note/my-rejected-note"
-          activeclassname="active"
-        >
+          activeclassname="active">
           My Rejected Notes
         </NavLink>
       </Menu.Item>
@@ -71,8 +67,7 @@ export default function UserHeader() {
           <div
             onClick={() => setToggle(!toggle)}
             className={`menu-toggle ${toggle ? "open" : ""}`}
-            id="mobile-menu"
-          >
+            id="mobile-menu">
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
@@ -83,8 +78,7 @@ export default function UserHeader() {
                 <NavLink
                   exact="true"
                   to="/search-notes"
-                  activeclassname="active"
-                >
+                  activeclassname="active">
                   Search Notes
                 </NavLink>
                 <div className="underline"></div>
@@ -93,8 +87,7 @@ export default function UserHeader() {
                 <NavLink
                   exact="true"
                   to="/sell-note/dashboard"
-                  activeclassname="active"
-                >
+                  activeclassname="active">
                   Sell Your Notes
                 </NavLink>
                 <div className="underline"></div>
@@ -103,8 +96,7 @@ export default function UserHeader() {
                 <NavLink
                   exact="true"
                   to="/sell-note/buyer-request"
-                  activeclassname="active"
-                >
+                  activeclassname="active">
                   Buyer Requests
                 </NavLink>
                 <div className="underline"></div>

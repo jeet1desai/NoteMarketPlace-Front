@@ -14,8 +14,7 @@ export default function Rejected() {
         <Menu.Item
           onClick={() => {
             console.log(record.id);
-          }}
-        >
+          }}>
           Download Note
         </Menu.Item>
         <Menu.Item>View More Details</Menu.Item>

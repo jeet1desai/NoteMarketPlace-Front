@@ -14,8 +14,7 @@ export default function Downloaded() {
         <Menu.Item
           onClick={() => {
             console.log(record.id);
-          }}
-        >
+          }}>
           Download Note
         </Menu.Item>
       </Menu>

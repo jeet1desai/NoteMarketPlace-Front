@@ -88,7 +88,7 @@ export default function AdminRoute() {
           component={EditCountry}
         />
         <Route exact path="/admin/my-profile" component={AdminProfile} />
-        <Redirect to="/admin/dashboard"/>
+        <Redirect to="/admin/dashboard" />
       </Switch>
       <AdminFooter />
     </>

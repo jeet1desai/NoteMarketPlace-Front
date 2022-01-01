@@ -102,8 +102,7 @@ export default function AddNote() {
                         name="description"
                         class="form-control"
                         placeholder="Enter your Description..."
-                        required
-                      ></textarea>
+                        required></textarea>
                     </div>
                   </div>
                 </div>
@@ -196,8 +195,7 @@ export default function AddNote() {
                       <RadioGroup
                         row
                         aria-label="sellType"
-                        name="row-radio-buttons-group"
-                      >
+                        name="row-radio-buttons-group">
                         <FormControlLabel
                           value="free"
                           control={<Radio size="large" />}

@@ -60,8 +60,7 @@ export default function Category() {
               <Link
                 to="/admin/manage-category/add-category"
                 type="button"
-                className="btn btn-purple"
-              >
+                className="btn btn-purple">
                 Add Category
               </Link>
               <div className="search">

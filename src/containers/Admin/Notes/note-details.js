@@ -29,8 +29,7 @@ export default function AdminNoteDetails() {
                   </p>
                   <button
                     class="btn btn-purple download-btn"
-                    title="Download / $15"
-                  >
+                    title="Download / $15">
                     Download / $15
                   </button>
                 </div>
@@ -103,8 +102,7 @@ export default function AdminNoteDetails() {
                 </div>
                 <iframe
                   title="note-preview"
-                  src="https://research.google.com/pubs/archive/44678.pdf"
-                ></iframe>
+                  src="https://research.google.com/pubs/archive/44678.pdf"></iframe>
               </div>
             </div>
             <div className="col-6">

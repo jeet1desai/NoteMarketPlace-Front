@@ -36,8 +36,7 @@ export default function AdminHeader() {
         <NavLink
           exact="true"
           to="/admin/note-under-review"
-          activeclassname="active"
-        >
+          activeclassname="active">
           Note Under Review
         </NavLink>
       </Menu.Item>
@@ -45,8 +44,7 @@ export default function AdminHeader() {
         <NavLink
           exact="true"
           to="/admin/published-notes"
-          activeclassname="active"
-        >
+          activeclassname="active">
           Published Notes
         </NavLink>
       </Menu.Item>
@@ -54,8 +52,7 @@ export default function AdminHeader() {
         <NavLink
           exact="true"
           to="/admin/downloaded-notes"
-          activeclassname="active"
-        >
+          activeclassname="active">
           Downloaded Notes
         </NavLink>
       </Menu.Item>
@@ -63,8 +60,7 @@ export default function AdminHeader() {
         <NavLink
           exact="true"
           to="/admin/rejected-notes"
-          activeclassname="active"
-        >
+          activeclassname="active">
           Rejected Notes
         </NavLink>
       </Menu.Item>
@@ -84,7 +80,10 @@ export default function AdminHeader() {
   const settingsMenu = (
     <Menu>
       <Menu.Item>
-        <NavLink exact="true" to="/admin/manage-system-config" activeclassname="active">
+        <NavLink
+          exact="true"
+          to="/admin/manage-system-config"
+          activeclassname="active">
           Manage System Configuration
         </NavLink>
       </Menu.Item>
@@ -94,7 +93,10 @@ export default function AdminHeader() {
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink exact="true" to="/admin/manage-category" activeclassname="active">
+        <NavLink
+          exact="true"
+          to="/admin/manage-category"
+          activeclassname="active">
           Manage Category
         </NavLink>
       </Menu.Item>
@@ -104,7 +106,10 @@ export default function AdminHeader() {
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink exact="true" to="/admin/manage-country" activeclassname="active">
+        <NavLink
+          exact="true"
+          to="/admin/manage-country"
+          activeclassname="active">
           Manage Country
         </NavLink>
       </Menu.Item>
@@ -121,8 +126,7 @@ export default function AdminHeader() {
           <div
             onClick={() => setToggle(!toggle)}
             className={`menu-toggle ${toggle ? "open" : ""}`}
-            id="mobile-menu"
-          >
+            id="mobile-menu">
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
@@ -133,8 +137,7 @@ export default function AdminHeader() {
                 <NavLink
                   exact="true"
                   to="/admin/dashboard"
-                  activeclassname="active"
-                >
+                  activeclassname="active">
                   Dashboard
                 </NavLink>
                 <div className="underline"></div>
@@ -148,8 +151,7 @@ export default function AdminHeader() {
                 <NavLink
                   exact="true"
                   to="/admin/members"
-                  activeclassname="active"
-                >
+                  activeclassname="active">
                   Members
                 </NavLink>
                 <div className="underline"></div>

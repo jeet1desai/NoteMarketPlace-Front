@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, Rating } from "@mui/material";
 
-import DeleteIcon from '../../assets/images/delete.png';
+import DeleteIcon from "../../assets/images/delete.png";
 
 export default function Review() {
   return (

@@ -30,15 +30,13 @@ export default function FAQ() {
               <Accordion
                 elevation={0}
                 expanded={expanded === "panel1"}
-                onChange={handleChange("panel1")}
-              >
+                onChange={handleChange("panel1")}>
                 <AccordionSummary
                   expandIcon={
                     expanded === "panel1" ? <RemoveIcon /> : <AddIcon />
                   }
                   aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
+                  id="panel1a-header">
                   <p>What is Notes Marketplace?</p>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -51,15 +49,13 @@ export default function FAQ() {
               <Accordion
                 elevation={0}
                 expanded={expanded === "panel2"}
-                onChange={handleChange("panel2")}
-              >
+                onChange={handleChange("panel2")}>
                 <AccordionSummary
                   expandIcon={
                     expanded === "panel2" ? <RemoveIcon /> : <AddIcon />
                   }
                   aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
+                  id="panel1a-header">
                   <p>What do the university say?</p>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -72,15 +68,13 @@ export default function FAQ() {
               <Accordion
                 elevation={0}
                 expanded={expanded === "panel3"}
-                onChange={handleChange("panel3")}
-              >
+                onChange={handleChange("panel3")}>
                 <AccordionSummary
                   expandIcon={
                     expanded === "panel3" ? <RemoveIcon /> : <AddIcon />
                   }
                   aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
+                  id="panel1a-header">
                   <p>Is this legal?</p>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -99,15 +93,13 @@ export default function FAQ() {
               <Accordion
                 elevation={0}
                 expanded={expanded === "panel4"}
-                onChange={handleChange("panel4")}
-              >
+                onChange={handleChange("panel4")}>
                 <AccordionSummary
                   expandIcon={
                     expanded === "panel4" ? <RemoveIcon /> : <AddIcon />
                   }
                   aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
+                  id="panel1a-header">
                   <p>Why should I upload now?</p>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -124,15 +116,13 @@ export default function FAQ() {
               <Accordion
                 elevation={0}
                 expanded={expanded === "panel5"}
-                onChange={handleChange("panel5")}
-              >
+                onChange={handleChange("panel5")}>
                 <AccordionSummary
                   expandIcon={
                     expanded === "panel5" ? <RemoveIcon /> : <AddIcon />
                   }
                   aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
+                  id="panel1a-header">
                   <p>What can't I sell?</p>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -147,15 +137,13 @@ export default function FAQ() {
               <Accordion
                 elevation={0}
                 expanded={expanded === "panel6"}
-                onChange={handleChange("panel6")}
-              >
+                onChange={handleChange("panel6")}>
                 <AccordionSummary
                   expandIcon={
                     expanded === "panel3" ? <RemoveIcon /> : <AddIcon />
                   }
                   aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
+                  id="panel1a-header">
                   <p>How long does it take to upload?</p>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -176,15 +164,13 @@ export default function FAQ() {
               <Accordion
                 elevation={0}
                 expanded={expanded === "panel7"}
-                onChange={handleChange("panel7")}
-              >
+                onChange={handleChange("panel7")}>
                 <AccordionSummary
                   expandIcon={
                     expanded === "panel7" ? <RemoveIcon /> : <AddIcon />
                   }
                   aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
+                  id="panel1a-header">
                   <p>How do I buy notes?</p>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -203,15 +189,13 @@ export default function FAQ() {
               <Accordion
                 elevation={0}
                 expanded={expanded === "panel8"}
-                onChange={handleChange("panel8")}
-              >
+                onChange={handleChange("panel8")}>
                 <AccordionSummary
                   expandIcon={
                     expanded === "panel8" ? <RemoveIcon /> : <AddIcon />
                   }
                   aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
+                  id="panel1a-header">
                   <p>Why should I buy notes?</p>
                 </AccordionSummary>
                 <AccordionDetails>
@@ -228,15 +212,13 @@ export default function FAQ() {
               <Accordion
                 elevation={0}
                 expanded={expanded === "panel9"}
-                onChange={handleChange("panel9")}
-              >
+                onChange={handleChange("panel9")}>
                 <AccordionSummary
                   expandIcon={
                     expanded === "panel9" ? <RemoveIcon /> : <AddIcon />
                   }
                   aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
+                  id="panel1a-header">
                   <p>Will downloading notes guarantee I improve my grades?</p>
                 </AccordionSummary>
                 <AccordionDetails>
