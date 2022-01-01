@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Table, Space, Dropdown, Menu } from "antd";
-
-import UserHeader from "../../../hoc/user/header";
-import UserFooter from "../../../hoc/user/footer";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
 import "../../../assets/css/my-sold-note.css";
-import DotIcon from "../../../assets/images/3dot.png";
-import EyeIcon from "../../../assets/images/eye.png";
 
 export default function MySoldNote() {
   const menu = (record) => {
@@ -36,10 +33,10 @@ export default function MySoldNote() {
       render: (text, record) => (
         <Space size="middle">
           <Link to="/search-notes">
-            <img alt="" src={EyeIcon} />
+            <VisibilityOutlinedIcon color="disabled" />
           </Link>
           <Dropdown overlay={menu(record)}>
-            <img alt="" src={DotIcon} />
+            <MoreVertIcon color="disabled" />
           </Dropdown>
         </Space>
       ),
@@ -68,49 +65,45 @@ export default function MySoldNote() {
   ];
 
   return (
-    <>
-      <UserHeader />
-      <div className="my-sold-note">
-        <div class="content-box">
-          <div class="container">
-            <div className="my-sold-note-table">
-              <div class="stats-heading">
-                <div className="page-title">
-                  <p>My Sold Notes</p>
-                </div>
-                <div className="search">
-                  <div class="form-group has-search">
-                    <span class="fa fa-search search-icon"></span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Search"
-                    />
-                  </div>
-                  <button type="button" class="btn btn-purple">
-                    Search
-                  </button>
-                </div>
+    <div className="my-sold-note">
+      <div class="content-box">
+        <div class="container">
+          <div className="my-sold-note-table">
+            <div class="stats-heading">
+              <div className="page-title">
+                <p>My Sold Notes</p>
               </div>
+              <div className="search">
+                <div class="form-group has-search">
+                  <span class="fa fa-search search-icon"></span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search"
+                  />
+                </div>
+                <button type="button" class="btn btn-purple">
+                  Search
+                </button>
+              </div>
+            </div>
 
-              <div className="antd-table">
-                <Table
-                  columns={columns}
-                  dataSource={data}
-                  pagination={{
-                    current: 1,
-                    pageSize: 1,
-                    total: 2,
-                    position: ["bottomCenter"],
-                  }}
-                  showSorterTooltip={false}
-                />
-              </div>
+            <div className="antd-table">
+              <Table
+                columns={columns}
+                dataSource={data}
+                pagination={{
+                  current: 1,
+                  pageSize: 1,
+                  total: 2,
+                  position: ["bottomCenter"],
+                }}
+                showSorterTooltip={false}
+              />
             </div>
           </div>
         </div>
       </div>
-      <UserFooter />
-    </>
+    </div>
   );
 }
