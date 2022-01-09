@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Dropdown, Menu } from "antd";
 import { Avatar } from "@mui/material";
@@ -7,8 +7,21 @@ import "../../assets/css/header.css";
 import BlueLogo from "../../assets/images/top-logo-purple.png";
 import AvatarImage from "../../assets/images/avatar.png";
 
+import { getLSUser } from "../../utils/local";
+
 export default function AdminHeader() {
   const [toggle, setToggle] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+
+  useEffect(() => {
+    const currentUser = getLSUser();
+    if (currentUser) {
+      setIsLoggedIn(true);
+      setCurrentUser(currentUser);
+    }
+  }, []);
 
   const profileMenu = (
     <Menu>

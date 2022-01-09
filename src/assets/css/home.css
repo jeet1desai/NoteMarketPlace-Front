@@ -171,7 +171,7 @@
 
 .btn-purple,
 .btn-purple:hover {
-  background-color: #6255a5;
+  background-color: #6255a5 !important;
   color: white;
 }
 

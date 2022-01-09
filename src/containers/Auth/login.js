@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import Button from "@mui/material/Button";
+import { CircularProgress } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
 
 import WhiteLogo from "../../assets/images/top-logo-white.png";
 import "../../assets/font-awesome/css/font-awesome.css";
 import "../../assets/css/login.css";
 
-export default function Login() {
+import { signInAction } from "../../store/Auth/authActions";
+
+const Login = () => {
+  const loading = useSelector((state) => state.loginReducer.loading);
+
+  const [formValue, setFormValue] = useState({
+    email: "",
+    password: "",
+    isRememberMe: false,
+  });
+
+  const dispatch = useDispatch();
+
   const showAndHidePassword = () => {
     var inputPassword = document.getElementById("password");
     var eyeIcon = document.getElementById("eye");
@@ -19,6 +35,41 @@ export default function Login() {
     }
   };
 
+  const loginSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string()
+      .required("Required")
+      .min(6, "Password must be at least 6 characters")
+      .max(24, "Password must be at most 24 characters")
+      .matches(
+        "(?=.*[a-z])",
+        "Password must be contain at least 1 lower character"
+      )
+      .matches(
+        "(?=.*[A-Z])",
+        "Password must be contain at least 1 upper character"
+      )
+      .matches(
+        "(?=.*[0-9])",
+        "Password must be contain at least 1 digit character"
+      )
+      .matches(
+        "(?=.*?[#?!@$%^&*-])",
+        "Password must be contain at least 1 special character"
+      ),
+  });
+
+  const onSubmitLoginForm = (values) => {
+    localStorage.clear();
+    dispatch(signInAction(values));
+    setFormValue({
+      ...formValue,
+      email: "",
+      password: "",
+      isRememberMe: false,
+    });
+  };
+
   return (
     <div className="login-page">
       <div className="white-top-logo">
@@ -29,7 +80,10 @@ export default function Login() {
           <h3 className="text-center">Login</h3>
           <p className="text-center">Enter your details to Login</p>
         </div>
-        <Formik>
+        <Formik
+          initialValues={formValue}
+          validationSchema={loginSchema}
+          onSubmit={(values) => onSubmitLoginForm(values)}>
           {({
             values,
             errors,
@@ -45,10 +99,18 @@ export default function Login() {
                   <input
                     type="email"
                     name="email"
-                    className="form-control"
+                    className={`form-control ${
+                      errors.email && touched.email && "invalid"
+                    }`}
                     id="exampleInputEmail1"
                     placeholder="Enter your Email"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
                   />
+                  {errors.email && touched.email && (
+                    <small className="error-text">{errors.email}</small>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -62,9 +124,14 @@ export default function Login() {
                     <input
                       id="password"
                       type="password"
-                      className="form-control"
+                      className={`form-control ${
+                        errors.password && touched.password && "invalid"
+                      }`}
                       name="password"
                       placeholder="Enter your Password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.password}
                     />
                     <span
                       onClick={() => showAndHidePassword()}
@@ -72,6 +139,9 @@ export default function Login() {
                       id="eye"
                       className="fa fa-eye"></span>
                   </div>
+                  {errors.password && touched.password && (
+                    <small className="error-text">{errors.password}</small>
+                  )}
                 </div>
 
                 <div className="form-group form-check">
@@ -80,15 +150,25 @@ export default function Login() {
                     type="checkbox"
                     className="form-check-input"
                     id="exampleCheck1"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    checked={values.isRememberMeF}
                   />
                   <label className="form-check-label" htmlFor="exampleCheck1">
                     Remember Me
                   </label>
                 </div>
 
-                <button type="submit" className="btn btn-purple login-btn">
+                <Button
+                  type="submit"
+                  variant="contained"
+                  className="btn btn-purple login-btn"
+                  disabled={loading}
+                  startIcon={
+                    loading && <CircularProgress color="inherit" size={24} />
+                  }>
                   Login
-                </button>
+                </Button>
 
                 <p className="text-center sign-up-text">
                   Don't have an account?
@@ -101,4 +181,6 @@ export default function Login() {
       </div>
     </div>
   );
-}
+};
+
+export default Login;
