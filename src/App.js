@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.css";
 
@@ -18,6 +20,7 @@ import AdminRoute from "./containers/Admin";
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
@@ -30,9 +33,9 @@ function App() {
           component={SuccessEmailVerification}
         />
 
-        <Route path="/admin" component={AdminRoute} />
+        <Route exact path="/" component={UserRoute} />
 
-        <Route path="/" component={UserRoute} />
+        <Route path="/admin" component={AdminRoute} />
 
         <Redirect to="/" />
       </Switch>
