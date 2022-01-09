@@ -64,6 +64,10 @@
   -o-border-radius: 3px;
 }
 
+.login-page .form-check {
+  line-height: 20px;
+}
+
 .login-page .form-check-input:checked {
   background-color: #6255a5;
   border-color: #6255a5;
@@ -75,6 +79,11 @@
   color: white;
   text-transform: uppercase;
   font-size: 18px;
+  padding: 3px;
+}
+
+.login-page .login-btn.Mui-disabled {
+  color: white;
 }
 
 .login-page .password-input {
