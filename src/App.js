@@ -33,9 +33,9 @@ function App() {
           component={SuccessEmailVerification}
         />
 
-        <Route exact path="/" component={UserRoute} />
-
         <Route path="/admin" component={AdminRoute} />
+
+        <Route path="/" component={UserRoute} />
 
         <Redirect to="/" />
       </Switch>
