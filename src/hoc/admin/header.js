@@ -5,20 +5,17 @@ import { Avatar } from "@mui/material";
 
 import "../../assets/css/header.css";
 import BlueLogo from "../../assets/images/top-logo-purple.png";
-import AvatarImage from "../../assets/images/avatar.png";
 
 import { getLSUser } from "../../utils/local";
 
 export default function AdminHeader() {
   const [toggle, setToggle] = useState(false);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     const currentUser = getLSUser();
     if (currentUser) {
-      setIsLoggedIn(true);
       setCurrentUser(currentUser);
     }
   }, []);
@@ -36,7 +33,13 @@ export default function AdminHeader() {
         </NavLink>
       </Menu.Item>
       <Menu.Item className="drop-logout">
-        <NavLink exact="true" to="/logout" activeclassname="active">
+        <NavLink
+          exact="true"
+          to="/login"
+          activeclassname="active"
+          onClick={() => {
+            localStorage.removeItem("currentUser");
+          }}>
           Logout
         </NavLink>
       </Menu.Item>
@@ -92,19 +95,26 @@ export default function AdminHeader() {
 
   const settingsMenu = (
     <Menu>
-      <Menu.Item>
-        <NavLink
-          exact="true"
-          to="/admin/manage-system-config"
-          activeclassname="active">
-          Manage System Configuration
-        </NavLink>
-      </Menu.Item>
-      <Menu.Item>
-        <NavLink exact="true" to="/admin/manage-admin" activeclassname="active">
-          Manage Administration
-        </NavLink>
-      </Menu.Item>
+      {currentUser.role === 3 && (
+        <>
+          <Menu.Item>
+            <NavLink
+              exact="true"
+              to="/admin/manage-system-config"
+              activeclassname="active">
+              Manage System Configuration
+            </NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink
+              exact="true"
+              to="/admin/manage-admin"
+              activeclassname="active">
+              Manage Administration
+            </NavLink>
+          </Menu.Item>
+        </>
+      )}
       <Menu.Item>
         <NavLink
           exact="true"
@@ -183,17 +193,30 @@ export default function AdminHeader() {
                 <Dropdown overlay={profileMenu}>
                   <Avatar
                     alt="Remy Sharp"
-                    src={AvatarImage}
+                    src={currentUser.profilePicture}
                     sx={{ width: 28, height: 28 }}
                   />
                 </Dropdown>
               </li>
               <li className="nav-link">
-                <Link to="/login" className="login">
-                  <button type="button" className="btn btn-purple">
-                    Login
-                  </button>
-                </Link>
+                {currentUser ? (
+                  <Link to="/login" className="login">
+                    <button
+                      type="button"
+                      className="btn btn-purple"
+                      onClick={() => {
+                        localStorage.removeItem("currentUser");
+                      }}>
+                      Logout
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to="/login" className="login">
+                    <button type="button" className="btn btn-purple">
+                      Login
+                    </button>
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
