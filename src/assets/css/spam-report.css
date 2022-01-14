@@ -41,14 +41,14 @@
   padding-left: 30px;
 }
 
-.spam-report table{
+.spam-report table {
   table-layout: auto !important;
 }
 
-.spam-report table td.ant-table-cell-ellipsis{
+.spam-report table td.ant-table-cell-ellipsis {
   max-width: 200px;
 }
 
-.spam-report table td.ant-table-cell-ellipsis span{
+.spam-report table td.ant-table-cell-ellipsis span {
   color: rgba(0, 0, 0, 0.85);
 }

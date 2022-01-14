@@ -29,11 +29,13 @@
   font-size: 18px;
 }
 
-.faq .MuiAccordionSummary-content, .faq .MuiAccordionDetails-root {
+.faq .MuiAccordionSummary-content,
+.faq .MuiAccordionDetails-root {
   margin: 20px 0;
 }
 
-.faq .MuiAccordionSummary-content p, .faq .MuiAccordionDetails-root p {
+.faq .MuiAccordionSummary-content p,
+.faq .MuiAccordionDetails-root p {
   margin-bottom: 0;
 }
 
@@ -54,8 +56,8 @@
   margin-top: 50px;
 }
 
-@media (min-width: 425px) and (max-width: 767.99px){
-  .page-top .page-top-title{
+@media (min-width: 425px) and (max-width: 767.99px) {
+  .page-top .page-top-title {
     font-size: 30px;
   }
 }

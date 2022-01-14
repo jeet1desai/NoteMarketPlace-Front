@@ -40,14 +40,14 @@
   padding-left: 30px;
 }
 
-.manage-type table{
+.manage-type table {
   table-layout: auto !important;
 }
 
-.manage-type table td.ant-table-cell-ellipsis{
+.manage-type table td.ant-table-cell-ellipsis {
   max-width: 200px;
 }
 
-.manage-type table td.ant-table-cell-ellipsis span{
+.manage-type table td.ant-table-cell-ellipsis span {
   color: rgba(0, 0, 0, 0.85);
 }

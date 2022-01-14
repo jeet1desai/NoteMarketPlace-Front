@@ -36,7 +36,7 @@
 }
 
 .user-profile .upload-box {
-  background-image: url('../images/upload.png');
+  background-image: url("../images/upload.png");
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: center;
@@ -63,7 +63,10 @@
   margin-right: 10px;
 }
 
-.user-profile .user-profile-button, .user-profile .collage-university-info .page-title, .user-profile .address-details .page-title, .user-profile .basic-profile-details .page-title {
+.user-profile .user-profile-button,
+.user-profile .collage-university-info .page-title,
+.user-profile .address-details .page-title,
+.user-profile .basic-profile-details .page-title {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -73,11 +76,12 @@
   text-transform: uppercase;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }

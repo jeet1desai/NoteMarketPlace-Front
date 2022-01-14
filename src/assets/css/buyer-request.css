@@ -66,16 +66,16 @@
   border: 1px solid #d1d1d1;
 }
 
-.ant-pagination-item{
+.ant-pagination-item {
   border: none;
   border-radius: 50%;
 }
 
-.ant-table-content{
+.ant-table-content {
   overflow-x: auto;
 }
 
-.ant-table-cell .ant-space-item{
+.ant-table-cell .ant-space-item {
   cursor: pointer;
 }
 
