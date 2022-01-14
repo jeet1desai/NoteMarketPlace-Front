@@ -16,6 +16,7 @@ import SuccessEmailVerification from "./containers/Auth/success-email-verify";
 import UserRoute from "./containers/User";
 
 import AdminRoute from "./containers/Admin";
+import PrivateRoute from "./components/Routes/Private";
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
           component={SuccessEmailVerification}
         />
 
-        <Route path="/admin" component={AdminRoute} />
+        <PrivateRoute roles={[2, 3]} path="/admin" component={AdminRoute} />
 
         <Route path="/" component={UserRoute} />
 

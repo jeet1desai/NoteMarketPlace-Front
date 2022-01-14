@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import PrivateRoute from "../../components/Routes/Private";
 
 import UserFooter from "../../hoc/user/footer";
 import UserHeader from "../../hoc/user/header";
@@ -29,18 +30,50 @@ export default function UserRoute() {
         <Route exact path="/faq" component={FAQ} />
         <Route exact path="/contact-us" component={ContactUs} />
 
-        <Route
+        <PrivateRoute
+          roles={[1]}
           exact
           path="/sell-note/dashboard"
           component={SellNoteDashboard}
         />
-        <Route exact path="/sell-note/add-note" component={AddNote} />
-        <Route exact path="/sell-note/edit-note/:id" component={EditNote} />
-        <Route exact path="/sell-note/buyer-request" component={BuyerRequest} />
-        <Route exact path="/sell-note/my-profile" component={MyProfile} />
-        <Route exact path="/sell-note/my-download" component={MyDownload} />
-        <Route exact path="/sell-note/my-sold-note" component={MySoldNote} />
-        <Route
+        <PrivateRoute
+          roles={[1]}
+          exact
+          path="/sell-note/add-note"
+          component={AddNote}
+        />
+        <PrivateRoute
+          roles={[1]}
+          exact
+          path="/sell-note/edit-note/:id"
+          component={EditNote}
+        />
+        <PrivateRoute
+          roles={[1]}
+          exact
+          path="/sell-note/buyer-request"
+          component={BuyerRequest}
+        />
+        <PrivateRoute
+          roles={[1]}
+          exact
+          path="/sell-note/my-profile"
+          component={MyProfile}
+        />
+        <PrivateRoute
+          roles={[1]}
+          exact
+          path="/sell-note/my-download"
+          component={MyDownload}
+        />
+        <PrivateRoute
+          roles={[1]}
+          exact
+          path="/sell-note/my-sold-note"
+          component={MySoldNote}
+        />
+        <PrivateRoute
+          roles={[1]}
           exact
           path="/sell-note/my-rejected-note"
           component={MyRejectedNote}
