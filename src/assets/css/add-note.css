@@ -21,7 +21,7 @@
   margin-bottom: 6px;
 }
 
-.add-notes .MuiFormControlLabel-label{
+.add-notes .MuiFormControlLabel-label {
   font-size: 15px;
   color: #333333;
   font-weight: 400;
@@ -138,10 +138,10 @@
   margin-bottom: 0;
 }
 
-.MuiFormGroup-root .MuiRadio-root span{
- color: #6255a5;
+.MuiFormGroup-root .MuiRadio-root span {
+  color: #6255a5;
 }
 
-.page-top .page-top-title p{
+.page-top .page-top-title p {
   margin-bottom: 0;
 }

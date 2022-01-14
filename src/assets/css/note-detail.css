@@ -2,7 +2,8 @@
   padding-top: 80px;
 }
 
-.note-details .note-detail, .note-details .preview-and-review {
+.note-details .note-detail,
+.note-details .preview-and-review {
   margin-top: 50px;
   margin-bottom: 50px;
 }

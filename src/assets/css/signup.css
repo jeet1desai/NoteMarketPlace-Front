@@ -71,7 +71,11 @@
   color: white;
   text-transform: uppercase;
   font-size: 18px;
-  margin-top: 5px;
+  margin-top: 3px;
+}
+
+.signup-page .signup-btn.Mui-disabled {
+  color: white;
 }
 
 .signup-page .password {
@@ -80,7 +84,7 @@
 
 .signup-page .password span {
   position: absolute;
-  top: 37px;
+  top: 38px;
   right: 12px;
 }
 

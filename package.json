@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "pretty": "prettier --write **/*.{js,json} !node_modules/**"
+    "pretty": "prettier --write **/*.{js,json,css} !node_modules/**"
   },
   "eslintConfig": {
     "extends": [
