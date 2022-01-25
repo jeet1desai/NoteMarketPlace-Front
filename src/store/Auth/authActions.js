@@ -1,6 +1,11 @@
 import { toast } from "react-toastify";
 
-import { signIn, signUp } from "../../services/auth.service";
+import {
+  signIn,
+  signUp,
+  sendMail,
+  verifyEmail,
+} from "../../services/auth.service";
 import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE } from "./authActionTypes";
 
 export function signInAction(signInDetails) {
@@ -44,6 +49,55 @@ export function signUpAction(signUpDetails) {
         toast.success("Successfully Signup! 👌👌");
         localStorage.setItem("currentUser", JSON.stringify(data));
         window.location.href = "/email-verification";
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function request() {
+    return { type: AUTH_REQUEST };
+  }
+  function success() {
+    return { type: AUTH_SUCCESS };
+  }
+  function failure() {
+    return { type: AUTH_FAILURE };
+  }
+}
+
+export function sendVerificationMailAction(emailInfo) {
+  return (dispatch) => {
+    dispatch(request());
+    sendMail(emailInfo).then(
+      (data) => {
+        dispatch(success());
+        toast.success(data.message);
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function request() {
+    return { type: AUTH_REQUEST };
+  }
+  function success() {
+    return { type: AUTH_SUCCESS };
+  }
+  function failure() {
+    return { type: AUTH_FAILURE };
+  }
+}
+
+export function verificationMailAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    verifyEmail(id).then(
+      (data) => {
+        dispatch(success());
+        toast.success("Successfully Email Confirmed!");
+        localStorage.setItem("currentUser", JSON.stringify(data));
       },
       (error) => {
         dispatch(failure());

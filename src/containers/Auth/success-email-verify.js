@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams, NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import Button from "@mui/material/Button";
+import { CircularProgress } from "@mui/material";
 
 import "../../assets/css/email-verify.css";
 import PurpleLogo from "../../assets/images/top-logo-purple.png";
 
-function SuccessEmailVerification() {
+import { verificationMailAction } from "../../store/Auth/authActions";
+
+const SuccessEmailVerification = () => {
+  const params = useParams();
+
+  const loading = useSelector((state) => state.authReducer.loading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const { id } = params;
+    dispatch(verificationMailAction(id));
+  }, []);
+
   return (
     <div className="email-verify-page">
       <div className="form-content">
@@ -12,14 +28,23 @@ function SuccessEmailVerification() {
         </div>
         <div className="email-verify-heading text-center">
           <div className="mt-3">
-            <button type="button" className="btn email-verify-btn btn-purple">
-              Go To Home
-            </button>
+            <NavLink to="/">
+              <Button
+                type="button"
+                variant="contained"
+                className="btn email-verify-btn btn-purple"
+                disabled={loading}
+                startIcon={
+                  loading && <CircularProgress color="inherit" size={24} />
+                }>
+                Go To Home
+              </Button>
+            </NavLink>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default SuccessEmailVerification;
