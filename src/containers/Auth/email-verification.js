@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Button from "@mui/material/Button";
+import { CircularProgress } from "@mui/material";
 
 import "../../assets/css/email-verify.css";
 import PurpleLogo from "../../assets/images/top-logo-purple.png";
 
-function EmailVerification() {
+import { getLSUser } from "../../utils/local";
+import { sendVerificationMailAction } from "../../store/Auth/authActions";
+
+const EmailVerification = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const loading = useSelector((state) => state.authReducer.loading);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const cUser = getLSUser();
+    const name = cUser ? `${cUser.firstName} ${cUser.lastName}` : "";
+    const email = cUser ? cUser.email : "";
+    setName(name);
+    setEmail(email);
+    sendEMail(email);
+  }, []);
+
+  const sendEMail = (email) => {
+    const emailInfo = {
+      email,
+    };
+    dispatch(sendVerificationMailAction(emailInfo));
+  };
+
   return (
     <div className="email-verify-page">
       <div className="form-content">
@@ -13,7 +41,7 @@ function EmailVerification() {
         <div className="email-verify-heading">
           <h3>Email Verification</h3>
           <p>
-            <b>Dear, John</b>
+            <b>Dear, {name}</b>
           </p>
           <span>Thanks for Signing up!</span>
           <br />
@@ -23,13 +51,21 @@ function EmailVerification() {
           </span>
           <br />
           <br />
-          <button type="button" className="btn email-verify-btn btn-purple">
+          <Button
+            type="button"
+            variant="contained"
+            className="btn email-verify-btn btn-purple"
+            onClick={() => sendEMail(email)}
+            disabled={loading}
+            startIcon={
+              loading && <CircularProgress color="inherit" size={24} />
+            }>
             Resend Email
-          </button>
+          </Button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default EmailVerification;

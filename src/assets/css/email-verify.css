@@ -29,12 +29,21 @@
   margin: 15px 0;
 }
 
+.email-verify-page .email-verify-heading p {
+  text-transform: capitalize;
+}
+
 .email-verify-page .email-verify-btn {
   width: 100%;
   border-radius: 3px;
   color: white;
   text-transform: uppercase;
   font-size: 18px;
+  padding: 3px;
+}
+
+.email-verify-page .email-verify-btn.Mui-disabled {
+  color: white;
 }
 
 @media (min-width: 425px) and (max-width: 767.99px) {
