@@ -20,6 +20,25 @@ export const signUp = (user) => {
   return fetch(`${API_URL}/auth/register`, requestOptions).then(handleResponse);
 };
 
+export const sendMail = (email) => {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(email),
+  };
+  return fetch(`${API_URL}/auth/confirm`, requestOptions).then(handleResponse);
+};
+
+export const verifyEmail = (id) => {
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(`${API_URL}/auth/confirm/${id}`, requestOptions).then(
+    handleResponse
+  );
+};
+
 export const logout = () => {
   localStorage.removeItem("currentUser");
 };
