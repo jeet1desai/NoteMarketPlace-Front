@@ -52,3 +52,8 @@
   width: 150px;
   text-transform: uppercase;
 }
+
+
+.ant-table-column-sorter span.active svg{
+  color: #6255a5;
+}

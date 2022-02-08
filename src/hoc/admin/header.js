@@ -23,18 +23,18 @@ export default function AdminHeader() {
   const profileMenu = (
     <Menu>
       <Menu.Item>
-        <NavLink exact="true" to="/admin/my-profile" activeclassname="active">
+        <NavLink exact={true} to="/admin/my-profile" activeclassname="active">
           Update Profile
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink exact="true" to="/change-password" activeclassname="active">
+        <NavLink exact={true} to="/change-password" activeclassname="active">
           Change Password
         </NavLink>
       </Menu.Item>
       <Menu.Item className="drop-logout">
         <NavLink
-          exact="true"
+          exact={true}
           to="/login"
           activeclassname="active"
           onClick={() => {
@@ -50,7 +50,7 @@ export default function AdminHeader() {
     <Menu>
       <Menu.Item>
         <NavLink
-          exact="true"
+          exact={true}
           to="/admin/note-under-review"
           activeclassname="active">
           Note Under Review
@@ -58,7 +58,7 @@ export default function AdminHeader() {
       </Menu.Item>
       <Menu.Item>
         <NavLink
-          exact="true"
+          exact={true}
           to="/admin/published-notes"
           activeclassname="active">
           Published Notes
@@ -66,7 +66,7 @@ export default function AdminHeader() {
       </Menu.Item>
       <Menu.Item>
         <NavLink
-          exact="true"
+          exact={true}
           to="/admin/downloaded-notes"
           activeclassname="active">
           Downloaded Notes
@@ -74,7 +74,7 @@ export default function AdminHeader() {
       </Menu.Item>
       <Menu.Item>
         <NavLink
-          exact="true"
+          exact={true}
           to="/admin/rejected-notes"
           activeclassname="active">
           Rejected Notes
@@ -86,7 +86,7 @@ export default function AdminHeader() {
   const reportsMenu = (
     <Menu>
       <Menu.Item>
-        <NavLink exact="true" to="/admin/spam-report" activeclassname="active">
+        <NavLink exact={true} to="/admin/spam-report" activeclassname="active">
           Spam Reports
         </NavLink>
       </Menu.Item>
@@ -99,7 +99,7 @@ export default function AdminHeader() {
         <>
           <Menu.Item>
             <NavLink
-              exact="true"
+              exact={true}
               to="/admin/manage-system-config"
               activeclassname="active">
               Manage System Configuration
@@ -107,7 +107,7 @@ export default function AdminHeader() {
           </Menu.Item>
           <Menu.Item>
             <NavLink
-              exact="true"
+              exact={true}
               to="/admin/manage-admin"
               activeclassname="active">
               Manage Administration
@@ -117,20 +117,20 @@ export default function AdminHeader() {
       )}
       <Menu.Item>
         <NavLink
-          exact="true"
+          exact={true}
           to="/admin/manage-category"
           activeclassname="active">
           Manage Category
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink exact="true" to="/admin/manage-type" activeclassname="active">
+        <NavLink exact={true} to="/admin/manage-type" activeclassname="active">
           Manage Type
         </NavLink>
       </Menu.Item>
       <Menu.Item>
         <NavLink
-          exact="true"
+          exact={true}
           to="/admin/manage-country"
           activeclassname="active">
           Manage Country
@@ -158,7 +158,7 @@ export default function AdminHeader() {
             <ul>
               <li className="nav-link">
                 <NavLink
-                  exact="true"
+                  exact={true}
                   to="/admin/dashboard"
                   activeclassname="active">
                   Dashboard
@@ -172,7 +172,7 @@ export default function AdminHeader() {
               </li>
               <li className="nav-link">
                 <NavLink
-                  exact="true"
+                  exact={true}
                   to="/admin/members"
                   activeclassname="active">
                   Members
