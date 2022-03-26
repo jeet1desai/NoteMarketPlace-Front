@@ -8,13 +8,35 @@ export const fetchCategories = () => {
     method: "GET",
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
   };
-  return fetch(`${API_URL}/admin/category/all`, requestOptions).then(handleResponse);
+  return fetch(`${API_URL}/admin/category/all`, requestOptions).then(
+    handleResponse
+  );
+};
+
+export const addCategory = (category) => {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json", token: getLSUserToken() },
+    body: JSON.stringify(category),
+  };
+  return fetch(`${API_URL}/admin/category`, requestOptions).then(
+    handleResponse
+  );
+};
+
+export const getCategory = (id) => {
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", token: getLSUserToken() },
+  };
+  return fetch(`${API_URL}/admin/category/${id}`, requestOptions).then(
+    handleResponse
+  );
 };
 
 export const logout = () => {
   localStorage.removeItem("currentUser");
 };
-
 
 const handleResponse = (response) => {
   return response.text().then((text) => {
