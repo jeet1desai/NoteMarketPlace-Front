@@ -4,7 +4,7 @@ import { Table, Space, Tooltip } from "antd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
-import moment from 'moment';
+import moment from "moment";
 
 import { fetchAllCategoriesAction } from "../../../../store/AdminCategory/categoryActions";
 
@@ -64,14 +64,16 @@ const Category = () => {
     {
       title: "ACTION",
       key: "action",
-      render: (text, record) => (
-        <Space size="middle">
-          <Link to={"/search-notes"}>
-            <EditIcon color="disabled" />
-          </Link>
-          <DeleteIcon color="disabled" />
-        </Space>
-      ),
+      render: (text, record) => {
+        return (
+          <Space size="middle" key={record.id}>
+            <Link to={`/admin/manage-category/edit-category/${record.id}`}>
+              <EditIcon color="disabled" />
+            </Link>
+            <DeleteIcon color="disabled" />
+          </Space>
+        );
+      },
     },
   ];
 
