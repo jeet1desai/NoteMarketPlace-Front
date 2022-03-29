@@ -6,7 +6,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
-import { fetchAllCategoriesAction } from "../../../../store/AdminCategory/categoryActions";
+import {
+  fetchAllCategoriesAction,
+  deleteCategoryAction,
+} from "../../../../store/AdminCategory/categoryActions";
 
 import "../../../../assets/css/manage-category.css";
 
@@ -70,7 +73,12 @@ const Category = () => {
             <Link to={`/admin/manage-category/edit-category/${record.id}`}>
               <EditIcon color="disabled" />
             </Link>
-            <DeleteIcon color="disabled" />
+            <DeleteIcon
+              color="disabled"
+              onClick={() => {
+                dispatch(deleteCategoryAction(record.id));
+              }}
+            />
           </Space>
         );
       },

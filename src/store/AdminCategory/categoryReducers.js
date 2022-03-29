@@ -8,6 +8,12 @@ import {
   GET_CATEGORY_REQUEST,
   GET_CATEGORY_SUCCESS,
   GET_CATEGORY_FAILURE,
+  EDIT_CATEGORY_REQUEST,
+  EDIT_CATEGORY_SUCCESS,
+  EDIT_CATEGORY_FAILURE,
+  DELETE_CATEGORY_REQUEST,
+  DELETE_CATEGORY_SUCCESS,
+  DELETE_CATEGORY_FAILURE,
 } from "./categoryActionTypes";
 
 const initialState = {
@@ -45,6 +51,10 @@ export function categoryReducer(state = initialState, action) {
         loading: false,
       };
     case ADD_CATEGORY_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
     case GET_CATEGORY_REQUEST:
       return {
         ...state,
@@ -57,6 +67,41 @@ export function categoryReducer(state = initialState, action) {
         category: action.category,
       };
     case GET_CATEGORY_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case EDIT_CATEGORY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        category: {},
+      };
+    case EDIT_CATEGORY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        category: action.category,
+      };
+    case EDIT_CATEGORY_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case DELETE_CATEGORY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case DELETE_CATEGORY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        categories: state.categories.map((cat) =>
+          cat.id === action.category.id ? action.category : cat
+        ),
+      };
+    case DELETE_CATEGORY_FAILURE:
       return {
         ...state,
         loading: false,

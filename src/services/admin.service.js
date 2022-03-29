@@ -24,9 +24,30 @@ export const addCategory = (category) => {
   );
 };
 
+export const editCategory = (id, category) => {
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", token: getLSUserToken() },
+    body: JSON.stringify(category),
+  };
+  return fetch(`${API_URL}/admin/category/${id}`, requestOptions).then(
+    handleResponse
+  );
+};
+
 export const getCategory = (id) => {
   const requestOptions = {
     method: "GET",
+    headers: { "Content-Type": "application/json", token: getLSUserToken() },
+  };
+  return fetch(`${API_URL}/admin/category/${id}`, requestOptions).then(
+    handleResponse
+  );
+};
+
+export const deleteCategory = (id) => {
+  const requestOptions = {
+    method: "DELETE",
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
   };
   return fetch(`${API_URL}/admin/category/${id}`, requestOptions).then(
