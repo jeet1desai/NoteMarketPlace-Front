@@ -48,9 +48,9 @@ const Category = () => {
     },
     {
       title: "DATE ADDED",
-      dataIndex: "createddate",
+      dataIndex: "modifieddate",
       render: (date) => `${moment(date).utc().format("DD MMM YYYY, hh:mm:ss")}`,
-      sorter: (a, b) => a.createddate.localeCompare(b.createddate),
+      sorter: (a, b) => a.modifieddate.localeCompare(b.modifieddate),
     },
     {
       title: "ADDED BY",
