@@ -55,6 +55,17 @@ export const deleteCategory = (id) => {
   );
 };
 
+export const searchCategory = (search) => {
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", token: getLSUserToken() },
+  };
+  return fetch(
+    `${API_URL}/admin/category/search?search=${search}`,
+    requestOptions
+  ).then(handleResponse);
+};
+
 export const logout = () => {
   localStorage.removeItem("currentUser");
 };

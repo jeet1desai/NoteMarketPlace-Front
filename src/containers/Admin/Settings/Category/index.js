@@ -9,6 +9,7 @@ import moment from "moment";
 import {
   fetchAllCategoriesAction,
   deleteCategoryAction,
+  searchCategoriesAction,
 } from "../../../../store/AdminCategory/categoryActions";
 
 import "../../../../assets/css/manage-category.css";
@@ -19,6 +20,7 @@ const Category = () => {
   const dispatch = useDispatch();
 
   const [cPage, setCPage] = useState(1);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(fetchAllCategoriesAction());
@@ -105,11 +107,18 @@ const Category = () => {
                   <span className="fa fa-search search-icon"></span>
                   <input
                     type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                     className="form-control"
                     placeholder="Search"
                   />
                 </div>
-                <button type="button" className="btn btn-purple">
+                <button
+                  onClick={() => {
+                    dispatch(searchCategoriesAction(search.toLowerCase()));
+                  }}
+                  type="button"
+                  className="btn btn-purple">
                   Search
                 </button>
               </div>
