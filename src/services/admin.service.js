@@ -6,7 +6,7 @@ import { getLSUserToken } from "../utils/local";
 export const fetchCategories = () => {
   const requestOptions = {
     method: "GET",
-    headers: { "Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
   };
   return fetch(`${API_URL}/admin/settings/category/all`, requestOptions).then(
     handleResponse
