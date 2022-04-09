@@ -6,9 +6,9 @@ import { getLSUserToken } from "../utils/local";
 export const fetchCategories = () => {
   const requestOptions = {
     method: "GET",
-    headers: { "Content-Type": "application/json", token: getLSUserToken() },
+    headers: { "Content-Type": "application/json" },
   };
-  return fetch(`${API_URL}/admin/category/all`, requestOptions).then(
+  return fetch(`${API_URL}/admin/settings/category/all`, requestOptions).then(
     handleResponse
   );
 };
@@ -19,7 +19,7 @@ export const addCategory = (category) => {
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
     body: JSON.stringify(category),
   };
-  return fetch(`${API_URL}/admin/category`, requestOptions).then(
+  return fetch(`${API_URL}/admin/settings/category`, requestOptions).then(
     handleResponse
   );
 };
@@ -30,7 +30,7 @@ export const editCategory = (id, category) => {
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
     body: JSON.stringify(category),
   };
-  return fetch(`${API_URL}/admin/category/${id}`, requestOptions).then(
+  return fetch(`${API_URL}/admin/settings/category/${id}`, requestOptions).then(
     handleResponse
   );
 };
@@ -40,7 +40,7 @@ export const getCategory = (id) => {
     method: "GET",
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
   };
-  return fetch(`${API_URL}/admin/category/${id}`, requestOptions).then(
+  return fetch(`${API_URL}/admin/settings/category/${id}`, requestOptions).then(
     handleResponse
   );
 };
@@ -50,9 +50,20 @@ export const deleteCategory = (id) => {
     method: "DELETE",
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
   };
-  return fetch(`${API_URL}/admin/category/${id}`, requestOptions).then(
+  return fetch(`${API_URL}/admin/settings/category/${id}`, requestOptions).then(
     handleResponse
   );
+};
+
+export const searchCategory = (search) => {
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", token: getLSUserToken() },
+  };
+  return fetch(
+    `${API_URL}/admin/settings/category/search?search=${search}`,
+    requestOptions
+  ).then(handleResponse);
 };
 
 export const logout = () => {

@@ -6,6 +6,7 @@ import {
   getCategory,
   editCategory,
   deleteCategory,
+  searchCategory,
 } from "../../services/admin.service";
 
 import {
@@ -24,6 +25,9 @@ import {
   DELETE_CATEGORY_REQUEST,
   DELETE_CATEGORY_SUCCESS,
   DELETE_CATEGORY_FAILURE,
+  SEARCHED_CATEGORY_REQUEST,
+  SEARCHED_CATEGORY_SUCCESS,
+  SEARCHED_CATEGORY_FAILURE,
 } from "./categoryActionTypes";
 
 export function fetchAllCategoriesAction() {
@@ -141,5 +145,28 @@ export function deleteCategoryAction(id) {
   }
   function failure() {
     return { type: DELETE_CATEGORY_FAILURE };
+  }
+}
+
+export function searchCategoriesAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    searchCategory(search).then(
+      (data) => {
+        dispatch(success(data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function request() {
+    return { type: SEARCHED_CATEGORY_REQUEST };
+  }
+  function success(categories) {
+    return { type: SEARCHED_CATEGORY_SUCCESS, categories };
+  }
+  function failure() {
+    return { type: SEARCHED_CATEGORY_FAILURE };
   }
 }

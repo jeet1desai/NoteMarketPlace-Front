@@ -49,7 +49,7 @@ export default function AddNote() {
                   <div className="col-md-6">
                     <div class="form-group">
                       <div class="form-group">
-                        <label for="display-picture">Display Picture *</label>
+                        <label for="display-picture">Display Picture</label>
                         <div class="upload-box">
                           <input
                             type="file"
@@ -240,7 +240,7 @@ export default function AddNote() {
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="note-preview">Note Preview</label>
+                      <label for="note-preview">Note Preview *</label>
                       <div class="upload-box">
                         <input type="file" class="upload" id="note-preview" />
                       </div>

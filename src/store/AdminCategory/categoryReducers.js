@@ -14,6 +14,9 @@ import {
   DELETE_CATEGORY_REQUEST,
   DELETE_CATEGORY_SUCCESS,
   DELETE_CATEGORY_FAILURE,
+  SEARCHED_CATEGORY_REQUEST,
+  SEARCHED_CATEGORY_SUCCESS,
+  SEARCHED_CATEGORY_FAILURE,
 } from "./categoryActionTypes";
 
 const initialState = {
@@ -102,6 +105,22 @@ export function categoryReducer(state = initialState, action) {
         ),
       };
     case DELETE_CATEGORY_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case SEARCHED_CATEGORY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SEARCHED_CATEGORY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        categories: action.categories,
+      };
+    case SEARCHED_CATEGORY_FAILURE:
       return {
         ...state,
         loading: false,
