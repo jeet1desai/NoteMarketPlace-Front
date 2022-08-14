@@ -49,7 +49,7 @@ const Signup = () => {
         "Password must be contain at least 1 special character"
       ),
     confirmPassword: Yup.string()
-      .required("Confirm Password is required")
+      .required("Required")
       .oneOf([Yup.ref("password")], "Passwords must match"),
   });
 
