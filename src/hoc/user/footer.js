@@ -10,17 +10,17 @@ export default function UserFooter() {
         <ul className="social-list">
           <li>
             <a href="/">
-              <i class="fa fa-facebook"></i>
+              <i className="fa fa-facebook"></i>
             </a>
           </li>
           <li>
             <a href="/">
-              <i class="fa fa-twitter"></i>
+              <i className="fa fa-twitter"></i>
             </a>
           </li>
           <li>
             <a href="/">
-              <i class="fa fa-linkedin"></i>
+              <i className="fa fa-linkedin"></i>
             </a>
           </li>
         </ul>

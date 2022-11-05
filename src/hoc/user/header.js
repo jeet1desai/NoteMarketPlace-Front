@@ -26,7 +26,7 @@ export default function UserHeader() {
     <Menu>
       <Menu.Item>
         <NavLink
-          exact="true"
+          exact={true}
           to="/sell-note/my-profile"
           activeclassname="active">
           My Profile
@@ -34,7 +34,7 @@ export default function UserHeader() {
       </Menu.Item>
       <Menu.Item>
         <NavLink
-          exact="true"
+          exact={true}
           to="/sell-note/my-download"
           activeclassname="active">
           My Downloads
@@ -42,7 +42,7 @@ export default function UserHeader() {
       </Menu.Item>
       <Menu.Item>
         <NavLink
-          exact="true"
+          exact={true}
           to="/sell-note/my-sold-note"
           activeclassname="active">
           My Sold Notes
@@ -50,20 +50,20 @@ export default function UserHeader() {
       </Menu.Item>
       <Menu.Item>
         <NavLink
-          exact="true"
+          exact={true}
           to="/sell-note/my-rejected-note"
           activeclassname="active">
           My Rejected Notes
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink exact="true" to="/change-password" activeclassname="active">
+        <NavLink exact={true} to="/change-password" activeclassname="active">
           Change Password
         </NavLink>
       </Menu.Item>
       <Menu.Item className="drop-logout">
         <NavLink
-          exact="true"
+          exact={true}
           to="/login"
           activeclassname="active"
           onClick={() => {
@@ -94,7 +94,7 @@ export default function UserHeader() {
             <ul>
               <li className="nav-link">
                 <NavLink
-                  exact="true"
+                  exact={true}
                   to="/search-notes"
                   activeclassname="active">
                   Search Notes
@@ -103,7 +103,7 @@ export default function UserHeader() {
               </li>
               <li className="nav-link">
                 <NavLink
-                  exact="true"
+                  exact={true}
                   to="/sell-note/dashboard"
                   activeclassname="active">
                   Sell Your Notes
@@ -113,7 +113,7 @@ export default function UserHeader() {
               {isLoggedIn && (
                 <li className="nav-link">
                   <NavLink
-                    exact="true"
+                    exact={true}
                     to="/sell-note/buyer-request"
                     activeclassname="active">
                     Buyer Requests
@@ -122,13 +122,13 @@ export default function UserHeader() {
                 </li>
               )}
               <li className="nav-link">
-                <NavLink exact="true" to="/faq" activeclassname="active">
+                <NavLink exact={true} to="/faq" activeclassname="active">
                   FAQ
                 </NavLink>
                 <div className="underline"></div>
               </li>
               <li className="nav-link">
-                <NavLink exact="true" to="/contact-us" activeclassname="active">
+                <NavLink exact={true} to="/contact-us" activeclassname="active">
                   Contact Us
                 </NavLink>
                 <div className="underline"></div>

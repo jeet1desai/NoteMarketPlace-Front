@@ -152,12 +152,8 @@ export function searchCategoriesAction(search) {
   return (dispatch) => {
     dispatch(request());
     searchCategory(search).then(
-      (data) => {
-        dispatch(success(data));
-      },
-      (error) => {
-        dispatch(failure());
-      }
+      (data) => dispatch(success(data)),
+      (error) => dispatch(failure())
     );
   };
   function request() {
