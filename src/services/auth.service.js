@@ -17,16 +17,7 @@ export const signUp = (user) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   };
-  return fetch(`${API_URL}/auth/register`, requestOptions).then(handleResponse);
-};
-
-export const sendMail = (email) => {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(email),
-  };
-  return fetch(`${API_URL}/auth/confirm`, requestOptions).then(handleResponse);
+  return fetch(`${API_URL}/auth/sign-up`, requestOptions).then(handleResponse);
 };
 
 export const verifyEmail = (id) => {
@@ -34,7 +25,18 @@ export const verifyEmail = (id) => {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   };
-  return fetch(`${API_URL}/auth/confirm/${id}`, requestOptions).then(
+  return fetch(`${API_URL}/auth/email-verified/${id}`, requestOptions).then(
+    handleResponse
+  );
+};
+
+export const forgetPassword = (user) => {
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  };
+  return fetch(`${API_URL}/auth/forgot-password`, requestOptions).then(
     handleResponse
   );
 };

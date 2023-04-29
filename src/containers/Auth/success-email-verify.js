@@ -28,7 +28,7 @@ const SuccessEmailVerification = () => {
         </div>
         <div className="email-verify-heading text-center">
           <div className="mt-3">
-            <NavLink to="/">
+            <NavLink to="/login">
               <Button
                 type="button"
                 variant="contained"
@@ -37,7 +37,7 @@ const SuccessEmailVerification = () => {
                 startIcon={
                   loading && <CircularProgress color="inherit" size={24} />
                 }>
-                Go To Home
+                Login
               </Button>
             </NavLink>
           </div>

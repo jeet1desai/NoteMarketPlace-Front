@@ -31,49 +31,49 @@ export default function UserRoute() {
         <Route exact path="/contact-us" component={ContactUs} />
 
         <PrivateRoute
-          roles={[1]}
+          roles={[3]}
           exact
           path="/sell-note/dashboard"
           component={SellNoteDashboard}
         />
         <PrivateRoute
-          roles={[1]}
+          roles={[3]}
           exact
           path="/sell-note/add-note"
           component={AddNote}
         />
         <PrivateRoute
-          roles={[1]}
+          roles={[3]}
           exact
           path="/sell-note/edit-note/:id"
           component={EditNote}
         />
         <PrivateRoute
-          roles={[1]}
+          roles={[3]}
           exact
           path="/sell-note/buyer-request"
           component={BuyerRequest}
         />
         <PrivateRoute
-          roles={[1]}
+          roles={[3]}
           exact
           path="/sell-note/my-profile"
           component={MyProfile}
         />
         <PrivateRoute
-          roles={[1]}
+          roles={[3]}
           exact
           path="/sell-note/my-download"
           component={MyDownload}
         />
         <PrivateRoute
-          roles={[1]}
+          roles={[3]}
           exact
           path="/sell-note/my-sold-note"
           component={MySoldNote}
         />
         <PrivateRoute
-          roles={[1]}
+          roles={[3]}
           exact
           path="/sell-note/my-rejected-note"
           component={MyRejectedNote}

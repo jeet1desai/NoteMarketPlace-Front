@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
 
 import Dashboard from "./dashboard";
 import SpamReports from "./Reports/spam";
@@ -35,139 +35,139 @@ export default function AdminRoute() {
       <AdminHeader />
       <Switch>
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/dashboard"
           component={Dashboard}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/note/:id"
           component={AdminNoteDetails}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/note-under-review"
           component={UnderReview}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/published-notes"
           component={Published}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/downloaded-notes"
           component={Downloaded}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/rejected-notes"
           component={Rejected}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/members"
           component={Members}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/members/:id"
           component={MemberDetail}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/spam-report"
           component={SpamReports}
         />
         <PrivateRoute
-          roles={[3]}
+          roles={[1]}
           exact
           path="/admin/manage-system-config"
           component={SystemConfig}
         />
         <PrivateRoute
-          roles={[3]}
+          roles={[1]}
           exact
           path="/admin/manage-admin"
           component={Admin}
         />
         <PrivateRoute
-          roles={[3]}
+          roles={[1]}
           exact
           path="/admin/manage-admin/add-admin"
           component={AddAdmin}
         />
         <PrivateRoute
-          roles={[3]}
+          roles={[1]}
           exact
           path="/admin/manage-admin/edit-admin/:id"
           component={EditAdmin}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/manage-category"
           component={Category}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/manage-category/add-category"
           component={AddCategory}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/manage-category/edit-category/:id"
           component={EditCategory}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/manage-type"
           component={Type}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/manage-type/add-type"
           component={AddType}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/manage-type/edit-type/:id"
           component={EditType}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/manage-country"
           component={Country}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/manage-country/add-country"
           component={AddCountry}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/manage-country/edit-country/:id"
           component={EditCountry}
         />
         <PrivateRoute
-          roles={[2, 3]}
+          roles={[1, 2]}
           exact
           path="/admin/my-profile"
           component={AdminProfile}

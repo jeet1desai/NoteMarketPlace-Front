@@ -47,7 +47,7 @@
   align-content: center;
 }
 
-@media (min-width: 425px) and (max-width: 767.99px) {
+@media (min-width: 0px) and (max-width: 767.99px) {
   .footer .footer-content p {
     font-size: 12px;
   }

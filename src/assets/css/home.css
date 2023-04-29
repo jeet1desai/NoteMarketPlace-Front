@@ -176,7 +176,7 @@
 }
 
 /* Small */
-@media (min-width: 425px) and (max-width: 767.99px) {
+@media (min-width: 0px) and (max-width: 767.99px) {
   .home .content-box {
     margin: 40px 0;
   }

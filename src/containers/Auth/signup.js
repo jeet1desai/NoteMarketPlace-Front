@@ -11,22 +11,25 @@ import "../../assets/font-awesome/css/font-awesome.css";
 import WhiteLogo from "../../assets/images/top-logo-white.png";
 
 import { signUpAction } from "../../store/Auth/authActions";
+import { showAndHidePassword } from "../../utils/password";
+
+import ErrorText from "../../components/Error";
 
 const Signup = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
 
   const [formValue, setFormValue] = useState({
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
 
   const signupSchema = Yup.object().shape({
-    firstName: Yup.string().required("Required"),
-    lastName: Yup.string().required("Required"),
+    first_name: Yup.string().required("Required"),
+    last_name: Yup.string().required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
       .required("Required")
@@ -54,38 +57,14 @@ const Signup = () => {
   });
 
   const onSubmitSignupForm = (values) => {
-    const signupValues = {
-      firstName: values.firstName,
-      lastName: values.lastName,
+    const signUpValue = {
+      first_name: values.first_name,
+      last_name: values.last_name,
       email: values.email,
       password: values.password,
     };
-    dispatch(signUpAction(signupValues));
+    dispatch(signUpAction(signUpValue));
     localStorage.clear();
-  };
-
-  const showAndHidePassword = () => {
-    var inputPassword = document.getElementById("password");
-    var eyeIcon = document.getElementById("eye");
-    if (inputPassword.type === "password") {
-      inputPassword.type = "text";
-      eyeIcon.className = "fa fa-eye-slash";
-    } else {
-      inputPassword.type = "password";
-      eyeIcon.className = "fa fa-eye";
-    }
-  };
-
-  const showAndHideConfirmPassword = () => {
-    var inputPassword = document.getElementById("con_password");
-    var eyeIcon = document.getElementById("con_eye");
-    if (inputPassword.type === "password") {
-      inputPassword.type = "text";
-      eyeIcon.className = "fa fa-eye-slash";
-    } else {
-      inputPassword.type = "password";
-      eyeIcon.className = "fa fa-eye";
-    }
   };
 
   return (
@@ -115,39 +94,41 @@ const Signup = () => {
                 <div className="form-group">
                   <label htmlFor="firstName">First Name *</label>
                   <input
-                    value={values.firstName}
+                    value={values.first_name}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    name="firstName"
+                    name="first_name"
                     type="text"
                     className={`form-control ${
-                      errors.firstName && touched.firstName && "invalid"
+                      errors.first_name && touched.first_name && "invalid"
                     }`}
-                    id="firstName"
+                    id="first_name"
                     placeholder="Enter your First Name"
                   />
-                  {errors.firstName && touched.firstName && (
-                    <small className="error-text">{errors.firstName}</small>
-                  )}
+                  <ErrorText
+                    error={errors.first_name}
+                    touched={touched.first_name}
+                  />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="lastName">Last Name *</label>
                   <input
-                    value={values.lastName}
+                    value={values.last_name}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    name="lastName"
+                    name="last_name"
                     type="text"
                     className={`form-control ${
-                      errors.lastName && touched.lastName && "invalid"
+                      errors.last_name && touched.last_name && "invalid"
                     }`}
-                    id="lastName"
+                    id="last_name"
                     placeholder="Enter your Last Name"
                   />
-                  {errors.lastName && touched.lastName && (
-                    <small className="error-text">{errors.lastName}</small>
-                  )}
+                  <ErrorText
+                    error={errors.last_name}
+                    touched={touched.last_name}
+                  />
                 </div>
 
                 <div className="form-group">
@@ -164,9 +145,7 @@ const Signup = () => {
                     id="emailAdd"
                     placeholder="Enter your Email"
                   />
-                  {errors.email && touched.email && (
-                    <small className="error-text">{errors.email}</small>
-                  )}
+                  <ErrorText error={errors.email} touched={touched.email} />
                 </div>
 
                 <div className="form-group password">
@@ -184,13 +163,14 @@ const Signup = () => {
                     placeholder="Enter your Password"
                   />
                   <span
-                    onClick={() => showAndHidePassword()}
+                    onClick={() => showAndHidePassword("password", "eye")}
                     toggle="#password"
                     id="eye"
                     className="fa fa-eye"></span>
-                  {errors.password && touched.password && (
-                    <small className="error-text">{errors.password}</small>
-                  )}
+                  <ErrorText
+                    error={errors.password}
+                    touched={touched.password}
+                  />
                 </div>
 
                 <div className="form-group password">
@@ -210,15 +190,16 @@ const Signup = () => {
                     placeholder="Enter your Confirm Password"
                   />
                   <span
-                    onClick={() => showAndHideConfirmPassword()}
+                    onClick={() =>
+                      showAndHidePassword("con_password", "con_eye")
+                    }
                     toggle="#con_password"
                     id="con_eye"
                     className="fa fa-eye"></span>
-                  {errors.confirmPassword && touched.confirmPassword && (
-                    <small className="error-text">
-                      {errors.confirmPassword}
-                    </small>
-                  )}
+                  <ErrorText
+                    error={errors.confirmPassword}
+                    touched={touched.confirmPassword}
+                  />
                 </div>
 
                 <Button

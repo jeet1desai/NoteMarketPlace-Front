@@ -34,7 +34,7 @@ function App() {
           component={SuccessEmailVerification}
         />
 
-        <PrivateRoute roles={[2, 3]} path="/admin" component={AdminRoute} />
+        <PrivateRoute roles={[1, 2]} path="/admin" component={AdminRoute} />
 
         <Route path="/" component={UserRoute} />
 

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import Button from "@mui/material/Button";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Button } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 
 import WhiteLogo from "../../assets/images/top-logo-white.png";
@@ -11,6 +10,9 @@ import "../../assets/font-awesome/css/font-awesome.css";
 import "../../assets/css/login.css";
 
 import { signInAction } from "../../store/Auth/authActions";
+import { showAndHidePassword } from "../../utils/password";
+
+import ErrorText from "../../components/Error";
 
 const Login = () => {
   const loading = useSelector((state) => state.authReducer.loading);
@@ -23,18 +25,6 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  const showAndHidePassword = () => {
-    var inputPassword = document.getElementById("password");
-    var eyeIcon = document.getElementById("eye");
-    if (inputPassword.type === "password") {
-      inputPassword.type = "text";
-      eyeIcon.className = "fa fa-eye-slash";
-    } else {
-      inputPassword.type = "password";
-      eyeIcon.className = "fa fa-eye";
-    }
-  };
-
   const loginSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string().required("Required"),
@@ -42,13 +32,7 @@ const Login = () => {
 
   const onSubmitLoginForm = (values) => {
     localStorage.clear();
-    dispatch(signInAction(values));
-    setFormValue({
-      ...formValue,
-      email: "",
-      password: "",
-      isRememberMe: false,
-    });
+    dispatch(signInAction({ email: values.email, password: values.password }));
   };
 
   return (
@@ -64,7 +48,7 @@ const Login = () => {
         <Formik
           initialValues={formValue}
           validationSchema={loginSchema}
-          onSubmit={(values) => onSubmitLoginForm(values)}>
+          onSubmit={(values, { resetForm }) => onSubmitLoginForm(values)}>
           {({
             values,
             errors,
@@ -76,22 +60,20 @@ const Login = () => {
             return (
               <Form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="exampleInputEmail1">Email *</label>
+                  <label htmlFor="email">Email *</label>
                   <input
                     type="email"
                     name="email"
                     className={`form-control ${
                       errors.email && touched.email && "invalid"
                     }`}
-                    id="exampleInputEmail1"
+                    id="email"
                     placeholder="Enter your Email"
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.email}
                   />
-                  {errors.email && touched.email && (
-                    <small className="error-text">{errors.email}</small>
-                  )}
+                  <ErrorText error={errors.email} touched={touched.email} />
                 </div>
 
                 <div className="form-group">
@@ -115,14 +97,15 @@ const Login = () => {
                       value={values.password}
                     />
                     <span
-                      onClick={() => showAndHidePassword()}
+                      onClick={() => showAndHidePassword("password", "eye")}
                       toggle="#password"
                       id="eye"
                       className="fa fa-eye"></span>
                   </div>
-                  {errors.password && touched.password && (
-                    <small className="error-text">{errors.password}</small>
-                  )}
+                  <ErrorText
+                    error={errors.password}
+                    touched={touched.password}
+                  />
                 </div>
 
                 <div className="form-group form-check">
@@ -133,7 +116,7 @@ const Login = () => {
                     id="exampleCheck1"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    checked={values.isRememberMeF}
+                    checked={values.isRememberMe}
                   />
                   <label className="form-check-label" htmlFor="exampleCheck1">
                     Remember Me
