@@ -9,6 +9,16 @@ import {
 } from "../../services/auth.service";
 import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE } from "./authActionTypes";
 
+const request = () => {
+  return { type: AUTH_REQUEST };
+};
+const success = () => {
+  return { type: AUTH_SUCCESS };
+};
+const failure = () => {
+  return { type: AUTH_FAILURE };
+};
+
 export function signInAction(signInDetails) {
   return (dispatch) => {
     dispatch(request());
@@ -29,15 +39,6 @@ export function signInAction(signInDetails) {
       }
     );
   };
-  function request() {
-    return { type: AUTH_REQUEST };
-  }
-  function success() {
-    return { type: AUTH_SUCCESS };
-  }
-  function failure() {
-    return { type: AUTH_FAILURE };
-  }
 }
 
 export function signUpAction(signUpDetails) {
@@ -64,15 +65,6 @@ export function signUpAction(signUpDetails) {
       }
     );
   };
-  function request() {
-    return { type: AUTH_REQUEST };
-  }
-  function success() {
-    return { type: AUTH_SUCCESS };
-  }
-  function failure() {
-    return { type: AUTH_FAILURE };
-  }
 }
 
 export function verificationMailAction(id) {
@@ -88,15 +80,6 @@ export function verificationMailAction(id) {
       }
     );
   };
-  function request() {
-    return { type: AUTH_REQUEST };
-  }
-  function success() {
-    return { type: AUTH_SUCCESS };
-  }
-  function failure() {
-    return { type: AUTH_FAILURE };
-  }
 }
 
 export function forgetPasswordAction(passwordDetails) {
@@ -114,15 +97,6 @@ export function forgetPasswordAction(passwordDetails) {
       }
     );
   };
-  function request() {
-    return { type: AUTH_REQUEST };
-  }
-  function success() {
-    return { type: AUTH_SUCCESS };
-  }
-  function failure() {
-    return { type: AUTH_FAILURE };
-  }
 }
 
 export function changePasswordAction(passwordDetails) {
@@ -140,13 +114,4 @@ export function changePasswordAction(passwordDetails) {
       }
     );
   };
-  function request() {
-    return { type: AUTH_REQUEST };
-  }
-  function success() {
-    return { type: AUTH_SUCCESS };
-  }
-  function failure() {
-    return { type: AUTH_FAILURE };
-  }
 }

@@ -1,14 +1,16 @@
-import { toast } from "react-toastify";
-
 import { API_URL } from "../setting";
 import { getLSUserToken } from "../utils/local";
+import { handleResponse } from "../utils/response";
 
 export const fetchCategories = () => {
   const requestOptions = {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      auth_token: getLSUserToken(),
+    },
   };
-  return fetch(`${API_URL}/admin/settings/category/all`, requestOptions).then(
+  return fetch(`${API_URL}/admin/category/get-category`, requestOptions).then(
     handleResponse
   );
 };
@@ -64,24 +66,4 @@ export const searchCategory = (search) => {
     `${API_URL}/admin/settings/category/search?search=${search}`,
     requestOptions
   ).then(handleResponse);
-};
-
-export const logout = () => {
-  localStorage.removeItem("currentUser");
-};
-
-const handleResponse = (response) => {
-  return response.text().then((text) => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        logout();
-        window.location.reload(true);
-      }
-      const error = (data && data.message) || response.statusText;
-      toast.error(error);
-      return Promise.reject(error);
-    }
-    return data;
-  });
 };
