@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import { CircularProgress, Button } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -10,9 +9,10 @@ import "../../assets/font-awesome/css/font-awesome.css";
 import "../../assets/css/login.css";
 
 import { signInAction } from "../../store/Auth/authActions";
-import { showAndHidePassword } from "../../utils/password";
+import { loginSchema } from "../../utils/schema";
 
 import ErrorText from "../../components/Error";
+import PasswordEye from "../../components/PasswordEye";
 
 const Login = () => {
   const loading = useSelector((state) => state.authReducer.loading);
@@ -24,11 +24,6 @@ const Login = () => {
   });
 
   const dispatch = useDispatch();
-
-  const loginSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string().required("Required"),
-  });
 
   const onSubmitLoginForm = (values) => {
     localStorage.clear();
@@ -96,11 +91,7 @@ const Login = () => {
                       onBlur={handleBlur}
                       value={values.password}
                     />
-                    <span
-                      onClick={() => showAndHidePassword("password", "eye")}
-                      toggle="#password"
-                      id="eye"
-                      className="fa fa-eye"></span>
+                    <PasswordEye eyeId="eye" inputId="password" />
                   </div>
                   <ErrorText
                     error={errors.password}

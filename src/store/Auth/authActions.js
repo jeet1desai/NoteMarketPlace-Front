@@ -5,6 +5,7 @@ import {
   signUp,
   verifyEmail,
   forgetPassword,
+  changePassword,
 } from "../../services/auth.service";
 import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE } from "./authActionTypes";
 
@@ -18,7 +19,7 @@ export function signInAction(signInDetails) {
         localStorage.setItem("currentUser", JSON.stringify(data.data));
         localStorage.setItem("currentToken", JSON.stringify(data.auth_token));
         if (data.data.role_id === 3) {
-          window.location.href = "/";
+          window.location.href = "/sell-note/my-profile";
         } else {
           window.location.href = "/admin/dashboard";
         }
@@ -107,6 +108,32 @@ export function forgetPasswordAction(passwordDetails) {
         if (data.status === 200) {
           toast.success(data.message);
         }
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function request() {
+    return { type: AUTH_REQUEST };
+  }
+  function success() {
+    return { type: AUTH_SUCCESS };
+  }
+  function failure() {
+    return { type: AUTH_FAILURE };
+  }
+}
+
+export function changePasswordAction(passwordDetails) {
+  return (dispatch) => {
+    dispatch(request());
+    changePassword(passwordDetails).then(
+      (data) => {
+        dispatch(success());
+        toast.success(data.message);
+        localStorage.clear();
+        window.location.href = "/login";
       },
       (error) => {
         dispatch(failure());

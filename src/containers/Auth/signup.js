@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import Button from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,9 +10,10 @@ import "../../assets/font-awesome/css/font-awesome.css";
 import WhiteLogo from "../../assets/images/top-logo-white.png";
 
 import { signUpAction } from "../../store/Auth/authActions";
-import { showAndHidePassword } from "../../utils/password";
+import { signupSchema } from "../../utils/schema";
 
 import ErrorText from "../../components/Error";
+import PasswordEye from "../../components/PasswordEye";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -25,35 +25,6 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
-  });
-
-  const signupSchema = Yup.object().shape({
-    first_name: Yup.string().required("Required"),
-    last_name: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
-    password: Yup.string()
-      .required("Required")
-      .min(6, "Password must be at least 6 characters")
-      .max(24, "Password must be at most 24 characters")
-      .matches(
-        "(?=.*[a-z])",
-        "Password must be contain at least 1 lower character"
-      )
-      .matches(
-        "(?=.*[A-Z])",
-        "Password must be contain at least 1 upper character"
-      )
-      .matches(
-        "(?=.*[0-9])",
-        "Password must be contain at least 1 digit character"
-      )
-      .matches(
-        "(?=.*?[#?!@$%^&*-])",
-        "Password must be contain at least 1 special character"
-      ),
-    confirmPassword: Yup.string()
-      .required("Required")
-      .oneOf([Yup.ref("password")], "Passwords must match"),
   });
 
   const onSubmitSignupForm = (values) => {
@@ -162,11 +133,7 @@ const Signup = () => {
                     }`}
                     placeholder="Enter your Password"
                   />
-                  <span
-                    onClick={() => showAndHidePassword("password", "eye")}
-                    toggle="#password"
-                    id="eye"
-                    className="fa fa-eye"></span>
+                  <PasswordEye eyeId="eye" inputId="password" />
                   <ErrorText
                     error={errors.password}
                     touched={touched.password}
@@ -189,13 +156,7 @@ const Signup = () => {
                     }`}
                     placeholder="Enter your Confirm Password"
                   />
-                  <span
-                    onClick={() =>
-                      showAndHidePassword("con_password", "con_eye")
-                    }
-                    toggle="#con_password"
-                    id="con_eye"
-                    className="fa fa-eye"></span>
+                  <PasswordEye eyeId="con_eye" inputId="con_password" />
                   <ErrorText
                     error={errors.confirmPassword}
                     touched={touched.confirmPassword}

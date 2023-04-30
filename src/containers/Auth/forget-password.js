@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress, Button } from "@mui/material";
-import * as Yup from "yup";
+import { Form, Formik } from "formik";
 
 import "../../assets/css/forget-password.css";
 import WhiteLogo from "../../assets/images/top-logo-white.png";
-import { Form, Formik } from "formik";
+
 import { forgetPasswordAction } from "../../store/Auth/authActions";
+import { forgetPasswordSchema } from "../../utils/schema";
+
 import ErrorText from "../../components/Error";
 
 const ForgetPassword = () => {
@@ -17,10 +19,6 @@ const ForgetPassword = () => {
   });
 
   const dispatch = useDispatch();
-
-  const forgetPasswordSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
-  });
 
   const onSubmitForgetPasswordForm = (values) => {
     dispatch(forgetPasswordAction({ email: values.email }));
