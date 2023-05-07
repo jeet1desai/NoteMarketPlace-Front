@@ -18,6 +18,7 @@ const SuccessEmailVerification = () => {
   useEffect(() => {
     const { id } = params;
     dispatch(verificationMailAction(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

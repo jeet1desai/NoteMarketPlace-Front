@@ -17,7 +17,7 @@ import PasswordEye from "../../components/PasswordEye";
 const Login = () => {
   const loading = useSelector((state) => state.authReducer.loading);
 
-  const [formValue, setFormValue] = useState({
+  const [formValue] = useState({
     email: "",
     password: "",
     isRememberMe: false,

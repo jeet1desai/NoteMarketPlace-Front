@@ -19,7 +19,7 @@ const Signup = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
 
-  const [formValue, setFormValue] = useState({
+  const [formValue] = useState({
     first_name: "",
     last_name: "",
     email: "",

@@ -17,7 +17,7 @@ export default function ChangePassword() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.authReducer.loading);
 
-  const [formValue, setFormValue] = useState({
+  const [formValue] = useState({
     old_password: "",
     new_password: "",
     confirm_password: "",

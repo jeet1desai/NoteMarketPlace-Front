@@ -14,7 +14,7 @@ import ErrorText from "../../components/Error";
 const ForgetPassword = () => {
   const loading = useSelector((state) => state.authReducer.loading);
 
-  const [formValue, setFormValue] = useState({
+  const [formValue] = useState({
     email: "",
   });
 
