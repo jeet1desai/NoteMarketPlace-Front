@@ -15,7 +15,7 @@ import { changePasswordSchema } from "../../utils/schema";
 
 export default function ChangePassword() {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.authReducer.loading);
+  const { loading } = useSelector((state) => state.authReducer);
 
   const [formValue] = useState({
     old_password: "",

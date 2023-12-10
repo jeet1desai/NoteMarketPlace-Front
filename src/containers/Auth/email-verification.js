@@ -9,8 +9,8 @@ const EmailVerification = () => {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    const cUser = getLSUser();
-    const name = cUser ? `${cUser.first_name} ${cUser.last_name}` : "";
+    const user = getLSUser();
+    const name = user ? `${user.first_name} ${user.last_name}` : "";
     setName(name);
   }, []);
 

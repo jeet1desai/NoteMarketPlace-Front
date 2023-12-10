@@ -12,7 +12,7 @@ import { forgetPasswordSchema } from "../../utils/schema";
 import ErrorText from "../../components/Error";
 
 const ForgetPassword = () => {
-  const loading = useSelector((state) => state.authReducer.loading);
+  const { loading } = useSelector((state) => state.authReducer);
 
   const [formValue] = useState({
     email: "",
