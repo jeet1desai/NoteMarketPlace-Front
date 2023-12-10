@@ -8,7 +8,7 @@ export const signIn = (user) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   };
-  return fetch(`${API_URL}/auth/login`, requestOptions).then(handleResponse);
+  return fetch(`${API_URL}/auth/login/`, requestOptions).then(handleResponse);
 };
 
 export const signUp = (user) => {
@@ -17,7 +17,7 @@ export const signUp = (user) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   };
-  return fetch(`${API_URL}/auth/sign-up`, requestOptions).then(handleResponse);
+  return fetch(`${API_URL}/auth/register/`, requestOptions).then(handleResponse);
 };
 
 export const verifyEmail = (id) => {
@@ -25,32 +25,32 @@ export const verifyEmail = (id) => {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   };
-  return fetch(`${API_URL}/auth/email-verified/${id}`, requestOptions).then(
+  return fetch(`${API_URL}/auth/verify_email/${id}/`, requestOptions).then(
     handleResponse
   );
 };
 
 export const forgetPassword = (user) => {
   const requestOptions = {
-    method: "PUT",
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   };
-  return fetch(`${API_URL}/auth/forgot-password`, requestOptions).then(
+  return fetch(`${API_URL}/auth/reset_password/`, requestOptions).then(
     handleResponse
   );
 };
 
 export const changePassword = (user) => {
   const requestOptions = {
-    method: "PUT",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
-      auth_token: getLSUserToken(),
+      "Authorization": `Bearer ${getLSUserToken()}`,
     },
     body: JSON.stringify(user),
   };
-  return fetch(`${API_URL}/auth/change-password`, requestOptions).then(
+  return fetch(`${API_URL}/auth/change_password/`, requestOptions).then(
     handleResponse
   );
 };
