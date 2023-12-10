@@ -17,7 +17,7 @@ import PasswordEye from "../../components/PasswordEye";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.authReducer.loading);
+  const { loading } = useSelector((state) => state.authReducer);
 
   const [formValue] = useState({
     first_name: "",
@@ -35,7 +35,6 @@ const Signup = () => {
       password: values.password,
     };
     dispatch(signUpAction(signUpValue));
-    localStorage.clear();
   };
 
   return (
@@ -51,7 +50,10 @@ const Signup = () => {
         <Formik
           initialValues={formValue}
           validationSchema={signupSchema}
-          onSubmit={(values) => onSubmitSignupForm(values)}>
+          onSubmit={(values, resetForm) => {
+            onSubmitSignupForm(values);
+            resetForm();
+          }}>
           {({
             values,
             errors,

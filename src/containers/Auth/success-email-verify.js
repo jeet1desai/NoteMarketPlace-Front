@@ -12,7 +12,7 @@ import { verificationMailAction } from "../../store/Auth/authActions";
 const SuccessEmailVerification = () => {
   const params = useParams();
 
-  const loading = useSelector((state) => state.authReducer.loading);
+  const { loading } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {

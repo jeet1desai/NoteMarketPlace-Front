@@ -15,7 +15,7 @@ import ErrorText from "../../components/Error";
 import PasswordEye from "../../components/PasswordEye";
 
 const Login = () => {
-  const loading = useSelector((state) => state.authReducer.loading);
+  const { loading } = useSelector((state) => state.authReducer);
 
   const [formValue] = useState({
     email: "",

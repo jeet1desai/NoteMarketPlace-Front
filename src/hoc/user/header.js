@@ -137,8 +137,8 @@ export default function UserHeader() {
                 <li className="nav-link">
                   <Dropdown overlay={menu}>
                     <Avatar
-                      alt="Remy Sharp"
-                      src={currentUser.profilePicture}
+                      alt={`${currentUser.first_name} ${currentUser.last_name}`}
+                      src={currentUser.profile_picture}
                       sx={{ width: 28, height: 28 }}
                     />
                   </Dropdown>
@@ -150,9 +150,7 @@ export default function UserHeader() {
                     <button
                       type="button"
                       className="btn btn-purple"
-                      onClick={() => {
-                        localStorage.removeItem("currentUser");
-                      }}>
+                      onClick={() => localStorage.clear()}>
                       Logout
                     </button>
                   </Link>
