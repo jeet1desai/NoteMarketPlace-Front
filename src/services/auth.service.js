@@ -56,3 +56,16 @@ export const changePassword = (user) => {
     handleResponse
   );
 };
+
+export const contactUs = (query) => {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(query),
+  };
+  return fetch(`${API_URL}/user/contact_us/`, requestOptions).then(
+    handleResponse
+  );
+};

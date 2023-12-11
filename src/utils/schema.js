@@ -72,7 +72,10 @@ export const userProfileSchema = Yup.object().shape({
   date_of_birth: Yup.string().required("Required").nullable(),
   gender: Yup.string().required("Required"),
   phone_country_code: Yup.string().required("Required"),
-  phone_number: Yup.number().required("Required").positive('Must be a positive').integer('Must be a number'),
+  phone_number: Yup.number()
+    .required("Required")
+    .positive("Must be a positive")
+    .integer("Must be a number"),
   address_line_one: Yup.string().required("Required").nullable(),
   address_line_two: Yup.string().nullable(),
   city: Yup.string().required("Required").nullable(),
@@ -81,4 +84,11 @@ export const userProfileSchema = Yup.object().shape({
   country: Yup.string().required("Required"),
   university: Yup.string().nullable(),
   college: Yup.string().nullable(),
+});
+
+export const contactUsSchema = Yup.object().shape({
+  name: Yup.string().required("Required"),
+  email: Yup.string().required("Required").email("Enter valid email"),
+  subject: Yup.string().required("Required"),
+  comment: Yup.string().required("Required"),
 });
