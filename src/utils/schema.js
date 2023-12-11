@@ -64,3 +64,21 @@ export const changePasswordSchema = Yup.object().shape({
     .required("Required")
     .oneOf([Yup.ref("new_password")], "Passwords must match"),
 });
+
+export const userProfileSchema = Yup.object().shape({
+  first_name: Yup.string().required("Required"),
+  last_name: Yup.string().required("Required"),
+  email: Yup.string().required("Required").email("Enter valid"),
+  date_of_birth: Yup.string().required("Required").nullable(),
+  gender: Yup.string().required("Required"),
+  phone_country_code: Yup.string().required("Required"),
+  phone_number: Yup.number().required("Required").positive('Must be a positive').integer('Must be a number'),
+  address_line_one: Yup.string().required("Required").nullable(),
+  address_line_two: Yup.string().nullable(),
+  city: Yup.string().required("Required").nullable(),
+  state: Yup.string().required("Required").nullable(),
+  zip_code: Yup.number().required("Required").nullable(),
+  country: Yup.string().required("Required"),
+  university: Yup.string().nullable(),
+  college: Yup.string().nullable(),
+});

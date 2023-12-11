@@ -17,7 +17,9 @@ export const signUp = (user) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   };
-  return fetch(`${API_URL}/auth/register/`, requestOptions).then(handleResponse);
+  return fetch(`${API_URL}/auth/register/`, requestOptions).then(
+    handleResponse
+  );
 };
 
 export const verifyEmail = (id) => {
@@ -46,7 +48,7 @@ export const changePassword = (user) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${getLSUserToken()}`,
+      Authorization: `Bearer ${getLSUserToken()}`,
     },
     body: JSON.stringify(user),
   };

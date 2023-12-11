@@ -7,9 +7,7 @@ import {
 
 const initialState = {
   loading: false,
-  phone_code_list: [],
-  country_list: [],
-  user: null,
+  user: {},
 };
 
 export function profileReducer(state = initialState, action) {
@@ -20,15 +18,12 @@ export function profileReducer(state = initialState, action) {
         loading: true,
       };
     case USERS_GET_PROFILE_SUCCESS:
+    case USERS_UPDATE_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
-        user: action.payload.userDetails,
-        phone_code_list: action.payload.phone_code,
-        country_list: action.payload.country,
+        user: action.payload,
       };
-    case USERS_UPDATE_PROFILE_SUCCESS:
-      return state;
     case PROFILE_FAILURE:
       return {
         ...state,

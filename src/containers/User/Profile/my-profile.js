@@ -1,55 +1,70 @@
 import React, { useEffect, useState } from "react";
 import { Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
 import "../../../assets/css/user-profile.css";
 
-import { getProfileAction } from "../../../store/Profile/profileActions";
+import {
+  getProfileAction,
+  updateUserProfileAction,
+} from "../../../store/Profile/profileActions";
+import { getCountryListAction } from "../../../store/Configuration/configActions";
+import { getLSUser } from "../../../utils/local";
 
 import Loader from "../../../components/Loader";
-import ErrorText from "../../../components/Error";
-import moment from "moment";
+import ErrorText, { inputError } from "../../../components/Error";
+import { userProfileSchema } from "../../../utils/schema";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
-  const { loading, phone_code_list, country_list, user } = useSelector(
+  const { loading: config_loading, country_list } = useSelector(
+    (state) => state.configReducer
+  );
+  const { loading: profile_loading, user } = useSelector(
     (state) => state.profileReducer
   );
 
-  const [formValue, setFormValue] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    dob: "",
-    gender: "",
-    phone_code: "",
-    phone_number: "",
-    profile_picture: "",
-    picture_file: null,
-    addressLine1: "",
-    addressLine2: "",
-    city: "",
-    state: "",
-    zip_code: "",
-    country: "",
-    university: "",
-    college: "",
-  });
+  const [formValue, setFormValue] = useState({});
 
   useEffect(() => {
-    dispatch(getProfileAction());
+    const localUser = getLSUser();
+    if (localUser) {
+      dispatch(getProfileAction(localUser.id));
+      dispatch(getCountryListAction());
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (user) {
-      setFormValue({ ...user, picture_file: null });
+      setFormValue({
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        date_of_birth: user.date_of_birth
+          ? moment(user.date_of_birth).format("YYYY-MM-DD")
+          : "",
+        gender: user.gender || "",
+        phone_country_code: user.phone_country_code || "",
+        phone_number: user.phone_number || "",
+        profile_picture: user.profile_picture,
+        picture_file: null,
+        address_line_one: user.address_line_one || "",
+        address_line_two: user.address_line_two || "",
+        city: user.city || "",
+        state: user.state || "",
+        zip_code: user.zip_code || "",
+        country: user.country || "",
+        university: user.university || "",
+        college: user.college || "",
+      });
     }
   }, [user]);
 
   return (
     <div className="user-profile">
-      <Loader loading={loading} />
+      <Loader loading={config_loading || profile_loading} />
 
       <div className="page-top">
         <div className="page-top-title">
@@ -60,9 +75,11 @@ const MyProfile = () => {
       <div className="user-profile-form">
         <div className="container">
           <Formik
+            enableReinitialize={true}
             initialValues={formValue}
+            validationSchema={userProfileSchema}
             onSubmit={(values) => {
-              console.log(values);
+              dispatch(updateUserProfileAction(values));
             }}>
             {({
               values,
@@ -73,7 +90,6 @@ const MyProfile = () => {
               handleSubmit,
               setFieldValue,
             }) => {
-              console.log(values);
               return (
                 <Form onSubmit={handleSubmit}>
                   <div className="basic-profile-details">
@@ -88,11 +104,10 @@ const MyProfile = () => {
                             type="text"
                             id="first-name"
                             placeholder="Enter Your First Name"
-                            className={`form-control ${
-                              errors.first_name &&
-                              touched.first_name &&
-                              "invalid"
-                            }`}
+                            className={inputError(
+                              errors.first_name,
+                              touched.first_name
+                            )}
                             value={values.first_name}
                             name="first_name"
                             onChange={handleChange}
@@ -111,9 +126,10 @@ const MyProfile = () => {
                             type="text"
                             id="last-name"
                             placeholder="Enter Your Last Name"
-                            className={`form-control ${
-                              errors.last_name && touched.last_name && "invalid"
-                            }`}
+                            className={inputError(
+                              errors.last_name,
+                              touched.last_name
+                            )}
                             value={values.last_name}
                             name="last_name"
                             onChange={handleChange}
@@ -132,13 +148,13 @@ const MyProfile = () => {
                             type="text"
                             id="email"
                             placeholder="Enter Your email"
-                            className={`form-control ${
-                              errors.email && touched.email && "invalid"
-                            }`}
+                            className={inputError(errors.email, touched.email)}
                             value={values.email}
                             name="email"
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            disabled
+                            readOnly
                           />
                           <ErrorText
                             error={errors.email}
@@ -152,16 +168,20 @@ const MyProfile = () => {
                           <input
                             type="date"
                             id="dob"
-                            className={`form-control ${
-                              errors.dob && touched.dob && "invalid"
-                            }`}
-                            value={values.dob}
-                            name="dob"
+                            className={inputError(
+                              errors.date_of_birth,
+                              touched.date_of_birth
+                            )}
+                            value={values.date_of_birth}
+                            name="date_of_birth"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             max={moment().format("YYYY-MM-DD")}
                           />
-                          <ErrorText error={errors.dob} touched={touched.dob} />
+                          <ErrorText
+                            error={errors.date_of_birth}
+                            touched={touched.date_of_birth}
+                          />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -170,14 +190,15 @@ const MyProfile = () => {
                           <br />
                           <select
                             id="gender"
-                            className={`form-control ${
-                              errors.gender && touched.gender && "invalid"
-                            }`}
+                            className={inputError(
+                              errors.gender,
+                              touched.gender
+                            )}
                             value={values.gender}
                             name="gender"
                             onChange={handleChange}
                             onBlur={handleBlur}>
-                            <option className="muted" value="">
+                            <option disabled value="">
                               Select Your Gender
                             </option>
                             <option value="male">Male</option>
@@ -193,44 +214,51 @@ const MyProfile = () => {
                         <div className="form-group">
                           <label htmlFor="phone">Phone No *</label>
                           <br />
-                          <div className="phone-number form-group">
-                            <select
-                              className={`form-control phone-two ${
-                                errors.phone_code &&
-                                touched.phone_code &&
-                                "invalid"
-                              }`}
-                              value={values.phone_code}
-                              name="phone_code"
-                              onChange={handleChange}
-                              onBlur={handleBlur}>
-                              <option value="">Code</option>
-                              {phone_code_list.map((code) => {
-                                return <option value="">+91</option>;
-                              })}
-                            </select>
-                            <input
-                              type="number"
-                              id="phone"
-                              placeholder="Enter Your Phone No"
-                              className={`form-control phone ${
-                                errors.phone_number &&
-                                touched.phone_number &&
-                                "invalid"
-                              }`}
-                              value={values.phone_number}
-                              name="phone_number"
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                            />
-                            <ErrorText
-                              error={errors.phone_code}
-                              touched={touched.phone_code}
-                            />
-                            <ErrorText
-                              error={errors.phone_number}
-                              touched={touched.phone_number}
-                            />
+                          <div className="form-group">
+                            <div className="phone-number">
+                              <select
+                                className={inputError(
+                                  errors.phone_country_code,
+                                  touched.phone_country_code
+                                )}
+                                value={values.phone_country_code}
+                                name="phone_country_code"
+                                onChange={handleChange}
+                                onBlur={handleBlur}>
+                                <option value="" disabled>
+                                  Code
+                                </option>
+                                {country_list.map((country) => (
+                                  <option value={country.id} key={country.id}>
+                                    +{country.code}
+                                  </option>
+                                ))}
+                              </select>
+                              <input
+                                type="number"
+                                id="phone"
+                                placeholder="Enter Your Phone No"
+                                className={inputError(
+                                  errors.phone_number,
+                                  touched.phone_number
+                                )}
+                                value={values.phone_number}
+                                name="phone_number"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                              />
+                            </div>
+                            {errors.phone_country_code ? (
+                              <ErrorText
+                                error={errors.phone_country_code}
+                                touched={touched.phone_country_code}
+                              />
+                            ) : (
+                              <ErrorText
+                                error={errors.phone_number}
+                                touched={touched.phone_number}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>
@@ -255,7 +283,7 @@ const MyProfile = () => {
                             </span>
                           ) : (
                             <span className="file-info">
-                              {values.profile_picture.name}
+                              {values.profile_picture}
                             </span>
                           )}
                           <ErrorText
@@ -279,19 +307,18 @@ const MyProfile = () => {
                             type="text"
                             id="address1"
                             placeholder="Enter Your Address"
-                            className={`form-control ${
-                              errors.addressLine1 &&
-                              touched.addressLine1 &&
-                              "invalid"
-                            }`}
-                            value={values.addressLine1}
-                            name="addressLine1"
+                            className={inputError(
+                              errors.address_line_one,
+                              touched.address_line_one
+                            )}
+                            value={values.address_line_one}
+                            name="address_line_one"
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
                           <ErrorText
-                            error={errors.addressLine1}
-                            touched={touched.addressLine1}
+                            error={errors.address_line_one}
+                            touched={touched.address_line_one}
                           />
                         </div>
                       </div>
@@ -302,19 +329,18 @@ const MyProfile = () => {
                             type="text"
                             id="address2"
                             placeholder="Enter Your Address"
-                            className={`form-control ${
-                              errors.addressLine2 &&
-                              touched.addressLine2 &&
-                              "invalid"
-                            }`}
-                            value={values.addressLine2}
-                            name="addressLine2"
+                            className={inputError(
+                              errors.address_line_two,
+                              touched.address_line_two
+                            )}
+                            value={values.address_line_two}
+                            name="address_line_two"
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
                           <ErrorText
-                            error={errors.addressLine2}
-                            touched={touched.addressLine2}
+                            error={errors.address_line_two}
+                            touched={touched.address_line_two}
                           />
                         </div>
                       </div>
@@ -325,9 +351,7 @@ const MyProfile = () => {
                             type="text"
                             id="city"
                             placeholder="Enter Your City"
-                            className={`form-control ${
-                              errors.city && touched.city && "invalid"
-                            }`}
+                            className={inputError(errors.city, touched.city)}
                             value={values.city}
                             name="city"
                             onChange={handleChange}
@@ -346,9 +370,7 @@ const MyProfile = () => {
                             type="text"
                             id="state"
                             placeholder="Enter Your State"
-                            className={`form-control ${
-                              errors.state && touched.state && "invalid"
-                            }`}
+                            className={inputError(errors.state, touched.state)}
                             value={values.state}
                             name="state"
                             onChange={handleChange}
@@ -367,9 +389,10 @@ const MyProfile = () => {
                             type="number"
                             id="zipcode"
                             placeholder="Enter Your Zipcode"
-                            className={`form-control ${
-                              errors.zip_code && touched.zip_code && "invalid"
-                            }`}
+                            className={inputError(
+                              errors.zip_code,
+                              touched.zip_code
+                            )}
                             value={values.zip_code}
                             name="zip_code"
                             onChange={handleChange}
@@ -386,19 +409,22 @@ const MyProfile = () => {
                           <label>Country *</label>
                           <br />
                           <select
-                            className={`form-control ${
-                              errors.country && touched.country && "invalid"
-                            }`}
+                            className={inputError(
+                              errors.country,
+                              touched.country
+                            )}
                             value={values.country}
                             name="country"
                             onChange={handleChange}
                             onBlur={handleBlur}>
-                            <option className="muted" value="">
+                            <option disabled value="">
                               Select Your Country
                             </option>
-                            {country_list.map((country) => {
-                              return <option value="">+91</option>;
-                            })}
+                            {country_list.map((country) => (
+                              <option value={country.id} key={country.id}>
+                                {country.name}
+                              </option>
+                            ))}
                           </select>
                           <ErrorText
                             error={errors.country}
@@ -421,11 +447,10 @@ const MyProfile = () => {
                             type="text"
                             id="university"
                             placeholder="Enter Your University"
-                            className={`form-control ${
-                              errors.university &&
-                              touched.university &&
-                              "invalid"
-                            }`}
+                            className={inputError(
+                              errors.university,
+                              touched.university
+                            )}
                             value={values.university}
                             name="university"
                             onChange={handleChange}
@@ -444,9 +469,10 @@ const MyProfile = () => {
                             type="text"
                             id="collage"
                             placeholder="Enter Your Collage"
-                            className={`form-control ${
-                              errors.college && touched.college && "invalid"
-                            }`}
+                            className={inputError(
+                              errors.college,
+                              touched.college
+                            )}
                             value={values.college}
                             name="college"
                             onChange={handleChange}

@@ -56,6 +56,11 @@
 
 .user-profile .phone-number {
   display: flex;
+  gap: 20px;
+}
+
+.user-profile .phone-number select {
+  width: 80px;
 }
 
 .user-profile .phone-number .phone-two {

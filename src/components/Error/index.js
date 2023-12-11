@@ -7,3 +7,7 @@ const ErrorText = ({ error, touched }) => {
   return <></>;
 };
 export default ErrorText;
+
+export const inputError = (errors, touched) => {
+  return `form-control ${errors && touched && "invalid"}`;
+};
