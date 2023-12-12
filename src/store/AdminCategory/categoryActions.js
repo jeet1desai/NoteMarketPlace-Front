@@ -1,13 +1,6 @@
 import { toast } from "react-toastify";
 
-import {
-  fetchCategories,
-  addCategory,
-  getCategory,
-  editCategory,
-  deleteCategory,
-  searchCategory,
-} from "../../services/admin.service";
+import { fetchCategories, addCategory, getCategory, editCategory, deleteCategory, searchCategory } from "../../services/admin.service";
 
 import {
   ALL_CATEGORIES_FAILURE,

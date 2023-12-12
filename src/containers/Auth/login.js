@@ -40,18 +40,8 @@ const Login = () => {
           <h3 className="text-center">Login</h3>
           <p className="text-center">Enter your details to Login</p>
         </div>
-        <Formik
-          initialValues={formValue}
-          validationSchema={loginSchema}
-          onSubmit={(values, { resetForm }) => onSubmitLoginForm(values)}>
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-          }) => {
+        <Formik initialValues={formValue} validationSchema={loginSchema} onSubmit={(values, { resetForm }) => onSubmitLoginForm(values)}>
+          {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
             return (
               <Form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -59,9 +49,7 @@ const Login = () => {
                   <input
                     type="email"
                     name="email"
-                    className={`form-control ${
-                      errors.email && touched.email && "invalid"
-                    }`}
+                    className={`form-control ${errors.email && touched.email && "invalid"}`}
                     id="email"
                     placeholder="Enter your Email"
                     onChange={handleChange}
@@ -82,9 +70,7 @@ const Login = () => {
                     <input
                       id="password"
                       type="password"
-                      className={`form-control ${
-                        errors.password && touched.password && "invalid"
-                      }`}
+                      className={`form-control ${errors.password && touched.password && "invalid"}`}
                       name="password"
                       placeholder="Enter your Password"
                       onChange={handleChange}
@@ -93,10 +79,7 @@ const Login = () => {
                     />
                     <PasswordEye eyeId="eye" inputId="password" />
                   </div>
-                  <ErrorText
-                    error={errors.password}
-                    touched={touched.password}
-                  />
+                  <ErrorText error={errors.password} touched={touched.password} />
                 </div>
 
                 <div className="form-group form-check">
@@ -119,9 +102,7 @@ const Login = () => {
                   variant="contained"
                   className="btn btn-purple login-btn"
                   disabled={loading}
-                  startIcon={
-                    loading && <CircularProgress color="inherit" size={24} />
-                  }>
+                  startIcon={loading && <CircularProgress color="inherit" size={24} />}>
                   Login
                 </Button>
 

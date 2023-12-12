@@ -1,8 +1,4 @@
-import {
-  CONFIG_REQUEST,
-  CONFIG_FAILURE,
-  USER_GET_COUNTRY_SUCCESS,
-} from "./configActionTypes";
+import { CONFIG_REQUEST, CONFIG_FAILURE, USER_GET_COUNTRY_SUCCESS } from "./configActionTypes";
 
 const initialState = {
   loading: false,

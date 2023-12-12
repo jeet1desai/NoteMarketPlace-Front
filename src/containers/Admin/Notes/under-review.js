@@ -111,11 +111,7 @@ export default function UnderReview() {
               <div className="search">
                 <div className="form-group has-search">
                   <span className="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                  />
+                  <input type="text" className="form-control" placeholder="Search" />
                 </div>
                 <button type="button" className="btn btn-purple">
                   Search
@@ -141,21 +137,12 @@ export default function UnderReview() {
         </div>
       </div>
 
-      <Modal
-        centered={true}
-        isOpen={false}
-        toggle={() => {}}
-        className="reject-note-modal">
+      <Modal centered={true} isOpen={false} toggle={() => {}} className="reject-note-modal">
         <ModalHeader toggle={() => {}}>Human Body - Science</ModalHeader>
         <ModalBody>
           <div className="form-group">
             <label for="description">Remark *</label>
-            <textarea
-              id="description"
-              name="description"
-              className="form-control"
-              placeholder="write remark..."
-              required></textarea>
+            <textarea id="description" name="description" className="form-control" placeholder="write remark..." required></textarea>
           </div>
           <div className="modal-review-btn">
             <button type="button" className="btn reject-btn">

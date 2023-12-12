@@ -100,9 +100,7 @@ export function categoryReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        categories: state.categories.map((cat) =>
-          cat.id === action.category.id ? action.category : cat
-        ),
+        categories: state.categories.map((cat) => (cat.id === action.category.id ? action.category : cat)),
       };
     case DELETE_CATEGORY_FAILURE:
       return {

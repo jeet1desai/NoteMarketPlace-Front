@@ -24,11 +24,7 @@ export default function SearchNotes() {
             <div className="input-boxes">
               <div className="form-group input-search">
                 <span className="fa fa-search form-control-feedback"></span>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search notes here..."
-                />
+                <input type="text" className="form-control" placeholder="Search notes here..." />
               </div>
               <div>
                 <div className="select-boxes">

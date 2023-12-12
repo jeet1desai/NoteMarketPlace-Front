@@ -41,23 +41,14 @@ const ForgetPassword = () => {
             onSubmitForgetPasswordForm(values);
             resetForm();
           }}>
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-          }) => {
+          {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
             return (
               <Form onSubmit={handleSubmit}>
                 <div class="form-group">
                   <label for="email">Email *</label>
                   <input
                     type="email"
-                    className={`form-control ${
-                      errors.email && touched.email && "invalid"
-                    }`}
+                    className={`form-control ${errors.email && touched.email && "invalid"}`}
                     id="email"
                     placeholder="Enter your Email"
                     onChange={handleChange}
@@ -71,9 +62,7 @@ const ForgetPassword = () => {
                   variant="contained"
                   className="btn btn-purple forget-password-btn"
                   disabled={loading}
-                  startIcon={
-                    loading && <CircularProgress color="inherit" size={24} />
-                  }>
+                  startIcon={loading && <CircularProgress color="inherit" size={24} />}>
                   Submit
                 </Button>
               </Form>

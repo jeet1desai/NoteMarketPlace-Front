@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   authReducer,
   categoryReducer,
   profileReducer,
-  configReducer
+  configReducer,
 });
 
 export default rootReducer;

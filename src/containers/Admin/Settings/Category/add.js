@@ -38,14 +38,7 @@ const AddCategory = () => {
                   dispatch(addCategoryAction(values));
                   resetForm();
                 }}>
-                {({
-                  values,
-                  errors,
-                  touched,
-                  handleChange,
-                  handleBlur,
-                  handleSubmit,
-                }) => {
+                {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
                   return (
                     <Form onSubmit={handleSubmit}>
                       <div className="form-group">
@@ -54,17 +47,13 @@ const AddCategory = () => {
                           type="text"
                           id="title"
                           placeholder="Enter Your Category Name"
-                          className={`form-control ${
-                            errors.name && touched.name && "invalid"
-                          }`}
+                          className={`form-control ${errors.name && touched.name && "invalid"}`}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.name}
                           name="name"
                         />
-                        {errors.name && touched.name && (
-                          <small className="error-text">{errors.name}</small>
-                        )}
+                        {errors.name && touched.name && <small className="error-text">{errors.name}</small>}
                       </div>
                       <div className="form-group">
                         <label htmlFor="description">Description *</label>
@@ -72,27 +61,15 @@ const AddCategory = () => {
                           id="description"
                           name="description"
                           placeholder="Write Your Description ..."
-                          className={`form-control ${
-                            errors.description &&
-                            touched.description &&
-                            "invalid"
-                          }`}
+                          className={`form-control ${errors.description && touched.description && "invalid"}`}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.description}></textarea>
-                        {errors.description && touched.description && (
-                          <small className="error-text">
-                            {errors.description}
-                          </small>
-                        )}
+                        {errors.description && touched.description && <small className="error-text">{errors.description}</small>}
                       </div>
                       <Button
                         disabled={loading}
-                        startIcon={
-                          loading && (
-                            <CircularProgress color="inherit" size={24} />
-                          )
-                        }
+                        startIcon={loading && <CircularProgress color="inherit" size={24} />}
                         type="submit"
                         className="btn submit-btn btn-purple">
                         Submit

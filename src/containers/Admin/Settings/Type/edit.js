@@ -17,13 +17,7 @@ export default function EditType() {
                 <Form>
                   <div className="form-group">
                     <label for="title">Type *</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="title"
-                      placeholder="Enter Your Type"
-                      required
-                    />
+                    <input type="text" className="form-control" id="title" placeholder="Enter Your Type" required />
                   </div>
                   <div className="form-group">
                     <label for="description">Description *</label>

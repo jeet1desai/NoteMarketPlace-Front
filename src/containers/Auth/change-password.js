@@ -39,22 +39,10 @@ export default function ChangePassword() {
       <div className="form-content">
         <div className="change-password-heading">
           <h3 className="text-center">Change Password</h3>
-          <p className="text-center">
-            Enter your new password to change password
-          </p>
+          <p className="text-center">Enter your new password to change password</p>
         </div>
-        <Formik
-          initialValues={formValue}
-          validationSchema={changePasswordSchema}
-          onSubmit={(values) => onSubmitChangePasswordForm(values)}>
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-          }) => {
+        <Formik initialValues={formValue} validationSchema={changePasswordSchema} onSubmit={(values) => onSubmitChangePasswordForm(values)}>
+          {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
             return (
               <Form onSubmit={handleSubmit}>
                 <div className="form-group password">
@@ -64,18 +52,13 @@ export default function ChangePassword() {
                     type="password"
                     name="old_password"
                     placeholder="Enter your old password"
-                    className={`form-control ${
-                      errors.old_password && touched.old_password && "invalid"
-                    }`}
+                    className={`form-control ${errors.old_password && touched.old_password && "invalid"}`}
                     value={values.old_password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   <PasswordEye eyeId="old_eye" inputId="old_password" />
-                  <ErrorText
-                    error={errors.old_password}
-                    touched={touched.old_password}
-                  />
+                  <ErrorText error={errors.old_password} touched={touched.old_password} />
                 </div>
                 <div className="form-group password">
                   <label htmlFor="new_password">New Password *</label>
@@ -84,18 +67,13 @@ export default function ChangePassword() {
                     type="password"
                     name="new_password"
                     placeholder="Enter your New Password"
-                    className={`form-control ${
-                      errors.new_password && touched.new_password && "invalid"
-                    }`}
+                    className={`form-control ${errors.new_password && touched.new_password && "invalid"}`}
                     value={values.new_password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   <PasswordEye eyeId="new_eye" inputId="new_password" />
-                  <ErrorText
-                    error={errors.new_password}
-                    touched={touched.new_password}
-                  />
+                  <ErrorText error={errors.new_password} touched={touched.new_password} />
                 </div>
                 <div className="form-group password">
                   <label htmlFor="confirm_password">Confirm Password *</label>
@@ -104,20 +82,13 @@ export default function ChangePassword() {
                     type="password"
                     name="confirm_password"
                     placeholder="Enter your Confirm Password"
-                    className={`form-control ${
-                      errors.confirm_password &&
-                      touched.confirm_password &&
-                      "invalid"
-                    }`}
+                    className={`form-control ${errors.confirm_password && touched.confirm_password && "invalid"}`}
                     value={values.confirm_password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   <PasswordEye eyeId="confirm_eye" inputId="confirm_password" />
-                  <ErrorText
-                    error={errors.confirm_password}
-                    touched={touched.confirm_password}
-                  />
+                  <ErrorText error={errors.confirm_password} touched={touched.confirm_password} />
                 </div>
 
                 <Button
@@ -125,9 +96,7 @@ export default function ChangePassword() {
                   variant="contained"
                   className="btn btn-purple change-password-btn"
                   disabled={loading}
-                  startIcon={
-                    loading && <CircularProgress color="inherit" size={24} />
-                  }>
+                  startIcon={loading && <CircularProgress color="inherit" size={24} />}>
                   Submit
                 </Button>
               </Form>

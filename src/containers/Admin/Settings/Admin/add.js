@@ -17,33 +17,15 @@ export default function AddAdmin() {
                 <Form>
                   <div className="form-group">
                     <label for="title">First Name *</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="title"
-                      placeholder="Enter Your First Name"
-                      required
-                    />
+                    <input type="text" className="form-control" id="title" placeholder="Enter Your First Name" required />
                   </div>
                   <div className="form-group">
                     <label for="title">Last Name *</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="title"
-                      placeholder="Enter Your Last Name"
-                      required
-                    />
+                    <input type="text" className="form-control" id="title" placeholder="Enter Your Last Name" required />
                   </div>
                   <div className="form-group">
                     <label for="title">Email *</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="title"
-                      placeholder="Enter Your Email"
-                      required
-                    />
+                    <input type="text" className="form-control" id="title" placeholder="Enter Your Email" required />
                   </div>
                   <div className="form-group">
                     <label for="phone">Phone No</label>
@@ -56,13 +38,7 @@ export default function AddAdmin() {
                         <option value="">+01</option>
                         <option value="">+01</option>
                       </select>
-                      <input
-                        type="number"
-                        className="form-control phone"
-                        id="phone"
-                        placeholder="Enter Your Phone No"
-                        required
-                      />
+                      <input type="number" className="form-control phone" id="phone" placeholder="Enter Your Phone No" required />
                     </div>
                   </div>
                   <button type="button" className="btn submit-btn btn-purple">

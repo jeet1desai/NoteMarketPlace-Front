@@ -11,3 +11,7 @@ export default ErrorText;
 export const inputError = (errors, touched) => {
   return `form-control ${errors && touched && "invalid"}`;
 };
+
+export const uploadError = (errors, touched) => {
+  return `upload ${errors && touched && "invalid"}`;
+};

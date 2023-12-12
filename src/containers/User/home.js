@@ -20,19 +20,13 @@ export default function Home() {
               </div>
               <div id="head-text">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elite.
-                  pariah's
+                  Lorem ipsum dolor sit amet consectetur adipisicing elite. pariah's
                   <br />
                   distinctio magni!Excepturi adipisicing elit.
                 </p>
               </div>
               <div id="head-button">
-                <Link
-                  to="/faq"
-                  className="btn btn-head"
-                  href="#"
-                  title="Learn More"
-                  role="button">
+                <Link to="/faq" className="btn btn-head" href="#" title="Learn More" role="button">
                   Learn More
                 </Link>
               </div>
@@ -57,18 +51,13 @@ export default function Home() {
               <div className="col-lg-8 col-md-8 col-sm-12">
                 <div className="about-right">
                   <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Labore, modi minima vitae fugit magnam amet voluptatum
-                    corrupti quo inventore, quam alias voluptas et voluptates
-                    autem itaque tempore perspiciatis! Nisi nulla esse qui
-                    exercitationem vitae corrupti delectus quo inventore numquam
-                    nesciunt architecto!
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore, modi minima vitae fugit magnam amet voluptatum
+                    corrupti quo inventore, quam alias voluptas et voluptates autem itaque tempore perspiciatis! Nisi nulla esse qui
+                    exercitationem vitae corrupti delectus quo inventore numquam nesciunt architecto!
                   </p>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Maxime asperiores repellat, architecto consequatur animi
-                    exercitationem ab commodi. Sunt consequatur animi rerum
-                    tempora officia iure cupiditate vitae magnam.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime asperiores repellat, architecto consequatur animi
+                    exercitationem ab commodi. Sunt consequatur animi rerum tempora officia iure cupiditate vitae magnam.
                   </p>
                 </div>
               </div>
@@ -92,11 +81,7 @@ export default function Home() {
               <div className="col-md-6">
                 <div className="work-item text-center">
                   <div className="work-image">
-                    <img
-                      className="img-fluid"
-                      src={DownloadImg}
-                      alt="download"
-                    />
+                    <img className="img-fluid" src={DownloadImg} alt="download" />
                   </div>
                   <h5>Download Free/Paid Notes</h5>
                   <p>
@@ -104,11 +89,7 @@ export default function Home() {
                     Course etc.
                   </p>
                   <div id="btn-purple">
-                    <Link
-                      to="/search-notes"
-                      className="btn btn-home btn-purple"
-                      title="Download"
-                      role="button">
+                    <Link to="/search-notes" className="btn btn-home btn-purple" title="Download" role="button">
                       Download
                     </Link>
                   </div>
@@ -125,11 +106,7 @@ export default function Home() {
                     and Material etc.
                   </p>
                   <div id="btn-purple">
-                    <Link
-                      to="/sell-note/dashboard"
-                      className="btn btn-home btn-purple"
-                      title="Sell Book"
-                      role="button">
+                    <Link to="/sell-note/dashboard" className="btn btn-home btn-purple" title="Sell Book" role="button">
                       Sell Book
                     </Link>
                   </div>
@@ -161,8 +138,7 @@ export default function Home() {
                     </div>
                   </div>
                   <p>
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Deserunt accusamus molla odio toanditiis, iure moleas
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus molla odio toanditiis, iure moleas
                     asperities elit consectetur unde in deserunt."
                   </p>
                 </div>
@@ -177,8 +153,7 @@ export default function Home() {
                     </div>
                   </div>
                   <p>
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Deserunt accusamus molla odio toanditiis, iure moleas
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus molla odio toanditiis, iure moleas
                     asperities elit consectetur unde in deserunt."
                   </p>
                 </div>
@@ -193,8 +168,7 @@ export default function Home() {
                     </div>
                   </div>
                   <p>
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Deserunt accusamus molla odio toanditiis, iure moleas
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus molla odio toanditiis, iure moleas
                     asperities elit consectetur unde in deserunt."
                   </p>
                 </div>
@@ -209,8 +183,7 @@ export default function Home() {
                     </div>
                   </div>
                   <p>
-                    "Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Deserunt accusamus molla odio toanditiis, iure moleas
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus molla odio toanditiis, iure moleas
                     asperities elit consectetur unde in deserunt."
                   </p>
                 </div>

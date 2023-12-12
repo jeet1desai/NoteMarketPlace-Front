@@ -1,12 +1,6 @@
 import { toast } from "react-toastify";
 
-import {
-  signIn,
-  signUp,
-  verifyEmail,
-  forgetPassword,
-  changePassword,
-} from "../../services/auth.service";
+import { signIn, signUp, verifyEmail, forgetPassword, changePassword } from "../../services/auth.service";
 import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_FAILURE } from "./authActionTypes";
 import { ROLES } from "../../utils/enum";
 

@@ -28,11 +28,7 @@ function App() {
         <Route exact path="/forget-password" component={ForgetPassword} />
         <Route exact path="/email-verification" component={EmailVerification} />
         <Route exact path="/change-password" component={ChangePassword} />
-        <Route
-          exact
-          path="/email/confirm/:id"
-          component={SuccessEmailVerification}
-        />
+        <Route exact path="/email/confirm/:id" component={SuccessEmailVerification} />
 
         <PrivateRoute roles={[1, 2]} path="/admin" component={AdminRoute} />
 

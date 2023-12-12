@@ -10,8 +10,7 @@ import ContactUs from "./contact-us";
 import FAQ from "./faq";
 import Home from "./home";
 import NoteDetail from "./note-detail";
-import AddNote from "./Note/add-note";
-import EditNote from "./Note/edit-note";
+import NoteForm from "./Note/note-form";
 import MyDownload from "./Profile/my-download";
 import MyProfile from "./Profile/my-profile";
 import MyRejectedNote from "./Profile/my-rejected-note";
@@ -30,54 +29,14 @@ export default function UserRoute() {
         <Route exact path="/faq" component={FAQ} />
         <Route exact path="/contact-us" component={ContactUs} />
 
-        <PrivateRoute
-          roles={[3]}
-          exact
-          path="/sell-note/dashboard"
-          component={SellNoteDashboard}
-        />
-        <PrivateRoute
-          roles={[3]}
-          exact
-          path="/sell-note/add-note"
-          component={AddNote}
-        />
-        <PrivateRoute
-          roles={[3]}
-          exact
-          path="/sell-note/edit-note/:id"
-          component={EditNote}
-        />
-        <PrivateRoute
-          roles={[3]}
-          exact
-          path="/sell-note/buyer-request"
-          component={BuyerRequest}
-        />
-        <PrivateRoute
-          roles={[3]}
-          exact
-          path="/sell-note/my-profile"
-          component={MyProfile}
-        />
-        <PrivateRoute
-          roles={[3]}
-          exact
-          path="/sell-note/my-download"
-          component={MyDownload}
-        />
-        <PrivateRoute
-          roles={[3]}
-          exact
-          path="/sell-note/my-sold-note"
-          component={MySoldNote}
-        />
-        <PrivateRoute
-          roles={[3]}
-          exact
-          path="/sell-note/my-rejected-note"
-          component={MyRejectedNote}
-        />
+        <PrivateRoute roles={[3]} exact path="/sell-note/dashboard" component={SellNoteDashboard} />
+        <PrivateRoute roles={[3]} exact path="/sell-note/add-note" component={NoteForm} />
+        <PrivateRoute roles={[3]} exact path="/sell-note/edit-note/:id" component={NoteForm} />
+        <PrivateRoute roles={[3]} exact path="/sell-note/buyer-request" component={BuyerRequest} />
+        <PrivateRoute roles={[3]} exact path="/sell-note/my-profile" component={MyProfile} />
+        <PrivateRoute roles={[3]} exact path="/sell-note/my-download" component={MyDownload} />
+        <PrivateRoute roles={[3]} exact path="/sell-note/my-sold-note" component={MySoldNote} />
+        <PrivateRoute roles={[3]} exact path="/sell-note/my-rejected-note" component={MyRejectedNote} />
         <Redirect to="/" />
       </Switch>
       <UserFooter />

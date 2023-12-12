@@ -8,22 +8,10 @@ export const signupSchema = Yup.object().shape({
     .required("Required")
     .min(6, "Password must be at least 6 characters")
     .max(24, "Password must be at most 24 characters")
-    .matches(
-      "(?=.*[a-z])",
-      "Password must be contain at least 1 lower character"
-    )
-    .matches(
-      "(?=.*[A-Z])",
-      "Password must be contain at least 1 upper character"
-    )
-    .matches(
-      "(?=.*[0-9])",
-      "Password must be contain at least 1 digit character"
-    )
-    .matches(
-      "(?=.*?[#?!@$%^&*-])",
-      "Password must be contain at least 1 special character"
-    ),
+    .matches("(?=.*[a-z])", "Password must be contain at least 1 lower character")
+    .matches("(?=.*[A-Z])", "Password must be contain at least 1 upper character")
+    .matches("(?=.*[0-9])", "Password must be contain at least 1 digit character")
+    .matches("(?=.*?[#?!@$%^&*-])", "Password must be contain at least 1 special character"),
   confirmPassword: Yup.string()
     .required("Required")
     .oneOf([Yup.ref("password")], "Passwords must match"),
@@ -44,22 +32,10 @@ export const changePasswordSchema = Yup.object().shape({
     .required("Required")
     .min(6, "Password must be at least 6 characters")
     .max(24, "Password must be at most 24 characters")
-    .matches(
-      "(?=.*[a-z])",
-      "Password must be contain at least 1 lower character"
-    )
-    .matches(
-      "(?=.*[A-Z])",
-      "Password must be contain at least 1 upper character"
-    )
-    .matches(
-      "(?=.*[0-9])",
-      "Password must be contain at least 1 digit character"
-    )
-    .matches(
-      "(?=.*?[#?!@$%^&*-])",
-      "Password must be contain at least 1 special character"
-    ),
+    .matches("(?=.*[a-z])", "Password must be contain at least 1 lower character")
+    .matches("(?=.*[A-Z])", "Password must be contain at least 1 upper character")
+    .matches("(?=.*[0-9])", "Password must be contain at least 1 digit character")
+    .matches("(?=.*?[#?!@$%^&*-])", "Password must be contain at least 1 special character"),
   confirm_password: Yup.string()
     .required("Required")
     .oneOf([Yup.ref("new_password")], "Passwords must match"),
@@ -72,10 +48,7 @@ export const userProfileSchema = Yup.object().shape({
   date_of_birth: Yup.string().required("Required").nullable(),
   gender: Yup.string().required("Required"),
   phone_country_code: Yup.string().required("Required"),
-  phone_number: Yup.number()
-    .required("Required")
-    .positive("Must be a positive")
-    .integer("Must be a number"),
+  phone_number: Yup.number().required("Required").positive("Must be a positive").integer("Must be a number"),
   address_line_one: Yup.string().required("Required").nullable(),
   address_line_two: Yup.string().nullable(),
   city: Yup.string().required("Required").nullable(),
@@ -91,4 +64,8 @@ export const contactUsSchema = Yup.object().shape({
   email: Yup.string().required("Required").email("Enter valid email"),
   subject: Yup.string().required("Required"),
   comment: Yup.string().required("Required"),
+});
+
+export const noteSchema = Yup.object().shape({
+  title: Yup.string().required("Required"),
 });

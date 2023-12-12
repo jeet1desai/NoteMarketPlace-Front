@@ -48,20 +48,13 @@ export default function Country() {
               <p>Manage Countries</p>
             </div>
             <div className="add-and-search">
-              <Link
-                to="/admin/manage-country/add-country"
-                type="button"
-                className="btn btn-purple">
+              <Link to="/admin/manage-country/add-country" type="button" className="btn btn-purple">
                 Add Country
               </Link>
               <div className="search">
                 <div className="form-group has-search">
                   <span className="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                  />
+                  <input type="text" className="form-control" placeholder="Search" />
                 </div>
                 <button type="button" className="btn btn-purple">
                   Search

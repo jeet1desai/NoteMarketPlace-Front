@@ -17,9 +17,7 @@ export const signUp = (user) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   };
-  return fetch(`${API_URL}/auth/register/`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/auth/register/`, requestOptions).then(handleResponse);
 };
 
 export const verifyEmail = (id) => {
@@ -27,9 +25,7 @@ export const verifyEmail = (id) => {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   };
-  return fetch(`${API_URL}/auth/verify_email/${id}/`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/auth/verify_email/${id}/`, requestOptions).then(handleResponse);
 };
 
 export const forgetPassword = (user) => {
@@ -38,9 +34,7 @@ export const forgetPassword = (user) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   };
-  return fetch(`${API_URL}/auth/reset_password/`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/auth/reset_password/`, requestOptions).then(handleResponse);
 };
 
 export const changePassword = (user) => {
@@ -52,9 +46,7 @@ export const changePassword = (user) => {
     },
     body: JSON.stringify(user),
   };
-  return fetch(`${API_URL}/auth/change_password/`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/auth/change_password/`, requestOptions).then(handleResponse);
 };
 
 export const contactUs = (query) => {
@@ -65,7 +57,5 @@ export const contactUs = (query) => {
     },
     body: JSON.stringify(query),
   };
-  return fetch(`${API_URL}/user/contact_us/`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/user/contact_us/`, requestOptions).then(handleResponse);
 };

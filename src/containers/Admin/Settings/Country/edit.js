@@ -17,23 +17,11 @@ export default function EditCountry() {
                 <Form>
                   <div className="form-group">
                     <label for="title">Country Name *</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="title"
-                      placeholder="Enter Your Country Name "
-                      required
-                    />
+                    <input type="text" className="form-control" id="title" placeholder="Enter Your Country Name " required />
                   </div>
                   <div className="form-group">
                     <label for="title">Country Code *</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="title"
-                      placeholder="Enter Your Country Code"
-                      required
-                    />
+                    <input type="text" className="form-control" id="title" placeholder="Enter Your Country Code" required />
                   </div>
                   <button type="button" className="btn submit-btn btn-purple">
                     Submit

@@ -25,34 +25,22 @@ export default function UserHeader() {
   const menu = (
     <Menu>
       <Menu.Item>
-        <NavLink
-          exact={true}
-          to="/sell-note/my-profile"
-          activeclassname="active">
+        <NavLink exact={true} to="/sell-note/my-profile" activeclassname="active">
           My Profile
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink
-          exact={true}
-          to="/sell-note/my-download"
-          activeclassname="active">
+        <NavLink exact={true} to="/sell-note/my-download" activeclassname="active">
           My Downloads
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink
-          exact={true}
-          to="/sell-note/my-sold-note"
-          activeclassname="active">
+        <NavLink exact={true} to="/sell-note/my-sold-note" activeclassname="active">
           My Sold Notes
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink
-          exact={true}
-          to="/sell-note/my-rejected-note"
-          activeclassname="active">
+        <NavLink exact={true} to="/sell-note/my-rejected-note" activeclassname="active">
           My Rejected Notes
         </NavLink>
       </Menu.Item>
@@ -82,10 +70,7 @@ export default function UserHeader() {
           <Link to="/" className="nav-link">
             <img alt="logo" className="logo" src={BlueLogo} />
           </Link>
-          <div
-            onClick={() => setToggle(!toggle)}
-            className={`menu-toggle ${toggle ? "open" : ""}`}
-            id="mobile-menu">
+          <div onClick={() => setToggle(!toggle)} className={`menu-toggle ${toggle ? "open" : ""}`} id="mobile-menu">
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
@@ -93,29 +78,20 @@ export default function UserHeader() {
           <div className={`header-link ${toggle ? "open" : ""}`}>
             <ul>
               <li className="nav-link">
-                <NavLink
-                  exact={true}
-                  to="/search-notes"
-                  activeclassname="active">
+                <NavLink exact={true} to="/search-notes" activeclassname="active">
                   Search Notes
                 </NavLink>
                 <div className="underline"></div>
               </li>
               <li className="nav-link">
-                <NavLink
-                  exact={true}
-                  to="/sell-note/dashboard"
-                  activeclassname="active">
+                <NavLink exact={true} to="/sell-note/dashboard" activeclassname="active">
                   Sell Your Notes
                 </NavLink>
                 <div className="underline"></div>
               </li>
               {isLoggedIn && (
                 <li className="nav-link">
-                  <NavLink
-                    exact={true}
-                    to="/sell-note/buyer-request"
-                    activeclassname="active">
+                  <NavLink exact={true} to="/sell-note/buyer-request" activeclassname="active">
                     Buyer Requests
                   </NavLink>
                   <div className="underline"></div>
@@ -147,10 +123,7 @@ export default function UserHeader() {
               <li className="nav-link">
                 {isLoggedIn ? (
                   <Link to="/login" className="login">
-                    <button
-                      type="button"
-                      className="btn btn-purple"
-                      onClick={() => localStorage.clear()}>
+                    <button type="button" className="btn btn-purple" onClick={() => localStorage.clear()}>
                       Logout
                     </button>
                   </Link>

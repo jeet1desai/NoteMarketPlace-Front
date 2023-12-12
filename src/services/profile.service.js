@@ -10,9 +10,7 @@ export const fetchProfile = (id) => {
       Authorization: `Bearer ${getLSUserToken()}`,
     },
   };
-  return fetch(`${API_URL}/user/profile/${id}/`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/user/profile/${id}/`, requestOptions).then(handleResponse);
 };
 
 export const updateUserProfile = (value) => {
@@ -24,7 +22,5 @@ export const updateUserProfile = (value) => {
     },
     body: JSON.stringify(value),
   };
-  return fetch(`${API_URL}/user/update_user/`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/user/update_user/`, requestOptions).then(handleResponse);
 };

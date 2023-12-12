@@ -15,7 +15,7 @@ export function authReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: false,
-        user: action.payload
+        user: action.payload,
       };
     case AUTH_FAILURE:
       return {

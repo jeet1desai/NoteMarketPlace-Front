@@ -10,9 +10,7 @@ export const fetchCategories = () => {
       auth_token: getLSUserToken(),
     },
   };
-  return fetch(`${API_URL}/admin/category/get-category`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/admin/category/get-category`, requestOptions).then(handleResponse);
 };
 
 export const addCategory = (category) => {
@@ -21,9 +19,7 @@ export const addCategory = (category) => {
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
     body: JSON.stringify(category),
   };
-  return fetch(`${API_URL}/admin/settings/category`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/admin/settings/category`, requestOptions).then(handleResponse);
 };
 
 export const editCategory = (id, category) => {
@@ -32,9 +28,7 @@ export const editCategory = (id, category) => {
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
     body: JSON.stringify(category),
   };
-  return fetch(`${API_URL}/admin/settings/category/${id}`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/admin/settings/category/${id}`, requestOptions).then(handleResponse);
 };
 
 export const getCategory = (id) => {
@@ -42,9 +36,7 @@ export const getCategory = (id) => {
     method: "GET",
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
   };
-  return fetch(`${API_URL}/admin/settings/category/${id}`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/admin/settings/category/${id}`, requestOptions).then(handleResponse);
 };
 
 export const deleteCategory = (id) => {
@@ -52,9 +44,7 @@ export const deleteCategory = (id) => {
     method: "DELETE",
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
   };
-  return fetch(`${API_URL}/admin/settings/category/${id}`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/admin/settings/category/${id}`, requestOptions).then(handleResponse);
 };
 
 export const searchCategory = (search) => {
@@ -62,8 +52,5 @@ export const searchCategory = (search) => {
     method: "GET",
     headers: { "Content-Type": "application/json", token: getLSUserToken() },
   };
-  return fetch(
-    `${API_URL}/admin/settings/category/search?search=${search}`,
-    requestOptions
-  ).then(handleResponse);
+  return fetch(`${API_URL}/admin/settings/category/search?search=${search}`, requestOptions).then(handleResponse);
 };

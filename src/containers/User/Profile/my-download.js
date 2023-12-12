@@ -15,9 +15,7 @@ export default function MyDownload() {
     return (
       <Menu>
         <Menu.Item>Yes, I Received</Menu.Item>
-        <Menu.Item onClick={() => setModalOpen(true)}>
-          Add Review/Feedback
-        </Menu.Item>
+        <Menu.Item onClick={() => setModalOpen(true)}>Add Review/Feedback</Menu.Item>
         <Menu.Item>Report as Inappropriate</Menu.Item>
       </Menu>
     );
@@ -84,11 +82,7 @@ export default function MyDownload() {
               <div className="search">
                 <div class="form-group has-search">
                   <span class="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search"
-                  />
+                  <input type="text" class="form-control" placeholder="Search" />
                 </div>
                 <button type="button" class="btn btn-purple">
                   Search
@@ -113,26 +107,13 @@ export default function MyDownload() {
         </div>
       </div>
 
-      <Modal
-        centered={true}
-        isOpen={isModalOpen}
-        toggle={() => setModalOpen(false)}>
+      <Modal centered={true} isOpen={isModalOpen} toggle={() => setModalOpen(false)}>
         <ModalHeader toggle={() => setModalOpen(false)}>Add Review</ModalHeader>
         <ModalBody>
-          <Rating
-            name="half-rating"
-            defaultValue={2.5}
-            precision={0.5}
-            size="large"
-          />
+          <Rating name="half-rating" defaultValue={2.5} precision={0.5} size="large" />
           <div class="form-group">
             <label for="description">Comments *</label>
-            <textarea
-              id="description"
-              name="description"
-              class="form-control"
-              placeholder="Comments..."
-              required></textarea>
+            <textarea id="description" name="description" class="form-control" placeholder="Comments..." required></textarea>
           </div>
           <div className="modal-review-btn">
             <button type="button" class="btn submit-btn btn-purple">

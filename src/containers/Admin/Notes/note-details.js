@@ -22,14 +22,10 @@ export default function AdminNoteDetails() {
                   <h5>Computer Operating System</h5>
                   <p>Science</p>
                   <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Recusandae, corporis. In ad ipsum, eveniet cupiditate quod
-                    ipsum, eveniet cupiditatepariatur esse a itaque perferendiss
-                    nesciunt at Perferendis!
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, corporis. In ad ipsum, eveniet cupiditate quod
+                    ipsum, eveniet cupiditatepariatur esse a itaque perferendiss nesciunt at Perferendis!
                   </p>
-                  <button
-                    class="btn btn-purple download-btn"
-                    title="Download / $15">
+                  <button class="btn btn-purple download-btn" title="Download / $15">
                     Download / $15
                   </button>
                 </div>
@@ -39,9 +35,7 @@ export default function AdminNoteDetails() {
               <div className="note-up-right">
                 <div className="note-info">
                   <p className="note-info-left">Institution : </p>
-                  <p className="note-info-right">
-                    University of California, US
-                  </p>
+                  <p className="note-info-right">University of California, US</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Country : </p>
@@ -71,19 +65,12 @@ export default function AdminNoteDetails() {
                   <p className="note-info-left">Rating : </p>
                   <p className="note-info-right">
                     <div className="note-rating">
-                      <Rating
-                        name="half-rating-read"
-                        defaultValue={2.5}
-                        precision={0.5}
-                        readOnly
-                      />
+                      <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
                       <p> 100 reviews</p>
                     </div>
                   </p>
                 </div>
-                <span className="error">
-                  5 Users marked this note as inappropriate
-                </span>
+                <span className="error">5 Users marked this note as inappropriate</span>
               </div>
             </div>
           </div>
@@ -100,9 +87,7 @@ export default function AdminNoteDetails() {
                 <div class="page-title">
                   <p>Note Preview</p>
                 </div>
-                <iframe
-                  title="note-preview"
-                  src="https://research.google.com/pubs/archive/44678.pdf"></iframe>
+                <iframe title="note-preview" src="https://research.google.com/pubs/archive/44678.pdf"></iframe>
               </div>
             </div>
             <div className="col-6">

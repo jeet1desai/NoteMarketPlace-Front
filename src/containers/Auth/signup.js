@@ -54,14 +54,7 @@ const Signup = () => {
             onSubmitSignupForm(values);
             resetForm();
           }}>
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-          }) => {
+          {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
             return (
               <Form onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -72,16 +65,11 @@ const Signup = () => {
                     onBlur={handleBlur}
                     name="first_name"
                     type="text"
-                    className={`form-control ${
-                      errors.first_name && touched.first_name && "invalid"
-                    }`}
+                    className={`form-control ${errors.first_name && touched.first_name && "invalid"}`}
                     id="first_name"
                     placeholder="Enter your First Name"
                   />
-                  <ErrorText
-                    error={errors.first_name}
-                    touched={touched.first_name}
-                  />
+                  <ErrorText error={errors.first_name} touched={touched.first_name} />
                 </div>
 
                 <div className="form-group">
@@ -92,16 +80,11 @@ const Signup = () => {
                     onBlur={handleBlur}
                     name="last_name"
                     type="text"
-                    className={`form-control ${
-                      errors.last_name && touched.last_name && "invalid"
-                    }`}
+                    className={`form-control ${errors.last_name && touched.last_name && "invalid"}`}
                     id="last_name"
                     placeholder="Enter your Last Name"
                   />
-                  <ErrorText
-                    error={errors.last_name}
-                    touched={touched.last_name}
-                  />
+                  <ErrorText error={errors.last_name} touched={touched.last_name} />
                 </div>
 
                 <div className="form-group">
@@ -112,9 +95,7 @@ const Signup = () => {
                     onBlur={handleBlur}
                     name="email"
                     type="email"
-                    className={`form-control ${
-                      errors.email && touched.email && "invalid"
-                    }`}
+                    className={`form-control ${errors.email && touched.email && "invalid"}`}
                     id="emailAdd"
                     placeholder="Enter your Email"
                   />
@@ -130,16 +111,11 @@ const Signup = () => {
                     name="password"
                     type="password"
                     id="password"
-                    className={`form-control ${
-                      errors.password && touched.password && "invalid"
-                    }`}
+                    className={`form-control ${errors.password && touched.password && "invalid"}`}
                     placeholder="Enter your Password"
                   />
                   <PasswordEye eyeId="eye" inputId="password" />
-                  <ErrorText
-                    error={errors.password}
-                    touched={touched.password}
-                  />
+                  <ErrorText error={errors.password} touched={touched.password} />
                 </div>
 
                 <div className="form-group password">
@@ -151,18 +127,11 @@ const Signup = () => {
                     name="confirmPassword"
                     type="password"
                     id="con_password"
-                    className={`form-control ${
-                      errors.confirmPassword &&
-                      touched.confirmPassword &&
-                      "invalid"
-                    }`}
+                    className={`form-control ${errors.confirmPassword && touched.confirmPassword && "invalid"}`}
                     placeholder="Enter your Confirm Password"
                   />
                   <PasswordEye eyeId="con_eye" inputId="con_password" />
-                  <ErrorText
-                    error={errors.confirmPassword}
-                    touched={touched.confirmPassword}
-                  />
+                  <ErrorText error={errors.confirmPassword} touched={touched.confirmPassword} />
                 </div>
 
                 <Button
@@ -170,9 +139,7 @@ const Signup = () => {
                   variant="contained"
                   className="btn btn-purple signup-btn"
                   disabled={loading}
-                  startIcon={
-                    loading && <CircularProgress color="inherit" size={24} />
-                  }>
+                  startIcon={loading && <CircularProgress color="inherit" size={24} />}>
                   Signup
                 </Button>
 

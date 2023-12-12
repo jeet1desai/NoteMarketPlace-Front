@@ -1,9 +1,4 @@
-import {
-  PROFILE_FAILURE,
-  PROFILE_REQUEST,
-  USERS_GET_PROFILE_SUCCESS,
-  USERS_UPDATE_PROFILE_SUCCESS,
-} from "./profileActionTypes";
+import { PROFILE_FAILURE, PROFILE_REQUEST, USERS_GET_PROFILE_SUCCESS, USERS_UPDATE_PROFILE_SUCCESS } from "./profileActionTypes";
 
 const initialState = {
   loading: false,

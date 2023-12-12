@@ -10,7 +10,5 @@ export const fetchCountryList = () => {
       Authorization: `Bearer ${getLSUserToken()}`,
     },
   };
-  return fetch(`${API_URL}/user/country_list`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${API_URL}/user/country_list`, requestOptions).then(handleResponse);
 };

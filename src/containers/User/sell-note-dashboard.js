@@ -143,11 +143,7 @@ export default function SellNoteDashboard() {
               <div className="search">
                 <div class="form-group has-search">
                   <span class="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search"
-                  />
+                  <input type="text" class="form-control" placeholder="Search" />
                 </div>
                 <button type="button" class="btn btn-purple">
                   Search
@@ -178,11 +174,7 @@ export default function SellNoteDashboard() {
               <div className="search">
                 <div class="form-group has-search">
                   <span class="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search"
-                  />
+                  <input type="text" class="form-control" placeholder="Search" />
                 </div>
                 <button type="button" class="btn btn-purple">
                   Search

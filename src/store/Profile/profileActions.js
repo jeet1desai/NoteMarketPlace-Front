@@ -1,11 +1,6 @@
 import { toast } from "react-toastify";
 import { fetchProfile, updateUserProfile } from "../../services/profile.service";
-import {
-  PROFILE_FAILURE,
-  PROFILE_REQUEST,
-  USERS_GET_PROFILE_SUCCESS,
-  USERS_UPDATE_PROFILE_SUCCESS,
-} from "./profileActionTypes";
+import { PROFILE_FAILURE, PROFILE_REQUEST, USERS_GET_PROFILE_SUCCESS, USERS_UPDATE_PROFILE_SUCCESS } from "./profileActionTypes";
 
 const request = () => {
   return { type: PROFILE_REQUEST };

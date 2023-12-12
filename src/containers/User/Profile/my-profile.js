@@ -5,10 +5,7 @@ import moment from "moment";
 
 import "../../../assets/css/user-profile.css";
 
-import {
-  getProfileAction,
-  updateUserProfileAction,
-} from "../../../store/Profile/profileActions";
+import { getProfileAction, updateUserProfileAction } from "../../../store/Profile/profileActions";
 import { getCountryListAction } from "../../../store/Configuration/configActions";
 import { getLSUser } from "../../../utils/local";
 
@@ -18,12 +15,8 @@ import { userProfileSchema } from "../../../utils/schema";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
-  const { loading: config_loading, country_list } = useSelector(
-    (state) => state.configReducer
-  );
-  const { loading: profile_loading, user } = useSelector(
-    (state) => state.profileReducer
-  );
+  const { loading: config_loading, country_list } = useSelector((state) => state.configReducer);
+  const { loading: profile_loading, user } = useSelector((state) => state.profileReducer);
 
   const [formValue, setFormValue] = useState({});
 
@@ -42,9 +35,7 @@ const MyProfile = () => {
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
-        date_of_birth: user.date_of_birth
-          ? moment(user.date_of_birth).format("YYYY-MM-DD")
-          : "",
+        date_of_birth: user.date_of_birth ? moment(user.date_of_birth).format("YYYY-MM-DD") : "",
         gender: user.gender || "",
         phone_country_code: user.phone_country_code || "",
         phone_number: user.phone_number || "",
@@ -81,15 +72,7 @@ const MyProfile = () => {
             onSubmit={(values) => {
               dispatch(updateUserProfileAction(values));
             }}>
-            {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              setFieldValue,
-            }) => {
+            {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
               return (
                 <Form onSubmit={handleSubmit}>
                   <div className="basic-profile-details">
@@ -104,19 +87,13 @@ const MyProfile = () => {
                             type="text"
                             id="first-name"
                             placeholder="Enter Your First Name"
-                            className={inputError(
-                              errors.first_name,
-                              touched.first_name
-                            )}
+                            className={inputError(errors.first_name, touched.first_name)}
                             value={values.first_name}
                             name="first_name"
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.first_name}
-                            touched={touched.first_name}
-                          />
+                          <ErrorText error={errors.first_name} touched={touched.first_name} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -126,19 +103,13 @@ const MyProfile = () => {
                             type="text"
                             id="last-name"
                             placeholder="Enter Your Last Name"
-                            className={inputError(
-                              errors.last_name,
-                              touched.last_name
-                            )}
+                            className={inputError(errors.last_name, touched.last_name)}
                             value={values.last_name}
                             name="last_name"
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.last_name}
-                            touched={touched.last_name}
-                          />
+                          <ErrorText error={errors.last_name} touched={touched.last_name} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -156,10 +127,7 @@ const MyProfile = () => {
                             disabled
                             readOnly
                           />
-                          <ErrorText
-                            error={errors.email}
-                            touched={touched.email}
-                          />
+                          <ErrorText error={errors.email} touched={touched.email} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -168,20 +136,14 @@ const MyProfile = () => {
                           <input
                             type="date"
                             id="dob"
-                            className={inputError(
-                              errors.date_of_birth,
-                              touched.date_of_birth
-                            )}
+                            className={inputError(errors.date_of_birth, touched.date_of_birth)}
                             value={values.date_of_birth}
                             name="date_of_birth"
                             onChange={handleChange}
                             onBlur={handleBlur}
                             max={moment().format("YYYY-MM-DD")}
                           />
-                          <ErrorText
-                            error={errors.date_of_birth}
-                            touched={touched.date_of_birth}
-                          />
+                          <ErrorText error={errors.date_of_birth} touched={touched.date_of_birth} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -190,10 +152,7 @@ const MyProfile = () => {
                           <br />
                           <select
                             id="gender"
-                            className={inputError(
-                              errors.gender,
-                              touched.gender
-                            )}
+                            className={inputError(errors.gender, touched.gender)}
                             value={values.gender}
                             name="gender"
                             onChange={handleChange}
@@ -204,10 +163,7 @@ const MyProfile = () => {
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                           </select>
-                          <ErrorText
-                            error={errors.gender}
-                            touched={touched.gender}
-                          />
+                          <ErrorText error={errors.gender} touched={touched.gender} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -217,10 +173,7 @@ const MyProfile = () => {
                           <div className="form-group">
                             <div className="phone-number">
                               <select
-                                className={inputError(
-                                  errors.phone_country_code,
-                                  touched.phone_country_code
-                                )}
+                                className={inputError(errors.phone_country_code, touched.phone_country_code)}
                                 value={values.phone_country_code}
                                 name="phone_country_code"
                                 onChange={handleChange}
@@ -238,10 +191,7 @@ const MyProfile = () => {
                                 type="number"
                                 id="phone"
                                 placeholder="Enter Your Phone No"
-                                className={inputError(
-                                  errors.phone_number,
-                                  touched.phone_number
-                                )}
+                                className={inputError(errors.phone_number, touched.phone_number)}
                                 value={values.phone_number}
                                 name="phone_number"
                                 onChange={handleChange}
@@ -249,15 +199,9 @@ const MyProfile = () => {
                               />
                             </div>
                             {errors.phone_country_code ? (
-                              <ErrorText
-                                error={errors.phone_country_code}
-                                touched={touched.phone_country_code}
-                              />
+                              <ErrorText error={errors.phone_country_code} touched={touched.phone_country_code} />
                             ) : (
-                              <ErrorText
-                                error={errors.phone_number}
-                                touched={touched.phone_number}
-                              />
+                              <ErrorText error={errors.phone_number} touched={touched.phone_number} />
                             )}
                           </div>
                         </div>
@@ -271,25 +215,16 @@ const MyProfile = () => {
                               className="upload"
                               id="profile-pic"
                               name="picture_file"
-                              onChange={(e) =>
-                                setFieldValue("picture_file", e.target.files[0])
-                              }
+                              onChange={(e) => setFieldValue("picture_file", e.target.files[0])}
                               onBlur={handleBlur}
                             />
                           </div>
                           {values.picture_file ? (
-                            <span className="file-info">
-                              {values.picture_file.name}
-                            </span>
+                            <span className="file-info">{values.picture_file.name}</span>
                           ) : (
-                            <span className="file-info">
-                              {values.profile_picture}
-                            </span>
+                            <span className="file-info">{values.profile_picture}</span>
                           )}
-                          <ErrorText
-                            error={errors.picture_file}
-                            touched={touched.picture_file}
-                          />
+                          <ErrorText error={errors.picture_file} touched={touched.picture_file} />
                         </div>
                       </div>
                     </div>
@@ -307,19 +242,13 @@ const MyProfile = () => {
                             type="text"
                             id="address1"
                             placeholder="Enter Your Address"
-                            className={inputError(
-                              errors.address_line_one,
-                              touched.address_line_one
-                            )}
+                            className={inputError(errors.address_line_one, touched.address_line_one)}
                             value={values.address_line_one}
                             name="address_line_one"
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.address_line_one}
-                            touched={touched.address_line_one}
-                          />
+                          <ErrorText error={errors.address_line_one} touched={touched.address_line_one} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -329,19 +258,13 @@ const MyProfile = () => {
                             type="text"
                             id="address2"
                             placeholder="Enter Your Address"
-                            className={inputError(
-                              errors.address_line_two,
-                              touched.address_line_two
-                            )}
+                            className={inputError(errors.address_line_two, touched.address_line_two)}
                             value={values.address_line_two}
                             name="address_line_two"
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.address_line_two}
-                            touched={touched.address_line_two}
-                          />
+                          <ErrorText error={errors.address_line_two} touched={touched.address_line_two} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -357,10 +280,7 @@ const MyProfile = () => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.city}
-                            touched={touched.city}
-                          />
+                          <ErrorText error={errors.city} touched={touched.city} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -376,10 +296,7 @@ const MyProfile = () => {
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.state}
-                            touched={touched.state}
-                          />
+                          <ErrorText error={errors.state} touched={touched.state} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -389,19 +306,13 @@ const MyProfile = () => {
                             type="number"
                             id="zipcode"
                             placeholder="Enter Your Zipcode"
-                            className={inputError(
-                              errors.zip_code,
-                              touched.zip_code
-                            )}
+                            className={inputError(errors.zip_code, touched.zip_code)}
                             value={values.zip_code}
                             name="zip_code"
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.zip_code}
-                            touched={touched.zip_code}
-                          />
+                          <ErrorText error={errors.zip_code} touched={touched.zip_code} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -409,10 +320,7 @@ const MyProfile = () => {
                           <label>Country *</label>
                           <br />
                           <select
-                            className={inputError(
-                              errors.country,
-                              touched.country
-                            )}
+                            className={inputError(errors.country, touched.country)}
                             value={values.country}
                             name="country"
                             onChange={handleChange}
@@ -426,10 +334,7 @@ const MyProfile = () => {
                               </option>
                             ))}
                           </select>
-                          <ErrorText
-                            error={errors.country}
-                            touched={touched.country}
-                          />
+                          <ErrorText error={errors.country} touched={touched.country} />
                         </div>
                       </div>
                     </div>
@@ -447,19 +352,13 @@ const MyProfile = () => {
                             type="text"
                             id="university"
                             placeholder="Enter Your University"
-                            className={inputError(
-                              errors.university,
-                              touched.university
-                            )}
+                            className={inputError(errors.university, touched.university)}
                             value={values.university}
                             name="university"
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.university}
-                            touched={touched.university}
-                          />
+                          <ErrorText error={errors.university} touched={touched.university} />
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -469,19 +368,13 @@ const MyProfile = () => {
                             type="text"
                             id="collage"
                             placeholder="Enter Your Collage"
-                            className={inputError(
-                              errors.college,
-                              touched.college
-                            )}
+                            className={inputError(errors.college, touched.college)}
                             value={values.college}
                             name="college"
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.college}
-                            touched={touched.college}
-                          />
+                          <ErrorText error={errors.college} touched={touched.college} />
                         </div>
                       </div>
                     </div>

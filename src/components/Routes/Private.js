@@ -14,11 +14,7 @@ const PrivateRoute = ({ component: Component, roles, ...rest }) => (
       // if (!currentUser || !currentUser.isEmailVerified) {
       if (!currentUser || !token) {
         toast.info("You need to login first! 😊");
-        return (
-          <Redirect
-            to={{ pathname: "/login", state: { from: props.location } }}
-          />
-        );
+        return <Redirect to={{ pathname: "/login", state: { from: props.location } }} />;
       }
 
       // check if route is restricted by role

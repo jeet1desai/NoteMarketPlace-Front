@@ -57,20 +57,13 @@ export default function Type() {
               <p>Manage Type</p>
             </div>
             <div className="add-and-search">
-              <Link
-                to="/admin/manage-type/add-type"
-                type="button"
-                className="btn btn-purple">
+              <Link to="/admin/manage-type/add-type" type="button" className="btn btn-purple">
                 Add Type
               </Link>
               <div className="search">
                 <div className="form-group has-search">
                   <span className="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                  />
+                  <input type="text" className="form-control" placeholder="Search" />
                 </div>
                 <button type="button" className="btn btn-purple">
                   Search

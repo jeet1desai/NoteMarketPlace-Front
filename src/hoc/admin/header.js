@@ -49,34 +49,22 @@ export default function AdminHeader() {
   const notesMenu = (
     <Menu>
       <Menu.Item>
-        <NavLink
-          exact={true}
-          to="/admin/note-under-review"
-          activeclassname="active">
+        <NavLink exact={true} to="/admin/note-under-review" activeclassname="active">
           Note Under Review
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink
-          exact={true}
-          to="/admin/published-notes"
-          activeclassname="active">
+        <NavLink exact={true} to="/admin/published-notes" activeclassname="active">
           Published Notes
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink
-          exact={true}
-          to="/admin/downloaded-notes"
-          activeclassname="active">
+        <NavLink exact={true} to="/admin/downloaded-notes" activeclassname="active">
           Downloaded Notes
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink
-          exact={true}
-          to="/admin/rejected-notes"
-          activeclassname="active">
+        <NavLink exact={true} to="/admin/rejected-notes" activeclassname="active">
           Rejected Notes
         </NavLink>
       </Menu.Item>
@@ -98,28 +86,19 @@ export default function AdminHeader() {
       {currentUser.role === 3 && (
         <>
           <Menu.Item>
-            <NavLink
-              exact={true}
-              to="/admin/manage-system-config"
-              activeclassname="active">
+            <NavLink exact={true} to="/admin/manage-system-config" activeclassname="active">
               Manage System Configuration
             </NavLink>
           </Menu.Item>
           <Menu.Item>
-            <NavLink
-              exact={true}
-              to="/admin/manage-admin"
-              activeclassname="active">
+            <NavLink exact={true} to="/admin/manage-admin" activeclassname="active">
               Manage Administration
             </NavLink>
           </Menu.Item>
         </>
       )}
       <Menu.Item>
-        <NavLink
-          exact={true}
-          to="/admin/manage-category"
-          activeclassname="active">
+        <NavLink exact={true} to="/admin/manage-category" activeclassname="active">
           Manage Category
         </NavLink>
       </Menu.Item>
@@ -129,10 +108,7 @@ export default function AdminHeader() {
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink
-          exact={true}
-          to="/admin/manage-country"
-          activeclassname="active">
+        <NavLink exact={true} to="/admin/manage-country" activeclassname="active">
           Manage Country
         </NavLink>
       </Menu.Item>
@@ -146,10 +122,7 @@ export default function AdminHeader() {
           <Link to="/admin/dashboard" className="nav-link">
             <img alt="logo" className="logo" src={BlueLogo} />
           </Link>
-          <div
-            onClick={() => setToggle(!toggle)}
-            className={`menu-toggle ${toggle ? "open" : ""}`}
-            id="mobile-menu">
+          <div onClick={() => setToggle(!toggle)} className={`menu-toggle ${toggle ? "open" : ""}`} id="mobile-menu">
             <span className="bar"></span>
             <span className="bar"></span>
             <span className="bar"></span>
@@ -157,10 +130,7 @@ export default function AdminHeader() {
           <div className={`header-link ${toggle ? "open" : ""}`}>
             <ul>
               <li className="nav-link">
-                <NavLink
-                  exact={true}
-                  to="/admin/dashboard"
-                  activeclassname="active">
+                <NavLink exact={true} to="/admin/dashboard" activeclassname="active">
                   Dashboard
                 </NavLink>
                 <div className="underline"></div>
@@ -171,10 +141,7 @@ export default function AdminHeader() {
                 </Dropdown>
               </li>
               <li className="nav-link">
-                <NavLink
-                  exact={true}
-                  to="/admin/members"
-                  activeclassname="active">
+                <NavLink exact={true} to="/admin/members" activeclassname="active">
                   Members
                 </NavLink>
                 <div className="underline"></div>
@@ -191,11 +158,7 @@ export default function AdminHeader() {
               </li>
               <li className="nav-link">
                 <Dropdown overlay={profileMenu}>
-                  <Avatar
-                    alt="Remy Sharp"
-                    src={currentUser.profilePicture}
-                    sx={{ width: 28, height: 28 }}
-                  />
+                  <Avatar alt="Remy Sharp" src={currentUser.profilePicture} sx={{ width: 28, height: 28 }} />
                 </Dropdown>
               </li>
               <li className="nav-link">

@@ -27,10 +27,7 @@ const EmailVerification = () => {
           </p>
           <span>Thanks for Signing up!</span>
           <br />
-          <span>
-            Please verify the email address via clicking on the link we sent you
-            via email.
-          </span>
+          <span>Please verify the email address via clicking on the link we sent you via email.</span>
         </div>
       </div>
     </div>

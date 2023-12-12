@@ -6,11 +6,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
-import {
-  fetchAllCategoriesAction,
-  deleteCategoryAction,
-  searchCategoriesAction,
-} from "../../../../store/AdminCategory/categoryActions";
+import { fetchAllCategoriesAction, deleteCategoryAction, searchCategoriesAction } from "../../../../store/AdminCategory/categoryActions";
 
 import "../../../../assets/css/manage-category.css";
 
@@ -96,10 +92,7 @@ const Category = () => {
               <p>Manage Category</p>
             </div>
             <div className="add-and-search">
-              <Link
-                to="/admin/manage-category/add-category"
-                type="button"
-                className="btn btn-purple">
+              <Link to="/admin/manage-category/add-category" type="button" className="btn btn-purple">
                 Add Category
               </Link>
               <div className="search">

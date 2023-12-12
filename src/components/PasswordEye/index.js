@@ -13,13 +13,7 @@ const PasswordEye = ({ inputId, eyeId }) => {
     }
   };
 
-  return (
-    <span
-      onClick={() => showAndHidePassword()}
-      id={eyeId}
-      toggle={`#${inputId}`}
-      className="fa fa-eye"></span>
-  );
+  return <span onClick={() => showAndHidePassword()} id={eyeId} toggle={`#${inputId}`} className="fa fa-eye"></span>;
 };
 
 export default PasswordEye;

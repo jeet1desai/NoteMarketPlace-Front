@@ -35,9 +35,7 @@ const SuccessEmailVerification = () => {
                 variant="contained"
                 className="btn email-verify-btn btn-purple"
                 disabled={loading}
-                startIcon={
-                  loading && <CircularProgress color="inherit" size={24} />
-                }>
+                startIcon={loading && <CircularProgress color="inherit" size={24} />}>
                 Login
               </Button>
             </NavLink>

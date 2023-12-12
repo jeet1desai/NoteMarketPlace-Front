@@ -133,11 +133,7 @@ export default function Downloaded() {
               <div className="search">
                 <div className="form-group has-search">
                   <span className="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                  />
+                  <input type="text" className="form-control" placeholder="Search" />
                 </div>
                 <button type="button" className="btn search-btn btn-purple">
                   Search

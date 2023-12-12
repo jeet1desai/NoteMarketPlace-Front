@@ -7,10 +7,7 @@ import { useParams } from "react-router-dom";
 
 import "../../../../assets/css/add-category.css";
 
-import {
-  editCategoryAction,
-  getCategoryAction,
-} from "../../../../store/AdminCategory/categoryActions";
+import { editCategoryAction, getCategoryAction } from "../../../../store/AdminCategory/categoryActions";
 
 export default function EditCategory() {
   const { id } = useParams();
@@ -44,14 +41,7 @@ export default function EditCategory() {
                 onSubmit={(values) => {
                   dispatch(editCategoryAction(id, values));
                 }}>
-                {({
-                  values,
-                  errors,
-                  touched,
-                  handleChange,
-                  handleBlur,
-                  handleSubmit,
-                }) => {
+                {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
                   return (
                     <Form onSubmit={handleSubmit}>
                       <div className="form-group">
@@ -60,17 +50,13 @@ export default function EditCategory() {
                           type="text"
                           id="title"
                           placeholder="Enter Your Category Name"
-                          className={`form-control ${
-                            errors.name && touched.name && "invalid"
-                          }`}
+                          className={`form-control ${errors.name && touched.name && "invalid"}`}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.name}
                           name="name"
                         />
-                        {errors.name && touched.name && (
-                          <small className="error-text">{errors.name}</small>
-                        )}
+                        {errors.name && touched.name && <small className="error-text">{errors.name}</small>}
                       </div>
                       <div className="form-group">
                         <label htmlFor="description">Description *</label>
@@ -78,27 +64,15 @@ export default function EditCategory() {
                           id="description"
                           name="description"
                           placeholder="Write Your Description ..."
-                          className={`form-control ${
-                            errors.description &&
-                            touched.description &&
-                            "invalid"
-                          }`}
+                          className={`form-control ${errors.description && touched.description && "invalid"}`}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.description}></textarea>
-                        {errors.description && touched.description && (
-                          <small className="error-text">
-                            {errors.description}
-                          </small>
-                        )}
+                        {errors.description && touched.description && <small className="error-text">{errors.description}</small>}
                       </div>
                       <Button
                         disabled={loading}
-                        startIcon={
-                          loading && (
-                            <CircularProgress color="inherit" size={24} />
-                          )
-                        }
+                        startIcon={loading && <CircularProgress color="inherit" size={24} />}
                         type="submit"
                         className="btn submit-btn btn-purple">
                         Submit

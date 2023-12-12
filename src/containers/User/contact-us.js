@@ -53,15 +53,7 @@ export default function ContactUs() {
                     setLoading(false);
                   });
               }}>
-              {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                setFieldValue,
-              }) => {
+              {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
                 return (
                   <Form onSubmit={handleSubmit}>
                     <div className="row">
@@ -78,10 +70,7 @@ export default function ContactUs() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.name}
-                            touched={touched.name}
-                          />
+                          <ErrorText error={errors.name} touched={touched.name} />
                         </div>
                         <div className="form-group">
                           <label htmlFor="email">Email Address *</label>
@@ -94,10 +83,7 @@ export default function ContactUs() {
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.email}
-                            touched={touched.email}
-                          />
+                          <ErrorText error={errors.email} touched={touched.email} />
                         </div>
                         <div className="form-group">
                           <label htmlFor="subject">Subject *</label>
@@ -105,46 +91,30 @@ export default function ContactUs() {
                             type="text"
                             id="subject"
                             placeholder="Enter Your Subject"
-                            className={inputError(
-                              errors.subject,
-                              touched.subject
-                            )}
+                            className={inputError(errors.subject, touched.subject)}
                             value={values.subject}
                             onChange={handleChange}
                             onBlur={handleBlur}
                           />
-                          <ErrorText
-                            error={errors.subject}
-                            touched={touched.subject}
-                          />
+                          <ErrorText error={errors.subject} touched={touched.subject} />
                         </div>
                       </div>
                       <div className="col-lg-6">
                         <div className="form-group">
-                          <label htmlFor="comments">
-                            Comments / Questions *
-                          </label>
+                          <label htmlFor="comments">Comments / Questions *</label>
                           <textarea
                             id="comments"
                             name="comment"
                             placeholder="comments..."
-                            className={inputError(
-                              errors.comment,
-                              touched.comment
-                            )}
+                            className={inputError(errors.comment, touched.comment)}
                             value={values.comment}
                             onChange={handleChange}
                             onBlur={handleBlur}></textarea>
-                          <ErrorText
-                            error={errors.comment}
-                            touched={touched.comment}
-                          />
+                          <ErrorText error={errors.comment} touched={touched.comment} />
                         </div>
                       </div>
                       <div className="col-lg-12">
-                        <button
-                          type="submit"
-                          className="btn btn-purple submit-btn">
+                        <button type="submit" className="btn btn-purple submit-btn">
                           Submit
                         </button>
                       </div>
