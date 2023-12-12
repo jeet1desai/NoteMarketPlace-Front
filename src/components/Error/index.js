@@ -13,5 +13,5 @@ export const inputError = (errors, touched) => {
 };
 
 export const uploadError = (errors, touched) => {
-  return `upload ${errors && touched && "invalid"}`;
+  return `upload-box ${errors && touched && "invalid"}`;
 };

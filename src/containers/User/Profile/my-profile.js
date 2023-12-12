@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-
 import "../../../assets/css/user-profile.css";
-
 import { getProfileAction, updateUserProfileAction } from "../../../store/Profile/profileActions";
-import { getCountryListAction } from "../../../store/Configuration/configActions";
+import { getUserCountryListAction } from "../../../store/Configuration/configActions";
 import { getLSUser } from "../../../utils/local";
-
 import Loader from "../../../components/Loader";
 import ErrorText, { inputError } from "../../../components/Error";
 import { userProfileSchema } from "../../../utils/schema";
@@ -24,7 +21,7 @@ const MyProfile = () => {
     const localUser = getLSUser();
     if (localUser) {
       dispatch(getProfileAction(localUser.id));
-      dispatch(getCountryListAction());
+      dispatch(getUserCountryListAction());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 export default function ContactUs() {
   const [loading, setLoading] = useState(false);
-  const [formValue, setFormValue] = useState({
+  const [formValue] = useState({
     name: "",
     email: "",
     subject: "",

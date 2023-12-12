@@ -124,7 +124,7 @@
 }
 
 .form-group .form-control.invalid,
-.form-group .upload.invalid {
+.form-group .upload-box.invalid {
   border-color: red !important;
 }
 .error {
