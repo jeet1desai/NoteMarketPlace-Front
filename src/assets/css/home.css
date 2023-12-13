@@ -175,6 +175,24 @@
   color: white !important;
 }
 
+.dialog-content-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #333333;
+}
+
+.dialog-header {
+  font-weight: 600 !important;
+  font-size: 24px !important;
+  line-height: 28px !important;
+  color: #6255a5;
+}
+
+.MuiDialogActions-root {
+  padding: 15px 20px !important;
+}
+
 /* Small */
 @media (min-width: 0px) and (max-width: 767.99px) {
   .home .content-box {

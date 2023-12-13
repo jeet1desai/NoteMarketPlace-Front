@@ -1,8 +1,6 @@
 import React from "react";
 import { Rating } from "@mui/material";
-
 import CustomerReview from "../../components/CustomerReview";
-
 import "../../assets/css/note-detail.css";
 import NoteImage from "../../assets/images/note.jpg";
 
@@ -10,8 +8,8 @@ export default function NoteDetail() {
   return (
     <div className="note-details">
       <div className="note-detail">
-        <div class="container">
-          <div class="page-title">
+        <div className="container">
+          <div className="page-title">
             <p>Note Details</p>
           </div>
           <div className="row">
@@ -25,7 +23,7 @@ export default function NoteDetail() {
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, corporis. In ad ipsum, eveniet cupiditate quod
                     ipsum, eveniet cupiditatepariatur esse a itaque perferendiss nesciunt at Perferendis!
                   </p>
-                  <button class="btn btn-purple download-btn" title="Download / $15">
+                  <button className="btn btn-purple download-btn" title="Download / $15">
                     Download / $15
                   </button>
                 </div>
@@ -80,19 +78,19 @@ export default function NoteDetail() {
       <hr />
 
       <div className="preview-and-review">
-        <div class="container">
+        <div className="container">
           <div className="row">
             <div className="col-6">
               <div className="note-preview">
-                <div class="page-title">
+                <div className="page-title">
                   <p>Note Preview</p>
                 </div>
                 <iframe title="note-preview" src="https://research.google.com/pubs/archive/44678.pdf"></iframe>
               </div>
             </div>
             <div className="col-6">
-              <div class="note-review">
-                <div class="page-title">
+              <div className="note-review">
+                <div className="page-title">
                   <p>Customer Review</p>
                 </div>
                 <div className="customers">

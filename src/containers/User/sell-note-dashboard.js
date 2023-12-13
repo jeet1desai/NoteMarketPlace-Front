@@ -11,6 +11,7 @@ import Loader from "../../components/Loader";
 import { getInProgressNoteAction, getPublishNoteAction } from "../../store/UserNotes/userNoteActions";
 import moment from "moment";
 import { NOTE_STATUS } from "../../utils/enum";
+import AlertDialog from "../../components/AlertDialog";
 
 const SellNoteDashboard = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const SellNoteDashboard = () => {
   const [inProgressSearch, setInProgressSearch] = useState("");
   const [publishedPage, setPublishedPage] = useState(1);
   const [publishedSearch, setPublishedSearch] = useState("");
+
+  const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
 
   const { loading: note_loading, in_progress_note, published_note } = useSelector((state) => state.userNoteReducer);
 
@@ -61,7 +64,12 @@ const SellNoteDashboard = () => {
                 <Link to={`/sell-note/edit-note/${record.id}`}>
                   <EditIcon color="disabled" />
                 </Link>
-                <DeleteIcon color="disabled" onClick={() => {}} />
+                <DeleteIcon
+                  color="disabled"
+                  onClick={() => {
+                    setDeleteDialog(true);
+                  }}
+                />
               </>
             ) : (
               <Link to={`/search-notes/note/${record.id}`}>
@@ -184,7 +192,7 @@ const SellNoteDashboard = () => {
             <div className="antd-table">
               <Table
                 columns={inProgressColumns}
-                dataSource={in_progress_note.map((item) => ({ ...item, key: item.id }))}
+                dataSource={in_progress_note}
                 pagination={{
                   current: inProgressPage,
                   pageSize: 5,
@@ -216,7 +224,7 @@ const SellNoteDashboard = () => {
             <div className="antd-table">
               <Table
                 columns={publishColumns}
-                dataSource={published_note.map((item) => ({ ...item, key: item.id }))}
+                dataSource={published_note}
                 pagination={{
                   current: publishedPage,
                   pageSize: 5,
@@ -230,6 +238,14 @@ const SellNoteDashboard = () => {
           </div>
         </div>
       </div>
+
+      <AlertDialog
+        isOpen={isDeleteDialogOpen}
+        handleClose={() => setDeleteDialog(false)}
+        handleSubmit={() => {}}
+        title="Delete Note"
+        content="Are you sure, you want to delete this note?"
+      />
     </div>
   );
 };

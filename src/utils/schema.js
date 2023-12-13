@@ -73,21 +73,31 @@ export const noteSchema = Yup.object().shape({
   notes_preview: Yup.string(),
   notes_preview_note: Yup.string()
     .nullable()
-    .test("isNotEmpty", "Required", function (value) {
-      const { notes_preview } = this.parent;
-      if (notes_preview === null || notes_preview?.trim() === "") {
-        return value === null || value?.trim() === "";
-      }
-      return value !== null && value?.trim() !== "";
+    .test({
+      name: "isNotEmpty",
+      message: "Required",
+      test: function (value) {
+        const { notes_preview } = this.parent;
+        const notes_preview_note = value;
+        if ((notes_preview === "" || notes_preview === undefined) && notes_preview_note === null) {
+          return false;
+        }
+        return true;
+      },
     }),
   file: Yup.string(),
   file_note: Yup.string()
     .nullable()
-    .test("isNotEmpty", "Required", function (value) {
-      const { file } = this.parent;
-      if (file === null || file?.trim() === "") {
-        return value === null || value?.trim() === "";
-      }
-      return value !== null && value?.trim() !== "";
+    .test({
+      name: "isNotEmpty",
+      message: "Required",
+      test: function (value) {
+        const { file } = this.parent;
+        const file_note = value;
+        if ((file === "" || file === undefined) && file_note === null) {
+          return false;
+        }
+        return true;
+      },
     }),
 });

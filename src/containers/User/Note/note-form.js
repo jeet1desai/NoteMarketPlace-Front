@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import "../../../assets/css/add-note.css";
@@ -9,17 +9,18 @@ import { noteSchema } from "../../../utils/schema";
 import { getUserCategoryListAction, getUserCountryListAction, getUserNoteTypeListAction } from "../../../store/Configuration/configActions";
 import Loader from "../../../components/Loader";
 import { uploadDocument } from "../../../utils/upload";
-import { createNoteAction } from "../../../store/UserNotes/userNoteActions";
+import { createNoteAction, fetchNoteAction, updateNoteAction } from "../../../store/UserNotes/userNoteActions";
 
 const NoteForm = () => {
   const dispatch = useDispatch();
-  const params = useParams();
+  const history = useHistory();
+  const { id } = useParams();
 
   const { loading: config_loading, country_list, category_list, note_type_list } = useSelector((state) => state.configReducer);
   const { loading: note_loading, note } = useSelector((state) => state.userNoteReducer);
 
   const [noteId, setNoteId] = useState(null);
-  const [isPublishing, setPublish] = useState(false);
+  const [status, setStatus] = useState(1);
   const [loading, setLoading] = useState(false);
 
   const [formValue, setFormValue] = useState({
@@ -46,10 +47,14 @@ const NoteForm = () => {
   });
 
   useEffect(() => {
-    const { id } = params;
-    setNoteId(id);
     if (id) {
+      setNoteId(id);
+      dispatch(fetchNoteAction(id));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     dispatch(getUserCountryListAction());
     dispatch(getUserCategoryListAction());
     dispatch(getUserNoteTypeListAction());
@@ -57,8 +62,34 @@ const NoteForm = () => {
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (note) {
+      setFormValue({
+        title: note.title,
+        description: note.description,
+        category: note.category?.id || "",
+
+        display_picture: note.display_picture,
+        display_picture_note: null,
+        notes_preview: note.notes_preview,
+        notes_preview_note: null,
+        file: note.file,
+        file_note: null,
+
+        file_name: note.file_name,
+        file_size: note.file_size,
+        is_paid: note.is_paid,
+        selling_price: note.selling_price,
+        note_type: note.note_type?.id || "" + "",
+        number_of_pages: note.number_of_pages,
+        country: note.country?.id || "",
+        university_name: note.university_name,
+        course: note.course,
+        course_code: note.course_code,
+        professor: note.professor,
+      });
+      setStatus(note.status);
+    }
+  }, [note]);
 
   return (
     <div className="add-notes">
@@ -97,17 +128,15 @@ const NoteForm = () => {
 
               if (noteId) {
                 setLoading(false);
-                console.log("edit Note");
+                dispatch(updateNoteAction(noteId, status, note_value));
+                history.push("/sell-note/dashboard")
               } else {
                 setLoading(false);
-                dispatch(createNoteAction(isPublishing ? 2 : 1, note_value));
+                dispatch(createNoteAction(status, note_value));
+                resetForm();
               }
-              resetForm();
             }}>
             {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
-              console.log(values);
-              console.log(errors);
-              console.log(touched);
               return (
                 <Form>
                   <div className="basic-note-detail">
@@ -142,9 +171,7 @@ const NoteForm = () => {
                             name="category"
                             onChange={handleChange}
                             onBlur={handleBlur}>
-                            <option value="" disabled>
-                              Select Your Category
-                            </option>
+                            <option value="">Select Your Category</option>
                             {category_list.map((category) => {
                               return (
                                 <option value={category.id} key={category.id}>
@@ -220,9 +247,7 @@ const NoteForm = () => {
                             name="note_type"
                             onChange={handleChange}
                             onBlur={handleBlur}>
-                            <option value="" disabled>
-                              Select Your Note Type
-                            </option>
+                            <option value="">Select Your Note Type</option>
                             {note_type_list.map((type) => {
                               return (
                                 <option value={type.id} key={type.id}>
@@ -283,9 +308,7 @@ const NoteForm = () => {
                             name="country"
                             onChange={handleChange}
                             onBlur={handleBlur}>
-                            <option value="" disabled>
-                              Select Your Country
-                            </option>
+                            <option value="">Select Your Country</option>
                             {country_list.map((country) => {
                               return (
                                 <option value={country.id} key={country.id}>
@@ -437,13 +460,12 @@ const NoteForm = () => {
                       </div>
                     </div>
                   </div>
-
                   <div className="add-note-button">
                     <button
                       type="button"
                       className="btn save-btn btn-purple"
                       onClick={(e) => {
-                        setPublish(false);
+                        setStatus(1);
                         handleSubmit();
                       }}>
                       Save
@@ -452,7 +474,7 @@ const NoteForm = () => {
                       type="button"
                       className="btn publish-btn btn-purple"
                       onClick={(e) => {
-                        setPublish(true);
+                        setStatus(2);
                         handleSubmit();
                       }}>
                       Publish
