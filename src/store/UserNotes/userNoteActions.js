@@ -1,6 +1,12 @@
 import { toast } from "react-toastify";
-import { USERS_CREATE_NOTE_SUCCESS, USER_NOTE_FAILURE, USER_NOTE_REQUEST } from "./userNoteActionTypes";
-import { createNote } from "../../services/user-note.service";
+import {
+  USERS_CREATE_NOTE_SUCCESS,
+  USERS_IN_PROGRESS_NOTE_SUCCESS,
+  USERS_PUBLISHED_NOTE_SUCCESS,
+  USER_NOTE_FAILURE,
+  USER_NOTE_REQUEST,
+} from "./userNoteActionTypes";
+import { createNote, inProgressNote, publishedNote } from "../../services/user-note.service";
 
 const request = () => {
   return { type: USER_NOTE_REQUEST };
@@ -29,5 +35,39 @@ export function createNoteAction(status, value) {
   };
   function success(note) {
     return { type: USERS_CREATE_NOTE_SUCCESS, payload: note };
+  }
+}
+
+export function getInProgressNoteAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    inProgressNote(search).then(
+      (response) => {
+        dispatch(success(response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function success(note) {
+    return { type: USERS_IN_PROGRESS_NOTE_SUCCESS, payload: note };
+  }
+}
+
+export function getPublishNoteAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    publishedNote(search).then(
+      (response) => {
+        dispatch(success(response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function success(note) {
+    return { type: USERS_PUBLISHED_NOTE_SUCCESS, payload: note };
   }
 }

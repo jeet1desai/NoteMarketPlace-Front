@@ -20,6 +20,7 @@ const NoteForm = () => {
 
   const [noteId, setNoteId] = useState(null);
   const [isPublishing, setPublish] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [formValue, setFormValue] = useState({
     title: "",
@@ -61,7 +62,7 @@ const NoteForm = () => {
 
   return (
     <div className="add-notes">
-      <Loader loading={config_loading || note_loading} />
+      <Loader loading={loading || config_loading || note_loading} />
 
       <div className="page-top">
         <div className="page-top-title">
@@ -76,6 +77,7 @@ const NoteForm = () => {
             initialValues={formValue}
             validationSchema={noteSchema}
             onSubmit={async (value, { resetForm }) => {
+              setLoading(true);
               let note_value = { ...value };
               if (value.display_picture_note) {
                 const url = await uploadDocument("image", value.display_picture_note);
@@ -94,8 +96,10 @@ const NoteForm = () => {
               delete note_value.file_note;
 
               if (noteId) {
+                setLoading(false);
                 console.log("edit Note");
               } else {
+                setLoading(false);
                 dispatch(createNoteAction(isPublishing ? 2 : 1, note_value));
               }
               resetForm();

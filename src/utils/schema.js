@@ -71,19 +71,23 @@ export const noteSchema = Yup.object().shape({
   description: Yup.string().required("Required"),
   category: Yup.string().required("Required"),
   notes_preview: Yup.string(),
-  notes_preview_note: Yup.string().nullable().test("isNotEmpty", "Required", function (value) {
-    const { notes_preview } = this.parent;
-    if (notes_preview === null || notes_preview?.trim() === "") {
-      return value === null || value?.trim() === "";
-    }
-    return value !== null && value?.trim() !== "";
-  }),
+  notes_preview_note: Yup.string()
+    .nullable()
+    .test("isNotEmpty", "Required", function (value) {
+      const { notes_preview } = this.parent;
+      if (notes_preview === null || notes_preview?.trim() === "") {
+        return value === null || value?.trim() === "";
+      }
+      return value !== null && value?.trim() !== "";
+    }),
   file: Yup.string(),
-  file_note: Yup.string().nullable().test("isNotEmpty", "Required", function (value) {
-    const { file } = this.parent;
-    if (file === null || file?.trim() === "") {
-      return value === null || value?.trim() === "";
-    }
-    return value !== null && value?.trim() !== "";
-  }),
+  file_note: Yup.string()
+    .nullable()
+    .test("isNotEmpty", "Required", function (value) {
+      const { file } = this.parent;
+      if (file === null || file?.trim() === "") {
+        return value === null || value?.trim() === "";
+      }
+      return value !== null && value?.trim() !== "";
+    }),
 });
