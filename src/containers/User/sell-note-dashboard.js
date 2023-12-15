@@ -8,7 +8,7 @@ import "../../assets/css/sell-note-dashboard.css";
 import EarningIcon from "../../assets/images/earning-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
-import { getInProgressNoteAction, getPublishNoteAction } from "../../store/UserNotes/userNoteActions";
+import { deleteNoteAction, getInProgressNoteAction, getPublishNoteAction } from "../../store/UserNotes/userNoteActions";
 import moment from "moment";
 import { NOTE_STATUS } from "../../utils/enum";
 import AlertDialog from "../../components/AlertDialog";
@@ -22,6 +22,7 @@ const SellNoteDashboard = () => {
   const [publishedSearch, setPublishedSearch] = useState("");
 
   const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
+  const [deleteNoteId, setDeleteNoteId] = useState(null);
 
   const { loading: note_loading, in_progress_note, published_note } = useSelector((state) => state.userNoteReducer);
 
@@ -67,6 +68,7 @@ const SellNoteDashboard = () => {
                 <DeleteIcon
                   color="disabled"
                   onClick={() => {
+                    setDeleteNoteId(record.id);
                     setDeleteDialog(true);
                   }}
                 />
@@ -242,7 +244,11 @@ const SellNoteDashboard = () => {
       <AlertDialog
         isOpen={isDeleteDialogOpen}
         handleClose={() => setDeleteDialog(false)}
-        handleSubmit={() => {}}
+        handleSubmit={() => {
+          dispatch(deleteNoteAction(deleteNoteId));
+          setDeleteDialog(false);
+          setDeleteNoteId(null);
+        }}
         title="Delete Note"
         content="Are you sure, you want to delete this note?"
       />

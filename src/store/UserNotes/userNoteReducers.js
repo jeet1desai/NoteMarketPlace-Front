@@ -1,5 +1,6 @@
 import {
   USERS_CREATE_NOTE_SUCCESS,
+  USERS_DELETE_NOTE_SUCCESS,
   USERS_GET_NOTE_SUCCESS,
   USERS_IN_PROGRESS_NOTE_SUCCESS,
   USERS_PUBLISHED_NOTE_SUCCESS,
@@ -37,12 +38,17 @@ export function userNoteReducer(state = initialState, action) {
     case USERS_UPDATE_NOTE_SUCCESS:
       const note = action.payload;
       const new_in_progress_list = state.in_progress_note.map((item) => (item.id === note.id ? note : item));
-      console.log(state.in_progress_note);
-      console.log(new_in_progress_list);
       return {
         ...state,
         loading: false,
         in_progress_note: new_in_progress_list,
+      };
+    case USERS_DELETE_NOTE_SUCCESS:
+      const updated_in_progress_list = state.in_progress_note.filter((item) => item.id !== action.payload);
+      return {
+        ...state,
+        loading: false,
+        in_progress_note: updated_in_progress_list,
       };
     case USERS_IN_PROGRESS_NOTE_SUCCESS:
       return {

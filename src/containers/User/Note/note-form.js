@@ -79,7 +79,7 @@ const NoteForm = () => {
         file_size: note.file_size,
         is_paid: note.is_paid,
         selling_price: note.selling_price,
-        note_type: note.note_type?.id || "" + "",
+        note_type: note.note_type?.id || "",
         number_of_pages: note.number_of_pages,
         country: note.country?.id || "",
         university_name: note.university_name,
@@ -129,7 +129,7 @@ const NoteForm = () => {
               if (noteId) {
                 setLoading(false);
                 dispatch(updateNoteAction(noteId, status, note_value));
-                history.push("/sell-note/dashboard")
+                history.push("/sell-note/dashboard");
               } else {
                 setLoading(false);
                 dispatch(createNoteAction(status, note_value));

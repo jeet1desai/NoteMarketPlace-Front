@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import {
   USERS_CREATE_NOTE_SUCCESS,
+  USERS_DELETE_NOTE_SUCCESS,
   USERS_GET_NOTE_SUCCESS,
   USERS_IN_PROGRESS_NOTE_SUCCESS,
   USERS_PUBLISHED_NOTE_SUCCESS,
@@ -8,7 +9,7 @@ import {
   USER_NOTE_FAILURE,
   USER_NOTE_REQUEST,
 } from "./userNoteActionTypes";
-import { createNote, fetchNote, inProgressNote, publishedNote, updateNote } from "../../services/user-note.service";
+import { createNote, deleteNote, fetchNote, inProgressNote, publishedNote, updateNote } from "../../services/user-note.service";
 
 const request = () => {
   return { type: USER_NOTE_REQUEST };
@@ -76,6 +77,24 @@ export function updateNoteAction(id, status, value) {
   };
   function success(note) {
     return { type: USERS_UPDATE_NOTE_SUCCESS, payload: note };
+  }
+}
+
+export function deleteNoteAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    deleteNote(id).then(
+      (response) => {
+        toast.success("Successfully deleted");
+        dispatch(success(id));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function success(note) {
+    return { type: USERS_DELETE_NOTE_SUCCESS, payload: note };
   }
 }
 

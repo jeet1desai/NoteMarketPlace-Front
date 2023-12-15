@@ -37,6 +37,17 @@ export const updateNote = (id, status, value) => {
   return fetch(`${API_URL}/note/update_note/${id}/${status}/`, requestOptions).then(handleResponse);
 };
 
+export const deleteNote = (id) => {
+  const requestOptions = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getLSUserToken()}`,
+    },
+  };
+  return fetch(`${API_URL}/note/delete_note/${id}/`, requestOptions).then(handleResponse);
+};
+
 export const inProgressNote = (search) => {
   const requestOptions = {
     method: "GET",
