@@ -83,7 +83,7 @@ export default function AdminHeader() {
 
   const settingsMenu = (
     <Menu>
-      {currentUser.role === 3 && (
+      {currentUser.role_id === 1 && (
         <>
           <Menu.Item>
             <NavLink exact={true} to="/admin/manage-system-config" activeclassname="active">
@@ -158,18 +158,13 @@ export default function AdminHeader() {
               </li>
               <li className="nav-link">
                 <Dropdown overlay={profileMenu}>
-                  <Avatar alt="Remy Sharp" src={currentUser.profilePicture} sx={{ width: 28, height: 28 }} />
+                  <Avatar alt="Remy Sharp" src={currentUser.profile_picture} sx={{ width: 28, height: 28 }} />
                 </Dropdown>
               </li>
               <li className="nav-link">
                 {currentUser ? (
                   <Link to="/login" className="login">
-                    <button
-                      type="button"
-                      className="btn btn-purple"
-                      onClick={() => {
-                        localStorage.removeItem("currentUser");
-                      }}>
+                    <button type="button" className="btn btn-purple" onClick={() => localStorage.clear()}>
                       Logout
                     </button>
                   </Link>

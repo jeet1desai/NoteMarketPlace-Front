@@ -101,3 +101,41 @@ export const noteSchema = Yup.object().shape({
       },
     }),
 });
+
+export const configSchema = Yup.object().shape({
+  email: Yup.string().required("Required").email("Valid email").nullable(),
+  phone_number: Yup.string().required("Required").nullable(),
+  facebook_url: Yup.string().nullable(),
+  twitter_url: Yup.string().nullable(),
+  linkedIn_url: Yup.string().nullable(),
+  profile_picture: Yup.string(),
+  profile_picture_img: Yup.string()
+    .nullable()
+    .test({
+      name: "isNotEmpty",
+      message: "Required",
+      test: function (value) {
+        const { profile_picture } = this.parent;
+        const profile_picture_img = value;
+        if ((profile_picture === "" || profile_picture === undefined) && profile_picture_img === null) {
+          return false;
+        }
+        return true;
+      },
+    }),
+  note_picture: Yup.string(),
+  note_picture_img: Yup.string()
+    .nullable()
+    .test({
+      name: "isNotEmpty",
+      message: "Required",
+      test: function (value) {
+        const { note_picture } = this.parent;
+        const note_picture_img = value;
+        if ((note_picture === "" || note_picture === undefined) && note_picture_img === null) {
+          return false;
+        }
+        return true;
+      },
+    }),
+});
