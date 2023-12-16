@@ -164,7 +164,9 @@ const SystemConfig = () => {
                       {values.note_picture_img ? (
                         <span className="file-info">{values.note_picture_img.name}</span>
                       ) : (
-                        <span className="file-info">{values.note_picture}</span>
+                        <a className="file-info" href={values.note_picture} target="_blank" rel="noreferrer">
+                          {values.note_picture}
+                        </a>
                       )}
                       <ErrorText error={errors.note_picture_img} touched={touched.note_picture_img} />
                     </div>
@@ -184,7 +186,9 @@ const SystemConfig = () => {
                       {values.profile_picture_img ? (
                         <span className="file-info">{values.profile_picture_img.name}</span>
                       ) : (
-                        <span className="file-info">{values.profile_picture}</span>
+                        <a className="file-info" href={values.profile_picture} target="_blank" rel="noreferrer">
+                          {values.profile_picture}
+                        </a>
                       )}
                       <ErrorText error={errors.profile_picture_img} touched={touched.profile_picture_img} />
                     </div>

@@ -219,7 +219,9 @@ const MyProfile = () => {
                           {values.picture_file ? (
                             <span className="file-info">{values.picture_file.name}</span>
                           ) : (
-                            <span className="file-info">{values.profile_picture}</span>
+                            <a className="file-info" href={values.profile_picture} target="_blank" rel="noreferrer">
+                              {values.profile_picture}
+                            </a>
                           )}
                           <ErrorText error={errors.picture_file} touched={touched.picture_file} />
                         </div>
