@@ -147,3 +147,8 @@ export const adminSchema = Yup.object().shape({
   phone_country_code: Yup.string().required("Required"),
   phone_number: Yup.number().required("Required").positive("Must be a positive").integer("Must be a number"),
 });
+
+export const categoryTypeSchema = Yup.object().shape({
+  name: Yup.string().required("Required"),
+  description: Yup.string().required("Required"),
+});
