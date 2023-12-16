@@ -31,7 +31,6 @@ const CategoryForm = () => {
                 initialValues={category}
                 validationSchema={categorySchema}
                 onSubmit={(values, { resetForm }) => {
-                  
                   resetForm();
                 }}>
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
@@ -63,11 +62,7 @@ const CategoryForm = () => {
                           value={values.description}></textarea>
                         {errors.description && touched.description && <small className="error-text">{errors.description}</small>}
                       </div>
-                      <Button
-                        disabled={loading}
-                        startIcon={loading && <CircularProgress color="inherit" size={24} />}
-                        type="submit"
-                        className="btn submit-btn btn-purple">
+                      <Button type="submit" className="btn submit-btn btn-purple">
                         Submit
                       </Button>
                     </Form>

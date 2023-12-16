@@ -97,11 +97,7 @@ const Category = () => {
                     placeholder="Search"
                   />
                 </div>
-                <button
-                  onClick={() => {
-                  }}
-                  type="button"
-                  className="btn btn-purple">
+                <button onClick={() => {}} type="button" className="btn btn-purple">
                   Search
                 </button>
               </div>

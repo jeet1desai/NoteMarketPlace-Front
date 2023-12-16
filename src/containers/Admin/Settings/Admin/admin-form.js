@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import "../../../../assets/css/add-admin.css";
-import { createAdminAction, getAdminAction, getUserCountryListAction, updateAdminAction } from "../../../../store/Configuration/configActions";
+import {
+  createAdminAction,
+  getAdminAction,
+  getUserCountryListAction,
+  updateAdminAction,
+} from "../../../../store/Configuration/configActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Loader from "../../../../components/Loader";
@@ -12,7 +17,7 @@ const AddAdmin = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const { loading: config_loading, country_list, admin } = useSelector((state) => state.configReducer);
+  const { loading, country_list, admin } = useSelector((state) => state.configReducer);
 
   const [formValue, setFormValue] = useState({
     first_name: "",
@@ -42,11 +47,9 @@ const AddAdmin = () => {
     }
   }, [admin]);
 
-  console.log(admin);
-
   return (
     <div className="add-admin">
-      <Loader loading={config_loading} />
+      <Loader loading={loading} />
       <div className="container">
         <div className="add-form">
           <div className="page-title">
@@ -67,8 +70,6 @@ const AddAdmin = () => {
                   }
                 }}>
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
-                  console.log(errors);
-                  console.log(touched);
                   return (
                     <Form onSubmit={handleSubmit}>
                       <div className="form-group">
