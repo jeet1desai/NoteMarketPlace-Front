@@ -1,8 +1,14 @@
+import { toast } from "react-toastify";
 import {
+  createAdmin,
+  deleteAdmin,
+  fetchAdmin,
   fetchAdminConfig,
+  fetchAllAdmin,
   fetchUserCategoryList,
   fetchUserCountryList,
   fetchUserNoteTypeList,
+  updateAdmin,
   updateAdminConfig,
 } from "../../services/config.service";
 import {
@@ -13,6 +19,11 @@ import {
   USER_GET_NOTE_TYPE_SUCCESS,
   ADMIN_GET_CONFIG_SUCCESS,
   ADMIN_UPDATE_CONFIG_SUCCESS,
+  ADMIN_CREATE_ADMIN_SUCCESS,
+  ADMIN_GET_ADMINS_SUCCESS,
+  ADMIN_GET_ADMIN_SUCCESS,
+  ADMIN_UPDATE_ADMIN_SUCCESS,
+  ADMIN_DELETE_ADMIN_SUCCESS,
 } from "./configActionTypes";
 
 const request = () => {
@@ -96,6 +107,7 @@ export function updateAdminConfigAction(value) {
     dispatch(request());
     updateAdminConfig(value).then(
       (response) => {
+        toast.success("Successfully updated!");
         dispatch(success(response.data));
       },
       (error) => {
@@ -105,5 +117,93 @@ export function updateAdminConfigAction(value) {
   };
   function success(data) {
     return { type: ADMIN_UPDATE_CONFIG_SUCCESS, payload: data };
+  }
+}
+
+export function createAdminAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    createAdmin(value).then(
+      (response) => {
+        toast.success("Successfully added!");
+        dispatch(success(response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function success(data) {
+    return { type: ADMIN_CREATE_ADMIN_SUCCESS, payload: data };
+  }
+}
+
+export function updateAdminAction(id, value) {
+  return (dispatch) => {
+    dispatch(request());
+    updateAdmin(id, value).then(
+      (response) => {
+        toast.success("Successfully updated!");
+        dispatch(success(response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function success(data) {
+    return { type: ADMIN_UPDATE_ADMIN_SUCCESS, payload: data };
+  }
+}
+
+export function deleteAdminAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    deleteAdmin(id).then(
+      (response) => {
+        toast.success("Successfully in active!");
+        dispatch(success(response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function success(data) {
+    return { type: ADMIN_DELETE_ADMIN_SUCCESS, payload: data };
+  }
+}
+
+export function getAdminsAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchAllAdmin(search).then(
+      (response) => {
+        dispatch(success(response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function success(data) {
+    return { type: ADMIN_GET_ADMINS_SUCCESS, payload: data };
+  }
+}
+
+export function getAdminAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchAdmin(id).then(
+      (response) => {
+        dispatch(success(response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+  function success(data) {
+    return { type: ADMIN_GET_ADMIN_SUCCESS, payload: data };
   }
 }

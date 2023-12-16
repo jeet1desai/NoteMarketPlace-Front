@@ -45,15 +45,18 @@ a:hover {
   padding: 10px;
 }
 
-.navigation ul .nav-link > a {
+.navigation ul .nav-link > a,
+.navigation ul .nav-link > span {
   color: #333333;
   text-decoration: none;
   display: inline-block;
   padding: 0 0 6px 0;
   transition: color 0.5s;
+  cursor: pointer;
 }
 
-.navigation .nav-link a:hover {
+.navigation .nav-link a:hover,
+.navigation .nav-link span:hover {
   color: #6255a5;
 }
 

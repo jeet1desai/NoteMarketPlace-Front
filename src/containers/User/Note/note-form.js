@@ -97,7 +97,7 @@ const NoteForm = () => {
 
       <div className="page-top">
         <div className="page-top-title">
-          <p>Add Note</p>
+          <p>{id ? "Edit" : "Add"} Note</p>
         </div>
       </div>
 

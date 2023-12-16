@@ -139,3 +139,11 @@ export const configSchema = Yup.object().shape({
       },
     }),
 });
+
+export const adminSchema = Yup.object().shape({
+  first_name: Yup.string().required("Required"),
+  last_name: Yup.string().required("Required"),
+  email: Yup.string().required("Required").email("Enter valid"),
+  phone_country_code: Yup.string().required("Required"),
+  phone_number: Yup.number().required("Required").positive("Must be a positive").integer("Must be a number"),
+});

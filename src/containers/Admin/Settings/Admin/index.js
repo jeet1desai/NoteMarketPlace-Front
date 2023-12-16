@@ -1,48 +1,82 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Table, Space } from "antd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 import "../../../../assets/css/manage-admin.css";
+import Loader from "../../../../components/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAdminAction, getAdminsAction } from "../../../../store/Configuration/configActions";
+import moment from "moment";
+import AlertDialog from "../../../../components/AlertDialog";
 
-export default function Admin() {
+const Admin = () => {
+  const dispatch = useDispatch();
+  const { loading: config_loading, admins_list } = useSelector((state) => state.configReducer);
+
+  const [adminPage, setAdminPage] = useState(1);
+  const [adminSearch, setAdminSearch] = useState("");
+
+  const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
+  const [deleteAdminId, setDeleteAdminId] = useState(null);
+
   const columns = [
-    { title: "SR NO.", dataIndex: "id" },
-    { title: "FIRST NAME", dataIndex: "first" },
-    { title: "LAST NAME", dataIndex: "last" },
-    { title: "EMAIL", dataIndex: "email", sorter: true },
-    { title: "PHONE NO", dataIndex: "phone" },
-    { title: "DATE ADDED", dataIndex: "time" },
-    { title: "ACTIVE", dataIndex: "active" },
+    {
+      title: "SR NO.",
+      dataIndex: "id",
+      render: (_, record, index) => index + 1,
+      sorter: (a, b) => (a.id > b.id ? 1 : -1),
+    },
+    { title: "FIRST NAME", dataIndex: "first_name", sorter: (a, b) => a.first_name.localeCompare(b.first_name) },
+    { title: "LAST NAME", dataIndex: "last_name", sorter: (a, b) => a.last_name.localeCompare(b.last_name) },
+    { title: "EMAIL", dataIndex: "email", sorter: true, sorter: (a, b) => a.email.localeCompare(b.email) },
+    {
+      title: "PHONE NO",
+      dataIndex: "phone",
+      render: (_, record) => `+${record.phone_country_code.code} ${record.phone_number || ""}`,
+      sorter: (a, b) =>
+        `+${a.phone_country_code.code} ${a.phone_number || ""}`.localeCompare(`+${b.phone_country_code.code} ${b.phone_number || ""}`),
+    },
+    {
+      title: "DATE ADDED",
+      dataIndex: "created_date",
+      render: (date) => moment(date).format("DD-MM-YYYY"),
+      sorter: (a, b) => moment(a.created_date).unix() - moment(b.created_date).unix(),
+    },
+    {
+      title: "ACTIVE",
+      dataIndex: "is_active",
+      render: (is_active) => (is_active ? "Yes" : "No"),
+      sorter: (a, b) => `${a.is_active ? "Yes" : "No"}`.localeCompare(`${b.is_active ? "Yes" : "No"}`),
+    },
     {
       title: "ACTION",
       key: "action",
-      render: (text, record) => (
+      render: (_, record) => (
         <Space size="middle">
-          <Link to={"/search-notes"}>
+          <Link to={`/admin/manage-admin/edit-admin/${record.id}`}>
             <EditIcon color="disabled" />
           </Link>
-          <DeleteIcon color="disabled" />
+          <DeleteIcon
+            color="disabled"
+            onClick={() => {
+              setDeleteAdminId(record.id);
+              setDeleteDialog(true);
+            }}
+          />
         </Space>
       ),
     },
   ];
 
-  const data = [
-    {
-      id: "1",
-      first: "John",
-      last: "Brown",
-      active: "Yes",
-      email: "kh123@gmail.com	",
-      phone: "+91 7896541230",
-      time: "27 Nov 2020, 11:20:30",
-    },
-  ];
+  useEffect(() => {
+    dispatch(getAdminsAction(""));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="manage-admin">
+      <Loader loading={config_loading} />
       <div className="container">
         <div className="manage-admin-table">
           <div className="admin-header">
@@ -56,9 +90,9 @@ export default function Admin() {
               <div className="search">
                 <div className="form-group has-search">
                   <span className="fa fa-search search-icon"></span>
-                  <input type="text" className="form-control" placeholder="Search" />
+                  <input type="text" className="form-control" placeholder="Search" onChange={(e) => setAdminSearch(e.target.value)} />
                 </div>
-                <button type="button" className="btn btn-purple">
+                <button type="button" className="btn btn-purple" onClick={() => dispatch(getAdminsAction(adminSearch))}>
                   Search
                 </button>
               </div>
@@ -68,19 +102,33 @@ export default function Admin() {
           <div className="antd-table">
             <Table
               columns={columns}
-              dataSource={data}
-              // scroll={{ x: true }}
+              dataSource={admins_list}
               pagination={{
-                current: 1,
-                pageSize: 1,
-                total: 2,
+                current: adminPage,
+                pageSize: 10,
+                total: admins_list.length,
                 position: ["bottomCenter"],
+                onChange: (val) => setAdminPage(val),
               }}
               showSorterTooltip={false}
             />
           </div>
         </div>
       </div>
+
+      <AlertDialog
+        isOpen={isDeleteDialogOpen}
+        handleClose={() => setDeleteDialog(false)}
+        handleSubmit={() => {
+          dispatch(deleteAdminAction(deleteAdminId));
+          setDeleteDialog(false);
+          setDeleteAdminId(null);
+        }}
+        title="Delete Admin"
+        content="Are you sure you want to make this administrator inactive?"
+      />
     </div>
   );
-}
+};
+
+export default Admin;

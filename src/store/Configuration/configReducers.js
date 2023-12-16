@@ -6,6 +6,11 @@ import {
   USER_GET_NOTE_TYPE_SUCCESS,
   ADMIN_GET_CONFIG_SUCCESS,
   ADMIN_UPDATE_CONFIG_SUCCESS,
+  ADMIN_CREATE_ADMIN_SUCCESS,
+  ADMIN_GET_ADMINS_SUCCESS,
+  ADMIN_GET_ADMIN_SUCCESS,
+  ADMIN_UPDATE_ADMIN_SUCCESS,
+  ADMIN_DELETE_ADMIN_SUCCESS,
 } from "./configActionTypes";
 
 const initialState = {
@@ -14,6 +19,8 @@ const initialState = {
   category_list: [],
   note_type_list: [],
   config: null,
+  admins_list: [],
+  admin: null,
 };
 
 export function configReducer(state = initialState, action) {
@@ -48,6 +55,28 @@ export function configReducer(state = initialState, action) {
         loading: false,
         config: action.payload,
       };
+    case ADMIN_GET_ADMINS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        admins_list: action.payload,
+      };
+    case ADMIN_GET_ADMIN_SUCCESS:
+    case ADMIN_UPDATE_ADMIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        admin: action.payload,
+      };
+    case ADMIN_DELETE_ADMIN_SUCCESS:
+      const admin = action.payload;
+      const new_admin_list = state.admins_list.map((item) => (item.id === admin.id ? admin : item));
+      return {
+        ...state,
+        loading: false,
+        admins_list: new_admin_list,
+      };
+    case ADMIN_CREATE_ADMIN_SUCCESS:
     case CONFIG_FAILURE:
       return {
         ...state,

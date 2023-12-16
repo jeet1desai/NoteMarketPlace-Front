@@ -2,15 +2,12 @@ import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Dropdown, Menu } from "antd";
 import { Avatar } from "@mui/material";
-
 import "../../assets/css/header.css";
 import BlueLogo from "../../assets/images/top-logo-purple.png";
-
 import { getLSUser } from "../../utils/local";
 
 export default function AdminHeader() {
   const [toggle, setToggle] = useState(false);
-
   const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
@@ -38,7 +35,7 @@ export default function AdminHeader() {
           to="/login"
           activeclassname="active"
           onClick={() => {
-            localStorage.removeItem("currentUser");
+            localStorage.clear();
           }}>
           Logout
         </NavLink>
@@ -137,8 +134,9 @@ export default function AdminHeader() {
               </li>
               <li className="nav-link">
                 <Dropdown overlay={notesMenu}>
-                  <a>Notes</a>
+                  <span>Notes</span>
                 </Dropdown>
+                <div className="underline"></div>
               </li>
               <li className="nav-link">
                 <NavLink exact={true} to="/admin/members" activeclassname="active">
@@ -148,13 +146,15 @@ export default function AdminHeader() {
               </li>
               <li className="nav-link">
                 <Dropdown overlay={reportsMenu}>
-                  <a>Reports</a>
+                  <span>Reports</span>
                 </Dropdown>
+                <div className="underline"></div>
               </li>
               <li className="nav-link">
                 <Dropdown overlay={settingsMenu}>
-                  <a>Settings</a>
+                  <span>Settings</span>
                 </Dropdown>
+                <div className="underline"></div>
               </li>
               <li className="nav-link">
                 <Dropdown overlay={profileMenu}>
