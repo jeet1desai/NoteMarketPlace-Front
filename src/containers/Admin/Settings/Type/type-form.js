@@ -1,27 +1,31 @@
 import React from "react";
 import { Formik, Form } from "formik";
+import "../../../../assets/css/add-type.css";
 
-import "../../../../assets/css/add-country.css";
-
-export default function EditCountry() {
+const TypeForm = () => {
   return (
-    <div className="add-country">
+    <div className="add-type">
       <div className="container">
         <div className="add-form">
           <div className="page-title">
-            <p>Edit Country</p>
+            <p>Add Category</p>
           </div>
           <div className="row">
             <div className="col-6">
               <Formik initialValues={{}} onSubmit={(values) => {}}>
                 <Form>
                   <div className="form-group">
-                    <label for="title">Country Name *</label>
-                    <input type="text" className="form-control" id="title" placeholder="Enter Your Country Name " required />
+                    <label for="title">Type *</label>
+                    <input type="text" className="form-control" id="title" placeholder="Enter Your Type" required />
                   </div>
                   <div className="form-group">
-                    <label for="title">Country Code *</label>
-                    <input type="text" className="form-control" id="title" placeholder="Enter Your Country Code" required />
+                    <label for="description">Description *</label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      className="form-control"
+                      placeholder="Write Your Description ..."
+                      required></textarea>
                   </div>
                   <button type="button" className="btn submit-btn btn-purple">
                     Submit
@@ -34,4 +38,6 @@ export default function EditCountry() {
       </div>
     </div>
   );
-}
+};
+
+export default TypeForm;

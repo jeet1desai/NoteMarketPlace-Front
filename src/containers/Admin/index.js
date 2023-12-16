@@ -17,10 +17,8 @@ import Country from "./Settings/Country";
 import Type from "./Settings/Type";
 import AdminFrom from "./Settings/Admin/admin-form";
 import CategoryForm from "./Settings/Category/category-form";
-import AddCountry from "./Settings/Country/add";
-import EditCountry from "./Settings/Country/edit";
-import AddType from "./Settings/Type/add";
-import EditType from "./Settings/Type/edit";
+import CountryForm from "./Settings/Country/country-form";
+import TypeForm from "./Settings/Type/type-form";
 import AdminNoteDetails from "./Notes/note-details";
 
 import AdminHeader from "../../hoc/admin/header";
@@ -49,11 +47,11 @@ export default function AdminRoute() {
         <PrivateRoute roles={[1, 2]} exact path="/admin/manage-category/add-category" component={CategoryForm} />
         <PrivateRoute roles={[1, 2]} exact path="/admin/manage-category/edit-category/:id" component={CategoryForm} />
         <PrivateRoute roles={[1, 2]} exact path="/admin/manage-type" component={Type} />
-        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-type/add-type" component={AddType} />
-        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-type/edit-type/:id" component={EditType} />
+        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-type/add-type" component={TypeForm} />
+        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-type/edit-type/:id" component={TypeForm} />
         <PrivateRoute roles={[1, 2]} exact path="/admin/manage-country" component={Country} />
-        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-country/add-country" component={AddCountry} />
-        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-country/edit-country/:id" component={EditCountry} />
+        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-country/add-country" component={CountryForm} />
+        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-country/edit-country/:id" component={CountryForm} />
         <PrivateRoute roles={[1, 2]} exact path="/admin/my-profile" component={AdminProfile} />
         <Redirect to="/admin/dashboard" />
       </Switch>

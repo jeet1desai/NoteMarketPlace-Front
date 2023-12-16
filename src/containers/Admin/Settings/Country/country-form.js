@@ -1,9 +1,8 @@
 import React from "react";
 import { Formik, Form } from "formik";
-
 import "../../../../assets/css/add-country.css";
 
-export default function AddCountry() {
+const CountryForm = () => {
   return (
     <div className="add-country">
       <div className="container">
@@ -34,4 +33,6 @@ export default function AddCountry() {
       </div>
     </div>
   );
-}
+};
+
+export default CountryForm;
