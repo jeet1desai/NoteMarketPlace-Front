@@ -11,6 +11,8 @@ import {
   ADMIN_GET_ADMIN_SUCCESS,
   ADMIN_UPDATE_ADMIN_SUCCESS,
   ADMIN_DELETE_ADMIN_SUCCESS,
+  ADMIN_GET_CATEGORIES_SUCCESS,
+  ADMIN_DELETE_CATEGORY_SUCCESS,
 } from "./configActionTypes";
 
 const initialState = {
@@ -21,6 +23,8 @@ const initialState = {
   config: null,
   admins_list: [],
   admin: null,
+  categories_list: [],
+  category: null,
 };
 
 export function configReducer(state = initialState, action) {
@@ -55,6 +59,11 @@ export function configReducer(state = initialState, action) {
         loading: false,
         config: action.payload,
       };
+    case ADMIN_CREATE_ADMIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
     case ADMIN_GET_ADMINS_SUCCESS:
       return {
         ...state,
@@ -76,7 +85,20 @@ export function configReducer(state = initialState, action) {
         loading: false,
         admins_list: new_admin_list,
       };
-    case ADMIN_CREATE_ADMIN_SUCCESS:
+    case ADMIN_GET_CATEGORIES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        categories_list: action.payload,
+      };
+    case ADMIN_DELETE_CATEGORY_SUCCESS:
+      const category = action.payload;
+      const new_category_list = state.categories_list.map((item) => (item.id === category.id ? category : item));
+      return {
+        ...state,
+        loading: false,
+        categories_list: new_category_list,
+      };
     case CONFIG_FAILURE:
       return {
         ...state,

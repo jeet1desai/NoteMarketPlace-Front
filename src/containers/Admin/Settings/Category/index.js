@@ -6,52 +6,60 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import "../../../../assets/css/manage-category.css";
+import { deleteCategoryAction, getCategoriesAction } from "../../../../store/Configuration/configActions";
+import AlertDialog from "../../../../components/AlertDialog";
 
 const Category = () => {
   const dispatch = useDispatch();
+  const { loading, categories_list } = useSelector((state) => state.configReducer);
 
-  const [cPage, setCPage] = useState(1);
+  const [categoryPage, setCategoryPage] = useState(1);
   const [search, setSearch] = useState("");
 
+  const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
+  const [deleteCategoryId, setDeleteCategoryId] = useState(null);
+
   useEffect(() => {
-    // dispatch(fetchAllCategoriesAction());
+    dispatch(getCategoriesAction(""));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const columns = [
-    { title: "SR NO.", dataIndex: "id", sorter: (a, b) => a.id - b.id },
+    { title: "SR NO.", dataIndex: "id", render: (_, record, index) => index + 1, sorter: (a, b) => a.id - b.id },
     {
       title: "CATEGORY",
       dataIndex: "name",
-      // sorter: (a, b) => a.name.localeCompare(b.name),
+      sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
       title: "DESCRIPTION",
       dataIndex: "description",
       ellipsis: "true",
-      // render: (desc) => (
-      //   <Tooltip placement="topLeft" title={desc}>
-      //     {desc}
-      //   </Tooltip>
-      // ),
-      // sorter: (a, b) => a.description.localeCompare(b.description),
+      render: (desc) => (
+        <Tooltip placement="topLeft" title={desc}>
+          {desc}
+        </Tooltip>
+      ),
+      sorter: (a, b) => a.description.localeCompare(b.description),
     },
     {
       title: "DATE ADDED",
-      dataIndex: "modifieddate",
-      // render: (date) => `${moment(date).utc().format("DD MMM YYYY, hh:mm:ss")}`,
-      // sorter: (a, b) => a.modifieddate.localeCompare(b.modifieddate),
+      dataIndex: "modified_date",
+      render: (date) => `${moment(date).utc().format("DD-MM-YYYY, hh:mm")}`,
+      sorter: (a, b) => moment(a.modified_date).unix() - moment(b.modified_date).unix(),
     },
     {
       title: "ADDED BY",
-      dataIndex: "",
-      // render: ({ firstname, lastname }) => `${firstname} ${lastname}`,
-      // sorter: (a, b) => a.firstname.localeCompare(b.firstname),
+      dataIndex: "created_by",
+      render: (created_by) => `${created_by.first_name} ${created_by.last_name}`,
+      sorter: (a, b) =>
+        `${a.created_by.first_name} ${a.created_by.last_name}`.localeCompare(`${b.created_by.first_name} ${b.created_by.last_name}`),
     },
     {
       title: "ACTIVE",
       dataIndex: "is_active",
-      // render: (isActive) => (isActive ? "Yes" : "No"),
-      // sorter: (a, b) => a.isactive - b.isactive,
+      render: (isActive) => (isActive ? "Yes" : "No"),
+      sorter: (a, b) => a.is_active - b.is_active,
     },
     {
       title: "ACTION",
@@ -65,7 +73,8 @@ const Category = () => {
             <DeleteIcon
               color="disabled"
               onClick={() => {
-                // dispatch(deleteCategoryAction(record.id));
+                setDeleteCategoryId(record.id);
+                setDeleteDialog(true);
               }}
             />
           </Space>
@@ -89,15 +98,9 @@ const Category = () => {
               <div className="search">
                 <div className="form-group has-search">
                   <span className="fa fa-search search-icon"></span>
-                  <input
-                    type="text"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className="form-control"
-                    placeholder="Search"
-                  />
+                  <input type="text" onChange={(e) => setSearch(e.target.value)} className="form-control" placeholder="Search" />
                 </div>
-                <button onClick={() => {}} type="button" className="btn btn-purple">
+                <button onClick={() => dispatch(getCategoriesAction(search))} type="button" className="btn btn-purple">
                   Search
                 </button>
               </div>
@@ -106,19 +109,33 @@ const Category = () => {
 
           <div className="antd-table">
             <Table
+              loading={loading}
               columns={columns}
-              dataSource={[]}
+              dataSource={categories_list}
               pagination={{
-                current: cPage,
+                current: categoryPage,
                 pageSize: 10,
-                total: [].length,
+                total: categories_list.length,
                 position: ["bottomCenter"],
+                onChange: (val) => setCategoryPage(val),
               }}
               showSorterTooltip={false}
             />
           </div>
         </div>
       </div>
+
+      <AlertDialog
+        isOpen={isDeleteDialogOpen}
+        handleClose={() => setDeleteDialog(false)}
+        handleSubmit={() => {
+          dispatch(deleteCategoryAction(deleteCategoryId));
+          setDeleteDialog(false);
+          setDeleteCategoryId(null);
+        }}
+        title="Delete Category"
+        content="Are you sure you want to make this category inactive?"
+      />
     </div>
   );
 };

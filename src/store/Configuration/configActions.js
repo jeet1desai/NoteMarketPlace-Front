@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import {
   createAdmin,
+  createCategory,
   deleteAdmin,
   fetchAdmin,
   fetchAdminConfig,
@@ -9,7 +10,11 @@ import {
   fetchUserCountryList,
   fetchUserNoteTypeList,
   updateAdmin,
+  updateCategory,
   updateAdminConfig,
+  deleteCategory,
+  fetchCategory,
+  fetchAllCategory,
 } from "../../services/config.service";
 import {
   CONFIG_REQUEST,
@@ -24,6 +29,11 @@ import {
   ADMIN_GET_ADMIN_SUCCESS,
   ADMIN_UPDATE_ADMIN_SUCCESS,
   ADMIN_DELETE_ADMIN_SUCCESS,
+  ADMIN_CREATE_CATEGORY_SUCCESS,
+  ADMIN_UPDATE_CATEGORY_SUCCESS,
+  ADMIN_DELETE_CATEGORY_SUCCESS,
+  ADMIN_GET_CATEGORIES_SUCCESS,
+  ADMIN_GET_CATEGORY_SUCCESS,
 } from "./configActionTypes";
 
 const request = () => ({ type: CONFIG_REQUEST });
@@ -168,6 +178,79 @@ export function getAdminAction(id) {
     fetchAdmin(id).then(
       (response) => {
         dispatch(success(ADMIN_GET_ADMIN_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function createCategoryAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    createCategory(value).then(
+      (response) => {
+        toast.success("Successfully added!");
+        dispatch(success(ADMIN_CREATE_CATEGORY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function updateCategoryAction(id, value) {
+  return (dispatch) => {
+    dispatch(request());
+    updateCategory(id, value).then(
+      (response) => {
+        toast.success("Successfully updated!");
+        dispatch(success(ADMIN_UPDATE_CATEGORY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function deleteCategoryAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    deleteCategory(id).then(
+      (response) => {
+        toast.success("Successfully in active!");
+        dispatch(success(ADMIN_DELETE_CATEGORY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getCategoriesAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchAllCategory(search).then(
+      (response) => {
+        dispatch(success(ADMIN_GET_CATEGORIES_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getCategoryAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchCategory(id).then(
+      (response) => {
+        dispatch(success(ADMIN_GET_CATEGORY_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
