@@ -4,7 +4,6 @@ import { Table, Space } from "antd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "../../../../assets/css/manage-admin.css";
-import Loader from "../../../../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAdminAction, getAdminsAction } from "../../../../store/Configuration/configActions";
 import moment from "moment";
@@ -12,7 +11,7 @@ import AlertDialog from "../../../../components/AlertDialog";
 
 const Admin = () => {
   const dispatch = useDispatch();
-  const { loading: config_loading, admins_list } = useSelector((state) => state.configReducer);
+  const { loading, admins_list } = useSelector((state) => state.configReducer);
 
   const [adminPage, setAdminPage] = useState(1);
   const [adminSearch, setAdminSearch] = useState("");
@@ -76,7 +75,6 @@ const Admin = () => {
 
   return (
     <div className="manage-admin">
-      <Loader loading={config_loading} />
       <div className="container">
         <div className="manage-admin-table">
           <div className="admin-header">
@@ -101,6 +99,7 @@ const Admin = () => {
 
           <div className="antd-table">
             <Table
+              loading={loading}
               columns={columns}
               dataSource={admins_list}
               pagination={{

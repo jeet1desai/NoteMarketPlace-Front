@@ -5,62 +5,53 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-
-import { fetchAllCategoriesAction, deleteCategoryAction, searchCategoriesAction } from "../../../../store/AdminCategory/categoryActions";
-
 import "../../../../assets/css/manage-category.css";
 
 const Category = () => {
-  const loading = useSelector((state) => state.categoryReducer.loading);
-  const categories = useSelector((state) => state.categoryReducer.categories);
   const dispatch = useDispatch();
 
   const [cPage, setCPage] = useState(1);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    dispatch(fetchAllCategoriesAction());
+    // dispatch(fetchAllCategoriesAction());
   }, []);
-
-  const handlePagination = (e) => {
-    setCPage(e.current);
-  };
 
   const columns = [
     { title: "SR NO.", dataIndex: "id", sorter: (a, b) => a.id - b.id },
     {
       title: "CATEGORY",
       dataIndex: "name",
-      sorter: (a, b) => a.name.localeCompare(b.name),
+      // sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
       title: "DESCRIPTION",
       dataIndex: "description",
       ellipsis: "true",
-      render: (desc) => (
-        <Tooltip placement="topLeft" title={desc}>
-          {desc}
-        </Tooltip>
-      ),
-      sorter: (a, b) => a.description.localeCompare(b.description),
+      // render: (desc) => (
+      //   <Tooltip placement="topLeft" title={desc}>
+      //     {desc}
+      //   </Tooltip>
+      // ),
+      // sorter: (a, b) => a.description.localeCompare(b.description),
     },
     {
       title: "DATE ADDED",
       dataIndex: "modifieddate",
-      render: (date) => `${moment(date).utc().format("DD MMM YYYY, hh:mm:ss")}`,
-      sorter: (a, b) => a.modifieddate.localeCompare(b.modifieddate),
+      // render: (date) => `${moment(date).utc().format("DD MMM YYYY, hh:mm:ss")}`,
+      // sorter: (a, b) => a.modifieddate.localeCompare(b.modifieddate),
     },
     {
       title: "ADDED BY",
       dataIndex: "",
-      render: ({ firstname, lastname }) => `${firstname} ${lastname}`,
-      sorter: (a, b) => a.firstname.localeCompare(b.firstname),
+      // render: ({ firstname, lastname }) => `${firstname} ${lastname}`,
+      // sorter: (a, b) => a.firstname.localeCompare(b.firstname),
     },
     {
       title: "ACTIVE",
-      dataIndex: "isactive",
-      render: (isActive) => (isActive ? "Yes" : "No"),
-      sorter: (a, b) => a.isactive - b.isactive,
+      dataIndex: "is_active",
+      // render: (isActive) => (isActive ? "Yes" : "No"),
+      // sorter: (a, b) => a.isactive - b.isactive,
     },
     {
       title: "ACTION",
@@ -74,7 +65,7 @@ const Category = () => {
             <DeleteIcon
               color="disabled"
               onClick={() => {
-                dispatch(deleteCategoryAction(record.id));
+                // dispatch(deleteCategoryAction(record.id));
               }}
             />
           </Space>
@@ -108,7 +99,6 @@ const Category = () => {
                 </div>
                 <button
                   onClick={() => {
-                    dispatch(searchCategoriesAction(search.toLowerCase()));
                   }}
                   type="button"
                   className="btn btn-purple">
@@ -120,16 +110,14 @@ const Category = () => {
 
           <div className="antd-table">
             <Table
-              loading={loading}
               columns={columns}
-              dataSource={categories}
+              dataSource={[]}
               pagination={{
                 current: cPage,
                 pageSize: 10,
-                total: categories.length,
+                total: [].length,
                 position: ["bottomCenter"],
               }}
-              onChange={handlePagination}
               showSorterTooltip={false}
             />
           </div>

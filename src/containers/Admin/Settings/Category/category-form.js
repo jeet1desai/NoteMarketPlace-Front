@@ -1,45 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
 import { CircularProgress, Button } from "@mui/material";
-import { useParams } from "react-router-dom";
-
 import "../../../../assets/css/add-category.css";
 
-import { editCategoryAction, getCategoryAction } from "../../../../store/AdminCategory/categoryActions";
-
-export default function EditCategory() {
-  const { id } = useParams();
+const CategoryForm = () => {
   const dispatch = useDispatch();
+
+  const [category, setCategory] = useState({
+    name: "",
+    description: "",
+  });
 
   const categorySchema = Yup.object().shape({
     name: Yup.string().required("Required"),
     description: Yup.string().required("Required"),
   });
 
-  const loading = useSelector((state) => state.categoryReducer.loading);
-  const category = useSelector((state) => state.categoryReducer.category);
-
-  useEffect(() => {
-    dispatch(getCategoryAction(id));
-  }, []);
-
   return (
     <div className="add-category">
       <div className="container">
         <div className="add-form">
           <div className="page-title">
-            <p>Edit Category</p>
+            <p>Add Category</p>
           </div>
           <div className="row">
             <div className="col-6">
               <Formik
-                enableReinitialize
                 initialValues={category}
                 validationSchema={categorySchema}
-                onSubmit={(values) => {
-                  dispatch(editCategoryAction(id, values));
+                onSubmit={(values, { resetForm }) => {
+                  
+                  resetForm();
                 }}>
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
                   return (
@@ -87,4 +80,6 @@ export default function EditCategory() {
       </div>
     </div>
   );
-}
+};
+
+export default CategoryForm;

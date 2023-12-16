@@ -16,8 +16,7 @@ import Category from "./Settings/Category";
 import Country from "./Settings/Country";
 import Type from "./Settings/Type";
 import AdminFrom from "./Settings/Admin/admin-form";
-import AddCategory from "./Settings/Category/add";
-import EditCategory from "./Settings/Category/edit";
+import CategoryForm from "./Settings/Category/category-form";
 import AddCountry from "./Settings/Country/add";
 import EditCountry from "./Settings/Country/edit";
 import AddType from "./Settings/Type/add";
@@ -47,8 +46,8 @@ export default function AdminRoute() {
         <PrivateRoute roles={[1]} exact path="/admin/manage-admin/add-admin" component={AdminFrom} />
         <PrivateRoute roles={[1]} exact path="/admin/manage-admin/edit-admin/:id" component={AdminFrom} />
         <PrivateRoute roles={[1, 2]} exact path="/admin/manage-category" component={Category} />
-        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-category/add-category" component={AddCategory} />
-        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-category/edit-category/:id" component={EditCategory} />
+        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-category/add-category" component={CategoryForm} />
+        <PrivateRoute roles={[1, 2]} exact path="/admin/manage-category/edit-category/:id" component={CategoryForm} />
         <PrivateRoute roles={[1, 2]} exact path="/admin/manage-type" component={Type} />
         <PrivateRoute roles={[1, 2]} exact path="/admin/manage-type/add-type" component={AddType} />
         <PrivateRoute roles={[1, 2]} exact path="/admin/manage-type/edit-type/:id" component={EditType} />
