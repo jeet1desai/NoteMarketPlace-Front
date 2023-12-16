@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import {
   createAdmin,
+  createCategory,
   deleteAdmin,
   fetchAdmin,
   fetchAdminConfig,
@@ -9,7 +10,11 @@ import {
   fetchUserCountryList,
   fetchUserNoteTypeList,
   updateAdmin,
+  updateCategory,
   updateAdminConfig,
+  deleteCategory,
+  fetchCategory,
+  fetchAllCategory,
 } from "../../services/config.service";
 import {
   CONFIG_REQUEST,
@@ -24,31 +29,31 @@ import {
   ADMIN_GET_ADMIN_SUCCESS,
   ADMIN_UPDATE_ADMIN_SUCCESS,
   ADMIN_DELETE_ADMIN_SUCCESS,
+  ADMIN_CREATE_CATEGORY_SUCCESS,
+  ADMIN_UPDATE_CATEGORY_SUCCESS,
+  ADMIN_DELETE_CATEGORY_SUCCESS,
+  ADMIN_GET_CATEGORIES_SUCCESS,
+  ADMIN_GET_CATEGORY_SUCCESS,
 } from "./configActionTypes";
 
-const request = () => {
-  return { type: CONFIG_REQUEST };
-};
+const request = () => ({ type: CONFIG_REQUEST });
 
-const failure = () => {
-  return { type: CONFIG_FAILURE };
-};
+const failure = () => ({ type: CONFIG_FAILURE });
+
+const success = (type, data) => ({ type: type, payload: data });
 
 export function getUserCountryListAction() {
   return (dispatch) => {
     dispatch(request());
     fetchUserCountryList().then(
       (response) => {
-        dispatch(success(response.data));
+        dispatch(success(USER_GET_COUNTRY_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(data) {
-    return { type: USER_GET_COUNTRY_SUCCESS, payload: data };
-  }
 }
 
 export function getUserCategoryListAction() {
@@ -56,16 +61,13 @@ export function getUserCategoryListAction() {
     dispatch(request());
     fetchUserCategoryList().then(
       (response) => {
-        dispatch(success(response.data));
+        dispatch(success(USER_GET_CATEGORY_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(data) {
-    return { type: USER_GET_CATEGORY_SUCCESS, payload: data };
-  }
 }
 
 export function getUserNoteTypeListAction() {
@@ -73,16 +75,13 @@ export function getUserNoteTypeListAction() {
     dispatch(request());
     fetchUserNoteTypeList().then(
       (response) => {
-        dispatch(success(response.data));
+        dispatch(success(USER_GET_NOTE_TYPE_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(data) {
-    return { type: USER_GET_NOTE_TYPE_SUCCESS, payload: data };
-  }
 }
 
 export function getAdminConfigAction() {
@@ -90,16 +89,13 @@ export function getAdminConfigAction() {
     dispatch(request());
     fetchAdminConfig().then(
       (response) => {
-        dispatch(success(response.data));
+        dispatch(success(ADMIN_GET_CONFIG_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(data) {
-    return { type: ADMIN_GET_CONFIG_SUCCESS, payload: data };
-  }
 }
 
 export function updateAdminConfigAction(value) {
@@ -108,16 +104,13 @@ export function updateAdminConfigAction(value) {
     updateAdminConfig(value).then(
       (response) => {
         toast.success("Successfully updated!");
-        dispatch(success(response.data));
+        dispatch(success(ADMIN_UPDATE_CONFIG_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(data) {
-    return { type: ADMIN_UPDATE_CONFIG_SUCCESS, payload: data };
-  }
 }
 
 export function createAdminAction(value) {
@@ -126,16 +119,13 @@ export function createAdminAction(value) {
     createAdmin(value).then(
       (response) => {
         toast.success("Successfully added!");
-        dispatch(success(response.data));
+        dispatch(success(ADMIN_CREATE_ADMIN_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(data) {
-    return { type: ADMIN_CREATE_ADMIN_SUCCESS, payload: data };
-  }
 }
 
 export function updateAdminAction(id, value) {
@@ -144,16 +134,13 @@ export function updateAdminAction(id, value) {
     updateAdmin(id, value).then(
       (response) => {
         toast.success("Successfully updated!");
-        dispatch(success(response.data));
+        dispatch(success(ADMIN_UPDATE_ADMIN_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(data) {
-    return { type: ADMIN_UPDATE_ADMIN_SUCCESS, payload: data };
-  }
 }
 
 export function deleteAdminAction(id) {
@@ -162,16 +149,13 @@ export function deleteAdminAction(id) {
     deleteAdmin(id).then(
       (response) => {
         toast.success("Successfully in active!");
-        dispatch(success(response.data));
+        dispatch(success(ADMIN_DELETE_ADMIN_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(data) {
-    return { type: ADMIN_DELETE_ADMIN_SUCCESS, payload: data };
-  }
 }
 
 export function getAdminsAction(search) {
@@ -179,16 +163,13 @@ export function getAdminsAction(search) {
     dispatch(request());
     fetchAllAdmin(search).then(
       (response) => {
-        dispatch(success(response.data));
+        dispatch(success(ADMIN_GET_ADMINS_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(data) {
-    return { type: ADMIN_GET_ADMINS_SUCCESS, payload: data };
-  }
 }
 
 export function getAdminAction(id) {
@@ -196,14 +177,84 @@ export function getAdminAction(id) {
     dispatch(request());
     fetchAdmin(id).then(
       (response) => {
-        dispatch(success(response.data));
+        dispatch(success(ADMIN_GET_ADMIN_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(data) {
-    return { type: ADMIN_GET_ADMIN_SUCCESS, payload: data };
-  }
+}
+
+export function createCategoryAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    createCategory(value).then(
+      (response) => {
+        toast.success("Successfully added!");
+        dispatch(success(ADMIN_CREATE_CATEGORY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function updateCategoryAction(id, value) {
+  return (dispatch) => {
+    dispatch(request());
+    updateCategory(id, value).then(
+      (response) => {
+        toast.success("Successfully updated!");
+        dispatch(success(ADMIN_UPDATE_CATEGORY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function deleteCategoryAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    deleteCategory(id).then(
+      (response) => {
+        toast.success("Successfully in active!");
+        dispatch(success(ADMIN_DELETE_CATEGORY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getCategoriesAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchAllCategory(search).then(
+      (response) => {
+        dispatch(success(ADMIN_GET_CATEGORIES_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getCategoryAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchCategory(id).then(
+      (response) => {
+        dispatch(success(ADMIN_GET_CATEGORY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
 }

@@ -1,5 +1,5 @@
 import { API_URL } from "../setting";
-import { getLSUserToken } from "../utils/local";
+import { makeApiRequest } from "../utils/api";
 import { handleResponse } from "../utils/response";
 
 export const signIn = (user) => {
@@ -37,17 +37,7 @@ export const forgetPassword = (user) => {
   return fetch(`${API_URL}/auth/reset_password/`, requestOptions).then(handleResponse);
 };
 
-export const changePassword = (user) => {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${getLSUserToken()}`,
-    },
-    body: JSON.stringify(user),
-  };
-  return fetch(`${API_URL}/auth/change_password/`, requestOptions).then(handleResponse);
-};
+export const changePassword = (value) => makeApiRequest(`${API_URL}/auth/change_password/`, "POST", value);
 
 export const contactUs = (query) => {
   const requestOptions = {

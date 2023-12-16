@@ -46,8 +46,6 @@ const SystemConfig = () => {
     }
   }, [config]);
 
-  console.log(config);
-
   return (
     <div className="manage-system-config">
       <Loader loading={loading || config_loading} />

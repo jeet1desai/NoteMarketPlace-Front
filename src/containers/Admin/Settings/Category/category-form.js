@@ -1,38 +1,61 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
-import { CircularProgress, Button } from "@mui/material";
 import "../../../../assets/css/add-category.css";
+import { categoryTypeSchema } from "../../../../utils/schema";
+import ErrorText, { inputError } from "../../../../components/Error";
+import Loader from "../../../../components/Loader";
+import { useParams } from "react-router-dom";
+import { createCategoryAction, getCategoryAction, updateCategoryAction } from "../../../../store/Configuration/configActions";
 
 const CategoryForm = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const [category, setCategory] = useState({
+  const { loading, category } = useSelector((state) => state.configReducer);
+
+  const [formValue, setFormValue] = useState({
     name: "",
     description: "",
   });
 
-  const categorySchema = Yup.object().shape({
-    name: Yup.string().required("Required"),
-    description: Yup.string().required("Required"),
-  });
+  useEffect(() => {
+    if (id) {
+      dispatch(getCategoryAction(id));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (category) {
+      setFormValue({
+        name: category.name,
+        description: category.description,
+      });
+    }
+  }, [category]);
 
   return (
     <div className="add-category">
+      <Loader loading={loading} />
       <div className="container">
         <div className="add-form">
           <div className="page-title">
-            <p>Add Category</p>
+            <p>{id ? "Edit" : "Add"} Category</p>
           </div>
           <div className="row">
             <div className="col-6">
               <Formik
-                initialValues={category}
-                validationSchema={categorySchema}
+                enableReinitialize={true}
+                initialValues={formValue}
+                validationSchema={categoryTypeSchema}
                 onSubmit={(values, { resetForm }) => {
-                  
-                  resetForm();
+                  if (id) {
+                    dispatch(updateCategoryAction(id, values));
+                  } else {
+                    dispatch(createCategoryAction(values));
+                    resetForm();
+                  }
                 }}>
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
                   return (
@@ -43,13 +66,13 @@ const CategoryForm = () => {
                           type="text"
                           id="title"
                           placeholder="Enter Your Category Name"
-                          className={`form-control ${errors.name && touched.name && "invalid"}`}
+                          className={inputError(errors.name, touched.name)}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.name}
                           name="name"
                         />
-                        {errors.name && touched.name && <small className="error-text">{errors.name}</small>}
+                        <ErrorText error={errors.name} touched={touched.name} />
                       </div>
                       <div className="form-group">
                         <label htmlFor="description">Description *</label>
@@ -57,19 +80,15 @@ const CategoryForm = () => {
                           id="description"
                           name="description"
                           placeholder="Write Your Description ..."
-                          className={`form-control ${errors.description && touched.description && "invalid"}`}
+                          className={inputError(errors.description, touched.description)}
                           onChange={handleChange}
                           onBlur={handleBlur}
                           value={values.description}></textarea>
-                        {errors.description && touched.description && <small className="error-text">{errors.description}</small>}
+                        <ErrorText error={errors.description} touched={touched.description} />
                       </div>
-                      <Button
-                        disabled={loading}
-                        startIcon={loading && <CircularProgress color="inherit" size={24} />}
-                        type="submit"
-                        className="btn submit-btn btn-purple">
-                        Submit
-                      </Button>
+                      <button type="submit" className="btn submit-btn btn-purple">
+                        {id ? "Save" : "Submit"}
+                      </button>
                     </Form>
                   );
                 }}

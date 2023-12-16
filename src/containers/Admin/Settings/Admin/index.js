@@ -24,11 +24,11 @@ const Admin = () => {
       title: "SR NO.",
       dataIndex: "id",
       render: (_, record, index) => index + 1,
-      sorter: (a, b) => (a.id > b.id ? 1 : -1),
+      sorter: (a, b) => a.id - b.id,
     },
     { title: "FIRST NAME", dataIndex: "first_name", sorter: (a, b) => a.first_name.localeCompare(b.first_name) },
     { title: "LAST NAME", dataIndex: "last_name", sorter: (a, b) => a.last_name.localeCompare(b.last_name) },
-    { title: "EMAIL", dataIndex: "email", sorter: true, sorter: (a, b) => a.email.localeCompare(b.email) },
+    { title: "EMAIL", dataIndex: "email", sorter: (a, b) => a.email.localeCompare(b.email) },
     {
       title: "PHONE NO",
       dataIndex: "phone",
@@ -39,14 +39,14 @@ const Admin = () => {
     {
       title: "DATE ADDED",
       dataIndex: "created_date",
-      render: (date) => moment(date).format("DD-MM-YYYY"),
+      render: (date) => moment(date).format("DD-MM-YYYY, hh:mm"),
       sorter: (a, b) => moment(a.created_date).unix() - moment(b.created_date).unix(),
     },
     {
       title: "ACTIVE",
       dataIndex: "is_active",
       render: (is_active) => (is_active ? "Yes" : "No"),
-      sorter: (a, b) => `${a.is_active ? "Yes" : "No"}`.localeCompare(`${b.is_active ? "Yes" : "No"}`),
+      sorter: (a, b) => a.is_active - b.is_active,
     },
     {
       title: "ACTION",
