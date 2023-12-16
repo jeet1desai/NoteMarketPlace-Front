@@ -11,29 +11,24 @@ import {
 } from "./userNoteActionTypes";
 import { createNote, deleteNote, fetchNote, inProgressNote, publishedNote, updateNote } from "../../services/user-note.service";
 
-const request = () => {
-  return { type: USER_NOTE_REQUEST };
-};
+const request = () => ({ type: USER_NOTE_REQUEST });
 
-const failure = () => {
-  return { type: USER_NOTE_FAILURE };
-};
+const failure = () => ({ type: USER_NOTE_FAILURE });
+
+const success = (type, data) => ({ type: type, payload: data });
 
 export function fetchNoteAction(id) {
   return (dispatch) => {
     dispatch(request());
     fetchNote(id).then(
       (response) => {
-        dispatch(success(response.data));
+        dispatch(success(USERS_GET_NOTE_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(note) {
-    return { type: USERS_GET_NOTE_SUCCESS, payload: note };
-  }
 }
 
 export function createNoteAction(status, value) {
@@ -46,16 +41,13 @@ export function createNoteAction(status, value) {
         } else {
           toast.success("Successfully published");
         }
-        dispatch(success(response.data));
+        dispatch(success(USERS_CREATE_NOTE_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(note) {
-    return { type: USERS_CREATE_NOTE_SUCCESS, payload: note };
-  }
 }
 
 export function updateNoteAction(id, status, value) {
@@ -68,16 +60,13 @@ export function updateNoteAction(id, status, value) {
         } else {
           toast.success("Successfully published");
         }
-        dispatch(success(response.data));
+        dispatch(success(USERS_UPDATE_NOTE_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(note) {
-    return { type: USERS_UPDATE_NOTE_SUCCESS, payload: note };
-  }
 }
 
 export function deleteNoteAction(id) {
@@ -86,16 +75,13 @@ export function deleteNoteAction(id) {
     deleteNote(id).then(
       (response) => {
         toast.success("Successfully deleted");
-        dispatch(success(id));
+        dispatch(success(USERS_DELETE_NOTE_SUCCESS, id));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(note) {
-    return { type: USERS_DELETE_NOTE_SUCCESS, payload: note };
-  }
 }
 
 export function getInProgressNoteAction(search) {
@@ -103,16 +89,13 @@ export function getInProgressNoteAction(search) {
     dispatch(request());
     inProgressNote(search).then(
       (response) => {
-        dispatch(success(response.data));
+        dispatch(success(USERS_IN_PROGRESS_NOTE_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(note) {
-    return { type: USERS_IN_PROGRESS_NOTE_SUCCESS, payload: note };
-  }
 }
 
 export function getPublishNoteAction(search) {
@@ -120,14 +103,11 @@ export function getPublishNoteAction(search) {
     dispatch(request());
     publishedNote(search).then(
       (response) => {
-        dispatch(success(response.data));
+        dispatch(success(USERS_PUBLISHED_NOTE_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
       }
     );
   };
-  function success(note) {
-    return { type: USERS_PUBLISHED_NOTE_SUCCESS, payload: note };
-  }
 }
