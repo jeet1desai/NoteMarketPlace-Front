@@ -201,7 +201,9 @@ const NoteForm = () => {
                             {values.display_picture_note ? (
                               <span className="file-info">{values.display_picture_note.name}</span>
                             ) : (
-                              <span className="file-info">{values.display_picture}</span>
+                              <a className="file-info" href={values.display_picture} target="_blank" rel="noreferrer">
+                                {values.display_picture}
+                              </a>
                             )}
                             <ErrorText error={errors.display_picture_note} touched={touched.display_picture_note} />
                           </div>
@@ -230,7 +232,9 @@ const NoteForm = () => {
                             {values.file_note ? (
                               <span className="file-info">{values.file_note.name}</span>
                             ) : (
-                              <span className="file-info">{values.file}</span>
+                              <a className="file-info" href={values.file} target="_blank" rel="noreferrer">
+                                {values.file}
+                              </a>
                             )}
                             <ErrorText error={errors.file_note} touched={touched.file_note} />
                           </div>
@@ -453,7 +457,9 @@ const NoteForm = () => {
                           {values.notes_preview_note ? (
                             <span className="file-info">{values.notes_preview_note.name}</span>
                           ) : (
-                            <span className="file-info">{values.notes_preview}</span>
+                            <a className="file-info" href={values.notes_preview} target="_blank" rel="noreferrer">
+                              {values.notes_preview}
+                            </a>
                           )}
                           <ErrorText error={errors.notes_preview_note} touched={touched.notes_preview_note} />
                         </div>

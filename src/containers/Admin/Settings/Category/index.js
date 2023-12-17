@@ -44,9 +44,9 @@ const Category = () => {
     },
     {
       title: "DATE ADDED",
-      dataIndex: "modified_date",
+      dataIndex: "created_date",
       render: (date) => `${moment(date).utc().format("DD-MM-YYYY, hh:mm")}`,
-      sorter: (a, b) => moment(a.modified_date).unix() - moment(b.modified_date).unix(),
+      sorter: (a, b) => moment(a.created_date).unix() - moment(b.created_date).unix(),
     },
     {
       title: "ADDED BY",

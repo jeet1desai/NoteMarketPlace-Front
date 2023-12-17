@@ -15,6 +15,16 @@ import {
   deleteCategory,
   fetchCategory,
   fetchAllCategory,
+  createType,
+  updateType,
+  deleteType,
+  fetchAllType,
+  fetchType,
+  createCountry,
+  updateCountry,
+  deleteCountry,
+  fetchCountry,
+  fetchAllCountry,
 } from "../../services/config.service";
 import {
   CONFIG_REQUEST,
@@ -34,6 +44,16 @@ import {
   ADMIN_DELETE_CATEGORY_SUCCESS,
   ADMIN_GET_CATEGORIES_SUCCESS,
   ADMIN_GET_CATEGORY_SUCCESS,
+  ADMIN_CREATE_TYPE_SUCCESS,
+  ADMIN_UPDATE_TYPE_SUCCESS,
+  ADMIN_DELETE_TYPE_SUCCESS,
+  ADMIN_GET_TYPES_SUCCESS,
+  ADMIN_GET_TYPE_SUCCESS,
+  ADMIN_CREATE_COUNTRY_SUCCESS,
+  ADMIN_UPDATE_COUNTRY_SUCCESS,
+  ADMIN_DELETE_COUNTRY_SUCCESS,
+  ADMIN_GET_COUNTRY_SUCCESS,
+  ADMIN_GET_COUNTRIES_SUCCESS,
 } from "./configActionTypes";
 
 const request = () => ({ type: CONFIG_REQUEST });
@@ -251,6 +271,152 @@ export function getCategoryAction(id) {
     fetchCategory(id).then(
       (response) => {
         dispatch(success(ADMIN_GET_CATEGORY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function createTypeAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    createType(value).then(
+      (response) => {
+        toast.success("Successfully added!");
+        dispatch(success(ADMIN_CREATE_TYPE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function updateTypeAction(id, value) {
+  return (dispatch) => {
+    dispatch(request());
+    updateType(id, value).then(
+      (response) => {
+        toast.success("Successfully updated!");
+        dispatch(success(ADMIN_UPDATE_TYPE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function deleteTypeAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    deleteType(id).then(
+      (response) => {
+        toast.success("Successfully in active!");
+        dispatch(success(ADMIN_DELETE_TYPE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getTypesAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchAllType(search).then(
+      (response) => {
+        dispatch(success(ADMIN_GET_TYPES_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getTypeAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchType(id).then(
+      (response) => {
+        dispatch(success(ADMIN_GET_TYPE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function createCountryAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    createCountry(value).then(
+      (response) => {
+        toast.success("Successfully added!");
+        dispatch(success(ADMIN_CREATE_COUNTRY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function updateCountryAction(id, value) {
+  return (dispatch) => {
+    dispatch(request());
+    updateCountry(id, value).then(
+      (response) => {
+        toast.success("Successfully updated!");
+        dispatch(success(ADMIN_UPDATE_COUNTRY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function deleteCountryAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    deleteCountry(id).then(
+      (response) => {
+        toast.success("Successfully in active!");
+        dispatch(success(ADMIN_DELETE_COUNTRY_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getCountriesAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchAllCountry(search).then(
+      (response) => {
+        dispatch(success(ADMIN_GET_COUNTRIES_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getCountryAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchCountry(id).then(
+      (response) => {
+        dispatch(success(ADMIN_GET_COUNTRY_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());
