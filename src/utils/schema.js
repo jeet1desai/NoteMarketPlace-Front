@@ -152,3 +152,8 @@ export const categoryTypeSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
   description: Yup.string().required("Required"),
 });
+
+export const countrySchema = Yup.object().shape({
+  name: Yup.string().required("Required"),
+  code: Yup.number().required("Required").positive("Must be a positive").integer("Must be a number"),
+});

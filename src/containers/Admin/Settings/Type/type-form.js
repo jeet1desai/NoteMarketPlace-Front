@@ -59,7 +59,7 @@ const TypeForm = () => {
                 }}>
                 {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
                   return (
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                       <div className="form-group">
                         <label htmlFor="title">Type *</label>
                         <input

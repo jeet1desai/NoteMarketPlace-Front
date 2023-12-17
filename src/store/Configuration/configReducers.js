@@ -21,6 +21,11 @@ import {
   ADMIN_DELETE_TYPE_SUCCESS,
   ADMIN_GET_TYPE_SUCCESS,
   ADMIN_UPDATE_TYPE_SUCCESS,
+  ADMIN_CREATE_COUNTRY_SUCCESS,
+  ADMIN_GET_COUNTRIES_SUCCESS,
+  ADMIN_DELETE_COUNTRY_SUCCESS,
+  ADMIN_GET_COUNTRY_SUCCESS,
+  ADMIN_UPDATE_COUNTRY_SUCCESS,
 } from "./configActionTypes";
 
 const initialState = {
@@ -74,6 +79,7 @@ export function configReducer(state = initialState, action) {
     case ADMIN_CREATE_ADMIN_SUCCESS:
     case ADMIN_CREATE_CATEGORY_SUCCESS:
     case ADMIN_CREATE_TYPE_SUCCESS:
+    case ADMIN_CREATE_COUNTRY_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -140,6 +146,27 @@ export function configReducer(state = initialState, action) {
         ...state,
         loading: false,
         type: action.payload,
+      };
+    case ADMIN_GET_COUNTRIES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        countries_list: action.payload,
+      };
+    case ADMIN_DELETE_COUNTRY_SUCCESS:
+      const country = action.payload;
+      const new_country_list = state.countries_list.map((item) => (item.id === country.id ? country : item));
+      return {
+        ...state,
+        loading: false,
+        countries_list: new_country_list,
+      };
+    case ADMIN_GET_COUNTRY_SUCCESS:
+    case ADMIN_UPDATE_COUNTRY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        country: action.payload,
       };
     case CONFIG_FAILURE:
       return {
