@@ -19,3 +19,9 @@ export const updateCategory = (id, value) => makeApiRequest(`${API_URL}/super_ad
 export const deleteCategory = (id) => makeApiRequest(`${API_URL}/super_admin/category_delete/${id}/`, "DELETE");
 export const fetchCategory = (id) => makeApiRequest(`${API_URL}/super_admin/category/${id}/`, "GET");
 export const fetchAllCategory = (search) => makeApiRequest(`${API_URL}/super_admin/categories/?search=${search}`, "GET");
+
+export const createType = (value) => makeApiRequest(`${API_URL}/super_admin/type_post/`, "POST", value);
+export const updateType = (id, value) => makeApiRequest(`${API_URL}/super_admin/type_put/${id}/`, "PUT", value);
+export const deleteType = (id) => makeApiRequest(`${API_URL}/super_admin/type_delete/${id}/`, "DELETE");
+export const fetchType = (id) => makeApiRequest(`${API_URL}/super_admin/type/${id}/`, "GET");
+export const fetchAllType = (search) => makeApiRequest(`${API_URL}/super_admin/types/?search=${search}`, "GET");

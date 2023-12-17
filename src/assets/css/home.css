@@ -352,3 +352,7 @@
 /* XX-Large */
 @media (min-width: 1400px) {
 }
+
+.MuiDialog-container {
+  align-items: flex-start !important;
+}

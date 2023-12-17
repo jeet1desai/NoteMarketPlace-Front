@@ -16,6 +16,11 @@ import {
   ADMIN_CREATE_CATEGORY_SUCCESS,
   ADMIN_GET_CATEGORY_SUCCESS,
   ADMIN_UPDATE_CATEGORY_SUCCESS,
+  ADMIN_CREATE_TYPE_SUCCESS,
+  ADMIN_GET_TYPES_SUCCESS,
+  ADMIN_DELETE_TYPE_SUCCESS,
+  ADMIN_GET_TYPE_SUCCESS,
+  ADMIN_UPDATE_TYPE_SUCCESS,
 } from "./configActionTypes";
 
 const initialState = {
@@ -28,6 +33,10 @@ const initialState = {
   admin: null,
   categories_list: [],
   category: null,
+  types_list: [],
+  type: null,
+  countries_list: [],
+  country: null,
 };
 
 export function configReducer(state = initialState, action) {
@@ -64,6 +73,7 @@ export function configReducer(state = initialState, action) {
       };
     case ADMIN_CREATE_ADMIN_SUCCESS:
     case ADMIN_CREATE_CATEGORY_SUCCESS:
+    case ADMIN_CREATE_TYPE_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -109,6 +119,27 @@ export function configReducer(state = initialState, action) {
         ...state,
         loading: false,
         category: action.payload,
+      };
+    case ADMIN_GET_TYPES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        types_list: action.payload,
+      };
+    case ADMIN_DELETE_TYPE_SUCCESS:
+      const type = action.payload;
+      const new_type_list = state.types_list.map((item) => (item.id === type.id ? type : item));
+      return {
+        ...state,
+        loading: false,
+        types_list: new_type_list,
+      };
+    case ADMIN_GET_TYPE_SUCCESS:
+    case ADMIN_UPDATE_TYPE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        type: action.payload,
       };
     case CONFIG_FAILURE:
       return {
