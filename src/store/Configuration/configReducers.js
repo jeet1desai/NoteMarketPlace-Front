@@ -89,6 +89,7 @@ export function configReducer(state = initialState, action) {
         ...state,
         loading: false,
         admins_list: action.payload,
+        admin: null,
       };
     case ADMIN_GET_ADMIN_SUCCESS:
     case ADMIN_UPDATE_ADMIN_SUCCESS:
@@ -104,12 +105,14 @@ export function configReducer(state = initialState, action) {
         ...state,
         loading: false,
         admins_list: new_admin_list,
+        admin: null,
       };
     case ADMIN_GET_CATEGORIES_SUCCESS:
       return {
         ...state,
         loading: false,
         categories_list: action.payload,
+        category: null,
       };
     case ADMIN_DELETE_CATEGORY_SUCCESS:
       const category = action.payload;
@@ -118,6 +121,7 @@ export function configReducer(state = initialState, action) {
         ...state,
         loading: false,
         categories_list: new_category_list,
+        category: null,
       };
     case ADMIN_GET_CATEGORY_SUCCESS:
     case ADMIN_UPDATE_CATEGORY_SUCCESS:
@@ -131,6 +135,7 @@ export function configReducer(state = initialState, action) {
         ...state,
         loading: false,
         types_list: action.payload,
+        type: null,
       };
     case ADMIN_DELETE_TYPE_SUCCESS:
       const type = action.payload;
@@ -139,6 +144,7 @@ export function configReducer(state = initialState, action) {
         ...state,
         loading: false,
         types_list: new_type_list,
+        type: null,
       };
     case ADMIN_GET_TYPE_SUCCESS:
     case ADMIN_UPDATE_TYPE_SUCCESS:
@@ -152,6 +158,7 @@ export function configReducer(state = initialState, action) {
         ...state,
         loading: false,
         countries_list: action.payload,
+        country: null,
       };
     case ADMIN_DELETE_COUNTRY_SUCCESS:
       const country = action.payload;
@@ -160,6 +167,7 @@ export function configReducer(state = initialState, action) {
         ...state,
         loading: false,
         countries_list: new_country_list,
+        country: null,
       };
     case ADMIN_GET_COUNTRY_SUCCESS:
     case ADMIN_UPDATE_COUNTRY_SUCCESS:
