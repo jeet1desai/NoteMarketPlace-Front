@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   profileReducer,
   configReducer,
   userNoteReducer,
-  adminNoteReducer
+  adminNoteReducer,
 });
 
 export default rootReducer;

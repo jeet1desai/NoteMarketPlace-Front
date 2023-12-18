@@ -9,6 +9,7 @@ import { getLSUser } from "../../../utils/local";
 import Loader from "../../../components/Loader";
 import ErrorText, { inputError } from "../../../components/Error";
 import { userProfileSchema } from "../../../utils/schema";
+import { uploadDocument } from "../../../utils/upload";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ const MyProfile = () => {
   const { loading: profile_loading, user } = useSelector((state) => state.profileReducer);
 
   const [formValue, setFormValue] = useState({});
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const localUser = getLSUser();
@@ -34,7 +37,7 @@ const MyProfile = () => {
         email: user.email,
         date_of_birth: user.date_of_birth ? moment(user.date_of_birth).format("YYYY-MM-DD") : "",
         gender: user.gender || "",
-        phone_country_code: user.phone_country_code || "",
+        phone_country_code: user.phone_country_code?.id || "",
         phone_number: user.phone_number || "",
         profile_picture: user.profile_picture,
         picture_file: null,
@@ -43,7 +46,7 @@ const MyProfile = () => {
         city: user.city || "",
         state: user.state || "",
         zip_code: user.zip_code || "",
-        country: user.country || "",
+        country: user.country?.id || "",
         university: user.university || "",
         college: user.college || "",
       });
@@ -52,7 +55,7 @@ const MyProfile = () => {
 
   return (
     <div className="user-profile">
-      <Loader loading={config_loading || profile_loading} />
+      <Loader loading={config_loading || profile_loading || loading} />
 
       <div className="page-top">
         <div className="page-top-title">
@@ -66,8 +69,16 @@ const MyProfile = () => {
             enableReinitialize={true}
             initialValues={formValue}
             validationSchema={userProfileSchema}
-            onSubmit={(values) => {
-              dispatch(updateUserProfileAction(values));
+            onSubmit={async (values) => {
+              setLoading(true);
+              let note_value = { ...values };
+              if (values.picture_file) {
+                const url = await uploadDocument("profile", values.picture_file);
+                note_value["profile_picture"] = url;
+              }
+              delete note_value.picture_file;
+              dispatch(updateUserProfileAction(note_value));
+              setLoading(false);
             }}>
             {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
               return (
@@ -154,9 +165,7 @@ const MyProfile = () => {
                             name="gender"
                             onChange={handleChange}
                             onBlur={handleBlur}>
-                            <option disabled value="">
-                              Select Your Gender
-                            </option>
+                            <option value="">Select Your Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                           </select>
@@ -175,9 +184,7 @@ const MyProfile = () => {
                                 name="phone_country_code"
                                 onChange={handleChange}
                                 onBlur={handleBlur}>
-                                <option value="" disabled>
-                                  Code
-                                </option>
+                                <option value="">Code</option>
                                 {country_list.map((country) => (
                                   <option value={country.id} key={country.id}>
                                     +{country.code}
@@ -205,7 +212,7 @@ const MyProfile = () => {
                       </div>
                       <div className="col-md-6">
                         <div className="form-group">
-                          <label htmlFor="profile-pic">Profile Picture *</label>
+                          <label htmlFor="profile-pic">Profile Picture</label>
                           <div className="upload-box">
                             <input
                               type="file"
@@ -324,9 +331,7 @@ const MyProfile = () => {
                             name="country"
                             onChange={handleChange}
                             onBlur={handleBlur}>
-                            <option disabled value="">
-                              Select Your Country
-                            </option>
+                            <option value="">Select Your Country</option>
                             {country_list.map((country) => (
                               <option value={country.id} key={country.id}>
                                 {country.name}

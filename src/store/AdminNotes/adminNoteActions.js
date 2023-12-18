@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import { ADMIN_GET_USER_NOTE_SUCCESS, ADMIN_NOTE_FAILURE, ADMIN_NOTE_REQUEST } from "./adminNoteActionTypes";
 import { fetchUserNote } from "../../services/admin-note.service";
 

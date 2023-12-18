@@ -157,3 +157,9 @@ export const countrySchema = Yup.object().shape({
   name: Yup.string().required("Required"),
   code: Yup.number().required("Required").positive("Must be a positive").integer("Must be a number"),
 });
+
+export const adminProfileSchema = Yup.object().shape({
+  first_name: Yup.string().required("Required"),
+  last_name: Yup.string().required("Required"),
+  email: Yup.string().required("Required").email("Enter valid"),
+});

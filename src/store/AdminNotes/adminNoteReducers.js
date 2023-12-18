@@ -1,12 +1,8 @@
-import {
-  ADMIN_GET_USER_NOTE_SUCCESS,
-  ADMIN_NOTE_FAILURE,
-  ADMIN_NOTE_REQUEST,
-} from "./adminNoteActionTypes";
+import { ADMIN_GET_USER_NOTE_SUCCESS, ADMIN_NOTE_FAILURE, ADMIN_NOTE_REQUEST } from "./adminNoteActionTypes";
 
 const initialState = {
   loading: false,
-  member_notes: []
+  member_notes: [],
 };
 
 export function adminNoteReducer(state = initialState, action) {
@@ -25,7 +21,7 @@ export function adminNoteReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        member_notes: action.payload
+        member_notes: action.payload,
       };
     default:
       return state;

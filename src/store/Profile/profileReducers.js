@@ -4,6 +4,7 @@ import {
   PROFILE_REQUEST,
   USERS_GET_PROFILE_SUCCESS,
   USERS_UPDATE_PROFILE_SUCCESS,
+  ADMIN_UPDATE_PROFILE_SUCCESS,
 } from "./profileActionTypes";
 
 const initialState = {
@@ -21,6 +22,7 @@ export function profileReducer(state = initialState, action) {
       };
     case USERS_GET_PROFILE_SUCCESS:
     case USERS_UPDATE_PROFILE_SUCCESS:
+    case ADMIN_UPDATE_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,

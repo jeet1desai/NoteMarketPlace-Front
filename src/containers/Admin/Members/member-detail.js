@@ -8,12 +8,11 @@ import { getProfileAction } from "../../../store/Profile/profileActions";
 import Loader from "../../../components/Loader";
 import moment from "moment";
 import { fetchUserNoteAction } from "../../../store/AdminNotes/adminNoteActions";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { NOTE_STATUS } from "../../../utils/enum";
 
 const MemberDetail = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { id } = useParams();
 
   const { loading: profile_loading, user } = useSelector((state) => state.profileReducer);
