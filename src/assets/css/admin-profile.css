@@ -56,6 +56,11 @@
 
 .admin-profile .phone-number {
   display: flex;
+  gap: 20px;
+}
+
+.admin-profile .phone-number select {
+  width: 20%;
 }
 
 .admin-profile .phone-number .phone-two {

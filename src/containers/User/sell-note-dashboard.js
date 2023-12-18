@@ -110,7 +110,7 @@ const SellNoteDashboard = () => {
       },
       sorter: (a, b) => (a.status > b.status ? 1 : -1),
     },
-    { title: "PRICE", dataIndex: "selling_price", render: (selling_price) => `$${selling_price}` },
+    { title: "PRICE", dataIndex: "selling_price", render: (selling_price) => `$ ${selling_price}` },
     {
       title: "ACTION",
       key: "action",

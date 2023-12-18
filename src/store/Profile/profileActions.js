@@ -1,6 +1,13 @@
 import { toast } from "react-toastify";
-import { fetchProfile, updateUserProfile } from "../../services/profile.service";
-import { PROFILE_FAILURE, PROFILE_REQUEST, USERS_GET_PROFILE_SUCCESS, USERS_UPDATE_PROFILE_SUCCESS } from "./profileActionTypes";
+import { fetchMembers, fetchProfile, updateAdminProfile, updateUserProfile } from "../../services/profile.service";
+import {
+  ADMIN_GET_MEMBER_SUCCESS,
+  ADMIN_UPDATE_PROFILE_SUCCESS,
+  PROFILE_FAILURE,
+  PROFILE_REQUEST,
+  USERS_GET_PROFILE_SUCCESS,
+  USERS_UPDATE_PROFILE_SUCCESS,
+} from "./profileActionTypes";
 
 const request = () => ({ type: PROFILE_REQUEST });
 
@@ -29,6 +36,35 @@ export function updateUserProfileAction(value) {
       (response) => {
         toast.success("Successfully updated!");
         dispatch(success(USERS_UPDATE_PROFILE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function updateAdminProfileAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    updateAdminProfile(value).then(
+      (response) => {
+        toast.success("Successfully updated!");
+        dispatch(success(ADMIN_UPDATE_PROFILE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getMembersAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchMembers(search).then(
+      (response) => {
+        dispatch(success(ADMIN_GET_MEMBER_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());

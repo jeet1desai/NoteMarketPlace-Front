@@ -16,7 +16,7 @@ const PrivateRoute = ({ component: Component, roles, ...rest }) => (
       }
 
       if (currentUser && !roles.includes(currentUser.role_id)) {
-        toast.error("Sorry, Role is not allowed to visit the page.");
+        toast.error("Role is not allowed to visit the page.");
         if (currentUser.role_id === 3) {
           return <Redirect to={{ pathname: "/" }} />;
         } else {
