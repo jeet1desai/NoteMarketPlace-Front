@@ -3,7 +3,7 @@ import { Table, Space, Dropdown, Menu } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import "../../../assets/css/members.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getMembersAction } from "../../../store/Profile/profileActions";
+import { deActivateMemberAction, getMembersAction } from "../../../store/Profile/profileActions";
 import { Link, useHistory } from "react-router-dom";
 import moment from "moment";
 
@@ -24,12 +24,7 @@ const Members = () => {
     return (
       <Menu>
         <Menu.Item onClick={() => history.push(`/admin/members/${record.id}`)}>View More Details</Menu.Item>
-        <Menu.Item
-          onClick={() => {
-            console.log(record.id);
-          }}>
-          Deactivate
-        </Menu.Item>
+        <Menu.Item onClick={() => dispatch(deActivateMemberAction(record.id))}>Deactivate</Menu.Item>
       </Menu>
     );
   };

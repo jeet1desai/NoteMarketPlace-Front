@@ -66,12 +66,7 @@ const MemberDetail = () => {
   const menu = (record) => {
     return (
       <Menu>
-        <Menu.Item
-          onClick={() => {
-            console.log(record.id);
-          }}>
-          Download Note
-        </Menu.Item>
+        <Menu.Item onClick={() => {}}>Download Note</Menu.Item>
       </Menu>
     );
   };

@@ -106,7 +106,7 @@ export default function Dashboard() {
               <div className="col">
                 <div className="registration">
                   <h5>$10,00,000</h5>
-                  <p>Money No of new Registrations</p>
+                  <p>Number of new Registrations</p>
                   <p>(Last 7 days)</p>
                 </div>
               </div>
