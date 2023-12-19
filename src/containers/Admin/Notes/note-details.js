@@ -1,14 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Rating } from "@mui/material";
-
 import CustomerReview from "../../../components/CustomerReview";
-
 import "../../../assets/css/note-detail.css";
 import NoteImage from "../../../assets/images/note.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../../components/Loader";
+import { fetchNoteAction } from "../../../store/UserNotes/userNoteActions";
+import { useParams } from "react-router-dom";
+import moment from "moment";
 
-export default function AdminNoteDetails() {
+const AdminNoteDetails = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const { loading: note_loading, note } = useSelector((state) => state.userNoteReducer);
+
+  const [noteDetails, setNoteDetails] = useState({
+    title: "",
+    description: "",
+    category: "",
+    university_name: "",
+    country: "",
+    selling_price: "",
+    course: "",
+    course_code: "",
+    professor: "",
+    number_of_pages: "",
+    approve_date: "",
+    display_picture: "",
+    notes_preview: "",
+  });
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchNoteAction(id));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (note) {
+      setNoteDetails({
+        title: note.title,
+        description: note.description,
+        category: note.category?.name || "",
+        display_picture: note.display_picture,
+        selling_price: note.selling_price,
+        notes_preview: note.notes_preview,
+        number_of_pages: note.number_of_pages,
+        country: note.country?.name || "",
+        university_name: note.university_name,
+        course: note.course,
+        course_code: note.course_code,
+        professor: note.professor,
+        approve_date: note.published_date ? moment(note.published_date).format("MMM DD, YYYY") : "",
+      });
+    }
+  }, [note]);
+
   return (
     <div className="note-details">
+      <Loader loading={note_loading} />
       <div className="note-detail">
         <div class="container">
           <div class="page-title">
@@ -17,16 +69,13 @@ export default function AdminNoteDetails() {
           <div className="row">
             <div className="col-6">
               <div className="note-up-left">
-                <img alt="" src={NoteImage} className="note-image" />
+                <img alt="note image" src={noteDetails.display_picture} className="note-image" />
                 <div className="">
-                  <h5>Computer Operating System</h5>
-                  <p>Science</p>
-                  <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae, corporis. In ad ipsum, eveniet cupiditate quod
-                    ipsum, eveniet cupiditatepariatur esse a itaque perferendiss nesciunt at Perferendis!
-                  </p>
-                  <button class="btn btn-purple download-btn" title="Download / $15">
-                    Download / $15
+                  <h5>{noteDetails.title}</h5>
+                  <p>{noteDetails.category}</p>
+                  <p>{noteDetails.description}</p>
+                  <button class="btn btn-purple download-btn" title="Download">
+                    Download / ${noteDetails.selling_price}
                   </button>
                 </div>
               </div>
@@ -35,42 +84,42 @@ export default function AdminNoteDetails() {
               <div className="note-up-right">
                 <div className="note-info">
                   <p className="note-info-left">Institution : </p>
-                  <p className="note-info-right">University of California, US</p>
+                  <p className="note-info-right">{noteDetails.university_name}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Country : </p>
-                  <p className="note-info-right">US</p>
+                  <p className="note-info-right">{noteDetails.country}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Course Name : </p>
-                  <p className="note-info-right">Computer Engineering</p>
+                  <p className="note-info-right">{noteDetails.course}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Course Code : </p>
-                  <p className="note-info-right">123456</p>
+                  <p className="note-info-right">{noteDetails.course_code}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Professor : </p>
-                  <p className="note-info-right">Mr. John Deo</p>
+                  <p className="note-info-right">{noteDetails.professor}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Number Of Pages : </p>
-                  <p className="note-info-right">277</p>
+                  <p className="note-info-right">{noteDetails.number_of_pages}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Approved Date : </p>
-                  <p className="note-info-right">November 25, 2020</p>
+                  <p className="note-info-right">{noteDetails.approve_date}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Rating : </p>
                   <p className="note-info-right">
                     <div className="note-rating">
-                      <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
-                      <p> 100 reviews</p>
+                      <Rating name="half-rating-read" defaultValue={0} precision={0.5} readOnly />
+                      <p> NA reviews</p>
                     </div>
                   </p>
                 </div>
-                <span className="error">5 Users marked this note as inappropriate</span>
+                <span className="error">NA Users marked this note as inappropriate</span>
               </div>
             </div>
           </div>
@@ -87,7 +136,7 @@ export default function AdminNoteDetails() {
                 <div class="page-title">
                   <p>Note Preview</p>
                 </div>
-                <iframe title="note-preview" src="https://research.google.com/pubs/archive/44678.pdf"></iframe>
+                <iframe title="note-preview" src={noteDetails.notes_preview}></iframe>
               </div>
             </div>
             <div className="col-6">
@@ -109,4 +158,6 @@ export default function AdminNoteDetails() {
       </div>
     </div>
   );
-}
+};
+
+export default AdminNoteDetails;

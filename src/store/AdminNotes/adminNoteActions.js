@@ -1,5 +1,5 @@
 import { ADMIN_GET_USER_NOTE_SUCCESS, ADMIN_NOTE_FAILURE, ADMIN_NOTE_REQUEST } from "./adminNoteActionTypes";
-import { fetchUserNote } from "../../services/admin-note.service";
+import { fetchUserNotes } from "../../services/admin-note.service";
 
 const request = () => ({ type: ADMIN_NOTE_REQUEST });
 
@@ -10,7 +10,7 @@ const success = (type, data) => ({ type: type, payload: data });
 export function fetchUserNoteAction(id) {
   return (dispatch) => {
     dispatch(request());
-    fetchUserNote(id).then(
+    fetchUserNotes(id).then(
       (response) => {
         dispatch(success(ADMIN_GET_USER_NOTE_SUCCESS, response.data));
       },
