@@ -3,9 +3,10 @@ import { Table, Space, Dropdown, Menu } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import "../../../assets/css/members.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getMembersAction } from "../../../store/Profile/profileActions";
+import { deActivateMemberAction, getMembersAction } from "../../../store/Profile/profileActions";
 import { Link, useHistory } from "react-router-dom";
 import moment from "moment";
+import AlertDialog from "../../../components/AlertDialog";
 
 const Members = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,9 @@ const Members = () => {
 
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+
+  const [deactivateMemberId, setMemberId] = useState(null);
+  const [isDialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getMembersAction(""));
@@ -26,7 +30,8 @@ const Members = () => {
         <Menu.Item onClick={() => history.push(`/admin/members/${record.id}`)}>View More Details</Menu.Item>
         <Menu.Item
           onClick={() => {
-            console.log(record.id);
+            setMemberId(record.id);
+            setDialogOpen(true);
           }}>
           Deactivate
         </Menu.Item>
@@ -125,6 +130,18 @@ const Members = () => {
           </div>
         </div>
       </div>
+
+      <AlertDialog
+        isOpen={isDialogOpen}
+        handleClose={() => setDialogOpen(false)}
+        handleSubmit={() => {
+          dispatch(deActivateMemberAction(deactivateMemberId));
+          setDialogOpen(false);
+          setMemberId(null);
+        }}
+        title="Deactivate member"
+        content="Are you sure you want to make this member deactivate?"
+      />
     </div>
   );
 };

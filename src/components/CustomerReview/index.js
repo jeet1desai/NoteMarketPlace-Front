@@ -1,9 +1,8 @@
 import React from "react";
 import { Avatar, Rating } from "@mui/material";
-
 import DeleteIcon from "../../assets/images/delete.png";
 
-export default function Review() {
+const Review = () => {
   return (
     <div className="customer">
       <div className="customer-image">
@@ -24,4 +23,6 @@ export default function Review() {
       </div>
     </div>
   );
-}
+};
+
+export default Review;

@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
-import { fetchMembers, fetchProfile, updateAdminProfile, updateUserProfile } from "../../services/profile.service";
+import { deActiveMembers, fetchMembers, fetchProfile, updateAdminProfile, updateUserProfile } from "../../services/profile.service";
 import {
+  ADMIN_DEACTIVATE_MEMBER_SUCCESS,
   ADMIN_GET_MEMBER_SUCCESS,
   ADMIN_UPDATE_PROFILE_SUCCESS,
   PROFILE_FAILURE,
@@ -65,6 +66,21 @@ export function getMembersAction(search) {
     fetchMembers(search).then(
       (response) => {
         dispatch(success(ADMIN_GET_MEMBER_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function deActivateMemberAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    deActiveMembers(id).then(
+      (response) => {
+        toast.success("Successfully deactivated!");
+        dispatch(success(ADMIN_DEACTIVATE_MEMBER_SUCCESS, id));
       },
       (error) => {
         dispatch(failure());

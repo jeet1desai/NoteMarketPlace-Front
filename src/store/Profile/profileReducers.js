@@ -5,6 +5,7 @@ import {
   USERS_GET_PROFILE_SUCCESS,
   USERS_UPDATE_PROFILE_SUCCESS,
   ADMIN_UPDATE_PROFILE_SUCCESS,
+  ADMIN_DEACTIVATE_MEMBER_SUCCESS,
 } from "./profileActionTypes";
 
 const initialState = {
@@ -33,6 +34,13 @@ export function profileReducer(state = initialState, action) {
         ...state,
         loading: false,
         members_list: action.payload,
+      };
+    case ADMIN_DEACTIVATE_MEMBER_SUCCESS:
+      const updated_member_list = state.members_list.filter((item) => item.id !== action.payload);
+      return {
+        ...state,
+        loading: false,
+        members_list: updated_member_list,
       };
     case PROFILE_FAILURE:
       return {
