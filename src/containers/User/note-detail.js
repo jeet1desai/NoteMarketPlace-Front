@@ -2,18 +2,20 @@ import React, { useEffect, useState } from "react";
 import { Rating } from "@mui/material";
 import CustomerReview from "../../components/CustomerReview";
 import "../../assets/css/note-detail.css";
-import NoteImage from "../../assets/images/note.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchNoteAction } from "../../store/UserNotes/userNoteActions";
+import { fetchNoteAction, userDownloadNoteAction } from "../../store/UserNotes/userNoteActions";
 import moment from "moment";
 import Loader from "../../components/Loader";
+import AlertDialog from "../../components/AlertDialog";
 
 const NoteDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const { loading: note_loading, note } = useSelector((state) => state.userNoteReducer);
+
+  const [isDownloadDialogOpen, setDownloadDialog] = useState(false);
 
   const [noteDetails, setNoteDetails] = useState({
     title: "",
@@ -28,6 +30,8 @@ const NoteDetail = () => {
     approve_date: "",
     display_picture: "",
     notes_preview: "",
+    selling_price: "",
+    is_paid: "",
   });
 
   useEffect(() => {
@@ -52,6 +56,8 @@ const NoteDetail = () => {
         course_code: note.course_code,
         professor: note.professor,
         approve_date: note.published_date ? moment(note.published_date).format("MMM DD, YYYY") : "",
+        selling_price: note.selling_price,
+        is_paid: note.is_paid,
       });
     }
   }, [note]);
@@ -67,13 +73,22 @@ const NoteDetail = () => {
           <div className="row">
             <div className="col-6">
               <div className="note-up-left">
-                <img alt="note image" src={noteDetails.display_picture} className="note-image" />
+                <img alt="note market place" src={noteDetails.display_picture} className="note-image" />
                 <div className="">
                   <h5>{noteDetails.title}</h5>
                   <p>{noteDetails.category}</p>
                   <p>{noteDetails.description}</p>
-                  <button className="btn btn-purple download-btn" title="Download / $15">
-                    Download / $15
+                  <button
+                    className="btn btn-purple download-btn"
+                    title="Download / $15"
+                    onClick={() => {
+                      if (noteDetails.is_paid) {
+                        setDownloadDialog(true);
+                      } else {
+                        dispatch(userDownloadNoteAction({ note_id: id }));
+                      }
+                    }}>
+                    Download {noteDetails.selling_price ? `/ $${noteDetails.selling_price}` : ""}
                   </button>
                 </div>
               </div>
@@ -154,6 +169,17 @@ const NoteDetail = () => {
           </div>
         </div>
       </div>
+
+      <AlertDialog
+        isOpen={isDownloadDialogOpen}
+        handleClose={() => setDownloadDialog(false)}
+        handleSubmit={() => {
+          dispatch(userDownloadNoteAction({ note_id: id }));
+          setDownloadDialog(false);
+        }}
+        title="Download Note"
+        content="Are you sure you want to download this Paid note? Please confirm."
+      />
     </div>
   );
 };

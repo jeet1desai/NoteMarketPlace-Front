@@ -6,10 +6,23 @@ import {
   USERS_IN_PROGRESS_NOTE_SUCCESS,
   USERS_PUBLISHED_NOTE_SUCCESS,
   USERS_UPDATE_NOTE_SUCCESS,
+  USER_ALLOW_DOWNLOAD_NOTE_SUCCESS,
+  USER_BUYER_REQUEST_NOTE_SUCCESS,
+  USER_DOWNLOAD_NOTE_SUCCESS,
   USER_NOTE_FAILURE,
   USER_NOTE_REQUEST,
 } from "./userNoteActionTypes";
-import { createNote, deleteNote, fetchNote, inProgressNote, publishedNote, updateNote } from "../../services/user-note.service";
+import {
+  allowDownloadNote,
+  buyerRequest,
+  createNote,
+  deleteNote,
+  fetchNote,
+  inProgressNote,
+  publishedNote,
+  updateNote,
+  userDownloadNote,
+} from "../../services/user-note.service";
 
 const request = () => ({ type: USER_NOTE_REQUEST });
 
@@ -104,6 +117,52 @@ export function getPublishNoteAction(search) {
     publishedNote(search).then(
       (response) => {
         dispatch(success(USERS_PUBLISHED_NOTE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function userDownloadNoteAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    userDownloadNote(value).then(
+      (response) => {
+        toast.success(response.msg);
+        if (response?.data) {
+          window.open(response.data);
+        }
+        dispatch(success(USER_DOWNLOAD_NOTE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function userBuyerRequestAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    buyerRequest(search).then(
+      (response) => {
+        dispatch(success(USER_BUYER_REQUEST_NOTE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function userAllowDownloadNoteAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    allowDownloadNote(value).then(
+      (response) => {
+        dispatch(success(USER_ALLOW_DOWNLOAD_NOTE_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());

@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Pagination } from "@mui/material";
 import { Link } from "react-router-dom";
-
 import "../../assets/css/search-notes.css";
-
 import Note from "../../components/Note";
+import { useDispatch, useSelector } from "react-redux";
+import Loader from "../../components/Loader";
+import { getUserCategoryListAction, getUserCountryListAction, getUserNoteTypeListAction } from "../../store/Configuration/configActions";
 
-export default function SearchNotes() {
+const SearchNotes = () => {
+  const dispatch = useDispatch();
+
+  const { loading: config_loading, country_list, category_list, note_type_list } = useSelector((state) => state.configReducer);
+
+  useEffect(() => {
+    dispatch(getUserCountryListAction());
+    dispatch(getUserCategoryListAction());
+    dispatch(getUserNoteTypeListAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="search-notes">
+      <Loader loading={config_loading} />
       <div className="page-top">
         <div className="page-top-title">
           <p>Search Notes</p>
@@ -29,40 +42,36 @@ export default function SearchNotes() {
               <div>
                 <div className="select-boxes">
                   <select>
-                    <option className="muted">Select Type</option>
-                    <option value="">Mustard</option>
-                    <option value="">Ketchup</option>
-                    <option value="">Relish</option>
+                    <option value="">Select Type</option>
+                    {note_type_list.map((type) => (
+                      <option value={type.id} key={type.id}>
+                        {type.name}
+                      </option>
+                    ))}
                   </select>
                   <select>
-                    <option className="muted">Select Category</option>
-                    <option value="">Mustard</option>
-                    <option value="">Ketchup</option>
-                    <option value="">Relish</option>
+                    <option value="">Select Category</option>
+                    {category_list.map((category) => (
+                      <option value={category.id} key={category.id}>
+                        {category.name}
+                      </option>
+                    ))}
                   </select>
                   <select>
-                    <option className="muted">Select University</option>
-                    <option value="">Mustard</option>
-                    <option value="">Ketchup</option>
-                    <option value="">Relish</option>
+                    <option value="">Select Country</option>
+                    {country_list.map((country) => (
+                      <option value={country.id} key={country.id}>
+                        {country.name}
+                      </option>
+                    ))}
                   </select>
                   <select>
-                    <option className="muted">Select Course</option>
-                    <option value="">Mustard</option>
-                    <option value="">Ketchup</option>
-                    <option value="">Relish</option>
-                  </select>
-                  <select>
-                    <option className="muted">Select Country</option>
-                    <option value="">Mustard</option>
-                    <option value="">Ketchup</option>
-                    <option value="">Relish</option>
-                  </select>
-                  <select>
-                    <option className="muted">Select Rating</option>
-                    <option value="">Mustard</option>
-                    <option value="">Ketchup</option>
-                    <option value="">Relish</option>
+                    <option value="">Select Rating</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
                   </select>
                 </div>
               </div>
@@ -126,4 +135,6 @@ export default function SearchNotes() {
       </div>
     </div>
   );
-}
+};
+
+export default SearchNotes;

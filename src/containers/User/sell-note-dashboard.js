@@ -108,7 +108,7 @@ const SellNoteDashboard = () => {
           return "Free";
         }
       },
-      sorter: (a, b) => (a.status > b.status ? 1 : -1),
+      sorter: (a, b) => a.status - b.status,
     },
     { title: "PRICE", dataIndex: "selling_price", render: (selling_price) => `$ ${selling_price}` },
     {

@@ -5,6 +5,9 @@ import {
   USERS_IN_PROGRESS_NOTE_SUCCESS,
   USERS_PUBLISHED_NOTE_SUCCESS,
   USERS_UPDATE_NOTE_SUCCESS,
+  USER_ALLOW_DOWNLOAD_NOTE_SUCCESS,
+  USER_BUYER_REQUEST_NOTE_SUCCESS,
+  USER_DOWNLOAD_NOTE_SUCCESS,
   USER_NOTE_FAILURE,
   USER_NOTE_REQUEST,
 } from "./userNoteActionTypes";
@@ -14,6 +17,7 @@ const initialState = {
   note: null,
   in_progress_note: [],
   published_note: [],
+  buyer_request: [],
 };
 
 export function userNoteReducer(state = initialState, action) {
@@ -29,6 +33,7 @@ export function userNoteReducer(state = initialState, action) {
         loading: false,
         note: action.payload,
       };
+    case USER_DOWNLOAD_NOTE_SUCCESS:
     case USERS_CREATE_NOTE_SUCCESS:
       return {
         ...state,
@@ -63,6 +68,20 @@ export function userNoteReducer(state = initialState, action) {
         loading: false,
         published_note: action.payload,
         note: null,
+      };
+    case USER_BUYER_REQUEST_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        buyer_request: action.payload,
+        note: null,
+      };
+    case USER_ALLOW_DOWNLOAD_NOTE_SUCCESS:
+      const updated_buyer_request_list = state.buyer_request.filter((item) => item.id !== action.payload.id);
+      return {
+        ...state,
+        loading: false,
+        buyer_request: updated_buyer_request_list,
       };
     case USER_NOTE_FAILURE:
       return {
