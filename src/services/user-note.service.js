@@ -8,3 +8,5 @@ export const deleteNote = (id) => makeApiRequest(`${API_URL}/note/delete_note/${
 
 export const inProgressNote = (search) => makeApiRequest(`${API_URL}/note/in_progress_note/?search=${search}`, "GET");
 export const publishedNote = (search) => makeApiRequest(`${API_URL}/note/published_note/?search=${search}`, "GET");
+
+export const userDownloadNote = (value) => makeApiRequest(`${API_URL}/note/download_note/`, "POST", value);

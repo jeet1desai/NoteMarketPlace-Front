@@ -5,7 +5,7 @@ import "../../assets/css/note-detail.css";
 import NoteImage from "../../assets/images/note.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchNoteAction } from "../../store/UserNotes/userNoteActions";
+import { fetchNoteAction, userDownloadNoteAction } from "../../store/UserNotes/userNoteActions";
 import moment from "moment";
 import Loader from "../../components/Loader";
 
@@ -28,6 +28,7 @@ const NoteDetail = () => {
     approve_date: "",
     display_picture: "",
     notes_preview: "",
+    selling_price: "",
   });
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const NoteDetail = () => {
         course_code: note.course_code,
         professor: note.professor,
         approve_date: note.published_date ? moment(note.published_date).format("MMM DD, YYYY") : "",
+        selling_price: note.selling_price,
       });
     }
   }, [note]);
@@ -72,8 +74,17 @@ const NoteDetail = () => {
                   <h5>{noteDetails.title}</h5>
                   <p>{noteDetails.category}</p>
                   <p>{noteDetails.description}</p>
-                  <button className="btn btn-purple download-btn" title="Download / $15">
-                    Download / $15
+                  <button
+                    className="btn btn-purple download-btn"
+                    title="Download / $15"
+                    onClick={() =>
+                      dispatch(
+                        userDownloadNoteAction({
+                          note_id: id,
+                        })
+                      )
+                    }>
+                    Download {noteDetails.selling_price && `/ $${noteDetails.selling_price}`}
                   </button>
                 </div>
               </div>

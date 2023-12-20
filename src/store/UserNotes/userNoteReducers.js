@@ -5,6 +5,7 @@ import {
   USERS_IN_PROGRESS_NOTE_SUCCESS,
   USERS_PUBLISHED_NOTE_SUCCESS,
   USERS_UPDATE_NOTE_SUCCESS,
+  USER_DOWNLOAD_NOTE_SUCCESS,
   USER_NOTE_FAILURE,
   USER_NOTE_REQUEST,
 } from "./userNoteActionTypes";
@@ -29,6 +30,7 @@ export function userNoteReducer(state = initialState, action) {
         loading: false,
         note: action.payload,
       };
+    case USER_DOWNLOAD_NOTE_SUCCESS:
     case USERS_CREATE_NOTE_SUCCESS:
       return {
         ...state,

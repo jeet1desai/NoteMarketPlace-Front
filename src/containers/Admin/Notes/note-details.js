@@ -21,7 +21,6 @@ const AdminNoteDetails = () => {
     category: "",
     university_name: "",
     country: "",
-    selling_price: "",
     course: "",
     course_code: "",
     professor: "",
@@ -45,7 +44,6 @@ const AdminNoteDetails = () => {
         description: note.description,
         category: note.category?.name || "",
         display_picture: note.display_picture,
-        selling_price: note.selling_price,
         notes_preview: note.notes_preview,
         number_of_pages: note.number_of_pages,
         country: note.country?.name || "",
@@ -75,7 +73,7 @@ const AdminNoteDetails = () => {
                   <p>{noteDetails.category}</p>
                   <p>{noteDetails.description}</p>
                   <button class="btn btn-purple download-btn" title="Download">
-                    Download / ${noteDetails.selling_price}
+                    Download
                   </button>
                 </div>
               </div>
