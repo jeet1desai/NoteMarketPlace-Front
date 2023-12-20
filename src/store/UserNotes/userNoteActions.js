@@ -6,11 +6,21 @@ import {
   USERS_IN_PROGRESS_NOTE_SUCCESS,
   USERS_PUBLISHED_NOTE_SUCCESS,
   USERS_UPDATE_NOTE_SUCCESS,
+  USER_BUYER_REQUEST_NOTE_SUCCESS,
   USER_DOWNLOAD_NOTE_SUCCESS,
   USER_NOTE_FAILURE,
   USER_NOTE_REQUEST,
 } from "./userNoteActionTypes";
-import { createNote, deleteNote, fetchNote, inProgressNote, publishedNote, updateNote, userDownloadNote } from "../../services/user-note.service";
+import {
+  buyerRequest,
+  createNote,
+  deleteNote,
+  fetchNote,
+  inProgressNote,
+  publishedNote,
+  updateNote,
+  userDownloadNote,
+} from "../../services/user-note.service";
 
 const request = () => ({ type: USER_NOTE_REQUEST });
 
@@ -118,9 +128,25 @@ export function userDownloadNoteAction(value) {
     dispatch(request());
     userDownloadNote(value).then(
       (response) => {
-        toast.success(response.msg)
-        window.open(response.data)
+        toast.success(response.msg);
+        if (response?.data) {
+          window.open(response.data);
+        }
         dispatch(success(USER_DOWNLOAD_NOTE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function userBuyerRequestAction(search) {
+  return (dispatch) => {
+    dispatch(request());
+    buyerRequest(search).then(
+      (response) => {
+        dispatch(success(USER_BUYER_REQUEST_NOTE_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());

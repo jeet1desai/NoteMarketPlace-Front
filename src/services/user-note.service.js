@@ -10,3 +10,6 @@ export const inProgressNote = (search) => makeApiRequest(`${API_URL}/note/in_pro
 export const publishedNote = (search) => makeApiRequest(`${API_URL}/note/published_note/?search=${search}`, "GET");
 
 export const userDownloadNote = (value) => makeApiRequest(`${API_URL}/note/download_note/`, "POST", value);
+
+export const buyerRequest = (search) => makeApiRequest(`${API_URL}/note/buyer_request/?search=${search}`, "GET");
+export const allowDownloadNote = (value) => makeApiRequest(`${API_URL}/note/buyer_request/`, "PUT", value);

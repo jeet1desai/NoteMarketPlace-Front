@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Rating } from "@mui/material";
 import CustomerReview from "../../../components/CustomerReview";
 import "../../../assets/css/note-detail.css";
-import NoteImage from "../../../assets/images/note.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/Loader";
 import { fetchNoteAction } from "../../../store/UserNotes/userNoteActions";
@@ -67,7 +66,7 @@ const AdminNoteDetails = () => {
           <div className="row">
             <div className="col-6">
               <div className="note-up-left">
-                <img alt="note image" src={noteDetails.display_picture} className="note-image" />
+                <img alt="note market place" src={noteDetails.display_picture} className="note-image" />
                 <div className="">
                   <h5>{noteDetails.title}</h5>
                   <p>{noteDetails.category}</p>

@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Table, Space, Dropdown, Menu } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-
 import "../../assets/css/buyer-request.css";
+import { useDispatch, useSelector } from "react-redux";
+import { userBuyerRequestAction } from "../../store/UserNotes/userNoteActions";
+import moment from "moment";
 
-export default function BuyerRequest() {
+const BuyerRequest = () => {
+  const dispatch = useDispatch();
+
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+
+  const { loading: note_loading, buyer_request } = useSelector((state) => state.userNoteReducer);
+
   const menu = (record) => {
     return (
       <Menu>
@@ -21,31 +30,59 @@ export default function BuyerRequest() {
   };
 
   const columns = [
-    { title: "SR NO.", dataIndex: "id" },
+    { title: "SR NO.", dataIndex: "id", render: (_, record, index) => index + 1, sorter: (a, b) => a.id - b.id },
     {
       title: "NOTE TITLE",
-      key: "title",
       dataIndex: "title",
-      render: (title) => <span>{title}</span>,
-      sorter: (a, b) => a.title.localeCompare(b.title),
+      render: (_, record) => <span>{record.note.title}</span>,
+      sorter: (a, b) => a.note.title.localeCompare(b.note.title),
     },
-    { title: "CATEGORY", dataIndex: "category", sorter: true },
-    { title: "BUYER", dataIndex: "buyer" },
-    { title: "PHONE NO", dataIndex: "phone" },
-    { title: "SELL TYPE", dataIndex: "type" },
+    {
+      title: "CATEGORY",
+      dataIndex: "category",
+      render: (_, record) => record.note.category.name,
+      sorter: (a, b) => a.note.category.name.localeCompare(b.note.category.name),
+    },
+    {
+      title: "BUYER",
+      dataIndex: "buyer",
+      render: (_, record) => record.downloader.email,
+      sorter: (a, b) => a.downloader.email.localeCompare(b.downloader.email),
+    },
+    {
+      title: "PHONE NO",
+      dataIndex: "phone_number",
+      render: (_, record) =>
+        record.downloader.phone_number ? `+${record.downloader.phone_country_code.code} ${record.downloader.phone_number || ""}` : "N/a",
+      sorter: (a, b) =>
+        `+${a.downloader.phone_country_code.code} ${a.downloader.phone_number || ""}`.localeCompare(
+          `+${b.downloader.phone_country_code.code} ${b.downloader.phone_number || ""}`
+        ),
+    },
+    {
+      title: "SELL TYPE",
+      dataIndex: "is_paid",
+      render: (_, record) => (record.note.is_paid ? "Paid" : "Free"),
+      sorter: (a, b) => a.note.status - b.note.status,
+    },
     {
       title: "PRICE",
-      dataIndex: "price",
-      render: (price) => `₹ ${price}`,
-      sorter: (a, b) => a.price - b.price,
+      dataIndex: "selling_price",
+      render: (_, record) => `$ ${record.note.selling_price}`,
+      sorter: (a, b) => a.note.selling_price - b.note.selling_price,
     },
-    { title: "DOWNLOADED DATE/TIME", dataIndex: "time" },
+    {
+      title: "DOWNLOADED DATE/TIME",
+      dataIndex: "attachment_downloaded_date",
+      render: (date) => moment(date).format("DD-MM-YYYY, hh:mm"),
+      sorter: (a, b) => moment(a.attachment_downloaded_date).unix() - moment(b.attachment_downloaded_date).unix(),
+    },
     {
       title: "",
       key: "action",
-      render: (text, record) => (
+      render: (_, record) => (
         <Space size="middle">
-          <Link to="/search-notes">
+          <Link to={`/search-notes/note/${record.note.id}`}>
             <VisibilityOutlinedIcon color="disabled" />
           </Link>
           <Dropdown overlay={menu(record)}>
@@ -56,28 +93,10 @@ export default function BuyerRequest() {
     },
   ];
 
-  const data = [
-    {
-      id: "1",
-      title: "John Brown",
-      category: "Science",
-      buyer: "abc@gmail.com	",
-      phone: "+91 1234567890",
-      type: "Paid",
-      price: 120,
-      time: "27 Nov 2020, 11:20:30",
-    },
-    {
-      id: "2",
-      title: "Kohn Drown",
-      category: "Bcience",
-      buyer: "abcd@gmail.com	",
-      phone: "+91 1234567891",
-      type: "Free",
-      price: 150,
-      time: "28 Nov 2020, 11:20:30",
-    },
-  ];
+  useEffect(() => {
+    dispatch(userBuyerRequestAction(""));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="buyer-request">
@@ -91,9 +110,9 @@ export default function BuyerRequest() {
               <div className="search">
                 <div className="form-group has-search">
                   <span className="fa fa-search search-icon"></span>
-                  <input type="text" className="form-control" placeholder="Search" />
+                  <input type="text" className="form-control" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
                 </div>
-                <button type="button" className="btn btn-purple">
+                <button type="button" className="btn btn-purple" onClick={() => dispatch(userBuyerRequestAction(search))}>
                   Search
                 </button>
               </div>
@@ -101,14 +120,15 @@ export default function BuyerRequest() {
 
             <div className="antd-table">
               <Table
+                loading={note_loading}
                 columns={columns}
-                dataSource={data}
-                // scroll={{ x: true }}
+                dataSource={buyer_request}
                 pagination={{
-                  current: 1,
-                  pageSize: 1,
-                  total: 2,
+                  current: page,
+                  pageSize: 10,
+                  total: buyer_request.length,
                   position: ["bottomCenter"],
+                  onChange: (val) => setPage(val),
                 }}
                 showSorterTooltip={false}
               />
@@ -118,4 +138,6 @@ export default function BuyerRequest() {
       </div>
     </div>
   );
-}
+};
+
+export default BuyerRequest;
