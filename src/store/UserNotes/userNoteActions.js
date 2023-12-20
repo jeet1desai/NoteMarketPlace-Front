@@ -6,12 +6,14 @@ import {
   USERS_IN_PROGRESS_NOTE_SUCCESS,
   USERS_PUBLISHED_NOTE_SUCCESS,
   USERS_UPDATE_NOTE_SUCCESS,
+  USER_ALLOW_DOWNLOAD_NOTE_SUCCESS,
   USER_BUYER_REQUEST_NOTE_SUCCESS,
   USER_DOWNLOAD_NOTE_SUCCESS,
   USER_NOTE_FAILURE,
   USER_NOTE_REQUEST,
 } from "./userNoteActionTypes";
 import {
+  allowDownloadNote,
   buyerRequest,
   createNote,
   deleteNote,
@@ -147,6 +149,20 @@ export function userBuyerRequestAction(search) {
     buyerRequest(search).then(
       (response) => {
         dispatch(success(USER_BUYER_REQUEST_NOTE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function userAllowDownloadNoteAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    allowDownloadNote(value).then(
+      (response) => {
+        dispatch(success(USER_ALLOW_DOWNLOAD_NOTE_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());

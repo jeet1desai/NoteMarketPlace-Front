@@ -5,7 +5,8 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import "../../assets/css/buyer-request.css";
 import { useDispatch, useSelector } from "react-redux";
-import { userBuyerRequestAction } from "../../store/UserNotes/userNoteActions";
+import { userAllowDownloadNoteAction, userBuyerRequestAction } from "../../store/UserNotes/userNoteActions";
+import AlertDialog from "../../components/AlertDialog";
 import moment from "moment";
 
 const BuyerRequest = () => {
@@ -14,6 +15,9 @@ const BuyerRequest = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
 
+  const [isAllowDialogOpen, setAllowDialog] = useState(false);
+  const [allowDownloadId, setAllowDownloadId] = useState(null);
+
   const { loading: note_loading, buyer_request } = useSelector((state) => state.userNoteReducer);
 
   const menu = (record) => {
@@ -21,7 +25,8 @@ const BuyerRequest = () => {
       <Menu>
         <Menu.Item
           onClick={() => {
-            console.log(record.id);
+            setAllowDownloadId(record.id);
+            setAllowDialog(true);
           }}>
           Yes, I Received
         </Menu.Item>
@@ -136,6 +141,18 @@ const BuyerRequest = () => {
           </div>
         </div>
       </div>
+
+      <AlertDialog
+        isOpen={isAllowDialogOpen}
+        handleClose={() => setAllowDialog(false)}
+        handleSubmit={() => {
+          dispatch(userAllowDownloadNoteAction({ download_id: allowDownloadId }));
+          setAllowDownloadId(null);
+          setAllowDialog(false);
+        }}
+        title="Allow to download note"
+        content="Are you sure you have received the payment for note?"
+      />
     </div>
   );
 };
