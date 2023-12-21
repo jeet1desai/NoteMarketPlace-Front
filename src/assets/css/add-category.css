@@ -1,5 +1,6 @@
 .add-category {
   padding-top: 80px;
+  flex: 1;
 }
 
 .add-category .add-form {

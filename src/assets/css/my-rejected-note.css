@@ -1,5 +1,6 @@
 .my-rejected-note {
   padding-top: 80px;
+  flex: 1;
 }
 
 .my-rejected-note .my-rejected-note-table {
@@ -51,4 +52,8 @@
 
 .my-rejected-note table td.ant-table-cell-ellipsis span {
   color: rgba(0, 0, 0, 0.85);
+}
+
+.clone-note {
+  cursor: pointer;
 }

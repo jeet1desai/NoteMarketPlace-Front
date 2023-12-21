@@ -1,6 +1,7 @@
 .manage-system-config {
   padding-top: 130px;
   margin-bottom: 50px;
+  flex: 1;
 }
 
 .manage-system-config .page-title p {

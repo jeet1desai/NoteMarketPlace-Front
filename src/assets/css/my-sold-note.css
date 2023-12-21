@@ -1,5 +1,6 @@
 .my-sold-note {
   padding-top: 80px;
+  flex: 1;
 }
 
 .my-sold-note .my-sold-note-table {

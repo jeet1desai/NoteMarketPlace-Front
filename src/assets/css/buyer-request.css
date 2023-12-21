@@ -1,5 +1,6 @@
 .buyer-request {
   padding-top: 80px;
+  flex: 1;
 }
 
 .buyer-request .buyer-request-table {

@@ -1,5 +1,6 @@
 .manage-countries {
   padding-top: 80px;
+  flex: 1;
 }
 
 .manage-countries .manage-country-table {

@@ -1,5 +1,6 @@
 .add-notes .add-note-form {
   margin: 50px 0;
+  flex: 1;
 }
 
 .add-notes .page-title p {

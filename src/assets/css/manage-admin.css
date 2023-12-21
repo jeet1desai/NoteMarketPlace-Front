@@ -1,5 +1,6 @@
 .manage-admin {
   padding-top: 80px;
+  flex: 1;
 }
 
 .manage-admin .manage-admin-table {

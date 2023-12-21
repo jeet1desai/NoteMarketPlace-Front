@@ -1,5 +1,6 @@
 .published-notes {
   padding-top: 80px;
+  flex: 1;
 }
 
 .published-notes .page-title p {

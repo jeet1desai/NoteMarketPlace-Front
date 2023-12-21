@@ -1,5 +1,6 @@
 .rejected-notes {
   padding-top: 80px;
+  flex: 1;
 }
 
 .rejected-notes .rejected-table {
