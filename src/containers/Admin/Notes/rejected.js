@@ -21,12 +21,7 @@ const Rejected = () => {
     return (
       <Menu>
         <Menu.Item>Approve</Menu.Item>
-        <Menu.Item
-          onClick={() => {
-            console.log(record.id);
-          }}>
-          Download Note
-        </Menu.Item>
+        <Menu.Item>Download Note</Menu.Item>
         <Menu.Item>View More Details</Menu.Item>
       </Menu>
     );
@@ -79,18 +74,6 @@ const Rejected = () => {
     },
   ];
 
-  const data = [
-    {
-      id: "1",
-      title: "John Brown sdfgh sdfgh sdfgh fdsfdsggfg  dfsdf ddfs fdf",
-      category: "Science",
-      seller: "Pritesh Panshal",
-      rejecter: "Pritesh Panshal",
-      remark: "sdnksjfkdf fsdfsldfkndf fosdnfsf fosfnskjdfns ",
-      time: "27 Nov 2020, 11:20:30",
-    },
-  ];
-
   return (
     <div className="rejected-notes">
       <div className="container">
@@ -127,7 +110,7 @@ const Rejected = () => {
             <Table
               loading={profile_loading}
               columns={columns}
-              dataSource={data}
+              dataSource={[]}
               pagination={{
                 current: 2,
                 pageSize: 1,

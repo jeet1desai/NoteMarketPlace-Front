@@ -59,3 +59,8 @@
   background-color: grey;
   color: white;
 }
+
+.note-under-review button,
+.note-under-review button:hover {
+  box-shadow: none;
+}

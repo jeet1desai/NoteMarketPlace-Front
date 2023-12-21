@@ -9,7 +9,7 @@ import { noteSchema } from "../../../utils/schema";
 import { getUserCategoryListAction, getUserCountryListAction, getUserNoteTypeListAction } from "../../../store/Configuration/configActions";
 import Loader from "../../../components/Loader";
 import { uploadDocument } from "../../../utils/upload";
-import { createNoteAction, fetchNoteAction, updateNoteAction } from "../../../store/UserNotes/userNoteActions";
+import { createNoteAction, fetchOwnerNoteAction, updateNoteAction } from "../../../store/UserNotes/userNoteActions";
 
 const NoteForm = () => {
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ const NoteForm = () => {
   useEffect(() => {
     if (id) {
       setNoteId(id);
-      dispatch(fetchNoteAction(id));
+      dispatch(fetchOwnerNoteAction(id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import { deleteNoteAction, getInProgressNoteAction, getPublishNoteAction } from "../../store/UserNotes/userNoteActions";
 import moment from "moment";
-import { NOTE_STATUS } from "../../utils/enum";
+import { NOTE_STATUS, handleStatus } from "../../utils/enum";
 import AlertDialog from "../../components/AlertDialog";
 
 const SellNoteDashboard = () => {
@@ -43,15 +43,7 @@ const SellNoteDashboard = () => {
     {
       title: "STATUS",
       dataIndex: "status",
-      render: (status) => {
-        if (status === NOTE_STATUS.DRAFT) {
-          return "Draft";
-        } else if (status === NOTE_STATUS.SUBMITTED) {
-          return "Submitted";
-        } else {
-          return "In Review";
-        }
-      },
+      render: (status) => handleStatus(status),
       sorter: (a, b) => (a.status > b.status ? 1 : -1),
     },
     {
@@ -101,13 +93,7 @@ const SellNoteDashboard = () => {
     {
       title: "SELL TYPE",
       dataIndex: "is_paid",
-      render: (is_paid) => {
-        if (is_paid) {
-          return "Paid";
-        } else {
-          return "Free";
-        }
-      },
+      render: (is_paid) => (is_paid ? "Paid" : "Free"),
       sorter: (a, b) => a.status - b.status,
     },
     { title: "PRICE", dataIndex: "selling_price", render: (selling_price) => `$ ${selling_price}` },

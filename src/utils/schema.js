@@ -168,3 +168,7 @@ export const reviewSchema = Yup.object().shape({
   rating: Yup.number().required("Required").min(1, "Required"),
   comment: Yup.string().required("Required"),
 });
+
+export const rejectNoteSchema = Yup.object().shape({
+  remark: Yup.string().required("Required"),
+});

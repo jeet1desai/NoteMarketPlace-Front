@@ -1,51 +1,10 @@
 import { API_URL } from "../setting";
-import { makeApiRequest } from "../utils/api";
-import { handleResponse } from "../utils/response";
+import { makeApiRequest, makeAuthApiRequest } from "../utils/api";
 
-export const signIn = (user) => {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user),
-  };
-  return fetch(`${API_URL}/auth/login/`, requestOptions).then(handleResponse);
-};
+export const signIn = (user) => makeApiRequest(`${API_URL}/auth/login/`, "POST", user);
+export const signUp = (user) => makeApiRequest(`${API_URL}/auth/register/`, "POST", user);
+export const verifyEmail = (id) => makeApiRequest(`${API_URL}/auth/verify_email/${id}/`, "GET");
+export const forgetPassword = (user) => makeApiRequest(`${API_URL}/auth/reset_password/`, "POST", user);
+export const changePassword = (value) => makeAuthApiRequest(`${API_URL}/auth/change_password/`, "POST", value);
 
-export const signUp = (user) => {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user),
-  };
-  return fetch(`${API_URL}/auth/register/`, requestOptions).then(handleResponse);
-};
-
-export const verifyEmail = (id) => {
-  const requestOptions = {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  };
-  return fetch(`${API_URL}/auth/verify_email/${id}/`, requestOptions).then(handleResponse);
-};
-
-export const forgetPassword = (user) => {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user),
-  };
-  return fetch(`${API_URL}/auth/reset_password/`, requestOptions).then(handleResponse);
-};
-
-export const changePassword = (value) => makeApiRequest(`${API_URL}/auth/change_password/`, "POST", value);
-
-export const contactUs = (query) => {
-  const requestOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(query),
-  };
-  return fetch(`${API_URL}/user/contact_us/`, requestOptions).then(handleResponse);
-};
+export const contactUs = (query) => makeApiRequest(`${API_URL}/user/contact_us/`, "POST", query);
