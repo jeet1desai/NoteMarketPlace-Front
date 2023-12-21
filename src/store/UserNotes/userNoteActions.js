@@ -25,6 +25,7 @@ import {
   createNote,
   deleteNote,
   fetchNote,
+  fetchOwnerNote,
   inProgressNote,
   myDownloadNote,
   myRejectedNote,
@@ -44,6 +45,20 @@ export function fetchNoteAction(id) {
   return (dispatch) => {
     dispatch(request());
     fetchNote(id).then(
+      (response) => {
+        dispatch(success(USERS_GET_NOTE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function fetchOwnerNoteAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchOwnerNote(id).then(
       (response) => {
         dispatch(success(USERS_GET_NOTE_SUCCESS, response.data));
       },
