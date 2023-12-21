@@ -15,16 +15,16 @@ export default function FAQ() {
   return (
     <div className="faq">
       <div className="page-top">
-        <div class="page-top-title">
+        <div className="page-top-title">
           <p>Frequently Asked Questions</p>
         </div>
       </div>
 
       <div className="question-answer">
-        <div class="content-box">
-          <div class="container">
+        <div className="content-box">
+          <div className="container">
             <div className="g-question">
-              <div class="page-title">
+              <div className="page-title">
                 <p>General Questions</p>
               </div>
               <Accordion elevation={0} expanded={expanded === "panel1"} onChange={handleChange("panel1")}>
@@ -63,7 +63,7 @@ export default function FAQ() {
             </div>
 
             <div className="u-question">
-              <div class="page-title">
+              <div className="page-title">
                 <p>Uploader</p>
               </div>
               <Accordion elevation={0} expanded={expanded === "panel4"} onChange={handleChange("panel4")}>
@@ -112,7 +112,7 @@ export default function FAQ() {
             </div>
 
             <div className="u-question">
-              <div class="page-title">
+              <div className="page-title">
                 <p>Downloader</p>
               </div>
               <Accordion elevation={0} expanded={expanded === "panel7"} onChange={handleChange("panel7")}>

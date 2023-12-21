@@ -1,5 +1,6 @@
 .note-under-review {
   padding-top: 80px;
+  flex: 1;
 }
 
 .note-under-review .nur-header .page-title p {

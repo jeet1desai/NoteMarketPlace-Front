@@ -1,12 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Space, Dropdown, Menu } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { Link } from "react-router-dom";
-
 import "../../../assets/css/downloaded-notes.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getBuyerAction, getSellerAction } from "../../../store/Profile/profileActions";
+import { useLocation } from "react-router-dom";
 
-export default function Downloaded() {
+const Downloaded = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+
+  const { loading: profile_loading, seller_list, buyer_list } = useSelector((state) => state.profileReducer);
+
+  const [seller, setSeller] = useState("");
+
+  useEffect(() => {
+    const sellerFilter = queryParams.get("seller");
+    if (sellerFilter) {
+      setSeller(sellerFilter);
+    }
+    dispatch(getSellerAction());
+    dispatch(getBuyerAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    console.log(seller);
+  }, [seller]);
+
   const menu = (record) => {
     return (
       <Menu>
@@ -100,33 +125,25 @@ export default function Downloaded() {
             <div className="filter-search">
               <div className="filter">
                 <div className="form-group">
-                  <label>Note</label>
-                  <select className="form-control">
-                    <option className="muted">Select Note</option>
-                    <option value="">abc</option>
-                    <option value="">abc</option>
-                    <option value="">abc</option>
-                    <option value="">abc</option>
-                  </select>
-                </div>
-                <div className="form-group">
                   <label>Seller</label>
-                  <select className="form-control">
-                    <option className="muted">Select Seller</option>
-                    <option value="">abc</option>
-                    <option value="">abc</option>
-                    <option value="">abc</option>
-                    <option value="">abc</option>
+                  <select value={seller} onChange={(e) => setSeller(e.target.value)} className="form-control">
+                    <option value="">Select Seller</option>
+                    {seller_list.map((seller) => (
+                      <option value={seller.id} key={seller.id}>
+                        {seller.first_name} {seller.last_name}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="form-group">
                   <label>Buyer</label>
                   <select className="form-control">
-                    <option className="muted">Select Buyer</option>
-                    <option value="">abc</option>
-                    <option value="">abc</option>
-                    <option value="">abc</option>
-                    <option value="">abc</option>
+                    <option value="">Select Buyer</option>
+                    {buyer_list.map((buyer) => (
+                      <option value={buyer.id} key={buyer.id}>
+                        {buyer.first_name} {buyer.last_name}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -144,9 +161,9 @@ export default function Downloaded() {
 
           <div className="antd-table">
             <Table
+              loading={profile_loading}
               columns={columns}
               dataSource={data}
-              // scroll={{ x: true }}
               pagination={{
                 current: 1,
                 pageSize: 1,
@@ -160,4 +177,6 @@ export default function Downloaded() {
       </div>
     </div>
   );
-}
+};
+
+export default Downloaded;

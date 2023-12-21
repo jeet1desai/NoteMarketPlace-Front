@@ -1,5 +1,6 @@
 .my-downloads {
   padding-top: 80px;
+  flex: 1;
 }
 
 .my-downloads .dropdown-menu {
@@ -64,6 +65,10 @@
 
 .modal .MuiRating-root svg {
   height: 2em;
+}
+
+.modal .modal-body {
+  padding-top: 0;
 }
 
 .modal .modal-body .modal-review-btn {

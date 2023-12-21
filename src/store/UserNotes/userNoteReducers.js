@@ -5,9 +5,14 @@ import {
   USERS_IN_PROGRESS_NOTE_SUCCESS,
   USERS_PUBLISHED_NOTE_SUCCESS,
   USERS_UPDATE_NOTE_SUCCESS,
+  USER_ADD_REVIEW_SUCCESS,
   USER_ALLOW_DOWNLOAD_NOTE_SUCCESS,
   USER_BUYER_REQUEST_NOTE_SUCCESS,
+  USER_CLONE_NOTE_SUCCESS,
   USER_DOWNLOAD_NOTE_SUCCESS,
+  USER_MY_DOWNLOAD_NOTE_SUCCESS,
+  USER_MY_REJECTED_NOTE_SUCCESS,
+  USER_MY_SOLD_NOTE_SUCCESS,
   USER_NOTE_FAILURE,
   USER_NOTE_REQUEST,
 } from "./userNoteActionTypes";
@@ -18,6 +23,9 @@ const initialState = {
   in_progress_note: [],
   published_note: [],
   buyer_request: [],
+  my_download_note: [],
+  my_sold_note: [],
+  my_rejected_note: [],
 };
 
 export function userNoteReducer(state = initialState, action) {
@@ -33,8 +41,31 @@ export function userNoteReducer(state = initialState, action) {
         loading: false,
         note: action.payload,
       };
+    case USER_MY_REJECTED_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        my_rejected_note: action.payload,
+        note: null,
+      };
+    case USER_MY_DOWNLOAD_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        my_download_note: action.payload,
+        note: null,
+      };
+    case USER_MY_SOLD_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        my_sold_note: action.payload,
+        note: null,
+      };
     case USER_DOWNLOAD_NOTE_SUCCESS:
     case USERS_CREATE_NOTE_SUCCESS:
+    case USER_ADD_REVIEW_SUCCESS:
+    case USER_CLONE_NOTE_SUCCESS:
       return {
         ...state,
         loading: false,

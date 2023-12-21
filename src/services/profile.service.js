@@ -7,3 +7,6 @@ export const updateAdminProfile = (value) => makeApiRequest(`${API_URL}/user/upd
 
 export const fetchMembers = (search) => makeApiRequest(`${API_URL}/admin/members/?search=${search}`, "GET");
 export const deActiveMembers = (id) => makeApiRequest(`${API_URL}/admin/members/${id}/`, "DELETE");
+
+export const fetchSeller = () => makeApiRequest(`${API_URL}/user/sellers/`, "GET");
+export const fetchBuyer = () => makeApiRequest(`${API_URL}/user/buyers/`, "GET");

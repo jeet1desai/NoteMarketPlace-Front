@@ -25,14 +25,14 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div class="forget-password-page">
+    <div className="forget-password-page">
       <div className="white-top-logo">
         <img alt="logo" src={WhiteLogo} />
       </div>
       <div className="form-content">
-        <div class="forget-password-heading">
-          <h3 class="text-center">Forgot Password?</h3>
-          <p class="text-center">Enter your email to reset password</p>
+        <div className="forget-password-heading">
+          <h3 className="text-center">Forgot Password?</h3>
+          <p className="text-center">Enter your email to reset password</p>
         </div>
         <Formik
           initialValues={formValue}
@@ -44,8 +44,8 @@ const ForgetPassword = () => {
           {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
             return (
               <Form onSubmit={handleSubmit}>
-                <div class="form-group">
-                  <label for="email">Email *</label>
+                <div className="form-group">
+                  <label htmlFor="email">Email *</label>
                   <input
                     type="email"
                     className={`form-control ${errors.email && touched.email && "invalid"}`}

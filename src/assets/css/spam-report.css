@@ -1,5 +1,6 @@
 .spam-report {
   padding-top: 80px;
+  flex: 1;
 }
 
 .spam-report .spam-report-table {

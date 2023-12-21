@@ -163,3 +163,8 @@ export const adminProfileSchema = Yup.object().shape({
   last_name: Yup.string().required("Required"),
   email: Yup.string().required("Required").email("Enter valid"),
 });
+
+export const reviewSchema = Yup.object().shape({
+  rating: Yup.number().required("Required").min(1, "Required"),
+  comment: Yup.string().required("Required"),
+});

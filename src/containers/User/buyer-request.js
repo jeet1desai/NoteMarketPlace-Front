@@ -39,7 +39,7 @@ const BuyerRequest = () => {
     {
       title: "NOTE TITLE",
       dataIndex: "title",
-      render: (_, record) => <span>{record.note.title}</span>,
+      render: (_, record) => <Link to={`/search-notes/note/${record.note.id}`}>{record.note.title}</Link>,
       sorter: (a, b) => a.note.title.localeCompare(b.note.title),
     },
     {

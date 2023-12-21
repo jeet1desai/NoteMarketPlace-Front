@@ -1,5 +1,6 @@
 .members {
   padding-top: 80px;
+  flex: 1;
 }
 
 .members .members-table {

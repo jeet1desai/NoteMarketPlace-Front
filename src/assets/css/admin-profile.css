@@ -1,6 +1,7 @@
 .admin-profile {
   padding-top: 130px;
   margin-bottom: 50px;
+  flex: 1;
 }
 
 .admin-profile .page-title p {

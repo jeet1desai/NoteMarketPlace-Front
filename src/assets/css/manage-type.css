@@ -1,5 +1,6 @@
 .manage-type {
   padding-top: 80px;
+  flex: 1;
 }
 
 .manage-type .manage-type-table {

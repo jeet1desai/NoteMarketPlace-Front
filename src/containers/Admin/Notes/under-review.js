@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import { Table, Space, Dropdown, Menu } from "antd";
 import { Link } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import Button from "@mui/material/Button";
-
 import "../../../assets/css/note-under-review.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getSellerAction } from "../../../store/Profile/profileActions";
+import { useLocation } from "react-router-dom";
 
-export default function UnderReview() {
+const UnderReview = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+
+  const { loading: profile_loading, seller_list } = useSelector((state) => state.profileReducer);
+
+  const [seller, setSeller] = useState("");
+
+  useEffect(() => {
+    const sellerFilter = queryParams.get("seller");
+    if (sellerFilter) {
+      setSeller(sellerFilter);
+    }
+    dispatch(getSellerAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    console.log(seller);
+  }, [seller]);
+
   const menu = (record) => {
     return (
       <Menu>
@@ -100,12 +124,13 @@ export default function UnderReview() {
             <p>Seller</p>
             <div className="nur-header-input">
               <div className="form-group">
-                <select className="form-control">
-                  <option>Select Month</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                <select className="form-control" value={seller} onChange={(e) => setSeller(e.target.value)}>
+                  <option value="">Select Seller</option>
+                  {seller_list.map((seller) => (
+                    <option value={seller.id} key={seller.id}>
+                      {seller.first_name} {seller.last_name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="search">
@@ -122,9 +147,9 @@ export default function UnderReview() {
 
           <div className="antd-table">
             <Table
+              loading={profile_loading}
               columns={columns}
               dataSource={data}
-              // scroll={{ x: true }}
               pagination={{
                 current: 2,
                 pageSize: 1,
@@ -141,7 +166,7 @@ export default function UnderReview() {
         <ModalHeader toggle={() => {}}>Human Body - Science</ModalHeader>
         <ModalBody>
           <div className="form-group">
-            <label for="description">Remark *</label>
+            <label htmlFor="description">Remark *</label>
             <textarea id="description" name="description" className="form-control" placeholder="write remark..." required></textarea>
           </div>
           <div className="modal-review-btn">
@@ -156,4 +181,6 @@ export default function UnderReview() {
       </Modal>
     </div>
   );
-}
+};
+
+export default UnderReview;

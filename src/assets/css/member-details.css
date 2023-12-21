@@ -1,5 +1,6 @@
 .member-details {
   padding-top: 80px;
+  flex: 1;
 }
 
 .member-details .member-detail,

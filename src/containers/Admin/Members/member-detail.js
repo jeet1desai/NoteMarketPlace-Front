@@ -10,6 +10,7 @@ import moment from "moment";
 import { fetchUserNoteAction } from "../../../store/AdminNotes/adminNoteActions";
 import { Link } from "react-router-dom";
 import { NOTE_STATUS } from "../../../utils/enum";
+import { userDownloadNoteAction } from "../../../store/UserNotes/userNoteActions";
 
 const MemberDetail = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const MemberDetail = () => {
 
   const { loading: profile_loading, user } = useSelector((state) => state.profileReducer);
   const { loading: admin_note_loading, member_notes } = useSelector((state) => state.adminNoteReducer);
+  const { loading: note_loading } = useSelector((state) => state.userNoteReducer);
 
   const [page, setPage] = useState(1);
 
@@ -66,7 +68,7 @@ const MemberDetail = () => {
   const menu = (record) => {
     return (
       <Menu>
-        <Menu.Item onClick={() => {}}>Download Note</Menu.Item>
+        <Menu.Item onClick={() => dispatch(userDownloadNoteAction({ note_id: record.id }))}>Download Note</Menu.Item>
       </Menu>
     );
   };
@@ -136,7 +138,7 @@ const MemberDetail = () => {
 
   return (
     <div className="member-details">
-      <Loader loading={profile_loading || admin_note_loading} />
+      <Loader loading={profile_loading || admin_note_loading || note_loading} />
       <div className="container">
         <div className="member-detail">
           <div className="page-title">

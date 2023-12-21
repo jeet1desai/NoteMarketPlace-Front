@@ -6,12 +6,16 @@ import {
   USERS_UPDATE_PROFILE_SUCCESS,
   ADMIN_UPDATE_PROFILE_SUCCESS,
   ADMIN_DEACTIVATE_MEMBER_SUCCESS,
+  ADMIN_SELLER_SUCCESS,
+  ADMIN_BUYER_SUCCESS,
 } from "./profileActionTypes";
 
 const initialState = {
   loading: false,
   user: {},
   members_list: [],
+  seller_list: [],
+  buyer_list: [],
 };
 
 export function profileReducer(state = initialState, action) {
@@ -28,6 +32,18 @@ export function profileReducer(state = initialState, action) {
         ...state,
         loading: false,
         user: action.payload,
+      };
+    case ADMIN_BUYER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        buyer_list: action.payload,
+      };
+    case ADMIN_SELLER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        seller_list: action.payload,
       };
     case ADMIN_GET_MEMBER_SUCCESS:
       return {

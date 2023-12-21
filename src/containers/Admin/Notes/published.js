@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Space, Dropdown, Menu } from "antd";
 import { Link } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-
 import "../../../assets/css/published-notes.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getSellerAction } from "../../../store/Profile/profileActions";
+import { useLocation } from "react-router-dom";
 
-export default function Published() {
+const Published = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+
+  const { loading: profile_loading, seller_list } = useSelector((state) => state.profileReducer);
+
+  const [seller, setSeller] = useState("");
+
+  useEffect(() => {
+    const sellerFilter = queryParams.get("seller");
+    if (sellerFilter) {
+      setSeller(sellerFilter);
+    }
+    dispatch(getSellerAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    console.log(seller);
+  }, [seller]);
+
   const menu = (record) => {
     return (
       <Menu>
@@ -92,12 +116,13 @@ export default function Published() {
             <p>Seller</p>
             <div className="published-header-input">
               <div className="form-group">
-                <select className="form-control">
-                  <option>Select Month</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                <select value={seller} onChange={(e) => setSeller(e.target.value)} className="form-control">
+                  <option value="">Select Seller</option>
+                  {seller_list.map((seller) => (
+                    <option value={seller.id} key={seller.id}>
+                      {seller.first_name} {seller.last_name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="search">
@@ -114,9 +139,9 @@ export default function Published() {
 
           <div className="antd-table">
             <Table
+              loading={profile_loading}
               columns={columns}
               dataSource={data}
-              // scroll={{ x: true }}
               pagination={{
                 current: 1,
                 pageSize: 1,
@@ -130,4 +155,6 @@ export default function Published() {
       </div>
     </div>
   );
-}
+};
+
+export default Published;

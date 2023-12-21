@@ -40,7 +40,7 @@ export default function Dashboard() {
     },
     { title: "PUBLISHER", dataIndex: "publisher" },
     { title: "PUBLISHED DATE", dataIndex: "time" },
-    { title: "NO Of DOWNLOADS	", dataIndex: "downloads" },
+    { title: "NO OF DOWNLOADS	", dataIndex: "downloads" },
     {
       title: "",
       key: "action",
@@ -129,11 +129,12 @@ export default function Dashboard() {
               </button>
               <div className="form-group">
                 <select className="form-control">
-                  <option>Select Month</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option>Last 1 Month</option>
+                  <option>Last 2 Month</option>
+                  <option>Last 3 Month</option>
+                  <option>Last 4 Month</option>
+                  <option>Last 5 Month</option>
+                  <option>Last 6 Month</option>
                 </select>
               </div>
             </div>
