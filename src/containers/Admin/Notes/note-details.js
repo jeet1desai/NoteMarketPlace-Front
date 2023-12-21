@@ -4,7 +4,7 @@ import CustomerReview from "../../../components/CustomerReview";
 import "../../../assets/css/note-detail.css";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/Loader";
-import { fetchNoteAction } from "../../../store/UserNotes/userNoteActions";
+import { fetchNoteAction, userDownloadNoteAction } from "../../../store/UserNotes/userNoteActions";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 
@@ -59,8 +59,8 @@ const AdminNoteDetails = () => {
     <div className="note-details">
       <Loader loading={note_loading} />
       <div className="note-detail">
-        <div class="container">
-          <div class="page-title">
+        <div className="container">
+          <div className="page-title">
             <p>Note Details</p>
           </div>
           <div className="row">
@@ -71,7 +71,10 @@ const AdminNoteDetails = () => {
                   <h5>{noteDetails.title}</h5>
                   <p>{noteDetails.category}</p>
                   <p>{noteDetails.description}</p>
-                  <button class="btn btn-purple download-btn" title="Download">
+                  <button
+                    title="Download"
+                    className="btn btn-purple download-btn"
+                    onClick={() => dispatch(userDownloadNoteAction({ note_id: id }))}>
                     Download
                   </button>
                 </div>
@@ -126,19 +129,19 @@ const AdminNoteDetails = () => {
       <hr />
 
       <div className="preview-and-review">
-        <div class="container">
+        <div className="container">
           <div className="row">
             <div className="col-6">
               <div className="note-preview">
-                <div class="page-title">
+                <div className="page-title">
                   <p>Note Preview</p>
                 </div>
                 <iframe title="note-preview" src={noteDetails.notes_preview}></iframe>
               </div>
             </div>
             <div className="col-6">
-              <div class="note-review">
-                <div class="page-title">
+              <div className="note-review">
+                <div className="page-title">
                   <p>Customer Review</p>
                 </div>
                 <div className="customers">
