@@ -13,3 +13,11 @@ export const userDownloadNote = (value) => makeApiRequest(`${API_URL}/note/downl
 
 export const buyerRequest = (search) => makeApiRequest(`${API_URL}/note/buyer_request/?search=${search}`, "GET");
 export const allowDownloadNote = (value) => makeApiRequest(`${API_URL}/note/buyer_request/`, "PUT", value);
+
+export const myDownloadNote = (search) => makeApiRequest(`${API_URL}/note/my_download_note/?search=${search}`, "GET");
+export const mySoldNote = (search) => makeApiRequest(`${API_URL}/note/my_sold_note/?search=${search}`, "GET");
+export const myRejectedNote = (search) => makeApiRequest(`${API_URL}/note/rejected_note/?search=${search}`, "GET");
+
+export const addReview = (value) => makeApiRequest(`${API_URL}/user/add_review/`, "POST", value);
+
+export const cloneNote = (value) => makeApiRequest(`${API_URL}/note/clone_note/`, "POST", value);
