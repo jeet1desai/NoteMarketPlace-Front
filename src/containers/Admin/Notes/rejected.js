@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Table, Space, Dropdown, Menu, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-
 import "../../../assets/css/rejected-notes.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getSellerAction } from "../../../store/Profile/profileActions";
 
-export default function Rejected() {
+const Rejected = () => {
+  const dispatch = useDispatch();
+
+  const { loading: profile_loading, seller_list } = useSelector((state) => state.profileReducer);
+
+  useEffect(() => {
+    dispatch(getSellerAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const menu = (record) => {
     return (
       <Menu>
@@ -91,21 +101,22 @@ export default function Rejected() {
             </div>
             <p>Seller</p>
             <div className="rejected-header-input">
-              <div class="form-group">
-                <select class="form-control">
-                  <option>Select Month</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+              <div className="form-group">
+                <select className="form-control">
+                  <option value="">Select Seller</option>
+                  {seller_list.map((seller) => (
+                    <option value={seller.id} key={seller.id}>
+                      {seller.first_name} {seller.last_name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="search">
-                <div class="form-group has-search">
-                  <span class="fa fa-search search-icon"></span>
-                  <input type="text" class="form-control" placeholder="Search" />
+                <div className="form-group has-search">
+                  <span className="fa fa-search search-icon"></span>
+                  <input type="text" className="form-control" placeholder="Search" />
                 </div>
-                <button type="button" class="btn btn-purple">
+                <button type="button" className="btn btn-purple">
                   Search
                 </button>
               </div>
@@ -114,6 +125,7 @@ export default function Rejected() {
 
           <div className="antd-table">
             <Table
+              loading={profile_loading}
               columns={columns}
               dataSource={data}
               pagination={{
@@ -122,11 +134,12 @@ export default function Rejected() {
                 total: 2,
                 position: ["bottomCenter"],
               }}
-              // showSorterTooltip={false}
             />
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Rejected;
