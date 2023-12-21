@@ -6,102 +6,125 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import "../../../assets/css/published-notes.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellerAction } from "../../../store/Profile/profileActions";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
+import { userDownloadNoteAction } from "../../../store/UserNotes/userNoteActions";
+import { fetchAdminPublishedNoteAction } from "../../../store/AdminNotes/adminNoteActions";
+import moment from "moment";
 
 const Published = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const history = useHistory();
 
   const queryParams = new URLSearchParams(location.search);
 
   const { loading: profile_loading, seller_list } = useSelector((state) => state.profileReducer);
+  const { loading: note_loading, published_notes } = useSelector((state) => state.adminNoteReducer);
+  const { loading: user_note_loading } = useSelector((state) => state.userNoteReducer);
 
   const [seller, setSeller] = useState("");
 
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
+    dispatch(getSellerAction());
+
     const sellerFilter = queryParams.get("seller");
     if (sellerFilter) {
       setSeller(sellerFilter);
     }
-    dispatch(getSellerAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    console.log(seller);
+    dispatch(fetchAdminPublishedNoteAction(search, seller));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seller]);
 
   const menu = (record) => {
     return (
       <Menu>
-        <Menu.Item>View More Details</Menu.Item>
-        <Menu.Item
-          onClick={() => {
-            console.log(record.id);
-          }}>
-          Download Note
-        </Menu.Item>
+        <Menu.Item onClick={() => history.push(`/admin/note/${record.id}`)}>View More Details</Menu.Item>
+        <Menu.Item onClick={() => dispatch(userDownloadNoteAction({ note_id: record.id }))}>Download Note</Menu.Item>
         <Menu.Item>Unpublish</Menu.Item>
       </Menu>
     );
   };
 
   const columns = [
-    { title: "SR NO.", dataIndex: "id" },
+    { title: "SR NO.", dataIndex: "id", render: (_, record, index) => index + 1, sorter: (a, b) => a.id - b.id },
     {
       title: "NOTE TITLE",
       key: "title",
       dataIndex: "title",
-      render: (title) => <span>{title}</span>,
+      render: (_, record) => <Link to={`/admin/note/${record.id}`}>{record.title}</Link>,
       sorter: (a, b) => a.title.localeCompare(b.title),
     },
-    { title: "CATEGORY", dataIndex: "category", sorter: true },
-    { title: "SELL TYPE", dataIndex: "type" },
+    {
+      title: "CATEGORY",
+      dataIndex: "category",
+      render: (_, record) => record.category.name,
+      sorter: (a, b) => a.category.name.localeCompare(b.category.name),
+    },
+    {
+      title: "SELL TYPE",
+      dataIndex: "is_paid",
+      render: (_, record) => (record.is_paid ? "Paid" : "Free"),
+      sorter: (a, b) => a.status - b.status,
+    },
     {
       title: "PRICE",
-      dataIndex: "price",
-      render: (price) => `₹ ${price}`,
-      sorter: (a, b) => a.price - b.price,
+      dataIndex: "selling_price",
+      render: (_, record) => `$ ${record.selling_price}`,
+      sorter: (a, b) => a.selling_price - b.selling_price,
     },
-    { title: "SELLER", dataIndex: "seller" },
+    {
+      title: "SELLER",
+      dataIndex: "seller",
+      render: (_, record) => `${record.seller.first_name} ${record.seller.last_name}`,
+      sorter: (a, b) => `${a.seller.first_name} ${a.seller.last_name}`.localeCompare(`${b.seller.first_name} ${b.seller.last_name}`),
+    },
     {
       title: "",
       key: "seller",
-      render: (text, record) => (
+      render: (_, record) => (
         <Space size="middle">
-          <Link to={"/search-notes"}>
+          <Link to={`/admin/members/${record.seller.id}`}>
             <VisibilityOutlinedIcon color="disabled" />
           </Link>
         </Space>
       ),
     },
-    { title: "PUBLISHED DATE", dataIndex: "time" },
-    { title: "APPROVED BY", dataIndex: "approver" },
-    { title: "NO Of DOWNLOADS	", dataIndex: "downloads" },
+    {
+      title: "PUBLISHED DATE",
+      dataIndex: "published_date",
+      render: (published_date) => (published_date ? moment(published_date).format("DD-MM-YYYY, hh:mm") : ""),
+      sorter: (a, b) => moment(a.published_date).unix() - moment(b.published_date).unix(),
+    },
+    {
+      title: "APPROVED BY",
+      dataIndex: "approver",
+      render: (_, record) => `${record.actioned_by.first_name} ${record.actioned_by.last_name}`,
+      sorter: (a, b) =>
+        `${a.actioned_by.first_name} ${a.actioned_by.last_name}`.localeCompare(`${b.actioned_by.first_name} ${b.actioned_by.last_name}`),
+    },
+    {
+      title: "NO Of DOWNLOADS	",
+      dataIndex: "total_downloaded_notes",
+      render: (_, record) => <Link to={`/admin/downloaded-notes?seller=${record.id}`}>{record.total_downloaded_notes}</Link>,
+      sorter: (a, b) => a.total_downloaded_notes - b.total_downloaded_notes,
+    },
     {
       title: "",
       key: "action",
-      render: (text, record) => (
+      render: (_, record) => (
         <Space size="middle">
           <Dropdown overlay={menu(record)}>
             <MoreVertIcon color="disabled" />
           </Dropdown>
         </Space>
       ),
-    },
-  ];
-
-  const data = [
-    {
-      id: "1",
-      title: "John Brown",
-      category: "Science",
-      type: "Paid",
-      price: 120,
-      seller: "Pritesh Panshal",
-      approver: "Pritesh Gandhi",
-      time: "27 Nov 2020, 11:20:30",
-      downloads: 2,
     },
   ];
 
@@ -128,9 +151,9 @@ const Published = () => {
               <div className="search">
                 <div className="form-group has-search">
                   <span className="fa fa-search search-icon"></span>
-                  <input type="text" className="form-control" placeholder="Search" />
+                  <input type="text" className="form-control" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
                 </div>
-                <button type="button" className="btn btn-purple">
+                <button type="button" className="btn btn-purple" onClick={() => dispatch(fetchAdminPublishedNoteAction(search, seller))}>
                   Search
                 </button>
               </div>
@@ -139,14 +162,15 @@ const Published = () => {
 
           <div className="antd-table">
             <Table
-              loading={profile_loading}
+              loading={profile_loading || note_loading || user_note_loading}
               columns={columns}
-              dataSource={data}
+              dataSource={published_notes}
               pagination={{
-                current: 1,
-                pageSize: 1,
-                total: 2,
+                current: page,
+                pageSize: 10,
+                total: published_notes.length,
                 position: ["bottomCenter"],
+                onChange: (val) => setPage(val),
               }}
               showSorterTooltip={false}
             />

@@ -9,7 +9,7 @@ import Loader from "../../../components/Loader";
 import moment from "moment";
 import { fetchUserNoteAction } from "../../../store/AdminNotes/adminNoteActions";
 import { Link } from "react-router-dom";
-import { NOTE_STATUS } from "../../../utils/enum";
+import { handleStatus } from "../../../utils/enum";
 import { userDownloadNoteAction } from "../../../store/UserNotes/userNoteActions";
 
 const MemberDetail = () => {
@@ -71,23 +71,6 @@ const MemberDetail = () => {
         <Menu.Item onClick={() => dispatch(userDownloadNoteAction({ note_id: record.id }))}>Download Note</Menu.Item>
       </Menu>
     );
-  };
-
-  const handleStatus = (status) => {
-    switch (status) {
-      case NOTE_STATUS.APPROVED:
-        return "Approved";
-      case NOTE_STATUS.IN_REVIEW:
-        return "In Review";
-      case NOTE_STATUS.REJECTED:
-        return "Rejected";
-      case NOTE_STATUS.REMOVED:
-        return "Removed";
-      case NOTE_STATUS.SUBMITTED:
-        return "Submitted";
-      default:
-        return "";
-    }
   };
 
   const columns = [
