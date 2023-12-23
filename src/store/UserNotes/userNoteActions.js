@@ -10,7 +10,9 @@ import {
   USER_ALLOW_DOWNLOAD_NOTE_SUCCESS,
   USER_BUYER_REQUEST_NOTE_SUCCESS,
   USER_CLONE_NOTE_SUCCESS,
+  USER_DELETE_NOTE_REVIEW_SUCCESS,
   USER_DOWNLOAD_NOTE_SUCCESS,
+  USER_GET_NOTE_REVIEW_SUCCESS,
   USER_MY_DOWNLOAD_NOTE_SUCCESS,
   USER_MY_REJECTED_NOTE_SUCCESS,
   USER_MY_SOLD_NOTE_SUCCESS,
@@ -24,8 +26,10 @@ import {
   cloneNote,
   createNote,
   deleteNote,
+  deleteReview,
   fetchNote,
   fetchOwnerNote,
+  fetchReview,
   inProgressNote,
   myDownloadNote,
   myRejectedNote,
@@ -260,6 +264,35 @@ export function userCloneNoteAction(value) {
       (response) => {
         toast.success("Successfully cloned the note!");
         dispatch(success(USER_CLONE_NOTE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getNoteReviewAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchReview(id).then(
+      (response) => {
+        dispatch(success(USER_GET_NOTE_REVIEW_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function deleteNoteReviewAction(id) {
+  return (dispatch) => {
+    dispatch(request());
+    deleteReview(id).then(
+      (response) => {
+        toast.success("Successfully deleted!");
+        dispatch(success(USER_DELETE_NOTE_REVIEW_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());

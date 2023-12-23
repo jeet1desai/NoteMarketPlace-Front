@@ -9,7 +9,9 @@ import {
   USER_ALLOW_DOWNLOAD_NOTE_SUCCESS,
   USER_BUYER_REQUEST_NOTE_SUCCESS,
   USER_CLONE_NOTE_SUCCESS,
+  USER_DELETE_NOTE_REVIEW_SUCCESS,
   USER_DOWNLOAD_NOTE_SUCCESS,
+  USER_GET_NOTE_REVIEW_SUCCESS,
   USER_MY_DOWNLOAD_NOTE_SUCCESS,
   USER_MY_REJECTED_NOTE_SUCCESS,
   USER_MY_SOLD_NOTE_SUCCESS,
@@ -20,6 +22,7 @@ import {
 const initialState = {
   loading: false,
   note: null,
+  review_list: [],
   in_progress_note: [],
   published_note: [],
   buyer_request: [],
@@ -40,6 +43,19 @@ export function userNoteReducer(state = initialState, action) {
         ...state,
         loading: false,
         note: action.payload,
+      };
+    case USER_GET_NOTE_REVIEW_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        review_list: action.payload,
+      };
+    case USER_DELETE_NOTE_REVIEW_SUCCESS:
+      const updated_review_list = state.review_list.filter((item) => item.id !== action.payload.id);
+      return {
+        ...state,
+        loading: false,
+        review_list: updated_review_list,
       };
     case USER_MY_REJECTED_NOTE_SUCCESS:
       return {

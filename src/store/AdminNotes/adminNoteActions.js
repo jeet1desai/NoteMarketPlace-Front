@@ -9,6 +9,7 @@ import {
   ADMIN_NOTE_FAILURE,
   ADMIN_NOTE_REQUEST,
   ADMIN_REJECT_UPDATE_SUCCESS,
+  ADMIN_UNPUBLISH_UPDATE_SUCCESS,
 } from "./adminNoteActionTypes";
 import {
   changeNoteStatus,
@@ -130,6 +131,20 @@ export function updateNoteRejectAction(value) {
     changeNoteStatusRemark(value).then(
       (response) => {
         dispatch(success(ADMIN_REJECT_UPDATE_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function updateNoteUnpublishAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    changeNoteStatusRemark(value).then(
+      (response) => {
+        dispatch(success(ADMIN_UNPUBLISH_UPDATE_SUCCESS, response.data));
       },
       (error) => {
         dispatch(failure());

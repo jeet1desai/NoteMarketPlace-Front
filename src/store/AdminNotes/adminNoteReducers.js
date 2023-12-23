@@ -9,6 +9,7 @@ import {
   ADMIN_NOTE_FAILURE,
   ADMIN_NOTE_REQUEST,
   ADMIN_REJECT_UPDATE_SUCCESS,
+  ADMIN_UNPUBLISH_UPDATE_SUCCESS,
 } from "./adminNoteActionTypes";
 
 const initialState = {
@@ -73,10 +74,19 @@ export function adminNoteReducer(state = initialState, action) {
     case ADMIN_APPROVE_UPDATE_SUCCESS:
     case ADMIN_REJECT_UPDATE_SUCCESS:
       const filter_review_list = state.under_review_notes.filter((item) => item.id !== response.id);
+      const filter_reject_list = state.rejected_notes.filter((item) => item.id !== response.id);
       return {
         ...state,
         loading: false,
         under_review_notes: filter_review_list,
+        rejected_notes: filter_reject_list,
+      };
+    case ADMIN_UNPUBLISH_UPDATE_SUCCESS:
+      const filter_publish_list = state.published_notes.filter((item) => item.id !== response.id);
+      return {
+        ...state,
+        loading: false,
+        published_notes: filter_publish_list,
       };
     default:
       return state;
