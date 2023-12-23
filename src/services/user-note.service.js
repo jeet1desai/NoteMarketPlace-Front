@@ -3,6 +3,7 @@ import { makeApiRequest, makeAuthApiRequest } from "../utils/api";
 
 export const fetchNote = (id) => makeApiRequest(`${API_URL}/note/get_note/${id}/`, "GET");
 export const fetchOwnerNote = (id) => makeAuthApiRequest(`${API_URL}/note/get_auth_note/${id}/`, "GET");
+
 export const createNote = (status, value) => makeAuthApiRequest(`${API_URL}/note/create_note/${status}/`, "POST", value);
 export const updateNote = (id, status, value) => makeAuthApiRequest(`${API_URL}/note/update_note/${id}/${status}/`, "PUT", value);
 export const deleteNote = (id) => makeAuthApiRequest(`${API_URL}/note/delete_note/${id}/`, "DELETE");
@@ -22,3 +23,6 @@ export const myRejectedNote = (search) => makeAuthApiRequest(`${API_URL}/note/re
 export const addReview = (value) => makeAuthApiRequest(`${API_URL}/user/add_review/`, "POST", value);
 
 export const cloneNote = (value) => makeAuthApiRequest(`${API_URL}/note/clone_note/`, "POST", value);
+
+export const fetchReview = (id) => makeApiRequest(`${API_URL}/user/get_review/${id}/`, "GET");
+export const deleteReview = (id) => makeAuthApiRequest(`${API_URL}/user/delete_review/${id}/`, "DELETE");

@@ -4,7 +4,12 @@ import CustomerReview from "../../../components/CustomerReview";
 import "../../../assets/css/note-detail.css";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/Loader";
-import { fetchNoteAction, userDownloadNoteAction } from "../../../store/UserNotes/userNoteActions";
+import {
+  deleteNoteReviewAction,
+  fetchNoteAction,
+  getNoteReviewAction,
+  userDownloadNoteAction,
+} from "../../../store/UserNotes/userNoteActions";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 
@@ -12,7 +17,7 @@ const AdminNoteDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const { loading: note_loading, note } = useSelector((state) => state.userNoteReducer);
+  const { loading: note_loading, note, review_list } = useSelector((state) => state.userNoteReducer);
 
   const [noteDetails, setNoteDetails] = useState({
     title: "",
@@ -27,11 +32,14 @@ const AdminNoteDetails = () => {
     approve_date: "",
     display_picture: "",
     notes_preview: "",
+    avg_rating: 0,
+    rating_count: 0,
   });
 
   useEffect(() => {
     if (id) {
       dispatch(fetchNoteAction(id));
+      dispatch(getNoteReviewAction(id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -51,6 +59,8 @@ const AdminNoteDetails = () => {
         course_code: note.course_code,
         professor: note.professor,
         approve_date: note.published_date ? moment(note.published_date).format("MMM DD, YYYY") : "",
+        avg_rating: note.avg_rating,
+        rating_count: note.rating_count,
       });
     }
   }, [note]);
@@ -114,8 +124,8 @@ const AdminNoteDetails = () => {
                   <p className="note-info-left">Rating : </p>
                   <p className="note-info-right">
                     <div className="note-rating">
-                      <Rating name="half-rating-read" defaultValue={0} precision={0.5} readOnly />
-                      <p> NA reviews</p>
+                      <Rating name="half-rating-read" value={noteDetails.avg_rating} readOnly />
+                      <p>{noteDetails.rating_count} reviews</p>
                     </div>
                   </p>
                 </div>
@@ -145,11 +155,19 @@ const AdminNoteDetails = () => {
                   <p>Customer Review</p>
                 </div>
                 <div className="customers">
-                  <CustomerReview />
-                  <CustomerReview />
-                  <CustomerReview />
-                  <CustomerReview />
-                  <CustomerReview />
+                  {review_list.length === 0 && <div className="customer">No review present to this note</div>}
+                  {review_list.map((review) => {
+                    return (
+                      <CustomerReview
+                        key={review.id}
+                        profile={review.reviewed_by.profile_picture}
+                        name={`${review.reviewed_by.first_name} ${review.reviewed_by.last_name}`}
+                        rating={review.rating}
+                        comment={review.comment}
+                        handleDelete={() => dispatch(deleteNoteReviewAction(review.id))}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>

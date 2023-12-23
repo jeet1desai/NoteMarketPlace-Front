@@ -4,7 +4,7 @@ import CustomerReview from "../../components/CustomerReview";
 import "../../assets/css/note-detail.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchNoteAction, userDownloadNoteAction } from "../../store/UserNotes/userNoteActions";
+import { fetchNoteAction, getNoteReviewAction, userDownloadNoteAction } from "../../store/UserNotes/userNoteActions";
 import moment from "moment";
 import Loader from "../../components/Loader";
 import AlertDialog from "../../components/AlertDialog";
@@ -13,7 +13,7 @@ const NoteDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const { loading: note_loading, note } = useSelector((state) => state.userNoteReducer);
+  const { loading: note_loading, note, review_list } = useSelector((state) => state.userNoteReducer);
 
   const [isDownloadDialogOpen, setDownloadDialog] = useState(false);
 
@@ -32,11 +32,14 @@ const NoteDetail = () => {
     notes_preview: "",
     selling_price: "",
     is_paid: "",
+    avg_rating: 0,
+    rating_count: 0,
   });
 
   useEffect(() => {
     if (id) {
       dispatch(fetchNoteAction(id));
+      dispatch(getNoteReviewAction(id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -58,6 +61,8 @@ const NoteDetail = () => {
         approve_date: note.published_date ? moment(note.published_date).format("MMM DD, YYYY") : "",
         selling_price: note.selling_price,
         is_paid: note.is_paid,
+        avg_rating: note.avg_rating,
+        rating_count: note.rating_count,
       });
     }
   }, [note]);
@@ -127,8 +132,8 @@ const NoteDetail = () => {
                   <p className="note-info-left">Rating : </p>
                   <p className="note-info-right">
                     <div className="note-rating">
-                      <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
-                      <p> reviews</p>
+                      <Rating name="half-rating-read" value={noteDetails.avg_rating} readOnly />
+                      <p>{noteDetails.rating_count} reviews</p>
                     </div>
                   </p>
                 </div>
@@ -158,11 +163,19 @@ const NoteDetail = () => {
                   <p>Customer Review</p>
                 </div>
                 <div className="customers">
-                  <CustomerReview />
-                  <CustomerReview />
-                  <CustomerReview />
-                  <CustomerReview />
-                  <CustomerReview />
+                  {review_list.length === 0 && <div className="customer">No review present to this note</div>}
+                  {review_list.map((review) => {
+                    return (
+                      <CustomerReview
+                        key={review.id}
+                        profile={review.reviewed_by.profile_picture}
+                        name={`${review.reviewed_by.first_name} ${review.reviewed_by.last_name}`}
+                        rating={review.rating}
+                        comment={review.comment}
+                        handleDelete={() => {}}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </div>

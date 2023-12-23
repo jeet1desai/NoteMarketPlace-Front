@@ -1,25 +1,25 @@
 import React from "react";
 import { Avatar, Rating } from "@mui/material";
 import DeleteIcon from "../../assets/images/delete.png";
+import { ROLES } from "../../utils/enum";
+import { getLSUser } from "../../utils/local";
 
-const Review = () => {
+const Review = ({ profile, name, rating, comment, handleDelete }) => {
+  const user = getLSUser();
   return (
     <div className="customer">
       <div className="customer-image">
-        <Avatar alt="Cindy Baker" />
+        <Avatar alt={name} src={profile} />
       </div>
       <div className="customer-review">
         <div className="review-head">
           <div>
-            <h6>Richard Brown</h6>
-            <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
+            <h6>{name}</h6>
+            <Rating name="half-rating-read" defaultValue={rating} readOnly />
           </div>
-          <img alt="" src={DeleteIcon} />
+          {user && user.role_id === ROLES.ADMIN && <img alt="" src={DeleteIcon} onClick={handleDelete} />}
         </div>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, magni, assumenda delecs enim laborum earum odio commodi impedit
-          repellendus facere explicabo!
-        </p>
+        <p>{comment}</p>
       </div>
     </div>
   );
