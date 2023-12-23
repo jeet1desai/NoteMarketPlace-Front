@@ -77,7 +77,6 @@ const UnderReview = () => {
     { title: "SR NO.", dataIndex: "id", render: (_, record, index) => index + 1, sorter: (a, b) => a.id - b.id },
     {
       title: "NOTE TITLE",
-      key: "title",
       dataIndex: "title",
       render: (_, record) => <Link to={`/admin/note/${record.id}`}>{record.title}</Link>,
       sorter: (a, b) => a.title.localeCompare(b.title),

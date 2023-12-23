@@ -8,8 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSellerAction } from "../../../store/Profile/profileActions";
 import { useLocation, useHistory } from "react-router-dom";
 import { userDownloadNoteAction } from "../../../store/UserNotes/userNoteActions";
-import { fetchAdminPublishedNoteAction } from "../../../store/AdminNotes/adminNoteActions";
+import { fetchAdminPublishedNoteAction, updateNoteUnpublishAction } from "../../../store/AdminNotes/adminNoteActions";
 import moment from "moment";
+import ErrorText, { inputError } from "../../../components/Error";
+import { rejectNoteSchema } from "../../../utils/schema";
+import { Form, Formik } from "formik";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
+import { NOTE_STATUS } from "../../../utils/enum";
 
 const Published = () => {
   const dispatch = useDispatch();
@@ -26,6 +31,13 @@ const Published = () => {
 
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
+
+  const [formValue] = useState({
+    remark: "",
+  });
+
+  const [note, setNote] = useState(null);
+  const [isDialogOpen, setDialog] = useState(false);
 
   useEffect(() => {
     dispatch(getSellerAction());
@@ -47,7 +59,13 @@ const Published = () => {
       <Menu>
         <Menu.Item onClick={() => history.push(`/admin/note/${record.id}`)}>View More Details</Menu.Item>
         <Menu.Item onClick={() => dispatch(userDownloadNoteAction({ note_id: record.id }))}>Download Note</Menu.Item>
-        <Menu.Item>Unpublish</Menu.Item>
+        <Menu.Item
+          onClick={() => {
+            setNote(record);
+            setDialog(true);
+          }}>
+          Unpublish
+        </Menu.Item>
       </Menu>
     );
   };
@@ -177,6 +195,50 @@ const Published = () => {
           </div>
         </div>
       </div>
+
+      <Modal centered={true} isOpen={isDialogOpen} toggle={() => setDialog(false)} className="reject-note-modal">
+        <ModalHeader toggle={() => setDialog(false)}>
+          {note?.title} - {note?.category?.name}
+        </ModalHeader>
+        <ModalBody>
+          <Formik
+            enableReinitialize={true}
+            initialValues={formValue}
+            validationSchema={rejectNoteSchema}
+            onSubmit={(values, { resetForm }) => {
+              dispatch(updateNoteUnpublishAction({ note_id: note.id, status: NOTE_STATUS.REMOVED, remark: values.remark }));
+              setNote(null);
+              setDialog(false);
+            }}>
+            {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
+              return (
+                <Form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="description">Remark *</label>
+                    <textarea
+                      id="description"
+                      placeholder="write remark..."
+                      className={inputError(errors.remark, touched.remark)}
+                      value={values.remark}
+                      name="remark"
+                      onChange={handleChange}
+                      onBlur={handleBlur}></textarea>
+                    <ErrorText error={errors.remark} touched={touched.remark} />
+                  </div>
+                  <div className="modal-review-btn">
+                    <button type="submit" className="btn reject-btn">
+                      Unpublish
+                    </button>
+                    <button type="button" className="btn close-btn" onClick={() => setDialog(false)}>
+                      Close
+                    </button>
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
+        </ModalBody>
+      </Modal>
     </div>
   );
 };

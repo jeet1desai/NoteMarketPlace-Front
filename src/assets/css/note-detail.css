@@ -21,6 +21,7 @@
   width: 160px;
   height: 210px;
   margin-right: 20px;
+  object-fit: cover;
 }
 
 .note-details .note-detail .note-up-left {
@@ -99,6 +100,10 @@
   margin-right: 20px;
 }
 
+.note-details .note-review .customer-review {
+  width: 100%;
+}
+
 .note-details .note-review .customer-review h6 {
   font-size: 20px;
   color: black;
@@ -109,6 +114,10 @@
 .note-details .note-review .customer-review p {
   font-size: 14px;
   margin-bottom: 4px;
+}
+
+.note-details .note-review .customer-review img {
+  cursor: pointer;
 }
 
 .note-details .review-head {
