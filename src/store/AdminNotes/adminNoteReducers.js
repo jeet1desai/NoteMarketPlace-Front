@@ -1,8 +1,11 @@
 import {
   ADMIN_APPROVE_UPDATE_SUCCESS,
+  ADMIN_DELETE_SPAM_REPORT_SUCCESS,
   ADMIN_GET_DOWNLOADED_NOTE_SUCCESS,
   ADMIN_GET_PUBLISHED_NOTE_SUCCESS,
   ADMIN_GET_REJECTED_NOTE_SUCCESS,
+  ADMIN_GET_SPAM_REPORTS_SUCCESS,
+  ADMIN_GET_STATS_SUCCESS,
   ADMIN_GET_UNDER_REVIEW_NOTE_SUCCESS,
   ADMIN_GET_USER_NOTE_SUCCESS,
   ADMIN_IN_REVIEW_UPDATE_SUCCESS,
@@ -14,11 +17,13 @@ import {
 
 const initialState = {
   loading: false,
+  stats: null,
   member_notes: [],
   under_review_notes: [],
   published_notes: [],
   downloaded_notes: [],
   rejected_notes: [],
+  spam_reports: [],
 };
 
 export function adminNoteReducer(state = initialState, action) {
@@ -39,6 +44,12 @@ export function adminNoteReducer(state = initialState, action) {
         ...state,
         loading: false,
         member_notes: response,
+      };
+    case ADMIN_GET_STATS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        stats: response,
       };
     case ADMIN_GET_REJECTED_NOTE_SUCCESS:
       return {
@@ -87,6 +98,19 @@ export function adminNoteReducer(state = initialState, action) {
         ...state,
         loading: false,
         published_notes: filter_publish_list,
+      };
+    case ADMIN_GET_SPAM_REPORTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        spam_reports: response,
+      };
+    case ADMIN_DELETE_SPAM_REPORT_SUCCESS:
+      const filter_report_list = state.spam_reports.filter((item) => item.id !== response.id);
+      return {
+        ...state,
+        loading: false,
+        spam_reports: filter_report_list,
       };
     default:
       return state;

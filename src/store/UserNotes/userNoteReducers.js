@@ -2,9 +2,11 @@ import {
   USERS_CREATE_NOTE_SUCCESS,
   USERS_DELETE_NOTE_SUCCESS,
   USERS_GET_NOTE_SUCCESS,
+  USERS_GET_STATS_SUCCESS,
   USERS_IN_PROGRESS_NOTE_SUCCESS,
   USERS_PUBLISHED_NOTE_SUCCESS,
   USERS_UPDATE_NOTE_SUCCESS,
+  USER_ADD_NOTE_SPAM_SUCCESS,
   USER_ADD_REVIEW_SUCCESS,
   USER_ALLOW_DOWNLOAD_NOTE_SUCCESS,
   USER_BUYER_REQUEST_NOTE_SUCCESS,
@@ -22,6 +24,7 @@ import {
 const initialState = {
   loading: false,
   note: null,
+  stats: null,
   review_list: [],
   in_progress_note: [],
   published_note: [],
@@ -37,6 +40,12 @@ export function userNoteReducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
+      };
+    case USERS_GET_STATS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        stats: action.payload,
       };
     case USERS_GET_NOTE_SUCCESS:
       return {
@@ -82,6 +91,7 @@ export function userNoteReducer(state = initialState, action) {
     case USERS_CREATE_NOTE_SUCCESS:
     case USER_ADD_REVIEW_SUCCESS:
     case USER_CLONE_NOTE_SUCCESS:
+    case USER_ADD_NOTE_SPAM_SUCCESS:
       return {
         ...state,
         loading: false,

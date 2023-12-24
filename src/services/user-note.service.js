@@ -1,6 +1,8 @@
 import { API_URL } from "../setting";
 import { makeApiRequest, makeAuthApiRequest } from "../utils/api";
 
+export const fetchUserDashboardStat = () => makeAuthApiRequest(`${API_URL}/note/get_stats/`, "GET");
+
 export const fetchNote = (id) => makeApiRequest(`${API_URL}/note/get_note/${id}/`, "GET");
 export const fetchOwnerNote = (id) => makeAuthApiRequest(`${API_URL}/note/get_auth_note/${id}/`, "GET");
 
@@ -21,6 +23,8 @@ export const mySoldNote = (search) => makeAuthApiRequest(`${API_URL}/note/my_sol
 export const myRejectedNote = (search) => makeAuthApiRequest(`${API_URL}/note/rejected_note/?search=${search}`, "GET");
 
 export const addReview = (value) => makeAuthApiRequest(`${API_URL}/user/add_review/`, "POST", value);
+
+export const addNoteSpam = (value) => makeAuthApiRequest(`${API_URL}/admin/add_spam/`, "POST", value);
 
 export const cloneNote = (value) => makeAuthApiRequest(`${API_URL}/note/clone_note/`, "POST", value);
 
