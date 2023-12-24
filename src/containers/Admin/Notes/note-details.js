@@ -34,6 +34,7 @@ const AdminNoteDetails = () => {
     notes_preview: "",
     avg_rating: 0,
     rating_count: 0,
+    spam_count: 0,
   });
 
   useEffect(() => {
@@ -61,6 +62,7 @@ const AdminNoteDetails = () => {
         approve_date: note.published_date ? moment(note.published_date).format("MMM DD, YYYY") : "",
         avg_rating: note.avg_rating,
         rating_count: note.rating_count,
+        spam_count: note.spam_count,
       });
     }
   }, [note]);
@@ -129,7 +131,7 @@ const AdminNoteDetails = () => {
                     </div>
                   </p>
                 </div>
-                <span className="error">NA Users marked this note as inappropriate</span>
+                <span className="error">{noteDetails.spam_count} Users marked this note as inappropriate</span>
               </div>
             </div>
           </div>

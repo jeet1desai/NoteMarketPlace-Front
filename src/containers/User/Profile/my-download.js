@@ -7,12 +7,16 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import "../../../assets/css/my-download.css";
 import { useDispatch, useSelector } from "react-redux";
-import { userAddReviewAction, userDownloadNoteAction, userMyDownloadNoteAction } from "../../../store/UserNotes/userNoteActions";
+import {
+  addNoteSpamAction,
+  userAddReviewAction,
+  userDownloadNoteAction,
+  userMyDownloadNoteAction,
+} from "../../../store/UserNotes/userNoteActions";
 import moment from "moment";
-import { reviewSchema } from "../../../utils/schema";
+import { reviewSchema, spamNoteSchema } from "../../../utils/schema";
 import { Formik, Form } from "formik";
 import ErrorText, { inputError } from "../../../components/Error";
-import AlertDialog from "../../../components/AlertDialog";
 
 const MyDownload = () => {
   const dispatch = useDispatch();
@@ -21,13 +25,16 @@ const MyDownload = () => {
   const [search, setSearch] = useState("");
 
   const [isModalOpen, setModalOpen] = useState(false);
-  const [downloadId, setDownloadId] = useState(null);
-
   const [isReportIssueDialogOpen, setReportIssueDialogOpen] = useState(false);
+  const [downloadId, setDownloadId] = useState(null);
 
   const [formValue] = useState({
     rating: 0,
     comment: "",
+  });
+
+  const [spamFormValue] = useState({
+    remarks: "",
   });
 
   const { loading: note_loading, my_download_note } = useSelector((state) => state.userNoteReducer);
@@ -50,6 +57,7 @@ const MyDownload = () => {
         </Menu.Item>
         <Menu.Item
           onClick={() => {
+            setDownloadId(record.id);
             setReportIssueDialogOpen(true);
           }}>
           Report as Inappropriate
@@ -151,16 +159,6 @@ const MyDownload = () => {
         </div>
       </div>
 
-      <AlertDialog
-        isOpen={isReportIssueDialogOpen}
-        handleClose={() => setReportIssueDialogOpen(false)}
-        handleSubmit={() => {
-          setReportIssueDialogOpen(false);
-        }}
-        title="Report an issue"
-        content="Are you sure you want to mark this report as spam?"
-      />
-
       <Modal centered={true} isOpen={isModalOpen} toggle={() => setModalOpen(false)}>
         <ModalHeader toggle={() => setModalOpen(false)}>Add Review</ModalHeader>
         <ModalBody>
@@ -197,6 +195,51 @@ const MyDownload = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}></textarea>
                     <ErrorText error={errors.comment} touched={touched.comment} />
+                  </div>
+                  <div className="modal-review-btn">
+                    <button type="submit" className="btn submit-btn btn-purple">
+                      Submit
+                    </button>
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
+        </ModalBody>
+      </Modal>
+
+      <Modal centered={true} isOpen={isReportIssueDialogOpen} toggle={() => setReportIssueDialogOpen(false)}>
+        <ModalHeader toggle={() => setReportIssueDialogOpen(false)}>Report as spam</ModalHeader>
+        <ModalBody>
+          <Formik
+            enableReinitialize={true}
+            initialValues={spamFormValue}
+            validationSchema={spamNoteSchema}
+            onSubmit={(values, { resetForm }) => {
+              if (downloadId) {
+                values["download_id"] = downloadId;
+
+                dispatch(addNoteSpamAction(values));
+
+                resetForm();
+                setDownloadId(null);
+                setReportIssueDialogOpen(false);
+              }
+            }}>
+            {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
+              return (
+                <Form onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="description">Remarks *</label>
+                    <textarea
+                      id="description"
+                      placeholder="Remarks..."
+                      className={inputError(errors.remarks, touched.remarks)}
+                      value={values.remarks}
+                      name="remarks"
+                      onChange={handleChange}
+                      onBlur={handleBlur}></textarea>
+                    <ErrorText error={errors.remarks} touched={touched.remarks} />
                   </div>
                   <div className="modal-review-btn">
                     <button type="submit" className="btn submit-btn btn-purple">

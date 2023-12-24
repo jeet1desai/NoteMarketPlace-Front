@@ -34,6 +34,7 @@ const NoteDetail = () => {
     is_paid: "",
     avg_rating: 0,
     rating_count: 0,
+    spam_count: 0,
   });
 
   useEffect(() => {
@@ -63,6 +64,7 @@ const NoteDetail = () => {
         is_paid: note.is_paid,
         avg_rating: note.avg_rating,
         rating_count: note.rating_count,
+        spam_count: note.spam_count,
       });
     }
   }, [note]);
@@ -137,7 +139,7 @@ const NoteDetail = () => {
                     </div>
                   </p>
                 </div>
-                <span className="error"> Users marked this note as inappropriate</span>
+                <span className="error">{noteDetails.spam_count} Users marked this note as inappropriate</span>
               </div>
             </div>
           </div>

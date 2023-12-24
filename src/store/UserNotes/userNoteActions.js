@@ -3,9 +3,11 @@ import {
   USERS_CREATE_NOTE_SUCCESS,
   USERS_DELETE_NOTE_SUCCESS,
   USERS_GET_NOTE_SUCCESS,
+  USERS_GET_STATS_SUCCESS,
   USERS_IN_PROGRESS_NOTE_SUCCESS,
   USERS_PUBLISHED_NOTE_SUCCESS,
   USERS_UPDATE_NOTE_SUCCESS,
+  USER_ADD_NOTE_SPAM_SUCCESS,
   USER_ADD_REVIEW_SUCCESS,
   USER_ALLOW_DOWNLOAD_NOTE_SUCCESS,
   USER_BUYER_REQUEST_NOTE_SUCCESS,
@@ -13,6 +15,7 @@ import {
   USER_DELETE_NOTE_REVIEW_SUCCESS,
   USER_DOWNLOAD_NOTE_SUCCESS,
   USER_GET_NOTE_REVIEW_SUCCESS,
+  USER_GET_SEARCH_NOTES_SUCCESS,
   USER_MY_DOWNLOAD_NOTE_SUCCESS,
   USER_MY_REJECTED_NOTE_SUCCESS,
   USER_MY_SOLD_NOTE_SUCCESS,
@@ -20,6 +23,7 @@ import {
   USER_NOTE_REQUEST,
 } from "./userNoteActionTypes";
 import {
+  addNoteSpam,
   addReview,
   allowDownloadNote,
   buyerRequest,
@@ -30,6 +34,8 @@ import {
   fetchNote,
   fetchOwnerNote,
   fetchReview,
+  fetchSearchNote,
+  fetchUserDashboardStat,
   inProgressNote,
   myDownloadNote,
   myRejectedNote,
@@ -44,6 +50,20 @@ const request = () => ({ type: USER_NOTE_REQUEST });
 const failure = () => ({ type: USER_NOTE_FAILURE });
 
 const success = (type, data) => ({ type: type, payload: data });
+
+export function fetchUserDashboardStats() {
+  return (dispatch) => {
+    dispatch(request());
+    fetchUserDashboardStat().then(
+      (response) => {
+        dispatch(success(USERS_GET_STATS_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
 
 export function fetchNoteAction(id) {
   return (dispatch) => {
@@ -293,6 +313,35 @@ export function deleteNoteReviewAction(id) {
       (response) => {
         toast.success("Successfully deleted!");
         dispatch(success(USER_DELETE_NOTE_REVIEW_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function addNoteSpamAction(value) {
+  return (dispatch) => {
+    dispatch(request());
+    addNoteSpam(value).then(
+      (response) => {
+        toast.success("Successfully added!");
+        dispatch(success(USER_ADD_NOTE_SPAM_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getSearchNotesAction(search, category, country, type, page) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchSearchNote(search, category, country, type, page).then(
+      (response) => {
+        dispatch(success(USER_GET_SEARCH_NOTES_SUCCESS, response));
       },
       (error) => {
         dispatch(failure());
