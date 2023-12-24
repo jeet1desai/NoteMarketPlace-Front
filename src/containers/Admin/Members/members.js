@@ -53,25 +53,25 @@ const Members = () => {
     {
       title: "UNDER REVIEW NOTES",
       dataIndex: "notes_under_review",
-      render: (_, record) => <Link to={`/admin/note-under-review?seller=${record.id}`}>{record.notes_under_review}</Link>,
+      render: (_, record) => <Link to={`/admin/note-under-review?seller=${record.seller.id}`}>{record.notes_under_review}</Link>,
       sorter: (a, b) => a.notes_under_review - b.notes_under_review,
     },
     {
       title: "PUBLISHED NOTES",
       dataIndex: "notes_published_notes",
-      render: (_, record) => <Link to={`/admin/published-notes?seller=${record.id}`}>{record.notes_published_notes}</Link>,
+      render: (_, record) => <Link to={`/admin/published-notes?seller=${record.seller.id}`}>{record.notes_published_notes}</Link>,
       sorter: (a, b) => a.notes_published_notes - b.notes_published_notes,
     },
     {
       title: "DOWNLOADED NOTES",
       dataIndex: "total_downloaded_notes",
-      render: (_, record) => <Link to={`/admin/downloaded-notes?seller=${record.id}`}>{record.total_downloaded_notes}</Link>,
+      render: (_, record) => <Link to={`/admin/downloaded-notes?seller=${record.seller.id}`}>{record.total_downloaded_notes}</Link>,
       sorter: (a, b) => a.total_downloaded_notes - b.total_downloaded_notes,
     },
     {
       title: "TOTAL EXPENSES",
       dataIndex: "total_selling_price",
-      render: (_, record) => <Link to={`/admin/downloaded-notes?seller=${record.id}`}>$ {record.total_selling_price}</Link>,
+      render: (_, record) => <Link to={`/admin/downloaded-notes?seller=${record.seller.id}`}>$ {record.total_selling_price}</Link>,
 
       sorter: (a, b) => a.total_selling_price - b.total_selling_price,
     },

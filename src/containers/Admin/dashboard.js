@@ -23,7 +23,7 @@ const Dashboard = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
 
-  const [month, setMonth] = useState("");
+  const [month, setMonth] = useState(1);
 
   const [note, setNote] = useState(null);
   const [isDialogOpen, setDialog] = useState(false);
