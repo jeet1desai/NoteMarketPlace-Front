@@ -172,3 +172,7 @@ export const reviewSchema = Yup.object().shape({
 export const rejectNoteSchema = Yup.object().shape({
   remark: Yup.string().required("Required"),
 });
+
+export const spamNoteSchema = Yup.object().shape({
+  remarks: Yup.string().required("Required"),
+});

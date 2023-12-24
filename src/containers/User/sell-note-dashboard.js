@@ -8,7 +8,12 @@ import "../../assets/css/sell-note-dashboard.css";
 import EarningIcon from "../../assets/images/earning-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
-import { deleteNoteAction, getInProgressNoteAction, getPublishNoteAction } from "../../store/UserNotes/userNoteActions";
+import {
+  deleteNoteAction,
+  fetchUserDashboardStats,
+  getInProgressNoteAction,
+  getPublishNoteAction,
+} from "../../store/UserNotes/userNoteActions";
 import moment from "moment";
 import { NOTE_STATUS, handleStatus } from "../../utils/enum";
 import AlertDialog from "../../components/AlertDialog";
@@ -24,7 +29,34 @@ const SellNoteDashboard = () => {
   const [isDeleteDialogOpen, setDeleteDialog] = useState(false);
   const [deleteNoteId, setDeleteNoteId] = useState(null);
 
-  const { loading: note_loading, in_progress_note, published_note } = useSelector((state) => state.userNoteReducer);
+  const [dashboardStat, setDashboardStat] = useState({
+    buyer_request: 0,
+    download_notes: 0,
+    rejected_notes: 0,
+    sold_notes: 0,
+    total_earnings: 0,
+  });
+
+  const { loading: note_loading, in_progress_note, published_note, stats } = useSelector((state) => state.userNoteReducer);
+
+  useEffect(() => {
+    dispatch(getInProgressNoteAction(""));
+    dispatch(getPublishNoteAction(""));
+    dispatch(fetchUserDashboardStats());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (stats) {
+      setDashboardStat({
+        buyer_request: stats.buyer_request,
+        download_notes: stats.download_notes,
+        rejected_notes: stats.rejected_notes,
+        sold_notes: stats.sold_notes,
+        total_earnings: stats.total_earnings,
+      });
+    }
+  }, [stats]);
 
   const inProgressColumns = [
     {
@@ -110,12 +142,6 @@ const SellNoteDashboard = () => {
     },
   ];
 
-  useEffect(() => {
-    dispatch(getInProgressNoteAction(""));
-    dispatch(getPublishNoteAction(""));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className="sell-note">
       <Loader loading={note_loading} />
@@ -138,26 +164,34 @@ const SellNoteDashboard = () => {
                 <img src={EarningIcon} alt="" />
                 <h4>My Earning</h4>
               </div>
-              <div className="sold-note">
-                <h4>100</h4>
-                <p>Number Notes Sold</p>
-              </div>
+              <Link to="/sell-note/my-sold-note">
+                <div className="sold-note">
+                  <h4>{dashboardStat.sold_notes}</h4>
+                  <p>Number Notes Sold</p>
+                </div>
+              </Link>
               <div className="earned">
-                <h4>$10,00,000</h4>
+                <h4>${dashboardStat.total_earnings}</h4>
                 <p>Money earned</p>
               </div>
-              <div className="download">
-                <h4>38</h4>
-                <p>My Downloads</p>
-              </div>
-              <div className="rejected-note">
-                <h4>12</h4>
-                <p>My Rejected Notes</p>
-              </div>
-              <div className="buyer-requests">
-                <h4>102</h4>
-                <p>Buyer Requests</p>
-              </div>
+              <Link to="/sell-note/my-download">
+                <div className="download">
+                  <h4>{dashboardStat.download_notes}</h4>
+                  <p>My Downloads</p>
+                </div>
+              </Link>
+              <Link to="/sell-note/my-rejected-note">
+                <div className="rejected-note">
+                  <h4>{dashboardStat.rejected_notes}</h4>
+                  <p>My Rejected Notes</p>
+                </div>
+              </Link>
+              <Link to="/sell-note/buyer-request">
+                <div className="buyer-requests">
+                  <h4>{dashboardStat.buyer_request}</h4>
+                  <p>Buyer Requests</p>
+                </div>
+              </Link>
             </div>
           </div>
 
