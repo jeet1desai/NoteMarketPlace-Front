@@ -14,6 +14,7 @@ import {
   USER_DELETE_NOTE_REVIEW_SUCCESS,
   USER_DOWNLOAD_NOTE_SUCCESS,
   USER_GET_NOTE_REVIEW_SUCCESS,
+  USER_GET_SEARCH_NOTES_SUCCESS,
   USER_MY_DOWNLOAD_NOTE_SUCCESS,
   USER_MY_REJECTED_NOTE_SUCCESS,
   USER_MY_SOLD_NOTE_SUCCESS,
@@ -25,6 +26,8 @@ const initialState = {
   loading: false,
   note: null,
   stats: null,
+  pagination: null,
+  search_notes: [],
   review_list: [],
   in_progress_note: [],
   published_note: [],
@@ -46,6 +49,13 @@ export function userNoteReducer(state = initialState, action) {
         ...state,
         loading: false,
         stats: action.payload,
+      };
+    case USER_GET_SEARCH_NOTES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        search_notes: action.payload.data,
+        pagination: action.payload.pagination,
       };
     case USERS_GET_NOTE_SUCCESS:
       return {

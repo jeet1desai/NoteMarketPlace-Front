@@ -30,3 +30,9 @@ export const cloneNote = (value) => makeAuthApiRequest(`${API_URL}/note/clone_no
 
 export const fetchReview = (id) => makeApiRequest(`${API_URL}/user/get_review/${id}/`, "GET");
 export const deleteReview = (id) => makeAuthApiRequest(`${API_URL}/user/delete_review/${id}/`, "DELETE");
+
+export const fetchSearchNote = (search, category, country, type, page) =>
+  makeApiRequest(
+    `${API_URL}/user/note_list/?page_size=9&search=${search}&category=${category}&country=${country}&type=${type}&page=${page}`,
+    "GET"
+  );

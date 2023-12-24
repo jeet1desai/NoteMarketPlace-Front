@@ -15,6 +15,7 @@ import {
   USER_DELETE_NOTE_REVIEW_SUCCESS,
   USER_DOWNLOAD_NOTE_SUCCESS,
   USER_GET_NOTE_REVIEW_SUCCESS,
+  USER_GET_SEARCH_NOTES_SUCCESS,
   USER_MY_DOWNLOAD_NOTE_SUCCESS,
   USER_MY_REJECTED_NOTE_SUCCESS,
   USER_MY_SOLD_NOTE_SUCCESS,
@@ -33,6 +34,7 @@ import {
   fetchNote,
   fetchOwnerNote,
   fetchReview,
+  fetchSearchNote,
   fetchUserDashboardStat,
   inProgressNote,
   myDownloadNote,
@@ -326,6 +328,20 @@ export function addNoteSpamAction(value) {
       (response) => {
         toast.success("Successfully added!");
         dispatch(success(USER_ADD_NOTE_SPAM_SUCCESS, response.data));
+      },
+      (error) => {
+        dispatch(failure());
+      }
+    );
+  };
+}
+
+export function getSearchNotesAction(search, category, country, type, page) {
+  return (dispatch) => {
+    dispatch(request());
+    fetchSearchNote(search, category, country, type, page).then(
+      (response) => {
+        dispatch(success(USER_GET_SEARCH_NOTES_SUCCESS, response));
       },
       (error) => {
         dispatch(failure());
