@@ -7,8 +7,8 @@ export const fetchDashboardStat = () => makeAuthApiRequest(`${API_URL}/admin/get
 
 export const fetchUnderReviewNotes = (search, seller) =>
   makeAuthApiRequest(`${API_URL}/admin/note_under_review/?search=${search}&seller=${seller}`, "GET");
-export const fetchPublishedNotes = (search, seller, m_) =>
-  makeAuthApiRequest(`${API_URL}/admin/published_note/?search=${search}&seller=${seller}`, "GET");
+export const fetchPublishedNotes = (search, seller, months) =>
+  makeAuthApiRequest(`${API_URL}/admin/published_note/?search=${search}&seller=${seller}&months=${months}`, "GET");
 export const fetchDownloadedNotes = (search, seller, buyer) =>
   makeAuthApiRequest(`${API_URL}/admin/downloaded_note/?search=${search}&seller=${seller}&buyer=${buyer}`, "GET");
 export const fetchRejectedNotes = (search, seller) =>
