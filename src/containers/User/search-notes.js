@@ -95,11 +95,16 @@ const SearchNotes = () => {
       <div className="notes">
         <div className="content-box">
           <div className="container">
-            <div className="page-title">
-              <p>Total {pagination?.count} Notes</p>
-            </div>
+            <div className="page-title">{search_notes.length !== 0 && <p>Total {pagination?.count} Notes</p>}</div>
             <div className="note-list">
               <div className="row">
+                {search_notes.length === 0 && (
+                  <div className="col-lg-12">
+                    <div className="page-title">
+                      <p>No Note Found!</p>
+                    </div>
+                  </div>
+                )}
                 {search_notes.map((note) => {
                   return (
                     <div className="col-lg-4 col-md-6 col-sm-12" key={note.id}>
@@ -120,10 +125,11 @@ const SearchNotes = () => {
                 })}
               </div>
             </div>
-
-            <div className="pagination">
-              <Pagination page={page} count={pagination?.total} size="large" onChange={(e, new_page) => setPage(new_page)} />
-            </div>
+            {search_notes.length !== 0 && (
+              <div className="pagination">
+                <Pagination page={page} count={pagination?.total} size="large" onChange={(e, new_page) => setPage(new_page)} />
+              </div>
+            )}
           </div>
         </div>
       </div>
