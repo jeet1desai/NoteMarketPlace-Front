@@ -119,7 +119,7 @@ const Dashboard = () => {
     {
       title: "NO Of DOWNLOADS	",
       dataIndex: "total_downloaded_notes",
-      render: (_, record) => <Link to={`/admin/downloaded-notes?seller=${record.id}`}>{record.total_downloaded_notes}</Link>,
+      render: (_, record) => <Link to={`/admin/downloaded-notes?seller=${record.seller.id}`}>{record.total_downloaded_notes}</Link>,
       sorter: (a, b) => a.total_downloaded_notes - b.total_downloaded_notes,
     },
     {

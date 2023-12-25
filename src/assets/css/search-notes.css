@@ -32,6 +32,10 @@
   margin: 50px 0;
 }
 
+.search-notes {
+  flex: 1;
+}
+
 .search-notes .input-boxes {
   background-color: #f9f9f9;
   padding: 20px;
