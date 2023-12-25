@@ -5,7 +5,7 @@ export const fetchUserCountryList = () => makeApiRequest(`${API_URL}/user/countr
 export const fetchUserCategoryList = () => makeApiRequest(`${API_URL}/user/category_list/`, "GET");
 export const fetchUserNoteTypeList = () => makeApiRequest(`${API_URL}/user/type_list/`, "GET");
 
-export const fetchAdminConfig = () => makeAuthApiRequest(`${API_URL}/super_admin/config_get/`, "GET");
+export const fetchAdminConfig = () => makeApiRequest(`${API_URL}/super_admin/config_get/`, "GET");
 export const updateAdminConfig = (value) => makeAuthApiRequest(`${API_URL}/super_admin/config_post/`, "POST", value);
 
 export const createAdmin = (value) => makeAuthApiRequest(`${API_URL}/super_admin/admin_post/`, "POST", value);
