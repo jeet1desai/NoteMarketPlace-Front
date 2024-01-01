@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../../assets/css/footer.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getAdminConfigAction } from "../../store/Configuration/configActions";
 

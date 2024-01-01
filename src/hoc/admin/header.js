@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Dropdown, Menu } from "antd";
 import { Avatar } from "@mui/material";
-import "../../assets/css/header.css";
 import BlueLogo from "../../assets/images/top-logo-purple.png";
 import { getLSUser } from "../../utils/local";
 

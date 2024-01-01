@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import "../../../assets/css/user-profile.css";
 import { getProfileAction, updateUserProfileAction } from "../../../store/Profile/profileActions";
 import { getUserCountryListAction } from "../../../store/Configuration/configActions";
 import { getLSUser } from "../../../utils/local";

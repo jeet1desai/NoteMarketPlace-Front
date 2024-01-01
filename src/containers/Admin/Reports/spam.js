@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Table, Space, Dropdown, Menu, Tooltip } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteIcon from "@mui/icons-material/Delete";
-import "../../../assets/css/spam-report.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { deleteSpamReportAction, getSpamReportsAction } from "../../../store/AdminNotes/adminNoteActions";

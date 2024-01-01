@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Table, Space, Dropdown, Menu, Tooltip } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import "../../../assets/css/my-rejected-note.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userCloneNoteAction, userDownloadNoteAction, userMyRejectedNoteAction } from "../../../store/UserNotes/userNoteActions";
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Table, Space, Dropdown, Menu } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import "../../../assets/css/published-notes.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellerAction } from "../../../store/Profile/profileActions";
 import { Link, useLocation, useHistory } from "react-router-dom";

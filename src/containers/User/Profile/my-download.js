@@ -5,7 +5,6 @@ import { Table, Space, Dropdown, Menu } from "antd";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import "../../../assets/css/my-download.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addNoteSpamAction,

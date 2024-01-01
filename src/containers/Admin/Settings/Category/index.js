@@ -5,7 +5,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
-import "../../../../assets/css/manage-category.css";
 import { deleteCategoryAction, getCategoriesAction } from "../../../../store/Configuration/configActions";
 import AlertDialog from "../../../../components/AlertDialog";
 

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Table, Space } from "antd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import "../../../../assets/css/manage-admin.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteAdminAction, getAdminsAction } from "../../../../store/Configuration/configActions";
 import moment from "moment";

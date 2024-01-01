@@ -4,14 +4,9 @@ import { Formik, Form } from "formik";
 import Button from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-
-import "../../assets/css/signup.css";
-import "../../assets/font-awesome/css/font-awesome.css";
 import WhiteLogo from "../../assets/images/top-logo-white.png";
-
 import { signUpAction } from "../../store/Auth/authActions";
 import { signupSchema } from "../../utils/schema";
-
 import ErrorText from "../../components/Error";
 import PasswordEye from "../../components/PasswordEye";
 

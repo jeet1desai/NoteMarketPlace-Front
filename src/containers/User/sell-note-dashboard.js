@@ -4,7 +4,6 @@ import { Table, Space } from "antd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import "../../assets/css/sell-note-dashboard.css";
 import EarningIcon from "../../assets/images/earning-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table, Space, Dropdown, Menu } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import "../../assets/css/admin-dashboard.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { fetchAdminPublishedNoteAction, fetchDashboardStats, updateNoteUnpublishAction } from "../../store/AdminNotes/adminNoteActions";

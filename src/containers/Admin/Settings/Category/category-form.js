@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import { useSelector, useDispatch } from "react-redux";
-import "../../../../assets/css/add-category.css";
 import { categoryTypeSchema } from "../../../../utils/schema";
 import ErrorText, { inputError } from "../../../../components/Error";
 import Loader from "../../../../components/Loader";

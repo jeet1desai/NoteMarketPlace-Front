@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Table, Space, Dropdown, Menu } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import "../../assets/css/buyer-request.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userAllowDownloadNoteAction, userBuyerRequestAction } from "../../store/UserNotes/userNoteActions";
 import AlertDialog from "../../components/AlertDialog";

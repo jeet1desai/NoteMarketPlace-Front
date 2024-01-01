@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table, Space, Dropdown, Menu } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import "../../../assets/css/member-details.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProfileAction } from "../../../store/Profile/profileActions";

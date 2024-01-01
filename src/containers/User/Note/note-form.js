@@ -3,7 +3,6 @@ import { Formik, Form } from "formik";
 import { useParams, useHistory } from "react-router-dom";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import "../../../assets/css/add-note.css";
 import ErrorText, { inputError, uploadError } from "../../../components/Error";
 import { noteSchema } from "../../../utils/schema";
 import { getUserCategoryListAction, getUserCountryListAction, getUserNoteTypeListAction } from "../../../store/Configuration/configActions";
