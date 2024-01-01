@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import Button from "@mui/material/Button";
-import "../../../assets/css/note-under-review.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellerAction } from "../../../store/Profile/profileActions";
 import { useLocation, useHistory } from "react-router-dom";

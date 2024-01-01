@@ -3,7 +3,6 @@ import { Table, Space, Tooltip } from "antd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
-import "../../../../assets/css/manage-type.css";
 import { useDispatch, useSelector } from "react-redux";
 import AlertDialog from "../../../../components/AlertDialog";
 import { deleteTypeAction, getTypesAction } from "../../../../store/Configuration/configActions";

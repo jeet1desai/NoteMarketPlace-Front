@@ -3,7 +3,6 @@ import { Table, Space, Dropdown, Menu, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import "../../../assets/css/rejected-notes.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getSellerAction } from "../../../store/Profile/profileActions";
 import { fetchAdminRejectedNoteAction, updateNoteApproveAction } from "../../../store/AdminNotes/adminNoteActions";

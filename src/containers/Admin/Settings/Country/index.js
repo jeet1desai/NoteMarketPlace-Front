@@ -3,7 +3,6 @@ import { Table, Space } from "antd";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
-import "../../../../assets/css/manage-countries.css";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCountryAction, getCountriesAction } from "../../../../store/Configuration/configActions";
 import moment from "moment";

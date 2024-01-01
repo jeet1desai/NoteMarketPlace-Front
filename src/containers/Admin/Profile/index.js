@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
-import "../../../assets/css/admin-profile.css";
 import { useDispatch, useSelector } from "react-redux";
 import ErrorText, { inputError } from "../../../components/Error";
 import Loader from "../../../components/Loader";

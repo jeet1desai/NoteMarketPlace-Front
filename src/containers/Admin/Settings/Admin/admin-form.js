@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
-import "../../../../assets/css/add-admin.css";
 import {
   createAdminAction,
   getAdminAction,

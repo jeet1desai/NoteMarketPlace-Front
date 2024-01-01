@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import { useParams } from "react-router-dom";
-import "../../../../assets/css/add-type.css";
 import { useDispatch, useSelector } from "react-redux";
 import { createTypeAction, getTypeAction, updateTypeAction } from "../../../../store/Configuration/configActions";
 import Loader from "../../../../components/Loader";
