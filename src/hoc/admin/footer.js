@@ -1,7 +1,5 @@
 import React from "react";
 
-import "../../assets/css/footer.css";
-
 export default function AdminFooter() {
   return (
     <div className="footer">

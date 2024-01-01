@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress, Button } from "@mui/material";
 import { Form, Formik } from "formik";
-
-import "../../assets/css/forget-password.css";
 import WhiteLogo from "../../assets/images/top-logo-white.png";
-
 import { forgetPasswordAction } from "../../store/Auth/authActions";
 import { forgetPasswordSchema } from "../../utils/schema";
-
 import ErrorText from "../../components/Error";
 
 const ForgetPassword = () => {

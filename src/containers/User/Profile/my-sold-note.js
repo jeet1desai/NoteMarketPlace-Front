@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Table, Space, Dropdown, Menu } from "antd";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import "../../../assets/css/my-sold-note.css";
 import { useDispatch, useSelector } from "react-redux";
 import { userDownloadNoteAction, userMySoldNoteAction } from "../../../store/UserNotes/userNoteActions";
 import moment from "moment";

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
-import "../../../assets/css/manage-system-config.css";
 import { getAdminConfigAction, updateAdminConfigAction } from "../../../store/Configuration/configActions";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../../components/Loader";

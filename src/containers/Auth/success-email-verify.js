@@ -3,10 +3,7 @@ import { useParams, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
-
-import "../../assets/css/email-verify.css";
 import PurpleLogo from "../../assets/images/top-logo-purple.png";
-
 import { verificationMailAction } from "../../store/Auth/authActions";
 
 const SuccessEmailVerification = () => {

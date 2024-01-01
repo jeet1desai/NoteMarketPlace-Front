@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Rating } from "@mui/material";
 import CustomerReview from "../../components/CustomerReview";
-import "../../assets/css/note-detail.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchNoteAction, getNoteReviewAction, userDownloadNoteAction } from "../../store/UserNotes/userNoteActions";

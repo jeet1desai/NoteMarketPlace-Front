@@ -2,14 +2,9 @@ import React, { useState } from "react";
 import { Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, CircularProgress } from "@mui/material";
-
-import "../../assets/css/change-password.css";
-import "../../assets/font-awesome/css/font-awesome.css";
 import WhiteLogo from "../../assets/images/top-logo-white.png";
-
 import ErrorText from "../../components/Error";
 import PasswordEye from "../../components/PasswordEye";
-
 import { changePasswordAction } from "../../store/Auth/authActions";
 import { changePasswordSchema } from "../../utils/schema";
 

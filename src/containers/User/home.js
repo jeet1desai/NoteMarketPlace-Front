@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-import "../../assets/css/home.css";
 import DownloadImg from "../../assets/images/download.png";
 import SellerImg from "../../assets/images/sell-notes.jpeg";
 import AvatarImg from "../../assets/images/avatar.png";

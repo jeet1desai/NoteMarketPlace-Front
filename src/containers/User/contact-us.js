@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import { Form, Formik } from "formik";
-
-import "../../assets/css/contact-us.css";
-
 import ErrorText, { inputError } from "../../components/Error";
 import Loader from "../../components/Loader";
 import { contactUsSchema } from "../../utils/schema";
-
 import { contactUs } from "../../services/auth.service";
 import { toast } from "react-toastify";
 

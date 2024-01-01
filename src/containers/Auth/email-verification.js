@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-import "../../assets/css/email-verify.css";
 import PurpleLogo from "../../assets/images/top-logo-purple.png";
-
 import { getLSUser } from "../../utils/local";
 
 const EmailVerification = () => {

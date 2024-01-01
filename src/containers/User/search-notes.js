@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import "../../assets/css/search-notes.css";
 import Note from "../../components/Note";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";

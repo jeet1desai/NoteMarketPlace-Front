@@ -3,14 +3,9 @@ import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
 import { CircularProgress, Button } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-
 import WhiteLogo from "../../assets/images/top-logo-white.png";
-import "../../assets/font-awesome/css/font-awesome.css";
-import "../../assets/css/login.css";
-
 import { signInAction } from "../../store/Auth/authActions";
 import { loginSchema } from "../../utils/schema";
-
 import ErrorText from "../../components/Error";
 import PasswordEye from "../../components/PasswordEye";
 

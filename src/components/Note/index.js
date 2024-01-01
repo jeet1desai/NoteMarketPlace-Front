@@ -1,6 +1,5 @@
 import { Card, Rating, CardContent, Typography, CardMedia } from "@mui/material";
 import React from "react";
-import "../../assets/css/search-notes.css";
 import moment from "moment";
 
 const Note = ({ image, title, university, page, date, spam_count, avg_review, review_count }) => {
