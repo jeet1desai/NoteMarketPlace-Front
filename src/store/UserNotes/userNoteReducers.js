@@ -98,6 +98,10 @@ export function userNoteReducer(state = initialState, action) {
         note: null,
       };
     case USER_DOWNLOAD_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
     case USERS_CREATE_NOTE_SUCCESS:
     case USER_ADD_REVIEW_SUCCESS:
     case USER_CLONE_NOTE_SUCCESS:

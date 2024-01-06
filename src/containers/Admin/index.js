@@ -1,3 +1,4 @@
+import { LinearProgress } from "@mui/material";
 import React, { Suspense, lazy } from "react";
 import { Switch, Redirect } from "react-router-dom";
 
@@ -28,7 +29,7 @@ export default function AdminRoute() {
   return (
     <>
       <AdminHeader />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LinearProgress color="success" />}>
         <Switch>
           <PrivateRoute roles={[1, 2]} exact path="/admin/dashboard" component={Dashboard} />
           <PrivateRoute roles={[1, 2]} exact path="/admin/note/:id" component={AdminNoteDetails} />

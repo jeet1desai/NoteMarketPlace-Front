@@ -6,7 +6,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import EarningIcon from "../../assets/images/earning-icon.svg";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/Loader";
 import {
   deleteNoteAction,
   fetchUserDashboardStats,
@@ -143,8 +142,6 @@ const SellNoteDashboard = () => {
 
   return (
     <div className="sell-note">
-      <Loader loading={note_loading} />
-
       <div className="content-box">
         <div className="container">
           <div className="stats">
@@ -212,6 +209,7 @@ const SellNoteDashboard = () => {
 
             <div className="antd-table">
               <Table
+                loading={note_loading}
                 columns={inProgressColumns}
                 dataSource={in_progress_note}
                 pagination={{
@@ -244,6 +242,7 @@ const SellNoteDashboard = () => {
 
             <div className="antd-table">
               <Table
+                loading={note_loading}
                 columns={publishColumns}
                 dataSource={published_note}
                 pagination={{

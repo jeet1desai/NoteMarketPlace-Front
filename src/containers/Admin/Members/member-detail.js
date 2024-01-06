@@ -10,6 +10,8 @@ import { fetchUserNoteAction } from "../../../store/AdminNotes/adminNoteActions"
 import { Link } from "react-router-dom";
 import { handleStatus } from "../../../utils/enum";
 import { userDownloadNoteAction } from "../../../store/UserNotes/userNoteActions";
+import { Skeleton } from "@mui/material";
+import ValueUI from "../../../components/SimmerUI/ValueUI";
 
 const MemberDetail = () => {
   const dispatch = useDispatch();
@@ -120,45 +122,48 @@ const MemberDetail = () => {
 
   return (
     <div className="member-details">
-      <Loader loading={profile_loading || admin_note_loading || note_loading} />
       <div className="container">
         <div className="member-detail">
           <div className="page-title">
             <p>Member Details</p>
           </div>
           <div className="member-top">
-            <img alt="" src={userData.image} className="member-image" />
+            {profile_loading ? (
+              <Skeleton animation="wave" variant="rectangular" className="member-image" />
+            ) : (
+              <img alt="" src={userData.image} className="member-image" />
+            )}
             <div className="row w-100">
               <div className="col-6">
                 <div className="row">
                   <p className="col-6">First Name:</p>
-                  <span className="col-6">{userData.first_name}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.first_name}</span>
                   <p className="col-6">Last Name:</p>
-                  <span className="col-6">{userData.last_name}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.last_name}</span>
                   <p className="col-6">Email:</p>
-                  <span className="col-6">{userData.email}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.email}</span>
                   <p className="col-6">DOB:</p>
-                  <span className="col-6">{userData.date_of_birth}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.date_of_birth}</span>
                   <p className="col-6">Phone No:</p>
-                  <span className="col-6">{userData.phone_number}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.phone_number}</span>
                   <p className="col-6">Collage / University:</p>
-                  <span className="col-6">{userData.university}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.university}</span>
                 </div>
               </div>
               <div className="col-6">
                 <div className="row">
                   <p className="col-6">Address 1:</p>
-                  <span className="col-6">{userData.address_one}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.address_one}</span>
                   <p className="col-6">Address 2:</p>
-                  <span className="col-6">{userData.address_two}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.address_two}</span>
                   <p className="col-6">City:</p>
-                  <span className="col-6">{userData.city}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.city}</span>
                   <p className="col-6">State:</p>
-                  <span className="col-6">{userData.state}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.state}</span>
                   <p className="col-6">Country:</p>
-                  <span className="col-6">{userData.country}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.country}</span>
                   <p className="col-6">Zip Code:</p>
-                  <span className="col-6">{userData.zip_code}</span>
+                  <span className="col-6">{profile_loading ? <ValueUI /> : userData.zip_code}</span>
                 </div>
               </div>
             </div>
@@ -173,6 +178,7 @@ const MemberDetail = () => {
           </div>
           <div className="antd-table">
             <Table
+              loading={profile_loading || admin_note_loading || note_loading}
               columns={columns}
               dataSource={member_notes}
               pagination={{
