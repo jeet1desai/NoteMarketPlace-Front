@@ -2,11 +2,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Note from "../../components/Note";
 import { useDispatch, useSelector } from "react-redux";
-import Loader from "../../components/Loader";
 import { getUserCategoryListAction, getUserCountryListAction, getUserNoteTypeListAction } from "../../store/Configuration/configActions";
 import { getSearchNotesAction } from "../../store/UserNotes/userNoteActions";
 import _ from "lodash";
 import { Pagination } from "@mui/material";
+import NoteCardUI from "../../components/SimmerUI/NoteCardUI";
 
 const SearchNotes = () => {
   const dispatch = useDispatch();
@@ -40,7 +40,6 @@ const SearchNotes = () => {
 
   return (
     <div className="search-notes">
-      <Loader loading={config_loading || note_loading} />
       <div className="page-top">
         <div className="page-top-title">
           <p>Search Notes</p>
@@ -97,7 +96,20 @@ const SearchNotes = () => {
             <div className="page-title">{search_notes.length !== 0 && <p>Total {pagination?.count} Notes</p>}</div>
             <div className="note-list">
               <div className="row">
-                {search_notes.length === 0 && (
+                {(note_loading || config_loading) && (
+                  <>
+                    <div className="col-lg-4 col-md-6 col-sm-12">
+                      <NoteCardUI />
+                    </div>
+                    <div className="col-lg-4 col-md-6 col-sm-12">
+                      <NoteCardUI />
+                    </div>
+                    <div className="col-lg-4 col-md-6 col-sm-12">
+                      <NoteCardUI />
+                    </div>
+                  </>
+                )}
+                {!note_loading && !config_loading && search_notes.length === 0 && (
                   <div className="col-lg-12">
                     <div className="page-title">
                       <p>No Note Found!</p>

@@ -1,3 +1,4 @@
+import { LinearProgress } from "@mui/material";
 import React, { Suspense, lazy } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -21,7 +22,7 @@ export default function UserRoute() {
   return (
     <>
       <UserHeader />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LinearProgress color="success" />}>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/search-notes" component={SearchNotes} />

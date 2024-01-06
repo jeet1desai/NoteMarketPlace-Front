@@ -7,6 +7,9 @@ import { fetchNoteAction, getNoteReviewAction, userDownloadNoteAction } from "..
 import moment from "moment";
 import Loader from "../../components/Loader";
 import AlertDialog from "../../components/AlertDialog";
+import NoteDetailsUI from "../../components/SimmerUI/NoteDetailUI";
+import ValueUI from "../../components/SimmerUI/ValueUI";
+import ReviewCardUI from "../../components/SimmerUI/ReviewCardUI";
 
 const NoteDetail = () => {
   const dispatch = useDispatch();
@@ -70,7 +73,7 @@ const NoteDetail = () => {
 
   return (
     <div className="note-details">
-      <Loader loading={note_loading} />
+      <Loader loading={note && note_loading} />
       <div className="note-detail">
         <div className="container">
           <div className="page-title">
@@ -78,67 +81,79 @@ const NoteDetail = () => {
           </div>
           <div className="row">
             <div className="col-6">
-              <div className="note-up-left">
-                <img alt="note market place" src={noteDetails.display_picture} className="note-image" />
-                <div className="">
-                  <h5>{noteDetails.title}</h5>
-                  <p>{noteDetails.category}</p>
-                  <p>{noteDetails.description}</p>
-                  <button
-                    className="btn btn-purple download-btn"
-                    title="Download / $15"
-                    onClick={() => {
-                      if (noteDetails.is_paid) {
-                        setDownloadDialog(true);
-                      } else {
-                        dispatch(userDownloadNoteAction({ note_id: id }));
-                      }
-                    }}>
-                    Download {noteDetails.selling_price ? `/ $${noteDetails.selling_price}` : ""}
-                  </button>
+              {!note && note_loading ? (
+                <NoteDetailsUI />
+              ) : (
+                <div className="note-up-left">
+                  <img alt="note market place" src={noteDetails.display_picture} className="note-image" />
+                  <div>
+                    <h5>{noteDetails.title}</h5>
+                    <p>{noteDetails.category}</p>
+                    <p>{noteDetails.description}</p>
+                    <button
+                      className="btn btn-purple download-btn"
+                      title="Download / $15"
+                      onClick={() => {
+                        if (noteDetails.is_paid) {
+                          setDownloadDialog(true);
+                        } else {
+                          dispatch(userDownloadNoteAction({ note_id: id }));
+                        }
+                      }}>
+                      Download {noteDetails.selling_price ? `/ $${noteDetails.selling_price}` : ""}
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
             <div className="col-6">
               <div className="note-up-right">
                 <div className="note-info">
                   <p className="note-info-left">Institution : </p>
-                  <p className="note-info-right">{noteDetails.university_name}</p>
+                  <p className="note-info-right">{!note && note_loading ? <ValueUI /> : noteDetails.university_name}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Country : </p>
-                  <p className="note-info-right">{noteDetails.country}</p>
+                  <p className="note-info-right">{!note && note_loading ? <ValueUI /> : noteDetails.country}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Course Name : </p>
-                  <p className="note-info-right">{noteDetails.course}</p>
+                  <p className="note-info-right">{!note && note_loading ? <ValueUI /> : noteDetails.course}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Course Code : </p>
-                  <p className="note-info-right">{noteDetails.course_code}</p>
+                  <p className="note-info-right">{!note && note_loading ? <ValueUI /> : noteDetails.course_code}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Professor : </p>
-                  <p className="note-info-right">{noteDetails.professor}</p>
+                  <p className="note-info-right">{!note && note_loading ? <ValueUI /> : noteDetails.professor}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Number Of Pages : </p>
-                  <p className="note-info-right">{noteDetails.number_of_pages}</p>
+                  <p className="note-info-right">{!note && note_loading ? <ValueUI /> : noteDetails.number_of_pages}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Approved Date : </p>
-                  <p className="note-info-right">{noteDetails.approve_date}</p>
+                  <p className="note-info-right">{!note && note_loading ? <ValueUI /> : noteDetails.approve_date}</p>
                 </div>
                 <div className="note-info">
                   <p className="note-info-left">Rating : </p>
                   <p className="note-info-right">
-                    <div className="note-rating">
-                      <Rating name="half-rating-read" value={noteDetails.avg_rating} readOnly />
-                      <p>{noteDetails.rating_count} reviews</p>
-                    </div>
+                    {!note && note_loading ? (
+                      <ValueUI />
+                    ) : (
+                      <div className="note-rating">
+                        <Rating name="half-rating-read" value={noteDetails.avg_rating} readOnly />
+                        <p>{noteDetails.rating_count} reviews</p>
+                      </div>
+                    )}
                   </p>
                 </div>
-                <span className="error">{noteDetails.spam_count} Users marked this note as inappropriate</span>
+                {!note && note_loading ? (
+                  <ValueUI />
+                ) : (
+                  <span className="error">{noteDetails.spam_count} Users marked this note as inappropriate</span>
+                )}
               </div>
             </div>
           </div>
@@ -164,6 +179,11 @@ const NoteDetail = () => {
                   <p>Customer Review</p>
                 </div>
                 <div className="customers">
+                  {note_loading && !note && review_list.length === 0 && (
+                    <>
+                      <ReviewCardUI /> <ReviewCardUI /> <ReviewCardUI />
+                    </>
+                  )}
                   {review_list.length === 0 && <div className="customer">No review present to this note</div>}
                   {review_list.map((review) => {
                     return (

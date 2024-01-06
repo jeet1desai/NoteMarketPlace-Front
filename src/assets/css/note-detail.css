@@ -20,11 +20,11 @@
 .note-details .note-detail img.note-image {
   width: 160px;
   height: 210px;
-  margin-right: 20px;
   object-fit: cover;
 }
 
 .note-details .note-detail .note-up-left {
+  gap: 20px;
   display: flex;
 }
 
@@ -87,6 +87,7 @@
   margin: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #d1d1d1;
+  gap: 20px;
 }
 
 .note-details .note-review .customer:last-child {
@@ -97,7 +98,6 @@
 .note-details .note-review .customer-image .MuiAvatar-root {
   width: 80px;
   height: 80px;
-  margin-right: 20px;
 }
 
 .note-details .note-review .customer-review {

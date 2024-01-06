@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { LinearProgress } from "@mui/material";
 
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,7 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <ToastContainer />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LinearProgress color="success" />}>
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
