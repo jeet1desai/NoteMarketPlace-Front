@@ -12,11 +12,11 @@ A marketplace like platform through which different students of various professi
 ## Credentials
 
 #### User
-```http
+```
   user1@yopmail.com / Demo@123
 ```
 
 #### Admin
-```http
+```
   admin1@yopmail.com / Demo@123
 ```
