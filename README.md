@@ -8,3 +8,15 @@ A marketplace like platform through which different students of various professi
 ### `npm start` - Tag
 [http://localhost:3000](http://localhost:3000) - Link
 -->
+
+## Credentials
+
+#### User
+```http
+  user1@yopmail.com / Demo@123
+```
+
+#### Admin
+```http
+  admin1@yopmail.com / Demo@123
+```
